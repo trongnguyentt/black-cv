@@ -1,0 +1,81 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="blackcvApp.cV.home.title">CVS</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cv" [routerLink]="['/cv/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="blackcvApp.cV.home.createLabel">
+            Create a new CV
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="cVS?.length === 0">
+        <span jhiTranslate="blackcvApp.cV.home.notFound">No cVS found</span>
+    </div>
+    <div class="table-responsive" *ngIf="cVS?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="idCompany"><span jhiTranslate="blackcvApp.cV.idCompany">Id Company</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="name"><span jhiTranslate="blackcvApp.cV.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="phone"><span jhiTranslate="blackcvApp.cV.phone">Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="email"><span jhiTranslate="blackcvApp.cV.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="address"><span jhiTranslate="blackcvApp.cV.address">Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="job"><span jhiTranslate="blackcvApp.cV.job">Job</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="gender"><span jhiTranslate="blackcvApp.cV.gender">Gender</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="avatar"><span jhiTranslate="blackcvApp.cV.avatar">Avatar</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="fileUploadCV"><span jhiTranslate="blackcvApp.cV.fileUploadCV">File Upload CV</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="status"><span jhiTranslate="blackcvApp.cV.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let cV of cVS ;trackBy: trackId">
+                <td><a [routerLink]="['/cv', cV.id, 'view' ]">{{cV.id}}</a></td>
+                <td>{{cV.idCompany}}</td>
+                <td>{{cV.name}}</td>
+                <td>{{cV.phone}}</td>
+                <td>{{cV.email}}</td>
+                <td>{{cV.address}}</td>
+                <td>{{cV.job}}</td>
+                <td>{{cV.gender}}</td>
+                <td>{{cV.avatar}}</td>
+                <td>{{cV.fileUploadCV}}</td>
+                <td>{{cV.status}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/cv', cV.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/cv', cV.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(cV)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="cVS?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

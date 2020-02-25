@@ -1,0 +1,24 @@
+{
+  "blackcvApp": {
+    "reason": {
+      "home": {
+        "title": "Reasons",
+        "createLabel": "Create a new Reason",
+        "createOrEditLabel": "Create or edit a Reason",
+        "notFound": "No Reasons found"
+      },
+      "created": "A new Reason is created with identifier {{ param }}",
+      "updated": "A Reason is updated with identifier {{ param }}",
+      "deleted": "A Reason is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Reason {{ id }}?"
+      },
+      "detail": {
+        "title": "Reason"
+      },
+      "descriptons": "Descriptons",
+      "reasonName": "Reason Name",
+      "status": "Status"
+    }
+  }
+}

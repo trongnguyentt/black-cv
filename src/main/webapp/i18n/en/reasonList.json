@@ -1,0 +1,25 @@
+{
+  "blackcvApp": {
+    "reasonList": {
+      "home": {
+        "title": "Reason Lists",
+        "createLabel": "Create a new Reason List",
+        "createOrEditLabel": "Create or edit a Reason List",
+        "notFound": "No Reason Lists found"
+      },
+      "created": "A new Reason List is created with identifier {{ param }}",
+      "updated": "A Reason List is updated with identifier {{ param }}",
+      "deleted": "A Reason List is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Reason List {{ id }}?"
+      },
+      "detail": {
+        "title": "Reason List"
+      },
+      "idCV": "Id CV",
+      "document": "Document",
+      "id_reason": "Id Reason",
+      "status": "Status"
+    }
+  }
+}

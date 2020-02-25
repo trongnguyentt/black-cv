@@ -1,0 +1,31 @@
+{
+  "blackcvApp": {
+    "cV": {
+      "home": {
+        "title": "CVS",
+        "createLabel": "Thêm mới một CV",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật CV",
+        "notFound": "No CVS found"
+      },
+      "created": "Một CV mới được tạo với định danh {{ param }}",
+      "updated": "Một CV cập nhật với định danh {{ param }}",
+      "deleted": "Một CV đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa CV {{ id }}?"
+      },
+      "detail": {
+        "title": "CV"
+      },
+      "idCompany": "Id Company",
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "job": "Job",
+      "gender": "Gender",
+      "avatar": "Avatar",
+      "fileUploadCV": "File Upload CV",
+      "status": "Status"
+    }
+  }
+}

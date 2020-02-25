@@ -1,0 +1,24 @@
+{
+  "blackcvApp": {
+    "reason": {
+      "home": {
+        "title": "Reasons",
+        "createLabel": "Thêm mới một Reason",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Reason",
+        "notFound": "No Reasons found"
+      },
+      "created": "Một Reason mới được tạo với định danh {{ param }}",
+      "updated": "Một Reason cập nhật với định danh {{ param }}",
+      "deleted": "Một Reason đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Reason {{ id }}?"
+      },
+      "detail": {
+        "title": "Reason"
+      },
+      "descriptons": "Descriptons",
+      "reasonName": "Reason Name",
+      "status": "Status"
+    }
+  }
+}
