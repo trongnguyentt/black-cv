@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { ICV } from 'app/shared/model/cv.model';
+import {map} from "rxjs/operators";
 
 type EntityResponseType = HttpResponse<ICV>;
 type EntityArrayResponseType = HttpResponse<ICV[]>;
@@ -15,8 +16,12 @@ export class CVService {
 
   constructor(protected http: HttpClient) {}
 
-  create(cV: ICV): Observable<EntityResponseType> {
-    return this.http.post<ICV>(this.resourceUrl, cV, { observe: 'response' });
+  create(cV: ICV,iconPath: File): Observable<EntityResponseType> {
+    const data: FormData = new FormData();
+    data.append('cV', new Blob([JSON.stringify(cV)], { type: 'application/json' }));
+    data.append('avatar', iconPath);
+    return this.http
+      .post<ICV>(this.resourceUrl, data, {observe: 'response'});
   }
 
   update(cV: ICV): Observable<EntityResponseType> {

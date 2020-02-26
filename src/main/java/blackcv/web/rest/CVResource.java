@@ -14,10 +14,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -52,11 +56,17 @@ public class CVResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/cvs")
-    public ResponseEntity<CVDTO> createCV(@RequestBody CVDTO cVDTO) throws URISyntaxException {
+    public ResponseEntity<CVDTO> createCV( @RequestPart("cV") CVDTO cVDTO,@RequestParam(value = "avatar", required = false) MultipartFile file,
+                                          HttpServletRequest request) throws URISyntaxException, IOException {
         log.debug("REST request to save CV : {}", cVDTO);
         if (cVDTO.getId() != null) {
             throw new BadRequestAlertException("A new cV cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        String path = request.getSession().getServletContext().getRealPath("/") + "/content/images/";
+        File upload = new File (path + file.getOriginalFilename());
+        file.transferTo(upload);
+        String imagePath = request.getContextPath() + "/content/images/" + file.getOriginalFilename();
+        cVDTO.setAvatar(imagePath);
         CVDTO result = cVService.save(cVDTO);
         return ResponseEntity.created(new URI("/api/cvs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
