@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blackcvApp.cV.avatar" for="field_avatar">Avatar</label>
-                    <img class="img-fluid icon-image" [src]="getIcon()" alt=""/>
+                    <img class="img-fluid icon-image sizeImage" [src]="getIcon()" alt=""/>
                     <input type="file" name="avatar" id="field_avatar" formControlName="avatar" accept=".jpg, .png, .bmp, .jpeg"
                            (change)="selectIcon($event)"/>
                 </div>
