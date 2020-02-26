@@ -1,6 +1,7 @@
 package blackcv.repository;
 
 import blackcv.domain.CV;
+import blackcv.repository.custom.CVRepositoryCustom;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,6 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface CVRepository extends JpaRepository<CV, Long> {
+public interface CVRepository extends JpaRepository<CV, Long> , CVRepositoryCustom {
 
 }

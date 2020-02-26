@@ -66,9 +66,9 @@ export class CVUpdateComponent implements OnInit {
     this.isSaving = true;
     const cV = this.createFromForm();
     if (cV.id !== undefined) {
-      this.subscribeToSaveResponse(this.cVService.update(cV));
+      this.subscribeToSaveResponse(this.cVService.update(cV,this.iconUpload));
     } else {
-      this.subscribeToSaveResponse(this.cVService.create(cV,this.iconUpload));
+      this.subscribeToSaveResponse(this.cVService.create(cV, this.iconUpload));
     }
   }
 
@@ -100,7 +100,9 @@ export class CVUpdateComponent implements OnInit {
     if (this.iconPath) {
       return this.iconPath;
     }
-    
+    if (this.editForm.get(['avatar'])!.value) {
+      return this.editForm.get(['avatar'])!.value;
+    }
     return null;
   }
 

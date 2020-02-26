@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import {HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { JhiEventManager } from 'ng-jhipster';
+import {JhiEventManager, JhiParseLinks} from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ICV } from 'app/shared/model/cv.model';
@@ -10,6 +10,7 @@ import { ICV } from 'app/shared/model/cv.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { CVService } from './cv.service';
 import { CVDeleteDialogComponent } from './cv-delete-dialog.component';
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'jhi-cv',
@@ -24,13 +25,18 @@ export class CVComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
-
+  links: any;
+  searchForm = this.fb.group({
+    name: [''],
+  });
   constructor(
     protected cVService: CVService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    private fb: FormBuilder,
+    protected parseLinks: JhiParseLinks,
   ) {}
 
   loadPage(page?: number): void {
@@ -46,15 +52,26 @@ export class CVComponent implements OnInit, OnDestroy {
         () => this.onError()
       );
   }
-
+  getFormValues() {
+    const res = {};
+    // const countryName = this.searchForm.get(['countryName']).value.trim();
+    // const countryCode = this.searchForm.get(['countryCode']).value.trim();
+    const name=this.searchForm.get(['name'])!.value.trim();
+    if (name) {
+      res['name'] = name;
+    }
+    return res;
+  }
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(data => {
       this.page = data.pagingParams.page;
       this.ascending = data.pagingParams.ascending;
       this.predicate = data.pagingParams.predicate;
       this.ngbPaginationPage = data.pagingParams.page;
-      this.loadPage();
+      // this.loadPage();
+
     });
+    this.loadAll()
     this.registerChangeInCVS();
   }
 
@@ -98,8 +115,27 @@ export class CVComponent implements OnInit, OnDestroy {
     });
     this.cVS = data ? data : [];
   }
-
+  loadAll() {
+    this.cVService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+        ...this.getFormValues()
+      })
+      .subscribe(
+        (res: HttpResponse<ICV[]>) => this.paginateCV(res.body!, res.headers)
+      );
+  }
+  onSearch(){
+this.loadAll();
+  }
   protected onError(): void {
     this.ngbPaginationPage = this.page;
+  }
+  protected paginateCV(data: ICV[], headers: HttpHeaders) {
+    this.links = this.parseLinks.parse(headers.get('link')!);
+    this.totalItems = parseInt(headers.get('X-Total-Count')!, 10);
+    this.cVS = data;
   }
 }

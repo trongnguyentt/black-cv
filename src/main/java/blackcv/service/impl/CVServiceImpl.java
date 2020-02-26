@@ -9,10 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.MultiValueMap;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -54,11 +57,11 @@ public class CVServiceImpl implements CVService {
      * @return the list of entities.
      */
     @Override
-    @Transactional(readOnly = true)
-    public Page<CVDTO> findAll(Pageable pageable) {
+    public Page<CVDTO> findAll(MultiValueMap<String, String> queryParams, Pageable pageable) {
         log.debug("Request to get all CVS");
-        return cVRepository.findAll(pageable)
-            .map(cVMapper::toDto);
+        List<CV> device = cVRepository.search(queryParams, pageable);
+        Page<CV> pages = new PageImpl<>(device, pageable, cVRepository.countCV(queryParams));
+        return pages.map(cVMapper::toDto);
     }
 
 

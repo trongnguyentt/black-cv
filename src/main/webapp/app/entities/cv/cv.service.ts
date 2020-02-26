@@ -24,8 +24,11 @@ export class CVService {
       .post<ICV>(this.resourceUrl, data, {observe: 'response'});
   }
 
-  update(cV: ICV): Observable<EntityResponseType> {
-    return this.http.put<ICV>(this.resourceUrl, cV, { observe: 'response' });
+  update(cV: ICV,iconPath: File): Observable<EntityResponseType> {
+    const data: FormData = new FormData();
+    data.append('cV', new Blob([JSON.stringify(cV)], { type: 'application/json' }));
+    data.append('avatar', iconPath);
+    return this.http.put<ICV>(this.resourceUrl, data, { observe: 'response' });
   }
 
   find(id: number): Observable<EntityResponseType> {
