@@ -1,6 +1,7 @@
 package blackcv.repository;
 
 import blackcv.domain.Reason;
+import blackcv.repository.custom.ReasonRepositoryCustom;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,6 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface ReasonRepository extends JpaRepository<Reason, Long> {
+public interface ReasonRepository extends JpaRepository<Reason, Long>, ReasonRepositoryCustom {
 
 }

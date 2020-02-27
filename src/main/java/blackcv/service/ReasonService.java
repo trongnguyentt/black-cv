@@ -4,6 +4,7 @@ import blackcv.service.dto.ReasonDTO;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.util.MultiValueMap;
 
 import java.util.Optional;
 
@@ -26,7 +27,7 @@ public interface ReasonService {
      * @param pageable the pagination information.
      * @return the list of entities.
      */
-    Page<ReasonDTO> findAll(Pageable pageable);
+    Page<ReasonDTO> findAll(MultiValueMap<String, String> queryParams, Pageable pageable);
 
 
     /**
