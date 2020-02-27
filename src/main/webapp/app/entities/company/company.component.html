@@ -11,6 +11,31 @@
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <br/>
+
+    <div class="card">
+        <h5 class="card-header">Tìm kiếm</h5>
+        <div class="card-body">
+            <form name="searchForm" role="form" novalidate (ngSubmit)="onSearch()" [formGroup]="searchForm">
+                <div class="row justify-content-center">
+                    <div class="form-group col-sm-6 row text-color">
+                        <label class="col-4 col-form-label text-right"
+                               for="field_cVName">Company Name</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" name="field_cVName" id="field_cVName"
+                                   formControlName="name"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-search">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                        <span class="d-none d-md-inline">Tìm kiếm</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="alert alert-warning" *ngIf="companies?.length === 0">
         <span jhiTranslate="blackcvApp.company.home.notFound">No companies found</span>
     </div>
