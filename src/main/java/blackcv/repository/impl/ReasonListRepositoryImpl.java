@@ -42,13 +42,23 @@ public class ReasonListRepositoryImpl implements ReasonListRepositoryCustom {
 
     private String createWhereQuery(MultiValueMap<String, String> queryParams, Map<String, Object> values) {
         String sql = "";
-        if (queryParams.containsKey("name")) {
+
+        if (queryParams.containsKey("cv")) {
 //            sql += "and lower(C.name) like lower(:name)";
 //            values.put("name", queryParams.get("name").get(0));
 
-            sql += "and (lower(C.id_reason) like lower(:name) or lower(C.idCV) like lower(:name))";
-            values.put("name", '%' + queryParams.get("name").get(0) + '%');
+            sql += "and lower(C.idCV) like lower(:cv)";
+            values.put("cv", '%' + queryParams.get("cv").get(0) + '%');
         }
+
+        if (queryParams.containsKey("reason")) {
+//            sql += "and lower(C.name) like lower(:name)";
+//            values.put("name", queryParams.get("name").get(0));
+
+            sql += "and lower(C.id_reason) like lower(:reason)";
+            values.put("reason", '%' + queryParams.get("reason").get(0) + '%');
+        }
+
 //        if (queryParams.containsKey("countryName")) {
 //            sql += "and lower(C.countryName) like lower(:countryName)";
 //            values.put("countryName", "%" + queryParams.get("countryName").get(0) + "%");

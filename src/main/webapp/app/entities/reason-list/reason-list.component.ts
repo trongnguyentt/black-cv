@@ -28,7 +28,8 @@ export class ReasonListComponent implements OnInit, OnDestroy {
   ngbPaginationPage = 1;
   links: any;
   searchForm = this.fb.group({
-    name: ['']
+    cv: [''],
+    reason: ['']
   });
 
   constructor(
@@ -59,10 +60,16 @@ export class ReasonListComponent implements OnInit, OnDestroy {
     const res = {};
     // const countryName = this.searchForm.get(['countryName']).value.trim();
     // const countryCode = this.searchForm.get(['countryCode']).value.trim();
-    const name = this.searchForm.get(['name'])!.value.trim();
+    const name = this.searchForm.get(['cv'])!.value.trim();
     if (name) {
-      res['name'] = name;
+      res['cv'] = name;
     }
+
+    const reason = this.searchForm.get(['reason'])!.value.trim();
+    if (reason) {
+      res['reason'] = reason;
+    }
+
     return res;
   }
 
@@ -128,6 +135,11 @@ export class ReasonListComponent implements OnInit, OnDestroy {
         ...this.getFormValues()
       })
       .subscribe((res: HttpResponse<IReasonList[]>) => this.paginateReasonList(res.body!, res.headers));
+
+    this.searchForm = this.fb.group({
+      cv: [''],
+      reason: ['']
+    });
   }
 
   onSearch() {
