@@ -58,17 +58,19 @@ public class CVResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/cvs")
-    public ResponseEntity<CVDTO> createCV( @RequestPart("cV") CVDTO cVDTO,@RequestParam(value = "avatar", required = false) MultipartFile file,
+    public ResponseEntity<CVDTO> createCV(@RequestPart("cV") CVDTO cVDTO, @RequestParam(value = "avatar", required = false) MultipartFile file,
                                           HttpServletRequest request) throws URISyntaxException, IOException {
         log.debug("REST request to save CV : {}", cVDTO);
         if (cVDTO.getId() != null) {
             throw new BadRequestAlertException("A new cV cannot already have an ID", ENTITY_NAME, "idexists");
         }
         String path = request.getSession().getServletContext().getRealPath("/") + "/content/images/";
-        File upload = new File (path + file.getOriginalFilename());
-        file.transferTo(upload);
-        String imagePath = request.getContextPath() + "/content/images/" + file.getOriginalFilename();
-        cVDTO.setAvatar(imagePath);
+        if (file != null) {
+            File upload = new File(path + file.getOriginalFilename());
+            file.transferTo(upload);
+            String imagePath = request.getContextPath() + "/content/images/" + file.getOriginalFilename();
+            cVDTO.setAvatar(imagePath);
+        }
         CVDTO result = cVService.save(cVDTO);
         return ResponseEntity.created(new URI("/api/cvs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -85,17 +87,19 @@ public class CVResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/cvs")
-    public ResponseEntity<CVDTO> updateCV(@RequestPart("cV") CVDTO cVDTO,@RequestParam(value = "avatar", required = false) MultipartFile file,
+    public ResponseEntity<CVDTO> updateCV(@RequestPart("cV") CVDTO cVDTO, @RequestParam(value = "avatar", required = false) MultipartFile file,
                                           HttpServletRequest request) throws URISyntaxException, IOException {
         log.debug("REST request to update CV : {}", cVDTO);
         if (cVDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        String path = request.getSession().getServletContext().getRealPath("/") + "/content/images/";
-        File upload = new File (path + file.getOriginalFilename());
-        file.transferTo(upload);
-        String imagePath = request.getContextPath() + "/content/images/" + file.getOriginalFilename();
-        cVDTO.setAvatar(imagePath);
+        if (file != null) {
+            String path = request.getSession().getServletContext().getRealPath("/") + "/content/images/";
+            File upload = new File(path + file.getOriginalFilename());
+            file.transferTo(upload);
+            String imagePath = request.getContextPath() + "/content/images/" + file.getOriginalFilename();
+            cVDTO.setAvatar(imagePath);
+        }
         CVDTO result = cVService.save(cVDTO);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, cVDTO.getId().toString()))
@@ -105,15 +109,21 @@ public class CVResource {
     /**
      * {@code GET  /cvs} : get all the cVS.
      *
-
      * @param pageable the pagination information.
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of cVS in body.
      */
     @GetMapping("/cvs")
     public ResponseEntity<List<CVDTO>> getAllCVS(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get a page of CVS");
-        Page<CVDTO> page = cVService.findAll(queryParams,pageable);
+        Page<CVDTO> page = cVService.findAll(queryParams, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/cvs/find")
+    public ResponseEntity<List<CVDTO>> getAllInHome(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to get a page of CVS");
+        Page<CVDTO> page = cVService.findInHome(queryParams, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

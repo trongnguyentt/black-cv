@@ -29,7 +29,7 @@ public interface CVService {
      */
     Page<CVDTO> findAll(MultiValueMap<String, String> queryParams, Pageable pageable);
 
-
+    Page<CVDTO> findInHome(MultiValueMap<String, String> queryParams, Pageable pageable);
     /**
      * Get the "id" cV.
      *

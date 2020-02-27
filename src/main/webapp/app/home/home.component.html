@@ -2,6 +2,38 @@
     <div class="col-md-3">
         <span class="hipster img-fluid rounded"></span>
     </div>
+    <form name="searchForm" role="form" novalidate (ngSubmit)="onSearch()" [formGroup]="searchForm">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="field_cVName">Name</label>
+                <input type="text" class="form-control" name="field_cVName" id="field_cVName"
+                         formControlName="name"/>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="field_birthday">Birthday</label>
+                <input type="date" class="form-control" id="field_birthday" placeholder="Birthday" name="field_birthday"
+                       formControlName="birthday">
+            </div>
+        </div>
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="field_phone">Phone</label>
+            <input type="text" class="form-control" name="field_phone" id="field_phone"
+                   formControlName="phone"/>
+        </div>
+        </div>
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="field_phone">Email</label>
+            <input type="text" class="form-control" name="field_email" id="field_email"
+                   formControlName="email"/>
+        </div>
+        </div>
+        <div *ngIf="fail" style="color: red">Bạn cần nhập đầy đủ thông tin</div>
+        <br>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
 <!--    <div class="col-md-9">-->
 <!--        <h1 class="display-4" jhiTranslate="home.title">Welcome, Java Hipster!</h1>-->
 <!--        <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>-->
