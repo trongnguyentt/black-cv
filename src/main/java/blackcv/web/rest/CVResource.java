@@ -67,14 +67,16 @@ public class CVResource {
             throw new BadRequestAlertException("A new cV cannot already have an ID", ENTITY_NAME, "idexists");
         }
         String path = request.getSession().getServletContext().getRealPath("/") + "/content/images/";
-        File upload = new File(path + file.getOriginalFilename());
-        File upload2 = new File(path + file2.getOriginalFilename());
-        file.transferTo(upload);
-        file2.transferTo(upload2);
-        String imagePath = request.getContextPath() + "/content/images/" + file.getOriginalFilename();
-        String imagePath2 = request.getContextPath() + "/content/images/" + file2.getOriginalFilename();
-        cVDTO.setAvatar(imagePath);
-        cVDTO.setFileUploadCV(imagePath2);
+        if (file != null) {
+            File upload = new File(path + file.getOriginalFilename());
+            File upload2 = new File(path + file2.getOriginalFilename());
+            file.transferTo(upload);
+            file2.transferTo(upload2);
+            String imagePath = request.getContextPath() + "/content/images/" + file.getOriginalFilename();
+            String imagePath2 = request.getContextPath() + "/content/images/" + file2.getOriginalFilename();
+            cVDTO.setAvatar(imagePath);
+            cVDTO.setFileUploadCV(imagePath2);
+        }
         CVDTO result = cVService.save(cVDTO);
         return ResponseEntity.created(new URI("/api/cvs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -99,15 +101,18 @@ public class CVResource {
         if (cVDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        String path = request.getSession().getServletContext().getRealPath("/") + "/content/images/";
-        File upload = new File(path + file.getOriginalFilename());
-        File upload2 = new File(path + file2.getOriginalFilename());
-        file.transferTo(upload);
-        file2.transferTo(upload2);
-        String imagePath = request.getContextPath() + "/content/images/" + file.getOriginalFilename();
-        String imagePath2 = request.getContextPath() + "/content/images/" + file2.getOriginalFilename();
-        cVDTO.setAvatar(imagePath);
-        cVDTO.setFileUploadCV(imagePath2);
+        if (file != null) {
+            String path = request.getSession().getServletContext().getRealPath("/") + "/content/images/";
+            File upload = new File(path + file.getOriginalFilename());
+            File upload2 = new File(path + file2.getOriginalFilename());
+            file.transferTo(upload);
+            file2.transferTo(upload2);
+            String imagePath = request.getContextPath() + "/content/images/" + file.getOriginalFilename();
+            String imagePath2 = request.getContextPath() + "/content/images/" + file2.getOriginalFilename();
+            cVDTO.setAvatar(imagePath);
+            cVDTO.setFileUploadCV(imagePath2);
+        }
+
         CVDTO result = cVService.save(cVDTO);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, cVDTO.getId().toString()))
@@ -124,6 +129,14 @@ public class CVResource {
     public ResponseEntity<List<CVDTO>> getAllCVS(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get a page of CVS");
         Page<CVDTO> page = cVService.findAll(queryParams, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @GetMapping("/cvs/find")
+    public ResponseEntity<List<CVDTO>> getAllInHome(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to get a page of CVS");
+        Page<CVDTO> page = cVService.findInHome(queryParams, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

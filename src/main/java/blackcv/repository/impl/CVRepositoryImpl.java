@@ -18,15 +18,45 @@ public class CVRepositoryImpl implements CVRepositoryCustom {
 
     @Override
     public List<CV> search(MultiValueMap<String, String> queryParams, Pageable pageable) {
-        String sql = "select C from CV C where C.status <> 0 ";
         Map<String, Object> values = new HashMap<>();
-        sql += createWhereQuery(queryParams, values);
-        sql += createOrderQuery(queryParams);
-        Query query = entityManager.createQuery(sql, CV.class);
-        values.forEach(query::setParameter);
-        query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
-        query.setMaxResults(pageable.getPageSize());
-        return query.getResultList();
+        if (queryParams.containsKey("login") && !queryParams.get("author").get(0).contains("ROLE_ADMIN")) {
+            String sql = "select C from CV C where C.status <> 0 and C.createdBy like :login";
+            values.put("login", queryParams.get("login").get(0));
+            sql += createWhereQuery(queryParams, values);
+            sql += createOrderQuery(queryParams);
+            Query query = entityManager.createQuery(sql, CV.class);
+            values.forEach(query::setParameter);
+            query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
+            query.setMaxResults(pageable.getPageSize());
+            return query.getResultList();
+        } else {
+            String sql = "select C from CV C where C.status <> 0 ";
+            sql += createWhereQuery(queryParams, values);
+            sql += createOrderQuery(queryParams);
+            Query query = entityManager.createQuery(sql, CV.class);
+            values.forEach(query::setParameter);
+            query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
+            query.setMaxResults(pageable.getPageSize());
+            return query.getResultList();
+        }
+    }
+
+    @Override
+    public List<CV> searchInHome(MultiValueMap<String, String> queryParams, Pageable pageable) {
+        if (queryParams.containsKey("name") && queryParams.containsKey("phone") && queryParams.containsKey("email") && queryParams.containsKey("birthday")) {
+            String sql = "select C from CV C where C.status <> 0 and lower(C.name) like lower(:name) and C.phone like :phone and C.email like :email and C.birthday like :birthday";
+            Map<String, Object> values = new HashMap<>();
+            values.put("name", queryParams.get("name").get(0));
+            values.put("phone", queryParams.get("phone").get(0));
+            values.put("email", queryParams.get("email").get(0));
+            values.put("birthday", queryParams.get("birthday").get(0));
+            Query query = entityManager.createQuery(sql, CV.class);
+            values.forEach(query::setParameter);
+            query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
+            query.setMaxResults(pageable.getPageSize());
+            return query.getResultList();
+        }
+        return null;
     }
 
     @Override
@@ -45,10 +75,6 @@ public class CVRepositoryImpl implements CVRepositoryCustom {
             sql += "and lower(C.name) like lower(:name)";
             values.put("name", queryParams.get("name").get(0));
         }
-//        if (queryParams.containsKey("countryName")) {
-//            sql += "and lower(C.countryName) like lower(:countryName)";
-//            values.put("countryName", "%" + queryParams.get("countryName").get(0) + "%");
-//        }
         return sql;
     }
 

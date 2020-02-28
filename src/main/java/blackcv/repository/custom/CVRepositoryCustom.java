@@ -9,5 +9,7 @@ import java.util.List;
 public interface CVRepositoryCustom {
     List<CV> search(MultiValueMap<String, String> queryParams, Pageable pageable);
 
+    List<CV> searchInHome(MultiValueMap<String, String> queryParams, Pageable pageable);
+
     Long countCV(MultiValueMap<String, String> queryParams);
 }

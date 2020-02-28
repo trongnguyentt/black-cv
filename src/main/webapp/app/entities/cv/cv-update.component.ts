@@ -18,19 +18,20 @@ export class CVUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    idCompany: [],
-    name: [],
-    phone: [],
-    email: [],
-    address: [],
-    job: [],
+    idCompany: [null, [Validators.required]],
+    name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
+    birthday: [null, [Validators.required]],
+    phone: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+    email: [null, [Validators.required, Validators.email, Validators.minLength(10), Validators.maxLength(50)]],
+    address: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
+    job: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
     gender: [],
-    avatar: [],
-    fileUploadCV: [],
+    avatar: [null, [Validators.required]],
+    fileUploadCV: [null, [Validators.required]],
     status: []
   });
   iconPath: any;
-  iconUpload: File;
+  iconUpload!: File;
 
   iconPath2: any;
   iconUpload2: File;
@@ -53,6 +54,7 @@ export class CVUpdateComponent implements OnInit {
       id: cV.id,
       idCompany: cV.idCompany,
       name: cV.name,
+      birthday: cV.birthday,
       phone: cV.phone,
       email: cV.email,
       address: cV.address,
@@ -84,6 +86,7 @@ export class CVUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       idCompany: this.editForm.get(['idCompany'])!.value,
       name: this.editForm.get(['name'])!.value,
+      birthday: this.editForm.get(['birthday'])!.value.toString(),
       phone: this.editForm.get(['phone'])!.value,
       email: this.editForm.get(['email'])!.value,
       address: this.editForm.get(['address'])!.value,

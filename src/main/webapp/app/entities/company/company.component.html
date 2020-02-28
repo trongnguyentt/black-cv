@@ -55,9 +55,9 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
-                    <fa-icon [icon]="'sort'"></fa-icon>
-                </th>
+<!--                <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>-->
+<!--                    <fa-icon [icon]="'sort'"></fa-icon>-->
+<!--                </th>-->
                 <th scope="col" jhiSortBy="name"><span jhiTranslate="blackcvApp.company.name">Name</span>
                     <fa-icon [icon]="'sort'"></fa-icon>
                 </th>
@@ -67,19 +67,19 @@
                 <th scope="col" jhiSortBy="address"><span jhiTranslate="blackcvApp.company.address">Address</span>
                     <fa-icon [icon]="'sort'"></fa-icon>
                 </th>
-                <th scope="col" jhiSortBy="status"><span jhiTranslate="blackcvApp.company.status">Status</span>
-                    <fa-icon [icon]="'sort'"></fa-icon>
-                </th>
+<!--                <th scope="col" jhiSortBy="status"><span jhiTranslate="blackcvApp.company.status">Status</span>-->
+<!--                    <fa-icon [icon]="'sort'"></fa-icon>-->
+<!--                </th>-->
                 <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let company of companies ;trackBy: trackId">
-                <td><a [routerLink]="['/company', company.id, 'view' ]">{{company.id}}</a></td>
+<!--                <td><a [routerLink]="['/company', company.id, 'view' ]">{{company.id}}</a></td>-->
                 <td>{{company.name}}</td>
                 <td>{{company.businessAreas}}</td>
                 <td>{{company.address}}</td>
-                <td>{{company.status}}</td>
+<!--                <td>{{company.status}}</td>-->
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

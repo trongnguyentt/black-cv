@@ -2,30 +2,30 @@
   "blackcvApp": {
     "cV": {
       "home": {
-        "title": "CVS",
-        "createLabel": "Thêm mới một CV",
-        "createOrEditLabel": "Thêm mới hoặc cập nhật CV",
-        "notFound": "No CVS found"
+        "title": "Hồ sơ",
+        "createLabel": "Thêm mới",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật",
+        "notFound": "Không tìm thấy bản ghi hợp lệ"
       },
-      "created": "Một CV mới được tạo với định danh {{ param }}",
-      "updated": "Một CV cập nhật với định danh {{ param }}",
-      "deleted": "Một CV đã xóa với định danh {{ param }}",
+      "created": "Bản ghi mới được tạo với định danh {{ param }}",
+      "updated": "Bản ghi cập nhật với định danh {{ param }}",
+      "deleted": "Bản ghi đã xóa với định danh {{ param }}",
       "delete": {
-        "question": "Bạn có chắc là muốn xóa CV {{ id }}?"
+        "question": "Bạn có chắc là muốn xóa bản ghi {{ id }}?"
       },
       "detail": {
-        "title": "CV"
+        "title": "Hồ sơ"
       },
-      "idCompany": "Id Company",
-      "name": "Name",
-      "phone": "Phone",
+      "idCompany": "Công ty",
+      "name": "Tên",
+      "phone": "Số điện thoại",
       "email": "Email",
-      "address": "Address",
-      "job": "Job",
-      "gender": "Gender",
-      "avatar": "Avatar",
-      "fileUploadCV": "File Upload CV",
-      "status": "Status"
+      "address": "Địa chỉ",
+      "job": "Chức vụ",
+      "gender": "Giới tính",
+      "avatar": "Ảnh",
+      "fileUploadCV": "Bằng chứng",
+      "status": "Trạng thái"
     }
   }
 }

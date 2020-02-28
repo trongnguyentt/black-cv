@@ -17,9 +17,9 @@ export class CompanyUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    name: [],
-    businessAreas: [],
-    address: [],
+    name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    businessAreas: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    address: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
     status: []
   });
 
