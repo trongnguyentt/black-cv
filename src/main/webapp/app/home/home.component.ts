@@ -11,7 +11,6 @@ import {CVService} from "app/entities/cv/cv.service";
 import {ITEMS_PER_PAGE} from "app/shared/constants/pagination.constants";
 import {JhiParseLinks} from "ng-jhipster";
 import {FormBuilder} from "@angular/forms";
-import {NoResultComponent} from "app/layouts/no-result/no-result.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
@@ -108,9 +107,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.cVS.length!=0) {
       this.router.navigate(['/cv', this.cVS[0].id, 'view']);
     } else {
-      this.modalService.open(NoResultComponent, { size: 'lg', backdrop: 'static', centered: true });
-      console.log("sssss")
-      // this.router.navigate(['/cv']);
+      // this.modalService.open(NoResultComponent);
+      // // console.log("sssss")
+      this.router.navigate(['/cv','no-result']);
     }
     console.log(this.cVS)
   }

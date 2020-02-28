@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
+import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import {JhiEventManager, JhiParseLinks} from 'ng-jhipster';
+import { JhiEventManager, JhiParseLinks } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ICV } from 'app/shared/model/cv.model';
@@ -13,6 +13,7 @@ import { CVDeleteDialogComponent } from './cv-delete-dialog.component';
 import {FormBuilder} from "@angular/forms";
 import {AccountService} from "app/core/auth/account.service";
 import {Account} from "app/core/user/account.model";
+
 
 @Component({
   selector: 'jhi-cv',
@@ -31,8 +32,11 @@ export class CVComponent implements OnInit, OnDestroy {
   links: any;
   searchForm = this.fb.group({
     name: [''],
-    login: ['']
+    login: [''],
+    author: []
+
   });
+
   constructor(
     protected cVService: CVService,
     protected activatedRoute: ActivatedRoute,
@@ -57,18 +61,24 @@ export class CVComponent implements OnInit, OnDestroy {
         () => this.onError()
       );
   }
+
   getFormValues() {
     const res = {};
     const name=this.searchForm.get(['name'])!.value.trim();
     const login=this.account.login;
+    const author=this.account.authorities;
     if (name) {
       res['name'] = name;
     }
     if (login) {
       res['login'] = login;
     }
+    if (author) {
+      res['author'] = author;
+    }
     return res;
   }
+
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(data => {
       this.page = data.pagingParams.page;
@@ -76,7 +86,6 @@ export class CVComponent implements OnInit, OnDestroy {
       this.predicate = data.pagingParams.predicate;
       this.ngbPaginationPage = data.pagingParams.page;
       // this.loadPage();
-
     });
     this.accountService.identity().subscribe(account => {
       if (account) {
@@ -127,6 +136,7 @@ export class CVComponent implements OnInit, OnDestroy {
     });
     this.cVS = data ? data : [];
   }
+
   loadAll() {
     this.cVService
       .query({
@@ -135,16 +145,17 @@ export class CVComponent implements OnInit, OnDestroy {
         sort: this.sort(),
         ...this.getFormValues()
       })
-      .subscribe(
-        (res: HttpResponse<ICV[]>) => this.paginateCV(res.body!, res.headers)
-      );
+      .subscribe((res: HttpResponse<ICV[]>) => this.paginateCV(res.body!, res.headers));
   }
-  onSearch(){
-this.loadAll();
+
+  onSearch() {
+    this.loadAll();
   }
+
   protected onError(): void {
     this.ngbPaginationPage = this.page;
   }
+
   protected paginateCV(data: ICV[], headers: HttpHeaders) {
     this.links = this.parseLinks.parse(headers.get('link')!);
     this.totalItems = parseInt(headers.get('X-Total-Count')!, 10);

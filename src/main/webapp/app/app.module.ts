@@ -14,7 +14,9 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
-import { NoResultComponent } from './layouts/no-result/no-result.component';
+import { SearchcvComponent } from './full-image/searchcv.component';
+import { SearchcvModule } from 'app/full-image/searchcv.module';
+import { ListReportComponent } from './list-report/list-report.component';
 
 @NgModule({
   imports: [
@@ -23,10 +25,20 @@ import { NoResultComponent } from './layouts/no-result/no-result.component';
     BlackcvCoreModule,
     BlackcvHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
+    SearchcvModule,
     BlackcvEntityModule,
     BlackcvAppRoutingModule
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent, NoResultComponent],
+  declarations: [
+    MainComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    ActiveMenuDirective,
+    FooterComponent,
+    SearchcvComponent,
+    ListReportComponent,
+  ],
   bootstrap: [MainComponent]
 })
 export class BlackcvAppModule {}

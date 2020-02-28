@@ -9,10 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.MultiValueMap;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -47,20 +50,20 @@ public class CompanyServiceImpl implements CompanyService {
         return companyMapper.toDto(company);
     }
 
+    @Override
+    public Page<CompanyDTO> findAll(MultiValueMap<String, String> queryParams, Pageable pageable) {
+        log.debug("Request to get all CVS");
+        List<Company> device = companyRepository.search(queryParams, pageable);
+        Page<Company> pages = new PageImpl<>(device, pageable, companyRepository.countCompany(queryParams));
+        return pages.map(companyMapper::toDto);
+    }
+
     /**
      * Get all the companies.
      *
      * @param pageable the pagination information.
      * @return the list of entities.
      */
-    @Override
-    @Transactional(readOnly = true)
-    public Page<CompanyDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all Companies");
-        return companyRepository.findAll(pageable)
-            .map(companyMapper::toDto);
-    }
-
 
     /**
      * Get one company by id.
