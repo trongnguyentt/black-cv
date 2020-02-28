@@ -37,7 +37,7 @@ import { ListReportComponent } from './list-report/list-report.component';
     ActiveMenuDirective,
     FooterComponent,
     SearchcvComponent,
-    ListReportComponent,
+    ListReportComponent
   ],
   bootstrap: [MainComponent]
 })

@@ -19,7 +19,7 @@
                 <div class="row justify-content-center">
                     <div class="form-group col-sm-6 row text-color">
                         <label class="col-4 col-form-label text-right"
-                               for="field_cVName">Reason Search</label>
+                               for="field_cVName">Reason name</label>
                         <div class="col-8">
                             <input type="text" class="form-control" name="field_cVName" id="field_cVName"
                                    formControlName="name"/>
@@ -43,19 +43,19 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+<!--            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th scope="col"  jhiSortBy="descriptons"><span jhiTranslate="blackcvApp.reason.descriptons">Descriptons</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="reasonName"><span jhiTranslate="blackcvApp.reason.reasonName">Reason Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="status"><span jhiTranslate="blackcvApp.reason.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+<!--            <th scope="col"  jhiSortBy="status"><span jhiTranslate="blackcvApp.reason.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let reason of reasons ;trackBy: trackId">
-                <td><a [routerLink]="['/reason', reason.id, 'view' ]">{{reason.id}}</a></td>
+<!--                <td><a [routerLink]="['/reason', reason.id, 'view' ]">{{reason.id}}</a></td>-->
                 <td>{{reason.descriptons}}</td>
                 <td>{{reason.reasonName}}</td>
-                <td>{{reason.status}}</td>
+<!--                <td>{{reason.status}}</td>-->
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

@@ -17,9 +17,9 @@ export class ReasonListUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    idCV: [],
-    document: [],
-    id_reason: [],
+    idCV: [null, [Validators.required]],
+    document: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    id_reason: [null, [Validators.required]],
     status: []
   });
 

@@ -10,10 +10,9 @@ import { ICV } from 'app/shared/model/cv.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { CVService } from './cv.service';
 import { CVDeleteDialogComponent } from './cv-delete-dialog.component';
-import {FormBuilder} from "@angular/forms";
-import {AccountService} from "app/core/auth/account.service";
-import {Account} from "app/core/user/account.model";
-
+import { FormBuilder } from '@angular/forms';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/user/account.model';
 
 @Component({
   selector: 'jhi-cv',
@@ -34,7 +33,6 @@ export class CVComponent implements OnInit, OnDestroy {
     name: [''],
     login: [''],
     author: []
-
   });
 
   constructor(
@@ -64,9 +62,9 @@ export class CVComponent implements OnInit, OnDestroy {
 
   getFormValues() {
     const res = {};
-    const name=this.searchForm.get(['name'])!.value.trim();
-    const login=this.account.login;
-    const author=this.account.authorities;
+    const name = this.searchForm.get(['name'])!.value.trim();
+    const login = this.account.login;
+    const author = this.account.authorities;
     if (name) {
       res['name'] = name;
     }
@@ -92,7 +90,7 @@ export class CVComponent implements OnInit, OnDestroy {
         this.account = account;
       }
     });
-    this.loadAll()
+    this.loadAll();
     this.registerChangeInCVS();
   }
 

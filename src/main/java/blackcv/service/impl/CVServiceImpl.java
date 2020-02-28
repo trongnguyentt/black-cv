@@ -45,6 +45,7 @@ public class CVServiceImpl implements CVService {
     @Override
     public CVDTO save(CVDTO cVDTO) {
         log.debug("Request to save CV : {}", cVDTO);
+        cVDTO.setStatus(1);
         CV cV = cVMapper.toEntity(cVDTO);
         cV = cVRepository.save(cV);
         return cVMapper.toDto(cV);
@@ -95,6 +96,9 @@ public class CVServiceImpl implements CVService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete CV : {}", id);
-        cVRepository.deleteById(id);
+        CV cv = cVRepository.findById(id).get();
+        cv.setStatus(0);
+        cVRepository.save(cv);
+//        cVRepository.deleteById(id);
     }
 }

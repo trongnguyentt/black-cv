@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { ICV } from 'app/shared/model/cv.model';
-import {map} from "rxjs/operators";
+import { map } from 'rxjs/operators';
 
 type EntityResponseType = HttpResponse<ICV>;
 type EntityArrayResponseType = HttpResponse<ICV[]>;
@@ -16,18 +16,20 @@ export class CVService {
 
   constructor(protected http: HttpClient) {}
 
-  create(cV: ICV,iconPath: File): Observable<EntityResponseType> {
+  create(cV: ICV, iconPath: File, iconPath2: File): Observable<EntityResponseType> {
     const data: FormData = new FormData();
     data.append('cV', new Blob([JSON.stringify(cV)], { type: 'application/json' }));
     data.append('avatar', iconPath);
-    return this.http
-      .post<ICV>(this.resourceUrl, data, {observe: 'response'});
+    data.append('fileUploadCV', iconPath2);
+
+    return this.http.post<ICV>(this.resourceUrl, data, { observe: 'response' });
   }
 
-  update(cV: ICV,iconPath: File): Observable<EntityResponseType> {
+  update(cV: ICV, iconPath: File, iconPath2: File): Observable<EntityResponseType> {
     const data: FormData = new FormData();
     data.append('cV', new Blob([JSON.stringify(cV)], { type: 'application/json' }));
     data.append('avatar', iconPath);
+    data.append('fileUploadCV', iconPath2);
     return this.http.put<ICV>(this.resourceUrl, data, { observe: 'response' });
   }
 

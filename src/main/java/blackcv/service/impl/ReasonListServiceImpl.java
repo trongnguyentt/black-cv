@@ -45,6 +45,7 @@ public class ReasonListServiceImpl implements ReasonListService {
     @Override
     public ReasonListDTO save(ReasonListDTO reasonListDTO) {
         log.debug("Request to save ReasonList : {}", reasonListDTO);
+        reasonListDTO.setStatus(1);
         ReasonList reasonList = reasonListMapper.toEntity(reasonListDTO);
         reasonList = reasonListRepository.save(reasonList);
         return reasonListMapper.toDto(reasonList);
@@ -95,6 +96,9 @@ public class ReasonListServiceImpl implements ReasonListService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete ReasonList : {}", id);
-        reasonListRepository.deleteById(id);
+        ReasonList reasonList = reasonListRepository.findById(id).get();
+        reasonList.setStatus(0);
+        reasonListRepository.save(reasonList);
+//        reasonListRepository.deleteById(id);
     }
 }

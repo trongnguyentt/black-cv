@@ -1,17 +1,17 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Subscription} from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
-import {LoginModalService} from 'app/core/login/login-modal.service';
-import {AccountService} from 'app/core/auth/account.service';
-import {Account} from 'app/core/user/account.model';
-import {Router} from "@angular/router";
-import {HttpHeaders, HttpResponse} from "@angular/common/http";
-import {ICV} from "app/shared/model/cv.model";
-import {CVService} from "app/entities/cv/cv.service";
-import {ITEMS_PER_PAGE} from "app/shared/constants/pagination.constants";
-import {JhiParseLinks} from "ng-jhipster";
-import {FormBuilder} from "@angular/forms";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import { LoginModalService } from 'app/core/login/login-modal.service';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/user/account.model';
+import { Router } from '@angular/router';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { ICV } from 'app/shared/model/cv.model';
+import { CVService } from 'app/entities/cv/cv.service';
+import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
+import { JhiParseLinks } from 'ng-jhipster';
+import { FormBuilder } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-home',
@@ -27,15 +27,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   predicate!: string;
   links: any;
   totalItems = 0;
-  fail! :boolean;
-  constructor(private accountService: AccountService,
-              private loginModalService: LoginModalService,
-              protected router: Router,
-              protected cVService: CVService,
-              protected parseLinks: JhiParseLinks,
-              private fb: FormBuilder,protected modalService: NgbModal) {
-
-  }
+  fail!: boolean;
+  constructor(
+    private accountService: AccountService,
+    private loginModalService: LoginModalService,
+    protected router: Router,
+    protected cVService: CVService,
+    protected parseLinks: JhiParseLinks,
+    private fb: FormBuilder,
+    protected modalService: NgbModal
+  ) {}
 
   searchForm = this.fb.group({
     name: [''],
@@ -67,8 +68,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (birthday) {
       res['birthday'] = birthday;
     }
-    if(!name||!phone||!email||!birthday){
-      this.fail=true;
+    if (!name || !phone || !email || !birthday) {
+      this.fail = true;
     }
     return res;
   }
@@ -88,9 +89,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         size: this.itemsPerPage,
         ...this.getFormValues()
       })
-      .subscribe(
-        (res: HttpResponse<ICV[]>) => this.paginateCV(res.body!, res.headers)
-      );
+      .subscribe((res: HttpResponse<ICV[]>) => this.paginateCV(res.body!, res.headers));
   }
 
   ngOnDestroy(): void {
@@ -103,15 +102,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.links = this.parseLinks.parse(headers.get('link')!);
     this.totalItems = parseInt(headers.get('X-Total-Count')!, 10);
     this.cVS = data;
-    console.log(this.cVS.length)
-    if (this.cVS.length!=0) {
+    console.log(this.cVS.length);
+    if (this.cVS.length != 0) {
       this.router.navigate(['/cv', this.cVS[0].id, 'view']);
     } else {
       // this.modalService.open(NoResultComponent);
       // // console.log("sssss")
-      this.router.navigate(['/cv','no-result']);
+      this.router.navigate(['/cv', 'no-result']);
     }
-    console.log(this.cVS)
+    console.log(this.cVS);
   }
 
   onSearch() {

@@ -128,6 +128,10 @@ export class ReasonComponent implements OnInit, OnDestroy {
         ...this.getFormValues()
       })
       .subscribe((res: HttpResponse<IReason[]>) => this.paginateReason(res.body!, res.headers));
+
+    this.searchForm = this.fb.group({
+      name: ['']
+    });
   }
 
   onSearch() {

@@ -45,6 +45,7 @@ public class ReasonServiceImpl implements ReasonService {
     @Override
     public ReasonDTO save(ReasonDTO reasonDTO) {
         log.debug("Request to save Reason : {}", reasonDTO);
+        reasonDTO.setStatus(1);
         Reason reason = reasonMapper.toEntity(reasonDTO);
         reason = reasonRepository.save(reason);
         return reasonMapper.toDto(reason);
@@ -87,6 +88,10 @@ public class ReasonServiceImpl implements ReasonService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Reason : {}", id);
-        reasonRepository.deleteById(id);
+        Reason reason = reasonRepository.findById(id).get();
+        reason.setStatus(0);
+        reasonRepository.save(reason);
+
+//        reasonRepository.deleteById(id);
     }
 }

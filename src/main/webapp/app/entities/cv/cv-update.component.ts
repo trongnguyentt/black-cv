@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpResponse} from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import {FormBuilder, Validators} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
-import {ICV, CV} from 'app/shared/model/cv.model';
-import {CVService} from './cv.service';
-import {JhiAlertService} from "ng-jhipster";
+import { ICV, CV } from 'app/shared/model/cv.model';
+import { CVService } from './cv.service';
+import { JhiAlertService } from 'ng-jhipster';
 
 @Component({
   selector: 'jhi-cv-update',
@@ -18,27 +18,33 @@ export class CVUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    idCompany: [],
-    name: [],
-    birthday: [],
-    phone: [],
-    email: [],
-    address: [],
-    job: [],
+    idCompany: [null, [Validators.required]],
+    name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
+    birthday: [null, [Validators.required]],
+    phone: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+    email: [null, [Validators.required, Validators.email, Validators.minLength(10), Validators.maxLength(50)]],
+    address: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
+    job: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
     gender: [],
-    avatar: [],
-    fileUploadCV: [],
+    avatar: [null, [Validators.required]],
+    fileUploadCV: [null, [Validators.required]],
     status: []
   });
   iconPath: any;
   iconUpload!: File;
 
-  constructor(protected cVService: CVService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder,
-              private alertService: JhiAlertService) {
-  }
+  iconPath2: any;
+  iconUpload2: File;
+
+  constructor(
+    protected cVService: CVService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    private alertService: JhiAlertService
+  ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({cV}) => {
+    this.activatedRoute.data.subscribe(({ cV }) => {
       this.updateForm(cV);
     });
   }
@@ -68,9 +74,9 @@ export class CVUpdateComponent implements OnInit {
     this.isSaving = true;
     const cV = this.createFromForm();
     if (cV.id !== undefined) {
-      this.subscribeToSaveResponse(this.cVService.update(cV,this.iconUpload));
+      this.subscribeToSaveResponse(this.cVService.update(cV, this.iconUpload, this.iconUpload2));
     } else {
-      this.subscribeToSaveResponse(this.cVService.create(cV, this.iconUpload));
+      this.subscribeToSaveResponse(this.cVService.create(cV, this.iconUpload, this.iconUpload2));
     }
   }
 
@@ -109,6 +115,16 @@ export class CVUpdateComponent implements OnInit {
     return null;
   }
 
+  getIcon2() {
+    if (this.iconPath2) {
+      return this.iconPath2;
+    }
+    if (this.editForm.get(['fileUploadCV'])!.value) {
+      return this.editForm.get(['fileUploadCV'])!.value;
+    }
+    return null;
+  }
+
   selectIcon(event) {
     const file = event.target.files[0];
     this.loadFile(
@@ -116,6 +132,20 @@ export class CVUpdateComponent implements OnInit {
       result => {
         this.iconPath = result;
         this.iconUpload = file;
+      },
+      error => {
+        this.alertService.error(error);
+      }
+    );
+  }
+
+  selectIcon2(event) {
+    const file = event.target.files[0];
+    this.loadFile(
+      file,
+      result => {
+        this.iconPath2 = result;
+        this.iconUpload2 = file;
       },
       error => {
         this.alertService.error(error);

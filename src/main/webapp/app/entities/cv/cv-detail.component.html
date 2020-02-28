@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="cV">
-            <h2><span jhiTranslate="blackcvApp.cV.detail.title">CV</span> {{cV.id}}</h2>
+<!--            <h2><span jhiTranslate="blackcvApp.cV.detail.title">CV</span> {{cV.id}}</h2>-->
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
@@ -43,12 +43,13 @@
                 </dd>
                 <dt><span jhiTranslate="blackcvApp.cV.fileUploadCV">File Upload CV</span></dt>
                 <dd>
-                    <span>{{cV.fileUploadCV}}</span>
+                    <img class="img-fluid icon-image sizeImage" src="{{cV.fileUploadCV}}" alt=""/>
+<!--                    <span>{{cV.fileUploadCV}}</span>-->
                 </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.status">Status</span></dt>
-                <dd>
-                    <span>{{cV.status}}</span>
-                </dd>
+<!--                <dt><span jhiTranslate="blackcvApp.cV.status">Status</span></dt>-->
+<!--                <dd>-->
+<!--                    <span>{{cV.status}}</span>-->
+<!--                </dd>-->
             </dl>
 
             <button type="submit"
