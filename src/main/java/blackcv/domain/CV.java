@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "cv")
-public class CV implements Serializable {
+public class CV extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,6 +22,9 @@ public class CV implements Serializable {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "birthday")
+    private String birthday;
 
     @Column(name = "phone")
     private String phone;
@@ -185,6 +188,15 @@ public class CV implements Serializable {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -209,6 +221,7 @@ public class CV implements Serializable {
             "id=" + getId() +
             ", idCompany=" + getIdCompany() +
             ", name='" + getName() + "'" +
+            ", name='" + getBirthday() + "'" +
             ", phone='" + getPhone() + "'" +
             ", email='" + getEmail() + "'" +
             ", address='" + getAddress() + "'" +

@@ -13,6 +13,8 @@ public class CVDTO implements Serializable {
 
     private String name;
 
+    private String birthday;
+
     private String phone;
 
     private String email;
@@ -52,6 +54,14 @@ public class CVDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getPhone() {
@@ -145,6 +155,7 @@ public class CVDTO implements Serializable {
             "id=" + getId() +
             ", idCompany=" + getIdCompany() +
             ", name='" + getName() + "'" +
+            ", birthday='" + getBirthday() + "'" +
             ", phone='" + getPhone() + "'" +
             ", email='" + getEmail() + "'" +
             ", address='" + getAddress() + "'" +

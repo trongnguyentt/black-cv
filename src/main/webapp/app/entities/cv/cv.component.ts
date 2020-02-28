@@ -10,7 +10,10 @@ import { ICV } from 'app/shared/model/cv.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { CVService } from './cv.service';
 import { CVDeleteDialogComponent } from './cv-delete-dialog.component';
-import { FormBuilder } from '@angular/forms';
+import {FormBuilder} from "@angular/forms";
+import {AccountService} from "app/core/auth/account.service";
+import {Account} from "app/core/user/account.model";
+
 
 @Component({
   selector: 'jhi-cv',
@@ -20,6 +23,7 @@ export class CVComponent implements OnInit, OnDestroy {
   cVS?: ICV[];
   eventSubscriber?: Subscription;
   totalItems = 0;
+  account!: Account;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
   predicate!: string;
@@ -27,7 +31,10 @@ export class CVComponent implements OnInit, OnDestroy {
   ngbPaginationPage = 1;
   links: any;
   searchForm = this.fb.group({
-    name: ['']
+    name: [''],
+    login: [''],
+    author: []
+
   });
 
   constructor(
@@ -37,7 +44,8 @@ export class CVComponent implements OnInit, OnDestroy {
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
     private fb: FormBuilder,
-    protected parseLinks: JhiParseLinks
+    protected parseLinks: JhiParseLinks,
+    private accountService: AccountService
   ) {}
 
   loadPage(page?: number): void {
@@ -56,11 +64,17 @@ export class CVComponent implements OnInit, OnDestroy {
 
   getFormValues() {
     const res = {};
-    // const countryName = this.searchForm.get(['countryName']).value.trim();
-    // const countryCode = this.searchForm.get(['countryCode']).value.trim();
-    const name = this.searchForm.get(['name'])!.value.trim();
+    const name=this.searchForm.get(['name'])!.value.trim();
+    const login=this.account.login;
+    const author=this.account.authorities;
     if (name) {
       res['name'] = name;
+    }
+    if (login) {
+      res['login'] = login;
+    }
+    if (author) {
+      res['author'] = author;
     }
     return res;
   }
@@ -73,7 +87,12 @@ export class CVComponent implements OnInit, OnDestroy {
       this.ngbPaginationPage = data.pagingParams.page;
       // this.loadPage();
     });
-    this.loadAll();
+    this.accountService.identity().subscribe(account => {
+      if (account) {
+        this.account = account;
+      }
+    });
+    this.loadAll()
     this.registerChangeInCVS();
   }
 

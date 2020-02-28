@@ -20,6 +20,7 @@ export class CVUpdateComponent implements OnInit {
     id: [],
     idCompany: [],
     name: [],
+    birthday: [],
     phone: [],
     email: [],
     address: [],
@@ -30,7 +31,7 @@ export class CVUpdateComponent implements OnInit {
     status: []
   });
   iconPath: any;
-  iconUpload: File;
+  iconUpload!: File;
 
   constructor(protected cVService: CVService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder,
               private alertService: JhiAlertService) {
@@ -47,6 +48,7 @@ export class CVUpdateComponent implements OnInit {
       id: cV.id,
       idCompany: cV.idCompany,
       name: cV.name,
+      birthday: cV.birthday,
       phone: cV.phone,
       email: cV.email,
       address: cV.address,
@@ -78,6 +80,7 @@ export class CVUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       idCompany: this.editForm.get(['idCompany'])!.value,
       name: this.editForm.get(['name'])!.value,
+      birthday: this.editForm.get(['birthday'])!.value.toString(),
       phone: this.editForm.get(['phone'])!.value,
       email: this.editForm.get(['email'])!.value,
       address: this.editForm.get(['address'])!.value,

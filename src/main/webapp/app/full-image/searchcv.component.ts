@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ISearch } from 'app/shared/model/search';
 import { CompanyService } from 'app/entities/company/company.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JhiEventManager } from 'ng-jhipster';
@@ -11,8 +10,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./searchcv.component.scss']
 })
 export class SearchcvComponent implements OnInit {
-  search?: ISearch;
-
   constructor(
     protected companyService: CompanyService,
     protected activatedRoute: ActivatedRoute,

@@ -1,9 +1,10 @@
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="blackcvApp.cV.home.title">CVS</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cv" [routerLink]="['/cv/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cv"
+                [routerLink]="['/cv/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="blackcvApp.cV.home.createLabel">
+            <span jhiTranslate="blackcvApp.cV.home.createLabel">
             Create a new CV
             </span>
         </button>
@@ -41,18 +42,44 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="idCompany"><span jhiTranslate="blackcvApp.cV.idCompany">Id Company</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="name"><span jhiTranslate="blackcvApp.cV.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="phone"><span jhiTranslate="blackcvApp.cV.phone">Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="email"><span jhiTranslate="blackcvApp.cV.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="address"><span jhiTranslate="blackcvApp.cV.address">Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="job"><span jhiTranslate="blackcvApp.cV.job">Job</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="gender"><span jhiTranslate="blackcvApp.cV.gender">Gender</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="avatar"><span jhiTranslate="blackcvApp.cV.avatar">Avatar</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="fileUploadCV"><span jhiTranslate="blackcvApp.cV.fileUploadCV">File Upload CV</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="status"><span jhiTranslate="blackcvApp.cV.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"></th>
+                <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="idCompany"><span jhiTranslate="blackcvApp.cV.idCompany">Id Company</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="name"><span jhiTranslate="blackcvApp.cV.name">Name</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="birthday"><span>Birthday</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="phone"><span jhiTranslate="blackcvApp.cV.phone">Phone</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="email"><span jhiTranslate="blackcvApp.cV.email">Email</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="address"><span jhiTranslate="blackcvApp.cV.address">Address</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="job"><span jhiTranslate="blackcvApp.cV.job">Job</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="gender"><span jhiTranslate="blackcvApp.cV.gender">Gender</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="avatar"><span jhiTranslate="blackcvApp.cV.avatar">Avatar</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="fileUploadCV"><span
+                    jhiTranslate="blackcvApp.cV.fileUploadCV">File Upload CV</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="status"><span jhiTranslate="blackcvApp.cV.status">Status</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -60,6 +87,7 @@
                 <td><a [routerLink]="['/cv', cV.id, 'view' ]">{{cV.id}}</a></td>
                 <td>{{cV.idCompany}}</td>
                 <td>{{cV.name}}</td>
+                <td>{{cV.birthday}}</td>
                 <td>{{cV.phone}}</td>
                 <td>{{cV.email}}</td>
                 <td>{{cV.address}}</td>
@@ -98,7 +126,9 @@
             <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage"
+                            [maxSize]="5" [rotate]="true" [boundaryLinks]="true"
+                            (pageChange)="loadPage($event)"></ngb-pagination>
         </div>
     </div>
 </div>

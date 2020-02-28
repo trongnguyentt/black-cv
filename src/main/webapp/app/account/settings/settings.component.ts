@@ -32,8 +32,8 @@ export class SettingsComponent implements OnInit {
           email: account.email,
           langKey: account.langKey
         });
-
         this.account = account;
+        console.log(this.account);
       }
     });
   }

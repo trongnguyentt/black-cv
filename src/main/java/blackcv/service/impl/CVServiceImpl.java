@@ -64,7 +64,15 @@ public class CVServiceImpl implements CVService {
         return pages.map(cVMapper::toDto);
     }
 
-
+    @Override
+    public Page<CVDTO> findInHome(MultiValueMap<String, String> queryParams, Pageable pageable) {
+        log.debug("Request to get all CVS");
+        List<CV> device = cVRepository.searchInHome(queryParams, pageable);
+        if(device!=null){
+        Page<CV> pages = new PageImpl<>(device, pageable, cVRepository.countCV(queryParams));
+        return pages.map(cVMapper::toDto);}
+        return null;
+    }
     /**
      * Get one cV by id.
      *

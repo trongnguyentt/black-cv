@@ -14,8 +14,8 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
-import { SearchcvComponent } from './searchcv/searchcv.component';
-import { SearchcvModule } from 'app/searchcv/searchcv.module';
+import { SearchcvComponent } from './full-image/searchcv.component';
+import { SearchcvModule } from 'app/full-image/searchcv.module';
 import { ListReportComponent } from './list-report/list-report.component';
 
 @NgModule({
@@ -37,7 +37,7 @@ import { ListReportComponent } from './list-report/list-report.component';
     ActiveMenuDirective,
     FooterComponent,
     SearchcvComponent,
-    ListReportComponent
+    ListReportComponent,
   ],
   bootstrap: [MainComponent]
 })
