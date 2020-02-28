@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpResponse} from '@angular/common/http';
+import {HttpHeaders, HttpResponse} from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
@@ -7,7 +7,10 @@ import {Observable} from 'rxjs';
 
 import {ICV, CV} from 'app/shared/model/cv.model';
 import {CVService} from './cv.service';
-import {JhiAlertService} from "ng-jhipster";
+import {JhiAlertService, JhiParseLinks} from "ng-jhipster";
+import {IReason} from "app/shared/model/reason.model";
+import {ReasonService} from "app/entities/reason/reason.service";
+import {ITEMS_PER_PAGE} from "app/shared/constants/pagination.constants";
 
 @Component({
   selector: 'jhi-cv-update',
@@ -15,7 +18,12 @@ import {JhiAlertService} from "ng-jhipster";
 })
 export class CVUpdateComponent implements OnInit {
   isSaving = false;
-
+  reason!: any[];
+  links: any;
+  reasons!: IReason[];
+  totalItems = 0;
+  page!: number;
+  itemsPerPage = ITEMS_PER_PAGE;
   editForm = this.fb.group({
     id: [],
     idCompany: [],
@@ -27,20 +35,59 @@ export class CVUpdateComponent implements OnInit {
     job: [],
     gender: [],
     avatar: [],
+    reason: [],
     fileUploadCV: [],
     status: []
   });
+  predicate!: string;
+  ascending!: boolean;
   iconPath: any;
   iconUpload!: File;
+  dropdownSettings = {
+    singleSelection: false,
+    allowSearchFilter: false,
+    enableCheckAll: false
+  };
 
   constructor(protected cVService: CVService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder,
-              private alertService: JhiAlertService) {
+              private alertService: JhiAlertService, protected reasonService: ReasonService, protected parseLinks: JhiParseLinks,) {
   }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({cV}) => {
       this.updateForm(cV);
     });
+
+    this.reasonService
+      .query({})
+      .subscribe((res: HttpResponse<IReason[]>) => this.paginateReason(res.body!, res.headers));
+  }
+
+  protected paginateReason(data: IReason[], headers: HttpHeaders) {
+    this.links = this.parseLinks.parse(headers.get('link')!);
+    this.totalItems = parseInt(headers.get('X-Total-Count')!, 10);
+    this.reasons = data;
+    this.reason = [];
+    if (data.length != 0) {
+      for (let reason of this.reasons) {
+        if (reason.reasonName != undefined) {
+          this.reason.push(reason.reasonName);
+        }
+      }
+      console.log(this.reason);
+    }
+  }
+
+  sort(): string[] {
+    const result = [this.predicate + ',' + (this.ascending ? 'asc' : 'desc')];
+    if (this.predicate !== 'id') {
+      result.push('id');
+    }
+    return result;
+  }
+
+  toArray(reason: any) {
+    return reason.split(',');
   }
 
   updateForm(cV: ICV): void {
@@ -55,6 +102,7 @@ export class CVUpdateComponent implements OnInit {
       job: cV.job,
       gender: cV.gender,
       avatar: cV.avatar,
+      reason: this.toArray(cV.reason),
       fileUploadCV: cV.fileUploadCV,
       status: cV.status
     });
@@ -67,8 +115,9 @@ export class CVUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const cV = this.createFromForm();
+    console.log(this.editForm.get(['reason'])!.value.toString())
     if (cV.id !== undefined) {
-      this.subscribeToSaveResponse(this.cVService.update(cV,this.iconUpload));
+      this.subscribeToSaveResponse(this.cVService.update(cV, this.iconUpload));
     } else {
       this.subscribeToSaveResponse(this.cVService.create(cV, this.iconUpload));
     }
@@ -87,6 +136,7 @@ export class CVUpdateComponent implements OnInit {
       job: this.editForm.get(['job'])!.value,
       gender: this.editForm.get(['gender'])!.value,
       avatar: this.editForm.get(['avatar'])!.value,
+      reason: this.editForm.get(['reason'])!.value.toString(),
       fileUploadCV: this.editForm.get(['fileUploadCV'])!.value,
       status: this.editForm.get(['status'])!.value
     };

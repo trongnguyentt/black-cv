@@ -17,7 +17,7 @@ import { ErrorComponent } from './layouts/error/error.component';
 import { SearchcvComponent } from './full-image/searchcv.component';
 import { SearchcvModule } from 'app/full-image/searchcv.module';
 import { ListReportComponent } from './list-report/list-report.component';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 @NgModule({
   imports: [
     BrowserModule,
@@ -27,7 +27,8 @@ import { ListReportComponent } from './list-report/list-report.component';
     // jhipster-needle-angular-add-module JHipster will add new module here
     SearchcvModule,
     BlackcvEntityModule,
-    BlackcvAppRoutingModule
+    BlackcvAppRoutingModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   declarations: [
     MainComponent,

@@ -61,6 +61,15 @@
                            formControlName="fileUploadCV"/>
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label">Reason</label>
+                    <ng-multiselect-dropdown
+                        id="reason"
+                        formControlName="reason"
+                        [data]="reason"
+                        [settings]="dropdownSettings"
+                    ></ng-multiselect-dropdown>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blackcvApp.cV.status" for="field_status">Status</label>
                     <input type="number" class="form-control" name="status" id="field_status"
                            formControlName="status"/>
