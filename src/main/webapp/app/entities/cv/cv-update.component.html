@@ -51,9 +51,12 @@
                            (change)="selectIcon($event)"/>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.fileUploadCV" for="field_fileUploadCV">File Upload CV</label>
-                    <input type="text" class="form-control" name="fileUploadCV" id="field_fileUploadCV"
-                           formControlName="fileUploadCV"/>
+                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.fileUploadCV" for="field_fileupload">File Upload CV</label>
+<!--                    <input type="text" class="form-control" name="fileUploadCV" id="field_fileUploadCV"-->
+<!--                           formControlName="fileUploadCV"/>-->
+                    <img class="img-fluid icon-image sizeImage" [src]="getIcon2()" alt=""/>
+                    <input type="file" name="fileupload" id="field_fileupload" formControlName="fileUploadCV" accept=".jpg, .png, .bmp, .jpeg"
+                           (change)="selectIcon2($event)"/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blackcvApp.cV.status" for="field_status">Status</label>
