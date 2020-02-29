@@ -25,6 +25,8 @@ public class CVDTO implements Serializable {
 
     private String gender;
 
+    private String reason;
+
     private String avatar;
 
     private String fileUploadCV;
@@ -126,6 +128,14 @@ public class CVDTO implements Serializable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     @Override

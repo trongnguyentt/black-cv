@@ -42,9 +42,9 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-<!--                <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>-->
-<!--                    <fa-icon [icon]="'sort'"></fa-icon>-->
-<!--                </th>-->
+                <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
                 <th scope="col" jhiSortBy="idCompany"><span jhiTranslate="blackcvApp.cV.idCompany">Id Company</span>
                     <fa-icon [icon]="'sort'"></fa-icon>
                 </th>
@@ -84,7 +84,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let cV of cVS ;trackBy: trackId">
-<!--                <td><a [routerLink]="['/cv', cV.id, 'view' ]">{{cV.id}}</a></td>-->
+                <td><a [routerLink]="['/cv', cV.id, 'view' ]">{{cV.id}}</a></td>
                 <td>{{cV.idCompany}}</td>
                 <td>{{cV.name}}</td>
 <!--                <td>{{cV.birthday}}</td>-->
