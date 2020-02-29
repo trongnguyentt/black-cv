@@ -16,7 +16,6 @@ import {Account} from "app/core/user/account.model";
 import {IReason} from "app/shared/model/reason.model";
 import {ReasonService} from "app/entities/reason/reason.service";
 
-
 @Component({
   selector: 'jhi-cv',
   templateUrl: './cv.component.html'
@@ -36,7 +35,6 @@ export class CVComponent implements OnInit, OnDestroy {
     name: [''],
     login: [''],
     author: []
-
   });
 
   constructor(
@@ -67,9 +65,9 @@ export class CVComponent implements OnInit, OnDestroy {
 
   getFormValues() {
     const res = {};
-    const name=this.searchForm.get(['name'])!.value.trim();
-    const login=this.account.login;
-    const author=this.account.authorities;
+    const name = this.searchForm.get(['name'])!.value.trim();
+    const login = this.account.login;
+    const author = this.account.authorities;
     if (name) {
       res['name'] = name;
     }
@@ -95,15 +93,7 @@ export class CVComponent implements OnInit, OnDestroy {
         this.account = account;
       }
     });
-    // this.reasonService
-    //   .query({
-    //     page: this.page - 1,
-    //     size: this.itemsPerPage,
-    //     sort: this.sort(),
-    //   })
-    //   .subscribe((res: HttpResponse<IReason[]>) => this.paginateReason(res.body!, res.headers));
-
-    this.loadAll()
+    this.loadAll();
     this.registerChangeInCVS();
 
 

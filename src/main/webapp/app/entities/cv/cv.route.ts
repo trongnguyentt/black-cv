@@ -11,7 +11,7 @@ import { CVService } from './cv.service';
 import { CVComponent } from './cv.component';
 import { CVDetailComponent } from './cv-detail.component';
 import { CVUpdateComponent } from './cv-update.component';
-import {CvNoResultlComponent} from "app/entities/cv/cv-no-resultl.component";
+import { CvNoResultlComponent } from 'app/entities/cv/cv-no-resultl.component';
 
 @Injectable({ providedIn: 'root' })
 export class CVResolve implements Resolve<ICV> {
@@ -97,5 +97,4 @@ export const cVRoute: Routes = [
     },
     canActivate: [UserRouteAccessService]
   }
-
 ];

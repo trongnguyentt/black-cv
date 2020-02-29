@@ -2,9 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {HttpHeaders, HttpResponse} from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {FormBuilder, Validators} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
-
 import {ICV, CV} from 'app/shared/model/cv.model';
 import {CVService} from './cv.service';
 import {JhiAlertService, JhiParseLinks} from "ng-jhipster";
@@ -20,23 +19,24 @@ export class CVUpdateComponent implements OnInit {
   isSaving = false;
   reason!: any[];
   links: any;
+  a! :ICV;
   reasons!: IReason[];
   totalItems = 0;
   page!: number;
   itemsPerPage = ITEMS_PER_PAGE;
   editForm = this.fb.group({
     id: [],
-    idCompany: [],
-    name: [],
-    birthday: [],
-    phone: [],
-    email: [],
-    address: [],
-    job: [],
+    idCompany: [null],
+    name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
+    birthday: [null, [Validators.required]],
+    phone: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+    email: [null, [Validators.required, Validators.email, Validators.minLength(10), Validators.maxLength(50)]],
+    address: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
+    job: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
     gender: [],
-    avatar: [],
+    avatar: [null],
     reason: [],
-    fileUploadCV: [],
+    fileUploadCV: [null, [Validators.required]],
     status: []
   });
   predicate!: string;
@@ -49,9 +49,17 @@ export class CVUpdateComponent implements OnInit {
     enableCheckAll: false
   };
 
+
   constructor(protected cVService: CVService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder,
-              private alertService: JhiAlertService, protected reasonService: ReasonService, protected parseLinks: JhiParseLinks,) {
+              private alertService: JhiAlertService,
+              protected reasonService: ReasonService,
+              protected parseLinks: JhiParseLinks,
+              protected router: Router) {
   }
+
+  iconPath2: any;
+  iconUpload2!: File;
+
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({cV}) => {
@@ -87,7 +95,9 @@ export class CVUpdateComponent implements OnInit {
   }
 
   toArray(reason: any) {
-    return reason.split(',');
+    if (reason) {
+      return reason.split(',');
+    }
   }
 
   updateForm(cV: ICV): void {
@@ -106,6 +116,7 @@ export class CVUpdateComponent implements OnInit {
       fileUploadCV: cV.fileUploadCV,
       status: cV.status
     });
+    console.log(cV.reason)
   }
 
   previousState(): void {
@@ -115,11 +126,11 @@ export class CVUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const cV = this.createFromForm();
-    console.log(this.editForm.get(['reason'])!.value.toString())
+    console.log(cV.id)
     if (cV.id !== undefined) {
-      this.subscribeToSaveResponse(this.cVService.update(cV, this.iconUpload));
+      this.subscribeToSaveResponse(this.cVService.update(cV, this.iconUpload, this.iconUpload2));
     } else {
-      this.subscribeToSaveResponse(this.cVService.create(cV, this.iconUpload));
+      this.subscribeToSaveResponse(this.cVService.create(cV, this.iconUpload, this.iconUpload2));
     }
   }
 
@@ -144,7 +155,17 @@ export class CVUpdateComponent implements OnInit {
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICV>>): void {
     result.subscribe(
-      () => this.onSaveSuccess(),
+      res => {
+        if(res.body){
+        this.a= res.body;}
+        console.log(this.a.id+"xxxxx")
+        this.isSaving = false;
+
+          this.router.navigate(['/cv', this.a.id, 'view']);
+
+
+
+      },
       () => this.onSaveError()
     );
   }
@@ -155,6 +176,16 @@ export class CVUpdateComponent implements OnInit {
     }
     if (this.editForm.get(['avatar'])!.value) {
       return this.editForm.get(['avatar'])!.value;
+    }
+    return null;
+  }
+
+  getIcon2() {
+    if (this.iconPath2) {
+      return this.iconPath2;
+    }
+    if (this.editForm.get(['fileUploadCV'])!.value) {
+      return this.editForm.get(['fileUploadCV'])!.value;
     }
     return null;
   }
@@ -173,11 +204,33 @@ export class CVUpdateComponent implements OnInit {
     );
   }
 
-  protected onSaveSuccess(): void {
-    this.isSaving = false;
-    this.previousState();
+  selectIcon2(event) {
+    const file = event.target.files[0];
+    this.loadFile(
+      file,
+      result => {
+        this.iconPath2 = result;
+        this.iconUpload2 = file;
+      },
+      error => {
+        this.alertService.error(error);
+      }
+    );
   }
 
+  protected onSaveSuccess(): void {
+    this.isSaving = false;
+    const cV = this.createFromForm();
+    if (cV.id!==null) {
+      this.router.navigate(['/cv', cV.id, 'view']);
+    } else {
+
+      this.previousState();
+
+    }
+    console.log(cV.id)
+    console.log(cV.address);
+  }
   protected onSaveError(): void {
     this.isSaving = false;
   }

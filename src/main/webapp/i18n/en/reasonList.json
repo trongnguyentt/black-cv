@@ -16,9 +16,9 @@
       "detail": {
         "title": "Reason List"
       },
-      "idCV": "Id CV",
+      "idCV": "CV",
       "document": "Document",
-      "id_reason": "Id Reason",
+      "id_reason": "Reason",
       "status": "Status"
     }
   }

@@ -219,3 +219,46 @@ ui bootstrap tweaks
 }
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */
+.avatar{
+height: 17rem;
+}
+.trai{
+  border: 1px solid black;
+  height: 900px;
+
+}
+.top_trai{
+  text-align: center;
+  margin-top: 60px;
+
+}
+.top_trai img{
+  border-radius: 20px;
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+.thong_tin_ca_nhan {
+  height: 50px;
+  width: 100%;
+  border: 1px solid black;
+}
+.thong_tin_ca_nhan h3{
+  display: inline-block;
+  float: right;
+  margin-right: 50px;
+}
+.khoi{
+  margin-top: 5px;
+}
+.flex1{
+  margin-left: 20px;
+  font-size: 25px;
+}
+.flex5{
+  margin-left: 20px;
+}
+
+.phai{
+  background-color: #718093;
+  height: 500px;
+}

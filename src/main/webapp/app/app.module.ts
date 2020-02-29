@@ -38,7 +38,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     ActiveMenuDirective,
     FooterComponent,
     SearchcvComponent,
-    ListReportComponent,
+    ListReportComponent
   ],
   bootstrap: [MainComponent]
 })

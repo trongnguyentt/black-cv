@@ -13,6 +13,7 @@ import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
 @NgModule({
   imports: [BlackcvSharedModule, RouterModule.forChild(cVRoute), MultiSelectModule, NgMultiSelectDropDownModule],
   declarations: [CVComponent, CVDetailComponent, CVUpdateComponent, CVDeleteDialogComponent,CvNoResultlComponent],
+
   entryComponents: [CVDeleteDialogComponent]
 })
 export class BlackcvCVModule {}

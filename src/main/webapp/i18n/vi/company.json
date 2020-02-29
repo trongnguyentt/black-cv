@@ -2,24 +2,24 @@
   "blackcvApp": {
     "company": {
       "home": {
-        "title": "Companies",
-        "createLabel": "Thêm mới một Company",
-        "createOrEditLabel": "Thêm mới hoặc cập nhật Company",
-        "notFound": "No Companies found"
+        "title": "Công Ty",
+        "createLabel": "Thêm mới",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật",
+        "notFound": "Không tìm thấy bản ghi hợp lệ"
       },
-      "created": "Một Company mới được tạo với định danh {{ param }}",
-      "updated": "Một Company cập nhật với định danh {{ param }}",
-      "deleted": "Một Company đã xóa với định danh {{ param }}",
+      "created": "Bản ghi mới được tạo với định danh {{ param }}",
+      "updated": "Bản ghi cập nhật với định danh {{ param }}",
+      "deleted": "Bản ghi đã xóa với định danh {{ param }}",
       "delete": {
-        "question": "Bạn có chắc là muốn xóa Company {{ id }}?"
+        "question": "Bạn có chắc là muốn xóa bản ghi {{ id }}?"
       },
       "detail": {
-        "title": "Company"
+        "title": "Công Ty"
       },
-      "name": "Name",
-      "businessAreas": "Business Areas",
-      "address": "Address",
-      "status": "Status"
+      "name": "Tên công ty",
+      "businessAreas": "Lĩnh vực kinh doanh",
+      "address": "Địa chỉ",
+      "status": "Trạng thái"
     }
   }
 }
