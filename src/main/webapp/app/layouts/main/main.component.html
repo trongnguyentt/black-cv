@@ -1,10 +1,103 @@
-<jhi-page-ribbon></jhi-page-ribbon>
-<div>
-    <router-outlet name="navbar"></router-outlet>
+<jhi-page-ribbon>
+
+</jhi-page-ribbon>
+<!--<div>-->
+<!--    <router-outlet name="navbar"></router-outlet>-->
+<!--</div>-->
+<!--&lt;!&ndash;<div class="container-fluid">&ndash;&gt;-->
+<!--    <div class="card jh-card">-->
+<!--        <router-outlet>-->
+
+
+<!--        </router-outlet>-->
+<!--    </div>-->
+<!--    <jhi-footer></jhi-footer>-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<body class="c-app">
+    <div class="c-sidebar c-sidebar-dark c-sidebar-show">
+    <ul class="c-sidebar-nav">
+        <li class="c-sidebar-nav-title">Nav Title</li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="#">
+                <i class="c-sidebar-nav-icon cil-speedometer"></i> Nav item
+            </a>
+        </li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link" href="#">
+                <i class="c-sidebar-nav-icon cil-speedometer"></i> With badge
+                <span class="badge badge-primary">NEW</span>
+            </a>
+        </li>
+        <li class="c-sidebar-nav-item nav-dropdown">
+            <a class="c-sidebar-nav-link nav-dropdown-toggle" href="#">
+                <i class="c-sidebar-nav-icon cil-puzzle"></i> Nav dropdown
+            </a>
+            <ul class="c-sidebar-nav-dropdown-items">
+                <li class="c-sidebar-nav-item">
+                    <a class="c-sidebar-nav-link" href="#">
+                        <i class="c-sidebar-nav-icon cil-puzzle"></i> Nav dropdown item
+                    </a>
+                </li>
+                <li class="c-sidebar-nav-item">
+                    <a class="c-sidebar-nav-link" href="#">
+                        <i class="c-sidebar-nav-icon cil-puzzle"></i> Nav dropdown item
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="c-sidebar-nav-item mt-auto">
+            <a class="c-sidebar-nav-link c-sidebar-nav-link-success" href="https://coreui.io">
+                <i class="c-sidebar-nav-icon cil-cloud-download"></i> Download CoreUI</a>
+        </li>
+        <li class="c-sidebar-nav-item">
+            <a class="c-sidebar-nav-link c-sidebar-nav-link-danger" href="https://coreui.io/pro/">
+                <i class="c-sidebar-nav-icon cil-layers"></i> Try CoreUI
+                <strong>PRO</strong>
+            </a>
+        </li>
+    </ul>
+    <button class="c-sidebar-minimizer c-brand-minimizer" type="button"></button>
 </div>
-<div class="container-fluid">
-    <div class="card jh-card">
-        <router-outlet></router-outlet>
+<div class="c-wrapper">
+<!--    <header class="c-header">-->
+<!--        <header class="navbar navbar-light">-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+<!--    </header>-->
+    <div class="c-body">
+        <main class="c-main">
+            <div class="card jh-card">
+                <router-outlet>
+
+
+                </router-outlet>
+            </div>
+        </main>
     </div>
-    <jhi-footer></jhi-footer>
+    <footer class="c-footer">
+        <jhi-footer></jhi-footer>
+    </footer>
 </div>
+</body>

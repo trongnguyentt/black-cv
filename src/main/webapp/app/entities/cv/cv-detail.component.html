@@ -20,54 +20,52 @@
                             </div>
                             <div class="d-flex p-3 bg-secondary text-white khoi">
                                 <i class="fas fa-id-card fa-lg"></i>
-                                <div class="flex5">Đặng Thị Thịnh</div>
+                                <div class="flex5">{{cV.name}}</div>
                             </div>
                             <div class="d-flex p-3 bg-secondary text-white khoi">
                                 <i class="fas fa-birthday-cake"></i>
-                                <div class="flex5">16/06/1996</div>
+                                <div class="flex5">{{cV.birthday}}</div>
                             </div>
                             <div class="d-flex p-3 bg-secondary text-white khoi">
                                 <i class="fas fa-user-alt"></i>
-                                <div class="flex5">Men</div>
+                                <div class="flex5">{{cV.gender}}</div>
                             </div>
                             <div class="d-flex p-3 bg-secondary text-white khoi">
                                 <i class="fas fa-phone-square-alt fa-lg"></i>
-                                <div class="flex5">0392935839</div>
-                            </div>
-                            <div class="d-flex p-3 bg-secondary text-white khoi">
-                                <i class="fab fa-facebook-square"></i>
-                                <div class="flex5">https://www.facebook.com/photo.php</div>
+                                <div class="flex5">{{cV.phone}}</div>
                             </div>
                             <div class="d-flex p-3 bg-secondary text-white khoi">
                                 <i class="fas fa-envelope-open-text fa-lg"></i>
-                                <div class="flex5">ydat1996@gmail.com</div>
+                                <div class="flex5">{{cV.email}}</div>
                             </div>
 
                             <div class="d-flex p-3 bg-secondary text-white khoi	">
                                 <i class="fas fa-map-marker-alt fa-lg"></i>
-                                <div class="flex5">Chu Phan - Me Linh - Ha Noi</div>
+                                <div class="flex5">{{cV.address}}</div>
                             </div>
 
                         </div>
                     </div>
                     <div class="col-sm-8 phai">
-
+                    {{cV.reason}}
                     </div>
-
+            <div>
+                <img class="avatar" src="{{cV.fileUploadCV}}" alt="Card image cap">
+            </div>
 
                 </div>
             </div>
-
+<br>
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span > OK</span>
             </button>
 
 <!--            <button type="button"-->
 <!--                    [routerLink]="['/cv', cV.id, 'edit']"-->
 <!--                    class="btn btn-primary">-->
-<!--                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>-->
+<!--                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span > OK</span>-->
 <!--            </button>-->
         </div>
     </div>

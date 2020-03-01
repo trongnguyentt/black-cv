@@ -204,6 +204,16 @@
                         [data]="reason"
                         [settings]="dropdownSettings"
                     ></ng-multiselect-dropdown>
+                    <div
+                        *ngIf="editForm.get('reason').invalid && (editForm.get('reason').dirty || editForm.get('reason').touched)">
+                        <small
+                            class="form-text text-danger"
+                            *ngIf="editForm.get('reason').errors.required"
+                            jhiTranslate="entity.validation.required"
+                        >This field is required.
+                        </small>
+
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blackcvApp.cV.avatar" for="field_avatar">Avatar</label>
