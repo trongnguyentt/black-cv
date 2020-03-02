@@ -18,6 +18,7 @@ import { SearchcvComponent } from './full-image/searchcv.component';
 import { SearchcvModule } from 'app/full-image/searchcv.module';
 import { ListReportComponent } from './list-report/list-report.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { RefCompanyComponent } from './ref-company/ref-company.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -39,6 +40,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     FooterComponent,
     SearchcvComponent,
     ListReportComponent
+    // RefCompanyComponent
   ],
   bootstrap: [MainComponent]
 })

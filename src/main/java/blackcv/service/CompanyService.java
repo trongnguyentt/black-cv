@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.MultiValueMap;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -37,6 +38,8 @@ public interface CompanyService {
      * @return the entity.
      */
     Optional<CompanyDTO> findOne(Long id);
+
+    List<CompanyDTO> searchCompany(String mail);
 
     /**
      * Delete the "id" company.

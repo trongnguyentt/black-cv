@@ -8,11 +8,41 @@
                 <label for="field_cVName">Name</label>
                 <input type="text" class="form-control" name="field_cVName" id="field_cVName"
                          formControlName="name"/>
+                <div
+                    *ngIf="searchForm.get('name').invalid && (searchForm.get('name').dirty || searchForm.get('name').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="searchForm.get('name').errors.minlength"
+                           jhiTranslate="entity.validation.minlength"
+                           [translateValues]="{ min: 1 }">
+                        This field is required to be at least 10 characters.
+                    </small>
+                    <small class="form-text text-danger"
+                           *ngIf="searchForm.get('name').errors.maxlength"
+                           jhiTranslate="entity.validation.maxlength"
+                           [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 50 characters.
+                    </small>
+                    <small
+                        class="form-text text-danger"
+                        *ngIf="searchForm.get('name').errors.required"
+                        jhiTranslate="entity.validation.required"
+                    >This field is required.
+                    </small>
+                </div>
             </div>
             <div class="form-group col-md-6">
                 <label for="field_birthday">Birthday</label>
                 <input type="date" class="form-control" id="field_birthday" placeholder="Birthday" name="field_birthday"
                        formControlName="birthday">
+                <div
+                    *ngIf="searchForm.get('birthday').invalid && (searchForm.get('birthday').dirty || searchForm.get('birthday').touched)">
+                    <small
+                        class="form-text text-danger"
+                        *ngIf="searchForm.get('birthday').errors.required"
+                        jhiTranslate="entity.validation.required"
+                    >This field is required.
+                    </small>
+                </div>
             </div>
         </div>
         <div class="form-row">
@@ -20,6 +50,34 @@
             <label for="field_phone">Phone</label>
             <input type="text" class="form-control" name="field_phone" id="field_phone"
                    formControlName="phone"/>
+            <div
+                *ngIf="searchForm.get('phone').invalid && (searchForm.get('phone').dirty || searchForm.get('phone').touched)">
+                <small class="form-text text-danger"
+                       *ngIf="searchForm.get('phone').errors.minlength"
+                       jhiTranslate="entity.validation.minlength"
+                       [translateValues]="{ min: 10 }">
+                    This field is required to be at least 10 characters.
+                </small>
+                <small class="form-text text-danger"
+                       *ngIf="searchForm.get('phone').errors.maxlength"
+                       jhiTranslate="entity.validation.maxlength"
+                       [translateValues]="{ max: 10 }">
+                    This field cannot be longer than 50 characters.
+                </small>
+                <small
+                    class="form-text text-danger"
+                    *ngIf="searchForm.get('phone').errors.required"
+                    jhiTranslate="entity.validation.required"
+                >This field is required.
+                </small>
+                <small
+                    class="form-text text-danger"
+                    *ngIf="searchForm.get('phone').errors.pattern"
+                    jhiTranslate="entity.validation.pattern"
+                    [translateValues]="{ pattern: '0912345678' }">
+                    >Please provide a valid phone number
+                </small>
+            </div>
         </div>
         </div>
         <div class="form-row">
@@ -27,6 +85,22 @@
             <label for="field_phone">Email</label>
             <input type="text" class="form-control" name="field_email" id="field_email"
                    formControlName="email"/>
+            <div
+                *ngIf="searchForm.get('email').invalid && (searchForm.get('email').dirty || searchForm.get('email').touched)">
+                <small
+                    class="form-text text-danger"
+                    *ngIf="searchForm.get('email').errors.required"
+                    jhiTranslate="entity.validation.required"
+                >This field is required.
+                </small>
+                <small
+                    class="form-text text-danger"
+                    *ngIf="searchForm.get('phone').errors.pattern"
+                    jhiTranslate="entity.validation.pattern"
+                    [translateValues]="{ pattern: 'evotek@gmail.com' }">
+                    >Please provide a valid email address
+                </small>
+            </div>
         </div>
         </div>
         <div *ngIf="fail" style="color: red">Bạn cần nhập đầy đủ thông tin</div>

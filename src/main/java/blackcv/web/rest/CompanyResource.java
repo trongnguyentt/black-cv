@@ -102,6 +102,13 @@ public class CompanyResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @GetMapping("/companies/search/{email}")
+    public ResponseEntity<List<CompanyDTO>> getAllSearch(@PathVariable String email) {
+        log.debug("REST request to get a search email of Companies");
+        List<CompanyDTO> companyDTOS = companyService.searchCompany(email);
+        return ResponseEntity.ok(companyDTOS);
+    }
+
     /**
      * {@code GET  /companies/:id} : get the "id" company.
      *

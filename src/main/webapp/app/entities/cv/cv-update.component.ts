@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpHeaders, HttpResponse} from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import {FormBuilder, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Observable} from 'rxjs';
-import {ICV, CV} from 'app/shared/model/cv.model';
-import {CVService} from './cv.service';
-import {JhiAlertService, JhiParseLinks} from "ng-jhipster";
-import {IReason} from "app/shared/model/reason.model";
-import {ReasonService} from "app/entities/reason/reason.service";
-import {ITEMS_PER_PAGE} from "app/shared/constants/pagination.constants";
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ICV, CV } from 'app/shared/model/cv.model';
+import { CVService } from './cv.service';
+import { JhiAlertService, JhiParseLinks } from 'ng-jhipster';
+import { IReason } from 'app/shared/model/reason.model';
+import { ReasonService } from 'app/entities/reason/reason.service';
+import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 
 @Component({
   selector: 'jhi-cv-update',
@@ -19,18 +19,19 @@ export class CVUpdateComponent implements OnInit {
   isSaving = false;
   reason!: any[];
   links: any;
-  a! :ICV;
+  a!: ICV;
   reasons!: IReason[];
   totalItems = 0;
   page!: number;
   itemsPerPage = ITEMS_PER_PAGE;
+  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
   editForm = this.fb.group({
     id: [],
     idCompany: [null],
     name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
     birthday: [null, [Validators.required]],
     phone: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-    email: [null, [Validators.required, Validators.email, Validators.minLength(10), Validators.maxLength(50)]],
+    email: [null, [Validators.required, Validators.pattern(this.emailPattern), Validators.minLength(1), Validators.maxLength(50)]],
     address: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
     job: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
     gender: [],
@@ -49,26 +50,25 @@ export class CVUpdateComponent implements OnInit {
     enableCheckAll: false
   };
 
-
-  constructor(protected cVService: CVService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder,
-              private alertService: JhiAlertService,
-              protected reasonService: ReasonService,
-              protected parseLinks: JhiParseLinks,
-              protected router: Router) {
-  }
+  constructor(
+    protected cVService: CVService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    private alertService: JhiAlertService,
+    protected reasonService: ReasonService,
+    protected parseLinks: JhiParseLinks,
+    protected router: Router
+  ) {}
 
   iconPath2: any;
   iconUpload2!: File;
 
-
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({cV}) => {
+    this.activatedRoute.data.subscribe(({ cV }) => {
       this.updateForm(cV);
     });
 
-    this.reasonService
-      .query({})
-      .subscribe((res: HttpResponse<IReason[]>) => this.paginateReason(res.body!, res.headers));
+    this.reasonService.query({}).subscribe((res: HttpResponse<IReason[]>) => this.paginateReason(res.body!, res.headers));
   }
 
   protected paginateReason(data: IReason[], headers: HttpHeaders) {
@@ -116,7 +116,7 @@ export class CVUpdateComponent implements OnInit {
       fileUploadCV: cV.fileUploadCV,
       status: cV.status
     });
-    console.log(cV.reason)
+    console.log(cV.reason);
   }
 
   previousState(): void {
@@ -126,7 +126,7 @@ export class CVUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const cV = this.createFromForm();
-    console.log(cV.id)
+    console.log(cV.id);
     if (cV.id !== undefined) {
       this.subscribeToSaveResponse(this.cVService.update(cV, this.iconUpload, this.iconUpload2));
     } else {
@@ -156,15 +156,13 @@ export class CVUpdateComponent implements OnInit {
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICV>>): void {
     result.subscribe(
       res => {
-        if(res.body){
-        this.a= res.body;}
-        console.log(this.a.id+"xxxxx")
+        if (res.body) {
+          this.a = res.body;
+        }
+        console.log(this.a.id + 'xxxxx');
         this.isSaving = false;
 
-          this.router.navigate(['/cv', this.a.id, 'view']);
-
-
-
+        this.router.navigate(['/cv', this.a.id, 'view']);
       },
       () => this.onSaveError()
     );
@@ -221,14 +219,12 @@ export class CVUpdateComponent implements OnInit {
   protected onSaveSuccess(): void {
     this.isSaving = false;
     const cV = this.createFromForm();
-    if (cV.id!==null) {
+    if (cV.id !== null) {
       this.router.navigate(['/cv', cV.id, 'view']);
     } else {
-
       this.previousState();
-
     }
-    console.log(cV.id)
+    console.log(cV.id);
     console.log(cV.address);
   }
   protected onSaveError(): void {

@@ -17,6 +17,7 @@ import org.springframework.util.MultiValueMap;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing {@link Company}.
@@ -78,6 +79,12 @@ public class CompanyServiceImpl implements CompanyService {
         log.debug("Request to get Company : {}", id);
         return companyRepository.findById(id)
             .map(companyMapper::toDto);
+    }
+
+    @Override
+    public List<CompanyDTO> searchCompany(String mail) {
+        log.debug("Request to get Company : {}", mail);
+        return companyRepository.findByNameContaining(mail).stream().map(companyMapper::toDto).collect(Collectors.toList());
     }
 
     /**
