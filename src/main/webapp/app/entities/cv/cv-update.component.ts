@@ -36,7 +36,7 @@ export class CVUpdateComponent implements OnInit {
     job: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
     gender: [],
     avatar: [null],
-    reason: [],
+    reason: [null, [Validators.required]],
     fileUploadCV: [null, [Validators.required]],
     status: []
   });

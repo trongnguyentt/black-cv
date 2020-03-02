@@ -19,6 +19,7 @@ import { SearchcvModule } from 'app/full-image/searchcv.module';
 import { ListReportComponent } from './list-report/list-report.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { RefCompanyComponent } from './ref-company/ref-company.component';
+import { AppFooterModule, AppHeaderModule, AppSidebarModule } from '@coreui/angular';
 @NgModule({
   imports: [
     BrowserModule,
@@ -29,7 +30,10 @@ import { RefCompanyComponent } from './ref-company/ref-company.component';
     SearchcvModule,
     BlackcvEntityModule,
     BlackcvAppRoutingModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    AppFooterModule,
+    AppHeaderModule,
+    AppSidebarModule
   ],
   declarations: [
     MainComponent,
