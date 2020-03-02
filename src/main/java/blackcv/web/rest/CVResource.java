@@ -108,7 +108,7 @@ public class CVResource {
             String imagePath = request.getContextPath() + "/content/images/" + file.getOriginalFilename();
             cVDTO.setAvatar(imagePath);
         }
-        if(file2!=null){
+        if(file2 !=null){
             String path = request.getSession().getServletContext().getRealPath("/") + "/content/images/";
             File upload2 = new File(path + file2.getOriginalFilename());
             file2.transferTo(upload2);
