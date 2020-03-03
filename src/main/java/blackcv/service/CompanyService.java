@@ -31,6 +31,8 @@ public interface CompanyService {
     Page<CompanyDTO> findAll(MultiValueMap<String, String> queryParams, Pageable pageable);
 
 
+    List<CompanyDTO> checkExist();
+
     /**
      * Get the "id" company.
      *
@@ -38,8 +40,6 @@ public interface CompanyService {
      * @return the entity.
      */
     Optional<CompanyDTO> findOne(Long id);
-
-    List<CompanyDTO> searchCompany(String mail);
 
     /**
      * Delete the "id" company.

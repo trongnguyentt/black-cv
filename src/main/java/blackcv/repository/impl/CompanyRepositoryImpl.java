@@ -19,15 +19,39 @@ public class CompanyRepositoryImpl implements CompanyRepositoryCustom {
 
     @Override
     public List<Company> search(MultiValueMap<String, String> queryParams, Pageable pageable) {
-        String sql = "select C from Company C where C.status <> 0 ";
+//        String sql = "select C from Company C where C.status <> 0 ";
+////        Map<String, Object> values = new HashMap<>();
+////        sql += createWhereQuery(queryParams, values);
+////        sql += createOrderQuery(queryParams);
+////        Query query = entityManager.createQuery(sql, Company.class);
+////        values.forEach(query::setParameter);
+////        query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
+////        query.setMaxResults(pageable.getPageSize());
+////        return query.getResultList();
+
+
         Map<String, Object> values = new HashMap<>();
-        sql += createWhereQuery(queryParams, values);
-        sql += createOrderQuery(queryParams);
-        Query query = entityManager.createQuery(sql, Company.class);
-        values.forEach(query::setParameter);
-        query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
-        query.setMaxResults(pageable.getPageSize());
-        return query.getResultList();
+        if (queryParams.containsKey("login") && !queryParams.get("author").get(0).contains("ROLE_ADMIN")) {
+            String sql = "select C from Company C where C.status <> 0 and C.createdBy like :login";
+            values.put("login", queryParams.get("login").get(0));
+            sql += createWhereQuery(queryParams, values);
+            sql += createOrderQuery(queryParams);
+            Query query = entityManager.createQuery(sql, Company.class);
+            values.forEach(query::setParameter);
+            query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
+            query.setMaxResults(pageable.getPageSize());
+            return query.getResultList();
+        } else {
+            String sql = "select C from Company C where C.status <> 0 ";
+            sql += createWhereQuery(queryParams, values);
+            sql += createOrderQuery(queryParams);
+            Query query = entityManager.createQuery(sql, Company.class);
+            values.forEach(query::setParameter);
+            query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
+            query.setMaxResults(pageable.getPageSize());
+            return query.getResultList();
+        }
+
     }
 
     @Override

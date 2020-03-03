@@ -16,9 +16,7 @@ import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { SearchcvComponent } from './full-image/searchcv.component';
 import { SearchcvModule } from 'app/full-image/searchcv.module';
-import { ListReportComponent } from './list-report/list-report.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { RefCompanyComponent } from './ref-company/ref-company.component';
 import { AppFooterModule, AppHeaderModule, AppSidebarModule } from '@coreui/angular';
 @NgModule({
   imports: [
@@ -42,9 +40,7 @@ import { AppFooterModule, AppHeaderModule, AppSidebarModule } from '@coreui/angu
     PageRibbonComponent,
     ActiveMenuDirective,
     FooterComponent,
-    SearchcvComponent,
-    ListReportComponent
-    // RefCompanyComponent
+    SearchcvComponent
   ],
   bootstrap: [MainComponent]
 })

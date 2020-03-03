@@ -87,6 +87,41 @@
                         </small>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                           formControlName="email"/>
+                    <div
+                        *ngIf="editForm.get('email').invalid && (editForm.get('email').dirty || editForm.get('email').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email').errors.minlength"
+                               jhiTranslate="entity.validation.minlength"
+                               [translateValues]="{ min: 1 }">
+                            This field is required to be at least 10 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email').errors.maxlength"
+                               jhiTranslate="entity.validation.maxlength"
+                               [translateValues]="{ max: 50 }">
+                            This field cannot be longer than 50 characters.
+                        </small>
+                        <small
+                            class="form-text text-danger"
+                            *ngIf="editForm.get('email').errors.required"
+                            jhiTranslate="entity.validation.required"
+                        >This field is required.
+                        </small>
+                        <small
+                            class="form-text text-danger"
+                            *ngIf="editForm.get('email').errors.pattern"
+                            jhiTranslate="entity.validation.pattern"
+                            [translateValues]="{ pattern: 'admin@gmail.com' }">
+                            >Please provide a valid email address
+                        </small>
+                    </div>
+
+                </div>
 <!--                <div class="form-group">-->
 <!--                    <label class="form-control-label" jhiTranslate="blackcvApp.company.status" for="field_status">Status</label>-->
 <!--                    <input type="number" class="form-control" name="status" id="field_status"-->

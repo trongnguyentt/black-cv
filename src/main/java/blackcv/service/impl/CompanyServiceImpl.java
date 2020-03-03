@@ -3,6 +3,7 @@ package blackcv.service.impl;
 import blackcv.service.CompanyService;
 import blackcv.domain.Company;
 import blackcv.repository.CompanyRepository;
+import blackcv.service.UserService;
 import blackcv.service.dto.CompanyDTO;
 import blackcv.service.mapper.CompanyMapper;
 import org.slf4j.Logger;
@@ -30,10 +31,13 @@ public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyRepository companyRepository;
 
+    private final UserService userService;
+
     private final CompanyMapper companyMapper;
 
-    public CompanyServiceImpl(CompanyRepository companyRepository, CompanyMapper companyMapper) {
+    public CompanyServiceImpl(CompanyRepository companyRepository, UserService userService, CompanyMapper companyMapper) {
         this.companyRepository = companyRepository;
+        this.userService = userService;
         this.companyMapper = companyMapper;
     }
 
@@ -60,6 +64,14 @@ public class CompanyServiceImpl implements CompanyService {
         return pages.map(companyMapper::toDto);
     }
 
+    @Override
+    public List<CompanyDTO> checkExist() {
+        List<Company> companies = companyRepository.findByCreatedBy(userService.getUserWithAuthorities().get().getLogin());
+        log.debug("ten dang nhap: " + userService.getUserWithAuthorities().get().getLogin());
+        log.debug("object: " + companies);
+        return companyMapper.toDto(companies);
+    }
+
     /**
      * Get all the companies.
      *
@@ -79,12 +91,6 @@ public class CompanyServiceImpl implements CompanyService {
         log.debug("Request to get Company : {}", id);
         return companyRepository.findById(id)
             .map(companyMapper::toDto);
-    }
-
-    @Override
-    public List<CompanyDTO> searchCompany(String mail) {
-        log.debug("Request to get Company : {}", mail);
-        return companyRepository.findByNameContaining(mail).stream().map(companyMapper::toDto).collect(Collectors.toList());
     }
 
     /**

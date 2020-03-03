@@ -102,11 +102,12 @@ public class CompanyResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
-    @GetMapping("/companies/search/{email}")
-    public ResponseEntity<List<CompanyDTO>> getAllSearch(@PathVariable String email) {
-        log.debug("REST request to get a search email of Companies");
-        List<CompanyDTO> companyDTOS = companyService.searchCompany(email);
-        return ResponseEntity.ok(companyDTOS);
+    @GetMapping("/companies/check")
+    public ResponseEntity<List<CompanyDTO>> checkExist() {
+        return ResponseEntity.ok(companyService.checkExist());
+//        if (companyService.checkExist().size() > 0)
+//            return true;
+//        return false;
     }
 
     /**
