@@ -46,13 +46,16 @@ public class CompanyRepositoryImpl implements CompanyRepositoryCustom {
 //            sql += "and lower(C.name) like lower(:name)";
 //            values.put("name", queryParams.get("name").get(0));
 
-            sql += "and (lower(C.name) like lower(:name) or lower(C.businessAreas) like lower(:name))";
+//            sql += "and (lower(C.name) like lower(:name) or lower(C.businessAreas) like lower(:name))";
+            sql += "and lower(C.name) like lower(:name)";
             values.put("name", '%' + queryParams.get("name").get(0) + '%');
         }
-//        if (queryParams.containsKey("countryName")) {
-//            sql += "and lower(C.countryName) like lower(:countryName)";
-//            values.put("countryName", "%" + queryParams.get("countryName").get(0) + "%");
-//        }
+
+        if (queryParams.containsKey("business")) {
+            sql += "and lower(C.businessAreas) like lower(:business)";
+            values.put("business", "%" + queryParams.get("business").get(0) + "%");
+        }
+
         return sql;
     }
 

@@ -19,10 +19,20 @@
                 <div class="row justify-content-center">
                     <div class="form-group col-sm-6 row text-color">
                         <label class="col-4 col-form-label text-right"
-                               for="field_cVName">Company Name</label>
+                               for="field_cVName">ID CV</label>
                         <div class="col-8">
                             <input type="text" class="form-control" name="field_cVName" id="field_cVName"
-                                   formControlName="name"/>
+                                   formControlName="cv"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="form-group col-sm-6 row text-color">
+                        <label class="col-4 col-form-label text-right"
+                               for="field_cVName">ID Reason</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" name="field_reason" id="field_reason"
+                                   formControlName="reason"/>
                         </div>
                     </div>
                 </div>
@@ -43,21 +53,21 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+<!--            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th scope="col"  jhiSortBy="idCV"><span jhiTranslate="blackcvApp.reasonList.idCV">Id CV</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="document"><span jhiTranslate="blackcvApp.reasonList.document">Document</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="id_reason"><span jhiTranslate="blackcvApp.reasonList.id_reason">Id Reason</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="status"><span jhiTranslate="blackcvApp.reasonList.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+<!--            <th scope="col"  jhiSortBy="status"><span jhiTranslate="blackcvApp.reasonList.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let reasonList of reasonLists ;trackBy: trackId">
-                <td><a [routerLink]="['/reason-list', reasonList.id, 'view' ]">{{reasonList.id}}</a></td>
+<!--                <td><a [routerLink]="['/reason-list', reasonList.id, 'view' ]">{{reasonList.id}}</a></td>-->
                 <td>{{reasonList.idCV}}</td>
                 <td>{{reasonList.document}}</td>
                 <td>{{reasonList.id_reason}}</td>
-                <td>{{reasonList.status}}</td>
+<!--                <td>{{reasonList.status}}</td>-->
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

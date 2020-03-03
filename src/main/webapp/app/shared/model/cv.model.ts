@@ -9,6 +9,7 @@ export interface ICV {
   job?: string;
   gender?: string;
   avatar?: string;
+  reason?: string;
   fileUploadCV?: string;
   status?: number;
 }
@@ -25,6 +26,7 @@ export class CV implements ICV {
     public job?: string,
     public gender?: string,
     public avatar?: string,
+    public reason?: string,
     public fileUploadCV?: string,
     public status?: number
   ) {}

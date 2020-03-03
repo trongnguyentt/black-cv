@@ -27,7 +27,8 @@ export class CompanyComponent implements OnInit, OnDestroy {
   ngbPaginationPage = 1;
   links: any;
   searchForm = this.fb.group({
-    name: ['']
+    name: [''],
+    business: ['']
   });
 
   constructor(
@@ -62,6 +63,12 @@ export class CompanyComponent implements OnInit, OnDestroy {
     if (name) {
       res['name'] = name;
     }
+
+    const business = this.searchForm.get(['business'])!.value.trim();
+    if (business) {
+      res['business'] = business;
+    }
+
     return res;
   }
 
@@ -127,6 +134,11 @@ export class CompanyComponent implements OnInit, OnDestroy {
         ...this.getFormValues()
       })
       .subscribe((res: HttpResponse<ICompany[]>) => this.paginateCompany(res.body!, res.headers));
+
+    this.searchForm = this.fb.group({
+      name: [''],
+      business: ['']
+    });
   }
 
   onSearch() {

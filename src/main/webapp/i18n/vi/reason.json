@@ -2,23 +2,23 @@
   "blackcvApp": {
     "reason": {
       "home": {
-        "title": "Reasons",
-        "createLabel": "Thêm mới một Reason",
-        "createOrEditLabel": "Thêm mới hoặc cập nhật Reason",
-        "notFound": "No Reasons found"
+        "title": "Lý do",
+        "createLabel": "Thêm mới",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật",
+        "notFound": "Không tìm thấy bản ghi hợp lệ"
       },
-      "created": "Một Reason mới được tạo với định danh {{ param }}",
-      "updated": "Một Reason cập nhật với định danh {{ param }}",
-      "deleted": "Một Reason đã xóa với định danh {{ param }}",
+      "created": "Bản ghi mới được tạo với định danh {{ param }}",
+      "updated": "Bản ghi cập nhật với định danh {{ param }}",
+      "deleted": "Bản ghi đã xóa với định danh {{ param }}",
       "delete": {
-        "question": "Bạn có chắc là muốn xóa Reason {{ id }}?"
+        "question": "Bạn có chắc là muốn xóa bản ghi {{ id }}?"
       },
       "detail": {
-        "title": "Reason"
+        "title": "Lý do"
       },
-      "descriptons": "Descriptons",
-      "reasonName": "Reason Name",
-      "status": "Status"
+      "descriptons": "Mô tả",
+      "reasonName": "Tên lý do",
+      "status": "Trạng thái"
     }
   }
 }

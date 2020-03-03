@@ -58,7 +58,9 @@ public class CVResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/cvs")
-    public ResponseEntity<CVDTO> createCV(@RequestPart("cV") CVDTO cVDTO, @RequestParam(value = "avatar", required = false) MultipartFile file,
+    public ResponseEntity<CVDTO> createCV(@RequestPart("cV") CVDTO cVDTO,
+                                          @RequestParam(value = "avatar", required = false) MultipartFile file,
+                                          @RequestParam(value = "fileUploadCV", required = false) MultipartFile file2,
                                           HttpServletRequest request) throws URISyntaxException, IOException {
         log.debug("REST request to save CV : {}", cVDTO);
         if (cVDTO.getId() != null) {
@@ -67,9 +69,13 @@ public class CVResource {
         String path = request.getSession().getServletContext().getRealPath("/") + "/content/images/";
         if (file != null) {
             File upload = new File(path + file.getOriginalFilename());
+            File upload2 = new File(path + file2.getOriginalFilename());
             file.transferTo(upload);
+            file2.transferTo(upload2);
             String imagePath = request.getContextPath() + "/content/images/" + file.getOriginalFilename();
+            String imagePath2 = request.getContextPath() + "/content/images/" + file2.getOriginalFilename();
             cVDTO.setAvatar(imagePath);
+            cVDTO.setFileUploadCV(imagePath2);
         }
         CVDTO result = cVService.save(cVDTO);
         return ResponseEntity.created(new URI("/api/cvs/" + result.getId()))
@@ -87,7 +93,9 @@ public class CVResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/cvs")
-    public ResponseEntity<CVDTO> updateCV(@RequestPart("cV") CVDTO cVDTO, @RequestParam(value = "avatar", required = false) MultipartFile file,
+    public ResponseEntity<CVDTO> updateCV(@RequestPart("cV") CVDTO cVDTO,
+                                          @RequestParam(value = "avatar", required = false) MultipartFile file,
+                                          @RequestParam(value = "fileUploadCV", required = false) MultipartFile file2,
                                           HttpServletRequest request) throws URISyntaxException, IOException {
         log.debug("REST request to update CV : {}", cVDTO);
         if (cVDTO.getId() == null) {
@@ -100,6 +108,14 @@ public class CVResource {
             String imagePath = request.getContextPath() + "/content/images/" + file.getOriginalFilename();
             cVDTO.setAvatar(imagePath);
         }
+        if(file2 !=null){
+            String path = request.getSession().getServletContext().getRealPath("/") + "/content/images/";
+            File upload2 = new File(path + file2.getOriginalFilename());
+            file2.transferTo(upload2);
+            String imagePath2 = request.getContextPath() + "/content/images/" + file2.getOriginalFilename();
+            cVDTO.setFileUploadCV(imagePath2);
+        }
+
         CVDTO result = cVService.save(cVDTO);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, cVDTO.getId().toString()))

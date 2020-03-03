@@ -109,64 +109,69 @@
             <h2><span jhiTranslate="blackcvApp.cV.detail.title">CV</span> {{cV.id}}</h2>
             <hr>
             <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="blackcvApp.cV.idCompany">Id Company</span></dt>
-                <dd>
-                    <span>{{cV.idCompany}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.name">Name</span></dt>
-                <dd>
-                    <span>{{cV.name}}</span>
-                </dd>
-                <dt><span >Birth Day</span></dt>
-                <dd>
-                    <span>{{cV.birthday}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.phone">Phone</span></dt>
-                <dd>
-                    <span>{{cV.phone}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.email">Email</span></dt>
-                <dd>
-                    <span>{{cV.email}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.address">Address</span></dt>
-                <dd>
-                    <span>{{cV.address}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.job">Job</span></dt>
-                <dd>
-                    <span>{{cV.job}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.gender">Gender</span></dt>
-                <dd>
-                    <span>{{cV.gender}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.avatar">Avatar</span></dt>
-                <dd>
-                    <img class="img-fluid icon-image sizeImage" src="{{cV.avatar}}" alt=""/>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.fileUploadCV">File Upload CV</span></dt>
-                <dd>
-                    <span>{{cV.fileUploadCV}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.status">Status</span></dt>
-                <dd>
-                    <span>{{cV.status}}</span>
-                </dd>
-            </dl>
+            <div class="container">
+                <div class="row"  >
+                    <div class="col-sm-4 trai" >
+                        <div class="top_trai">
+                            <img class="avatar" src="{{cV.avatar}}" alt="Card image cap">
 
+
+                        </div>
+
+                        <div class="top_trai_body">
+                            <div class="d-flex p-3 bg-secondary text-white khoi">
+                                <i class="fas fa-id-card fa-2x"></i>
+                                <div class="flex1">Thông Tin Cá Nhân</div>
+                            </div>
+                            <div class="d-flex p-3 bg-secondary text-white khoi">
+                                <i class="fas fa-id-card fa-lg"></i>
+                                <div class="flex5">{{cV.name}}</div>
+                            </div>
+                            <div class="d-flex p-3 bg-secondary text-white khoi">
+                                <i class="fas fa-birthday-cake"></i>
+                                <div class="flex5">{{cV.birthday}}</div>
+                            </div>
+                            <div class="d-flex p-3 bg-secondary text-white khoi">
+                                <i class="fas fa-user-alt"></i>
+                                <div class="flex5">{{cV.gender}}</div>
+                            </div>
+                            <div class="d-flex p-3 bg-secondary text-white khoi">
+                                <i class="fas fa-phone-square-alt fa-lg"></i>
+                                <div class="flex5">{{cV.phone}}</div>
+                            </div>
+                            <div class="d-flex p-3 bg-secondary text-white khoi">
+                                <i class="fas fa-envelope-open-text fa-lg"></i>
+                                <div class="flex5">{{cV.email}}</div>
+                            </div>
+
+                            <div class="d-flex p-3 bg-secondary text-white khoi	">
+                                <i class="fas fa-map-marker-alt fa-lg"></i>
+                                <div class="flex5">{{cV.address}}</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-8 phai">
+                    {{cV.reason}}
+                    </div>
+            <div>
+                <img class="avatar" src="{{cV.fileUploadCV}}" alt="Card image cap">
+            </div>
+
+                </div>
+            </div>
+<br>
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span > OK</span>
             </button>
 
-            <button type="button"
-                    [routerLink]="['/cv', cV.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
+<!--            <button type="button"-->
+<!--                    [routerLink]="['/cv', cV.id, 'edit']"-->
+<!--                    class="btn btn-primary">-->
+<!--                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span > OK</span>-->
+<!--            </button>-->
         </div>
     </div>
 </div>

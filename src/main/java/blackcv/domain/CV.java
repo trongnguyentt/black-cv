@@ -44,6 +44,9 @@ public class CV extends AbstractAuditingEntity implements Serializable {
     @Column(name = "avatar")
     private String avatar;
 
+    @Column(name = "reason")
+    private String reason;
+
     @Column(name = "file_upload_cv")
     private String fileUploadCV;
 
@@ -195,6 +198,14 @@ public class CV extends AbstractAuditingEntity implements Serializable {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove

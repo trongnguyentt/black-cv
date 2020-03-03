@@ -17,7 +17,8 @@ import { ErrorComponent } from './layouts/error/error.component';
 import { SearchcvComponent } from './full-image/searchcv.component';
 import { SearchcvModule } from 'app/full-image/searchcv.module';
 import { ListReportComponent } from './list-report/list-report.component';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { AppFooterModule, AppHeaderModule, AppSidebarModule } from '@coreui/angular';
 @NgModule({
   imports: [
     BrowserModule,
@@ -27,7 +28,11 @@ import { ListReportComponent } from './list-report/list-report.component';
     // jhipster-needle-angular-add-module JHipster will add new module here
     SearchcvModule,
     BlackcvEntityModule,
-    BlackcvAppRoutingModule
+    BlackcvAppRoutingModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    AppFooterModule,
+    AppHeaderModule,
+    AppSidebarModule
   ],
   declarations: [
     MainComponent,
@@ -37,7 +42,7 @@ import { ListReportComponent } from './list-report/list-report.component';
     ActiveMenuDirective,
     FooterComponent,
     SearchcvComponent,
-    ListReportComponent,
+    ListReportComponent
   ],
   bootstrap: [MainComponent]
 })
