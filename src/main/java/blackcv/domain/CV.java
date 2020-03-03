@@ -1,5 +1,7 @@
 package blackcv.domain;
 
+import org.springframework.data.annotation.CreatedBy;
+
 import javax.persistence.*;
 
 import java.io.Serializable;

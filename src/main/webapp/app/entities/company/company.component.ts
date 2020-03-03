@@ -11,6 +11,8 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { CompanyService } from './company.service';
 import { CompanyDeleteDialogComponent } from './company-delete-dialog.component';
 import { FormBuilder } from '@angular/forms';
+import { Account } from 'app/core/user/account.model';
+import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-company',
@@ -22,6 +24,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
   page!: number;
+  account!: Account;
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
@@ -37,6 +40,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
     protected router: Router,
     protected eventManager: JhiEventManager,
     private fb: FormBuilder,
+    private accountService: AccountService,
     protected parseLinks: JhiParseLinks,
     protected modalService: NgbModal
   ) {}
@@ -58,8 +62,17 @@ export class CompanyComponent implements OnInit, OnDestroy {
   getFormValues() {
     const res = {};
     const name = this.searchForm.get(['name'])!.value.trim();
+    const login = this.account.login;
+    const author = this.account.authorities;
     if (name) {
       res['name'] = name;
+    }
+
+    if (login) {
+      res['login'] = login;
+    }
+    if (author) {
+      res['author'] = author;
     }
 
     const business = this.searchForm.get(['business'])!.value.trim();
@@ -77,6 +90,11 @@ export class CompanyComponent implements OnInit, OnDestroy {
       this.predicate = data.pagingParams.predicate;
       this.ngbPaginationPage = data.pagingParams.page;
       // this.loadPage();
+    });
+    this.accountService.identity().subscribe(account => {
+      if (account) {
+        this.account = account;
+      }
     });
     this.loadAll();
     this.registerChangeInCompanies();
@@ -147,6 +165,30 @@ export class CompanyComponent implements OnInit, OnDestroy {
     this.links = this.parseLinks.parse(headers.get('link')!);
     this.totalItems = parseInt(headers.get('X-Total-Count')!, 10);
     this.companies = data;
+    // this.companies = data ? data : [];
+    // this.company = this.companies[0];
+    // console.log("length: " + this.companies.length);
+    console.log('authorities: ' + this.account.authorities);
+    for (let i of this.companies) {
+      console.log(i + ': ' + i.name);
+      console.log(i + ': ' + i.businessAreas);
+      console.log(i + ': ' + i.address);
+      console.log(i + ': ' + i.id);
+      console.log(i + ': ' + i.email);
+    }
+
+    if (this.account.authorities.length == 2) {
+      this.router.navigate(['/company']);
+    }
+    if (this.account.authorities.length == 1) {
+      if (this.companies.length == 0) {
+        this.router.navigate(['/company/new']);
+      }
+      if (!(this.companies.length == 0)) {
+        const id = '/company/' + this.companies[0].id + '/view';
+        this.router.navigate([id]);
+      }
+    }
   }
 
   protected onError(): void {

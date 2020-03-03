@@ -17,6 +17,15 @@ public class CompanyDTO implements Serializable {
 
     private Integer status;
 
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Long getId() {
         return id;

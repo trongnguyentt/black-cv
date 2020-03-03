@@ -12,6 +12,7 @@ type EntityArrayResponseType = HttpResponse<ICompany[]>;
 @Injectable({ providedIn: 'root' })
 export class CompanyService {
   public resourceUrl = SERVER_API_URL + 'api/companies';
+  public resourceUrlCheck = SERVER_API_URL + 'api/companies/check';
 
   constructor(protected http: HttpClient) {}
 
@@ -25,6 +26,10 @@ export class CompanyService {
 
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<ICompany>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  checkExist(): Observable<EntityArrayResponseType> {
+    return this.http.get<ICompany[]>(this.resourceUrlCheck, { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {

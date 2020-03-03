@@ -1,16 +1,27 @@
 <header class="c-header c-header-light px-3" style="position: fixed;
     width: -webkit-fill-available;
     z-index: 1000;">
-    <a class="c-header-brand" href="#">Black CV</a>
+    <a class="c-header-brand"[routerLink]="['/#']">Home</a>
     <ul class="c-header-nav">
-        <li class="c-header-nav-item active">
-            <a class="c-header-nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
         <li class="c-header-nav-item">
-            <a class="c-header-nav-link" href="#">Features</a>
+            <a class="c-header-nav-link" [routerLink]="['/cv']">CV</a>
         </li>
+
         <li class="c-header-nav-item">
-            <a class="c-header-nav-link" href="#">Pricing</a>
+            <a class="c-header-nav-link" [routerLink]="['/reason']">Reason</a>
+        </li>
+
+        <li class="c-header-nav-item">
+            <a class="c-header-nav-link" [routerLink]="['/company']">Company</a>
+        </li>
+
+        <li class="c-header-nav-item">
+            <a class="c-header-nav-link" [routerLink]="['/reason-list']">Reason List</a>
+        </li>
+
+        <li class="c-header-nav-item">
+            <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="logout()">Logout
+            </button>
         </li>
         <li class="c-header-nav-item dropdown">
             <a class="c-header-nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"

@@ -14,13 +14,15 @@ import { CompanyService } from './company.service';
 })
 export class CompanyUpdateComponent implements OnInit {
   isSaving = false;
+  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
 
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
     businessAreas: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
     address: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-    status: []
+    status: [],
+    email: [null, [Validators.required, Validators.pattern(this.emailPattern), Validators.minLength(1), Validators.maxLength(50)]]
   });
 
   constructor(protected companyService: CompanyService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -37,7 +39,8 @@ export class CompanyUpdateComponent implements OnInit {
       name: company.name,
       businessAreas: company.businessAreas,
       address: company.address,
-      status: company.status
+      status: company.status,
+      email: company.email
     });
   }
 
@@ -62,7 +65,8 @@ export class CompanyUpdateComponent implements OnInit {
       name: this.editForm.get(['name'])!.value,
       businessAreas: this.editForm.get(['businessAreas'])!.value,
       address: this.editForm.get(['address'])!.value,
-      status: this.editForm.get(['status'])!.value
+      status: this.editForm.get(['status'])!.value,
+      email: this.editForm.get(['email'])!.value
     };
   }
 
