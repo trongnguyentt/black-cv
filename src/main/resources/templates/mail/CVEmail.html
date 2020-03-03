@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}" lang="en">
+    <head>
+        <title th:text="#{email.reset.title}">JHipster password reset</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <p th:text="#{email.reset.greeting(${info.companyName})}">
+            Dear
+        </p>
+        <p>Bạn nhận được yêu cầu cung cấp thông tin về nhân viên</p>
+
+        <p>
+            <span th:text="${info.info}">Information </span>
+            <br/>
+            <a th:with="url=(@{|localhost:9000/cv|})" th:href="${url}"
+               th:text="${url}">Login link</a>
+        <p>Người yêu cầu</p>
+            <em th:text="${info.user}">From.</em>
+    </body>
+</html>

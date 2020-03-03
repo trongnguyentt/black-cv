@@ -57,8 +57,6 @@ export class CompanyComponent implements OnInit, OnDestroy {
 
   getFormValues() {
     const res = {};
-    // const countryName = this.searchForm.get(['countryName']).value.trim();
-    // const countryCode = this.searchForm.get(['countryCode']).value.trim();
     const name = this.searchForm.get(['name'])!.value.trim();
     if (name) {
       res['name'] = name;
