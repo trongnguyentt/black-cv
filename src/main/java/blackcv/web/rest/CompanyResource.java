@@ -115,6 +115,12 @@ public class CompanyResource {
         return ResponseUtil.wrapOrNotFound(companyDTO);
     }
 
+    @GetMapping("/companies/{login}")
+    public ResponseEntity<CompanyDTO> getCompanyByLogin(@PathVariable String login) {
+        Optional<CompanyDTO> companyDTO = companyService.findOneByLogin(login);
+        return ResponseUtil.wrapOrNotFound(companyDTO);
+    }
+
     /**
      * {@code DELETE  /companies/:id} : delete the "id" company.
      *

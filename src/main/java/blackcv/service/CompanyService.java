@@ -38,6 +38,8 @@ public interface CompanyService {
      */
     Optional<CompanyDTO> findOne(Long id);
 
+    Optional<CompanyDTO> findOneByLogin(String login);
+
     /**
      * Delete the "id" company.
      *

@@ -26,7 +26,9 @@ export class CompanyService {
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<ICompany>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
-
+  findByLogin(login: string): Observable<EntityResponseType> {
+    return this.http.get<ICompany>(`${this.resourceUrl}/${login}`, { observe: 'response' });
+  }
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<ICompany[]>(this.resourceUrl, { params: options, observe: 'response' });

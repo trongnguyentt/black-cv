@@ -39,7 +39,7 @@ export class SendCvComponent implements OnInit {
         this.account = account;
       }
     });
-
+  console.log(this.account.email)
     if(this.company.name){
     this.SendCvService.save(this.resetRequestForm.get(['info'])!.value,this.account.login,this.company.name).subscribe(
       () => (this.success = true),
