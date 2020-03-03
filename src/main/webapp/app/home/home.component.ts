@@ -71,6 +71,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (!name || !phone || !email || !birthday) {
       this.fail = true;
     }
+    console.log(name);
+    console.log(phone);
     return res;
   }
 
