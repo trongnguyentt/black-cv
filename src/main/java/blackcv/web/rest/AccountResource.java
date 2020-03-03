@@ -156,6 +156,10 @@ public class AccountResource {
                .orElseThrow(EmailNotFoundException::new)
        );
     }
+    @PostMapping(path = "/account/send-cv")
+    public void requestSendCV(@RequestBody Object info) {
+        mailService.sendCVMail(info);
+    }
 
     /**
      * {@code POST   /account/reset-password/finish} : Finish to reset the password of the user.

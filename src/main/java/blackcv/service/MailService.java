@@ -32,7 +32,11 @@ public class MailService {
 
     private static final String USER = "user";
 
+    private static final String USERs = "users";
+
     private static final String BASE_URL = "baseUrl";
+
+    private static final String INFO = "info";
 
     private final JHipsterProperties jHipsterProperties;
 
@@ -87,6 +91,17 @@ public class MailService {
     }
 
     @Async
+    public void sendEmailCVFromTemplate(Object info, String templateName, String titleKey) {
+        Locale locale = Locale.forLanguageTag("en");
+        Context context = new Context(locale);
+        context.setVariable(INFO, info);
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        String mailMine="anhtrong97abc@gmail.com";
+        sendEmail(mailMine, subject, content, false, true);
+    }
+
+    @Async
     public void sendActivationEmail(User user) {
         log.debug("Sending activation email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/activationEmail", "email.activation.title");
@@ -102,5 +117,9 @@ public class MailService {
     public void sendPasswordResetMail(User user) {
         log.debug("Sending password reset email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/passwordResetEmail", "email.reset.title");
+    }
+    @Async
+    public void sendCVMail(Object info) {
+        sendEmailCVFromTemplate(info, "mail/CVEmail", "email.reset.title");
     }
 }
