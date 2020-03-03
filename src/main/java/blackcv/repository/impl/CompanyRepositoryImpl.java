@@ -60,15 +60,14 @@ public class CompanyRepositoryImpl implements CompanyRepositoryCustom {
     }
 
     private String createOrderQuery(MultiValueMap<String, String> queryParams) {
-        String sql = " order by ";
+        String sql = "";
         if (queryParams.containsKey("sort")) {
+            sql = " order by ";
             List<String> orderByList = queryParams.get("sort");
             for (String i : orderByList) {
                 sql += "C." + i.replace(",", " ") + ", ";
             }
             sql = sql.substring(0, sql.lastIndexOf(","));
-        } else {
-            sql += "C.createdDate desc";
         }
         return sql;
     }
