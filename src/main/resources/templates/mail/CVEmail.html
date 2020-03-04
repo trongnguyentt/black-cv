@@ -13,7 +13,7 @@
         <p>
             <span th:text="${info.info}">Information </span>
             <br/>
-            <a th:with="url=(@{|localhost:9000/cv|})" th:href="${url}"
+            <a th:with="url=(@{|localhost:9000/staff-origin/${info.user}/new|})" th:href="${url}"
                th:text="${url}">Login link</a>
         <p>Người yêu cầu</p>
             <em th:text="${info.user}">From.</em>

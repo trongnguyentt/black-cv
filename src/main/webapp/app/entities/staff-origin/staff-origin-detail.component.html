@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="staffOrigin">
+            <h2><span jhiTranslate="blackcvApp.staffOrigin.detail.title">Staff Origin</span> {{staffOrigin.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="blackcvApp.staffOrigin.name">Name</span></dt>
+                <dd>
+                    <span>{{staffOrigin.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="blackcvApp.staffOrigin.email">Email</span></dt>
+                <dd>
+                    <span>{{staffOrigin.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="blackcvApp.staffOrigin.job">Job</span></dt>
+                <dd>
+                    <span>{{staffOrigin.job}}</span>
+                </dd>
+                <dt><span jhiTranslate="blackcvApp.staffOrigin.advantages">Advantages</span></dt>
+                <dd>
+                    <span>{{staffOrigin.advantages}}</span>
+                </dd>
+                <dt><span jhiTranslate="blackcvApp.staffOrigin.defect">Defect</span></dt>
+                <dd>
+                    <span>{{staffOrigin.defect}}</span>
+                </dd>
+                <dt><span jhiTranslate="blackcvApp.staffOrigin.more">More</span></dt>
+                <dd>
+                    <span>{{staffOrigin.more}}</span>
+                </dd>
+                <dt><span jhiTranslate="blackcvApp.staffOrigin.status">Status</span></dt>
+                <dd>
+                    <span>{{staffOrigin.status}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/staff-origin', staffOrigin.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "blackcvApp": {
+    "staffOrigin": {
+      "home": {
+        "title": "Staff Origins",
+        "createLabel": "Thêm mới một Staff Origin",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật Staff Origin",
+        "notFound": "No Staff Origins found"
+      },
+      "created": "Một Staff Origin mới được tạo với định danh {{ param }}",
+      "updated": "Một Staff Origin cập nhật với định danh {{ param }}",
+      "deleted": "Một Staff Origin đã xóa với định danh {{ param }}",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa Staff Origin {{ id }}?"
+      },
+      "detail": {
+        "title": "Staff Origin"
+      },
+      "name": "Name",
+      "email": "Email",
+      "job": "Job",
+      "advantages": "Advantages",
+      "defect": "Defect",
+      "more": "More",
+      "status": "Status"
+    }
+  }
+}
