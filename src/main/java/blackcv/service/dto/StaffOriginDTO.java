@@ -21,8 +21,27 @@ public class StaffOriginDTO implements Serializable {
 
     private String more;
 
+    private String from;
+
+    private String to;
+
     private Integer status;
 
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
 
     public Long getId() {
         return id;

@@ -35,6 +35,12 @@ public class StaffOrigin implements Serializable {
     @Column(name = "more")
     private String more;
 
+    @Column(name = "send_from")
+    private String from;
+
+    @Column(name = "send_to")
+    private String to;
+
     @Column(name = "status")
     private Integer status;
 
@@ -123,6 +129,22 @@ public class StaffOrigin implements Serializable {
 
     public void setMore(String more) {
         this.more = more;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
     }
 
     public Integer getStatus() {

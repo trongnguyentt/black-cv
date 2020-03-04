@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { IStaffOrigin, StaffOrigin } from 'app/shared/model/staff-origin.model';
 import { StaffOriginService } from './staff-origin.service';
+import {EMAIL_NOT_FOUND_TYPE} from "app/shared/constants/error.constants";
 
 @Component({
   selector: 'jhi-staff-origin-update',
@@ -14,7 +15,9 @@ import { StaffOriginService } from './staff-origin.service';
 })
 export class StaffOriginUpdateComponent implements OnInit {
   isSaving = false;
-
+  error = false;
+  errorEmailNotExists = false;
+  success = false;
   editForm = this.fb.group({
     id: [],
     name: [],
@@ -26,7 +29,7 @@ export class StaffOriginUpdateComponent implements OnInit {
     status: []
   });
 
-  constructor(protected staffOriginService: StaffOriginService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(protected staffOriginService: StaffOriginService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder,protected router: Router) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ staffOrigin }) => {
@@ -56,12 +59,25 @@ export class StaffOriginUpdateComponent implements OnInit {
     const staffOrigin = this.createFromForm();
     if (staffOrigin.id !== undefined) {
       this.subscribeToSaveResponse(this.staffOriginService.update(staffOrigin));
+      this.requestReset(staffOrigin.email);
+      this.router.navigate(['/staff-origin', staffOrigin.id, 'view']);
     } else {
       this.subscribeToSaveResponse(this.staffOriginService.create(staffOrigin));
       console.log(staffOrigin);
     }
   }
-
+  requestReset(email: any): void {
+      this.staffOriginService.save(email).subscribe(
+        () => (this.success = true),
+        (response: HttpErrorResponse) => {
+          if (response.status === 400 && response.error.type === EMAIL_NOT_FOUND_TYPE) {
+            this.errorEmailNotExists = true;
+          } else {
+            this.error = true;
+          }
+        }
+      );
+  }
   private createFromForm(): IStaffOrigin {
     return {
       ...new StaffOrigin(),
@@ -85,7 +101,6 @@ export class StaffOriginUpdateComponent implements OnInit {
 
   protected onSaveSuccess(): void {
     this.isSaving = false;
-    this.previousState();
   }
 
   protected onSaveError(): void {

@@ -11,6 +11,7 @@ import { LoginService } from 'app/core/login/login.service';
   templateUrl: './main.component.html'
 })
 export class MainComponent implements OnInit {
+  isNavbarCollapsed!: boolean;
   constructor(
     private loginService: LoginService,
     private accountService: AccountService,
@@ -34,7 +35,9 @@ export class MainComponent implements OnInit {
 
     this.translateService.onLangChange.subscribe(() => this.updateTitle());
   }
-
+  collapseNavbar() {
+    this.isNavbarCollapsed = true;
+  }
   logout(): void {
     this.loginService.logout();
     this.router.navigate(['']);
