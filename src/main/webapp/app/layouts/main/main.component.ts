@@ -5,23 +5,45 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { AccountService } from 'app/core/auth/account.service';
 import { LoginService } from 'app/core/login/login.service';
+import { JhiLanguageService } from 'ng-jhipster';
+import { SessionStorageService } from 'ngx-webstorage';
+import { LoginModalService } from 'app/core/login/login-modal.service';
+import { ProfileService } from 'app/layouts/profiles/profile.service';
+import { LANGUAGES } from 'app/core/language/language.constants';
 
 @Component({
   selector: 'jhi-main',
-  templateUrl: './main.component.html'
+  templateUrl: './main.component.html',
+  styleUrls: ['main.scss']
 })
 export class MainComponent implements OnInit {
-  isNavbarCollapsed!: boolean;
+  inProduction?: boolean;
+  isNavbarCollapsed = true;
+  languages = LANGUAGES;
+  swaggerEnabled?: boolean;
+  status?: boolean;
+
   constructor(
-    private loginService: LoginService,
-    private accountService: AccountService,
     private translateService: TranslateService,
     private titleService: Title,
-    private router: Router
-  ) {}
+    private router: Router,
+    private loginService: LoginService,
+    private languageService: JhiLanguageService,
+    private sessionStorage: SessionStorageService,
+    private accountService: AccountService,
+    private loginModalService: LoginModalService,
+    private profileService: ProfileService
+  ) {
+    this.status = true;
+  }
 
   ngOnInit(): void {
     // try to log in automatically
+    this.profileService.getProfileInfo().subscribe(profileInfo => {
+      this.inProduction = profileInfo.inProduction;
+      this.swaggerEnabled = profileInfo.swaggerEnabled;
+    });
+
     this.accountService.identity().subscribe();
 
     this.router.events.subscribe(event => {
@@ -35,12 +57,39 @@ export class MainComponent implements OnInit {
 
     this.translateService.onLangChange.subscribe(() => this.updateTitle());
   }
-  collapseNavbar() {
+
+  changeLanguage(languageKey: string): void {
+    this.sessionStorage.store('locale', languageKey);
+    this.languageService.changeLanguage(languageKey);
+  }
+
+  collapseNavbar(): void {
     this.isNavbarCollapsed = true;
   }
+
+  isAuthenticated(): boolean {
+    return this.accountService.isAuthenticated();
+  }
+
+  changeShow(): void {
+    this.status = !this.status;
+  }
+  login(): void {
+    this.loginModalService.open();
+  }
+
   logout(): void {
+    // this.collapseNavbar();
     this.loginService.logout();
     this.router.navigate(['']);
+  }
+
+  toggleNavbar(): void {
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
+  }
+
+  getImageUrl(): string {
+    return this.isAuthenticated() ? this.accountService.getImageUrl() : '';
   }
 
   private getPageTitle(routeSnapshot: ActivatedRouteSnapshot): string {
