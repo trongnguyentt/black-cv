@@ -8,8 +8,8 @@ import { SERVER_API_URL } from 'app/app.constants';
 export class SendCvService {
   constructor(private http: HttpClient) {}
 
-  save(info: string, user: string, companyName: string): Observable<{}> {
-    console.log(user);
-    return this.http.post(SERVER_API_URL + 'api/account/send-cv', { info, user, companyName });
+  save(info: string): Observable<{}> {
+
+    return this.http.post(SERVER_API_URL + 'api/account/send-cv',  info );
   }
 }

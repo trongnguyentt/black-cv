@@ -5,17 +5,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <p th:text="#{email.reset.greeting(${info.from})}">
+        <p >
             Dear
         </p>
-        <p>Bạn nhận được yêu cầu cung cấp thông tin về nhân viên</p>
+        <p>Bạn nhận được thông tin về nhân viên</p>
 
         <p>
-            <span th:text="${info.name}">Information </span>
+            <span th:text="${infos.name}">Information </span>
             <br/>
-            <a th:with="url=(@{|localhost:9000/staff-origin/${info.id}/edit|})" th:href="${url}"
+            <a th:with="url=(@{|localhost:9000/staff-origin/${infos.id}/view|})" th:href="${url}"
                th:text="${url}">Login link</a>
-        <p>Người yêu cầu</p>
-            <em th:text="${info.to}">From.</em>
     </body>
 </html>

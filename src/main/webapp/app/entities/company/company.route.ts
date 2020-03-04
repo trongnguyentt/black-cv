@@ -74,18 +74,18 @@ export const companyRoute: Routes = [
   //   //   },
   //   //   canActivate: [UserRouteAccessService]
   //   // },
-  {
-    path: 'view',
-    component: CompanyDetailComponent,
-    resolve: {
-      company: CompanyResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'blackcvApp.company.home.title'
-    },
-    canActivate: [UserRouteAccessService]
-  },
+  // {
+  //   path: 'view',
+  //   component: CompanyDetailComponent,
+  //   resolve: {
+  //     company: CompanyResolve
+  //   },
+  //   data: {
+  //     authorities: ['ROLE_USER'],
+  //     pageTitle: 'blackcvApp.company.home.title'
+  //   },
+  //   canActivate: [UserRouteAccessService]
+  // },
   {
     path: ':id/view',
     component: CompanyDetailComponent,
