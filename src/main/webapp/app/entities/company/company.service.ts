@@ -27,6 +27,9 @@ export class CompanyService {
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<ICompany>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
+  findByLogin(login: string): Observable<EntityResponseType> {
+    return this.http.get<ICompany>(`${this.resourceUrl}/${login}`, { observe: 'response' });
+  }
 
   checkExist(): Observable<EntityArrayResponseType> {
     return this.http.get<ICompany[]>(this.resourceUrlCheck, { observe: 'response' });

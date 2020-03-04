@@ -93,6 +93,13 @@ public class CompanyServiceImpl implements CompanyService {
             .map(companyMapper::toDto);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<CompanyDTO> findOneByLogin(String login) {
+//        return companyRepository.findByCreatedBy(login);
+        return null;
+    }
+
     /**
      * Delete the company by id.
      *

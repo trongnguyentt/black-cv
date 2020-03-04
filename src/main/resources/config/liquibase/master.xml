@@ -18,6 +18,7 @@
     <include file="config/liquibase/changelog/20200225104139_added_entity_CV.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200225104755_added_entity_ReasonList.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200225105156_added_entity_Reason.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200303091904_added_entity_StaffOrigin.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

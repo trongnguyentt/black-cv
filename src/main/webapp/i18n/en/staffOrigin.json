@@ -1,0 +1,28 @@
+{
+  "blackcvApp": {
+    "staffOrigin": {
+      "home": {
+        "title": "Staff Origins",
+        "createLabel": "Create a new Staff Origin",
+        "createOrEditLabel": "Create or edit a Staff Origin",
+        "notFound": "No Staff Origins found"
+      },
+      "created": "A new Staff Origin is created with identifier {{ param }}",
+      "updated": "A Staff Origin is updated with identifier {{ param }}",
+      "deleted": "A Staff Origin is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Staff Origin {{ id }}?"
+      },
+      "detail": {
+        "title": "Staff Origin"
+      },
+      "name": "Name",
+      "email": "Email",
+      "job": "Job",
+      "advantages": "Advantages",
+      "defect": "Defect",
+      "more": "More",
+      "status": "Status"
+    }
+  }
+}

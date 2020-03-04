@@ -3,10 +3,12 @@ package blackcv.repository;
 import blackcv.domain.Company;
 import blackcv.domain.User;
 import blackcv.repository.custom.CompanyRepositoryCustom;
+import blackcv.service.dto.CompanyDTO;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 
 
 /**

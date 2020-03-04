@@ -11,6 +11,7 @@
         "cv": "CV",
         "reasonList": "Reason List",
         "reason": "Reason",
+        "staffOrigin": "Staff Origin",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -19,6 +19,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'reason',
         loadChildren: () => import('./reason/reason.module').then(m => m.BlackcvReasonModule)
+      },
+      {
+        path: 'staff-origin',
+        loadChildren: () => import('./staff-origin/staff-origin.module').then(m => m.BlackcvStaffOriginModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
