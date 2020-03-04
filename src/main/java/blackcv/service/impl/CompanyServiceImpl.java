@@ -3,6 +3,7 @@ package blackcv.service.impl;
 import blackcv.service.CompanyService;
 import blackcv.domain.Company;
 import blackcv.repository.CompanyRepository;
+import blackcv.service.UserService;
 import blackcv.service.dto.CompanyDTO;
 import blackcv.service.mapper.CompanyMapper;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import org.springframework.util.MultiValueMap;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing {@link Company}.
@@ -29,10 +31,13 @@ public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyRepository companyRepository;
 
+    private final UserService userService;
+
     private final CompanyMapper companyMapper;
 
-    public CompanyServiceImpl(CompanyRepository companyRepository, CompanyMapper companyMapper) {
+    public CompanyServiceImpl(CompanyRepository companyRepository, UserService userService, CompanyMapper companyMapper) {
         this.companyRepository = companyRepository;
+        this.userService = userService;
         this.companyMapper = companyMapper;
     }
 
@@ -59,6 +64,14 @@ public class CompanyServiceImpl implements CompanyService {
         return pages.map(companyMapper::toDto);
     }
 
+    @Override
+    public List<CompanyDTO> checkExist() {
+        List<Company> companies = companyRepository.findByCreatedBy(userService.getUserWithAuthorities().get().getLogin());
+        log.debug("ten dang nhap: " + userService.getUserWithAuthorities().get().getLogin());
+        log.debug("object: " + companies);
+        return companyMapper.toDto(companies);
+    }
+
     /**
      * Get all the companies.
      *
@@ -83,7 +96,8 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     @Transactional(readOnly = true)
     public Optional<CompanyDTO> findOneByLogin(String login) {
-        return companyRepository.findByCreatedBy(login);
+//        return companyRepository.findByCreatedBy(login);
+        return null;
     }
 
     /**

@@ -4,6 +4,7 @@ import { Router, ActivatedRouteSnapshot, NavigationEnd, NavigationError } from '
 import { TranslateService } from '@ngx-translate/core';
 
 import { AccountService } from 'app/core/auth/account.service';
+import { LoginService } from 'app/core/login/login.service';
 
 @Component({
   selector: 'jhi-main',
@@ -11,6 +12,7 @@ import { AccountService } from 'app/core/auth/account.service';
 })
 export class MainComponent implements OnInit {
   constructor(
+    private loginService: LoginService,
     private accountService: AccountService,
     private translateService: TranslateService,
     private titleService: Title,
@@ -31,6 +33,11 @@ export class MainComponent implements OnInit {
     });
 
     this.translateService.onLangChange.subscribe(() => this.updateTitle());
+  }
+
+  logout(): void {
+    this.loginService.logout();
+    this.router.navigate(['']);
   }
 
   private getPageTitle(routeSnapshot: ActivatedRouteSnapshot): string {

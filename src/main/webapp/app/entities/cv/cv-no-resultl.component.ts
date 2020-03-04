@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ICV } from 'app/shared/model/cv.model';
-import {FormBuilder} from "@angular/forms";
-import {HttpHeaders, HttpResponse} from "@angular/common/http";
-import {ICompany} from "app/shared/model/company.model";
-import {CompanyService} from "app/entities/company/company.service";
+import { FormBuilder } from '@angular/forms';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { ICompany } from 'app/shared/model/company.model';
+import { CompanyService } from 'app/entities/company/company.service';
 
 @Component({
   selector: 'jhi-cv-no-result',
@@ -17,7 +17,7 @@ export class CvNoResultlComponent implements OnInit {
   searchForm = this.fb.group({
     name: ['']
   });
-  constructor(protected activatedRoute: ActivatedRoute,private fb: FormBuilder,protected companyService: CompanyService,) {}
+  constructor(protected activatedRoute: ActivatedRoute, private fb: FormBuilder, protected companyService: CompanyService) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ cV }) => {
@@ -35,10 +35,10 @@ export class CvNoResultlComponent implements OnInit {
   loadAll() {
     this.companyService
       .query({
-
         ...this.getFormValues()
       })
-      .subscribe((res: HttpResponse<ICompany[]>) => this.paginateCompany(res.body!, res.headers));}
+      .subscribe((res: HttpResponse<ICompany[]>) => this.paginateCompany(res.body!, res.headers));
+  }
   onSearch() {
     this.loadAll();
   }

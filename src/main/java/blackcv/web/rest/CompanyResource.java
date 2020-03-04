@@ -102,6 +102,14 @@ public class CompanyResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @GetMapping("/companies/check")
+    public ResponseEntity<List<CompanyDTO>> checkExist() {
+        return ResponseEntity.ok(companyService.checkExist());
+//        if (companyService.checkExist().size() > 0)
+//            return true;
+//        return false;
+    }
+
     /**
      * {@code GET  /companies/:id} : get the "id" company.
      *

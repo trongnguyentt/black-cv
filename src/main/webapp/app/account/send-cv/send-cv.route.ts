@@ -1,17 +1,16 @@
-import {ActivatedRouteSnapshot, Resolve, Route, Router} from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, Route, Router } from '@angular/router';
 
-import {SendCvComponent} from './send-cv.component';
-import {Injectable} from "@angular/core";
-import {Company, ICompany} from "app/shared/model/company.model";
-import {CompanyService} from "app/entities/company/company.service";
-import {EMPTY, Observable, of} from "rxjs";
-import {flatMap} from "rxjs/operators";
-import {HttpResponse} from "@angular/common/http";
+import { SendCvComponent } from './send-cv.component';
+import { Injectable } from '@angular/core';
+import { Company, ICompany } from 'app/shared/model/company.model';
+import { CompanyService } from 'app/entities/company/company.service';
+import { EMPTY, Observable, of } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+import { HttpResponse } from '@angular/common/http';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class CompanyResolve implements Resolve<ICompany> {
-  constructor(private service: CompanyService, private router: Router) {
-  }
+  constructor(private service: CompanyService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<ICompany> | Observable<never> {
     const id = route.params['id'];

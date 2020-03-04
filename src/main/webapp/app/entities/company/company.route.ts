@@ -11,6 +11,7 @@ import { CompanyService } from './company.service';
 import { CompanyComponent } from './company.component';
 import { CompanyDetailComponent } from './company-detail.component';
 import { CompanyUpdateComponent } from './company-update.component';
+import { UserCompanyComponent } from 'app/entities/company/user-company.component';
 
 @Injectable({ providedIn: 'root' })
 export class CompanyResolve implements Resolve<ICompany> {
@@ -44,6 +45,43 @@ export const companyRoute: Routes = [
     data: {
       authorities: ['ROLE_USER'],
       defaultSort: 'id,asc',
+      pageTitle: 'blackcvApp.company.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  // {
+  //   //   path: '',
+  //   //   component: UserCompanyComponent,
+  //   //   resolve: {
+  //   //     pagingParams: JhiResolvePagingParams
+  //   //   },
+  //   //   data: {
+  //   //     authorities: ['ROLE_USER'],
+  //   //     defaultSort: 'id,asc',
+  //   //     pageTitle: 'blackcvApp.company.home.title'
+  //   //   },
+  //   //   canActivate: [UserRouteAccessService]
+  //   // },
+  //   // {
+  //   //   path: 'view/:name',
+  //   //   component: UserCompanyComponent,
+  //   //   resolve: {
+  //   //     company: CompanyResolve
+  //   //   },
+  //   //   data: {
+  //   //     authorities: ['ROLE_USER'],
+  //   //     pageTitle: 'blackcvApp.company.home.title'
+  //   //   },
+  //   //   canActivate: [UserRouteAccessService]
+  //   // },
+  {
+    path: 'view',
+    component: CompanyDetailComponent,
+    resolve: {
+      company: CompanyResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
       pageTitle: 'blackcvApp.company.home.title'
     },
     canActivate: [UserRouteAccessService]
