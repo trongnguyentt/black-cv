@@ -13,10 +13,10 @@
                 <form class="noidung-form "  name="searchForm" role="form" novalidate (ngSubmit)="onSearch()" [formGroup]="searchForm">
 
                     <div class="form-group">
-                        <div class="form-inline" >
-                             <div class=" row row0 ">
+                        <div class="form-row">
+                            <div class="col-md-6 ">
 
-                                 <input type="text" class="form-control1 borderduoi" placeholder="Enter name" name="field_cVName" id="field_cVName"
+                                 <input type="text" class="form-control borderduoi" placeholder="Enter name" name="field_cVName" id="field_cVName"
                                    formControlName="name">
                                  <div
                                      *ngIf="searchForm.get('name').invalid && (searchForm.get('name').dirty || searchForm.get('name').touched)">
@@ -40,11 +40,10 @@
                                      </small>
                                  </div>
 
-
                              </div>
-                            <div class=" row row1 ">
+                            <div class="col-md-6 ">
 
-                                <input type="date" class="form-control1 borderduoi" placeholder="Birthday" id="field_birthday" name="field_birthday" formControlName="birthday">
+                                <input type="date" class="form-control borderduoi " placeholder="Birthday" id="field_birthday" name="field_birthday" formControlName="birthday">
                                 <div
                                     *ngIf="searchForm.get('birthday').invalid && (searchForm.get('birthday').dirty || searchForm.get('birthday').touched)">
                                     <small
