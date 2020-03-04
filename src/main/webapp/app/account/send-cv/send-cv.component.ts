@@ -58,7 +58,6 @@ export class SendCvComponent implements OnInit {
 
     const staffOrigin = this.createFromForm();
     this.subscribeToSaveResponse(this.staffOriginService.create(staffOrigin));
-
     if (this.company.name) {
       this.SendCvService.save(this.resetRequestForm.get(['info'])!.value).subscribe(
         () => (this.success = true),
