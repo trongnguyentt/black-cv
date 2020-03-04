@@ -24,13 +24,14 @@ export class CVUpdateComponent implements OnInit {
   totalItems = 0;
   page!: number;
   itemsPerPage = ITEMS_PER_PAGE;
+  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
   editForm = this.fb.group({
     id: [],
     idCompany: [null],
     name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
     birthday: [null, [Validators.required]],
     phone: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-    email: [null, [Validators.required, Validators.email, Validators.minLength(10), Validators.maxLength(50)]],
+    email: [null, [Validators.required, Validators.pattern(this.emailPattern), Validators.minLength(1), Validators.maxLength(50)]],
     address: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
     job: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
     gender: [],

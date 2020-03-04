@@ -10,7 +10,7 @@ import { ICV } from 'app/shared/model/cv.model';
 import { CVService } from 'app/entities/cv/cv.service';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { JhiParseLinks } from 'ng-jhipster';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -28,6 +28,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   links: any;
   totalItems = 0;
   fail!: boolean;
+  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
+  mobNumberPattern = '^((\\+91-?)|0)?[0-9]{10}$';
   constructor(
     private accountService: AccountService,
     private loginModalService: LoginModalService,
@@ -39,10 +41,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   searchForm = this.fb.group({
-    name: [''],
-    phone: [''],
-    email: [''],
-    birthday: ['']
+    name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
+    phone: [null, [Validators.required, Validators.pattern(this.mobNumberPattern), Validators.minLength(10), Validators.maxLength(10)]],
+    email: [null, [Validators.required, Validators.pattern(this.emailPattern)]],
+    birthday: [null, [Validators.required]]
   });
 
   ngOnInit(): void {

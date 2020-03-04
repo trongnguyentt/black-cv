@@ -11,7 +11,7 @@ import { PasswordResetInitComponent } from './password-reset/init/password-reset
 import { PasswordResetFinishComponent } from './password-reset/finish/password-reset-finish.component';
 import { SettingsComponent } from './settings/settings.component';
 import { accountState } from './account.route';
-import {SendCvComponent} from "app/account/send-cv/send-cv.component";
+import { SendCvComponent } from 'app/account/send-cv/send-cv.component';
 
 @NgModule({
   imports: [BlackcvSharedModule, RouterModule.forChild(accountState)],

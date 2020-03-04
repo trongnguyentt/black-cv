@@ -1,9 +1,12 @@
 package blackcv.repository;
 
 import blackcv.domain.Company;
+import blackcv.domain.User;
 import blackcv.repository.custom.CompanyRepositoryCustom;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 /**
@@ -12,5 +15,7 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Long>, CompanyRepositoryCustom {
+
+    List<Company> findByCreatedBy(String name);
 
 }

@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="company">
-<!--            <h2><span jhiTranslate="blackcvApp.company.detail.title">Company</span> {{company.id}}</h2>-->
+            <!--            <h2><span jhiTranslate="blackcvApp.company.detail.title">Company</span> {{company.id}}</h2>-->
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
@@ -21,10 +21,10 @@
                 <dd>
                     <span>{{company.email}}</span>
                 </dd>
-<!--                <dt><span jhiTranslate="blackcvApp.company.status">Status</span></dt>-->
-<!--                <dd>-->
-<!--                    <span>{{company.status}}</span>-->
-<!--                </dd>-->
+                <!--                <dt><span jhiTranslate="blackcvApp.company.status">Status</span></dt>-->
+                <!--                <dd>-->
+                <!--                    <span>{{company.status}}</span>-->
+                <!--                </dd>-->
             </dl>
 
             <button type="submit"
@@ -37,9 +37,6 @@
                     [routerLink]="['/company', company.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
-            <button type="button"  [routerLink]="['/account/send-cv',company.id]" class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Send Email</span>
             </button>
         </div>
     </div>

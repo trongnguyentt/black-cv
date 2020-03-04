@@ -1,8 +1,11 @@
 package blackcv.service.impl;
 
+import blackcv.domain.Company;
+import blackcv.repository.CompanyRepository;
 import blackcv.service.CVService;
 import blackcv.domain.CV;
 import blackcv.repository.CVRepository;
+import blackcv.service.UserService;
 import blackcv.service.dto.CVDTO;
 import blackcv.service.mapper.CVMapper;
 import org.slf4j.Logger;
@@ -29,11 +32,17 @@ public class CVServiceImpl implements CVService {
 
     private final CVRepository cVRepository;
 
+    private final CompanyRepository companyRepository;
+
     private final CVMapper cVMapper;
 
-    public CVServiceImpl(CVRepository cVRepository, CVMapper cVMapper) {
+    private final UserService userService;
+
+    public CVServiceImpl(CVRepository cVRepository, CompanyRepository companyRepository, CVMapper cVMapper, UserService userService) {
         this.cVRepository = cVRepository;
+        this.companyRepository = companyRepository;
         this.cVMapper = cVMapper;
+        this.userService = userService;
     }
 
     /**
@@ -45,6 +54,8 @@ public class CVServiceImpl implements CVService {
     @Override
     public CVDTO save(CVDTO cVDTO) {
         log.debug("Request to save CV : {}", cVDTO);
+        List<Company> companies = companyRepository.findByCreatedBy(userService.getUserWithAuthorities().get().getLogin());
+        cVDTO.setIdCompany(Math.toIntExact(companies.get(0).getId()));
         cVDTO.setStatus(1);
         CV cV = cVMapper.toEntity(cVDTO);
         cV = cVRepository.save(cV);

@@ -1,4 +1,5 @@
 
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 anhnen">
@@ -17,13 +18,42 @@
 
                                  <input type="text" class="form-control1 borderduoi" placeholder="Enter name" name="field_cVName" id="field_cVName"
                                    formControlName="name">
+                                 <div
+                                     *ngIf="searchForm.get('name').invalid && (searchForm.get('name').dirty || searchForm.get('name').touched)">
+                                     <small class="form-text text-danger"
+                                            *ngIf="searchForm.get('name').errors.minlength"
+                                            jhiTranslate="entity.validation.minlength"
+                                            [translateValues]="{ min: 1 }">
+                                         This field is required to be at least 10 characters.
+                                     </small>
+                                     <small class="form-text text-danger"
+                                            *ngIf="searchForm.get('name').errors.maxlength"
+                                            jhiTranslate="entity.validation.maxlength"
+                                            [translateValues]="{ max: 20 }">
+                                         This field cannot be longer than 50 characters.
+                                     </small>
+                                     <small
+                                         class="form-text text-danger"
+                                         *ngIf="searchForm.get('name').errors.required"
+                                         jhiTranslate="entity.validation.required"
+                                     >This field is required.
+                                     </small>
+                                 </div>
 
 
                              </div>
                             <div class=" row row1 ">
 
                                 <input type="date" class="form-control1 borderduoi" placeholder="Birthday" id="field_birthday" name="field_birthday" formControlName="birthday">
-
+                                <div
+                                    *ngIf="searchForm.get('birthday').invalid && (searchForm.get('birthday').dirty || searchForm.get('birthday').touched)">
+                                    <small
+                                        class="form-text text-danger"
+                                        *ngIf="searchForm.get('birthday').errors.required"
+                                        jhiTranslate="entity.validation.required"
+                                    >This field is required.
+                                    </small>
+                                </div>
 
                              </div>
                          </div>
@@ -31,13 +61,58 @@
                             <div class="row row2">
                                 <div class=" col col2 ">
                                     <input type="email" class="form-control borderduoi" placeholder="Enter mail" name="field_email" id="field_email" formControlName="email">
+                                    <div
+                                        *ngIf="searchForm.get('email').invalid && (searchForm.get('email').dirty || searchForm.get('email').touched)">
+                                        <small
+                                            class="form-text text-danger"
+                                            *ngIf="searchForm.get('email').errors.required"
+                                            jhiTranslate="entity.validation.required"
+                                        >This field is required.
+                                        </small>
+                                        <small
+                                            class="form-text text-danger"
+                                            *ngIf="searchForm.get('phone').errors.pattern"
+                                            jhiTranslate="entity.validation.pattern"
+                                            [translateValues]="{ pattern: 'evotek@gmail.com' }">
+                                            >Please provide a valid email address
+                                        </small>
+                                    </div>
                                 </div>
 
                             </div>
                             <div class="row row2">
                                 <div class="  col  ">
                                     <input type="tel" class="form-control borderduoi" placeholder="Enter phone" name="field_phone" id="field_phone" formControlName="phone">
+                                    <div
+                                        *ngIf="searchForm.get('phone').invalid && (searchForm.get('phone').dirty || searchForm.get('phone').touched)">
+                                        <small class="form-text text-danger"
+                                               *ngIf="searchForm.get('phone').errors.minlength"
+                                               jhiTranslate="entity.validation.minlength"
+                                               [translateValues]="{ min: 10 }">
+                                            This field is required to be at least 10 characters.
+                                        </small>
+                                        <small class="form-text text-danger"
+                                               *ngIf="searchForm.get('phone').errors.maxlength"
+                                               jhiTranslate="entity.validation.maxlength"
+                                               [translateValues]="{ max: 10 }">
+                                            This field cannot be longer than 50 characters.
+                                        </small>
+                                        <small
+                                            class="form-text text-danger"
+                                            *ngIf="searchForm.get('phone').errors.required"
+                                            jhiTranslate="entity.validation.required"
+                                        >This field is required.
+                                        </small>
+                                        <small
+                                            class="form-text text-danger"
+                                            *ngIf="searchForm.get('phone').errors.pattern"
+                                            jhiTranslate="entity.validation.pattern"
+                                            [translateValues]="{ pattern: '0912345678' }">
+                                            >Please provide a valid phone number
+                                        </small>
+                                    </div>
                                 </div>
+
 
                             </div>
                             <div class="row row2">
@@ -54,8 +129,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
