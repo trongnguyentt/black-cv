@@ -1,72 +1,79 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="cV">
-            <h2><span jhiTranslate="blackcvApp.cV.detail.title">CV</span> {{cV.id}}</h2>
-            <hr>
-            <jhi-alert-error></jhi-alert-error>
-            <div class="container">
-                <div class="row"  >
-                    <div class="col-sm-4 trai" >
-                        <div class="top_trai">
-                            <img class="avatar" src="{{cV.avatar}}" alt="Card image cap">
 
 
-                        </div>
-
-                        <div class="top_trai_body">
-                            <div class="d-flex p-3 bg-secondary text-white khoi">
-                                <i class="fas fa-id-card fa-2x"></i>
-                                <div class="flex1">Thông Tin Cá Nhân</div>
-                            </div>
-                            <div class="d-flex p-3 bg-secondary text-white khoi">
-                                <i class="fas fa-id-card fa-lg"></i>
-                                <div class="flex5">{{cV.name}}</div>
-                            </div>
-                            <div class="d-flex p-3 bg-secondary text-white khoi">
-                                <i class="fas fa-birthday-cake"></i>
-                                <div class="flex5">{{cV.birthday}}</div>
-                            </div>
-                            <div class="d-flex p-3 bg-secondary text-white khoi">
-                                <i class="fas fa-user-alt"></i>
-                                <div class="flex5">{{cV.gender}}</div>
-                            </div>
-                            <div class="d-flex p-3 bg-secondary text-white khoi">
-                                <i class="fas fa-phone-square-alt fa-lg"></i>
-                                <div class="flex5">{{cV.phone}}</div>
-                            </div>
-                            <div class="d-flex p-3 bg-secondary text-white khoi">
-                                <i class="fas fa-envelope-open-text fa-lg"></i>
-                                <div class="flex5">{{cV.email}}</div>
-                            </div>
-
-                            <div class="d-flex p-3 bg-secondary text-white khoi	">
-                                <i class="fas fa-map-marker-alt fa-lg"></i>
-                                <div class="flex5">{{cV.address}}</div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-sm-8 phai">
-                    {{cV.reason}}
-                    </div>
-            <div>
-                <img class="avatar" src="{{cV.fileUploadCV}}" alt="Card image cap">
-            </div>
-
+<div class="container">
+    <div class="row">
+        <button type="button" class="btn btn-dark">File Upload CV</button>
+        <button type="button" class="btn btn-info" hidden="hidden">{{cV.status}}</button>
+    </div>
+</div>
+<div class="container">
+    <div class="row"  >
+        <div class="col-sm-5 trai" >
+            <div class="top_trai">
+                <div class="khoianh1">
+                    <div class=" thum1"></div>
                 </div>
             </div>
-<br>
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span > OK</span>
-            </button>
+            <div class="top_trai_body">
+                <div class="d-flex p-3 bg-secondary text-white khoi">
+                    <img src="/content/icon/anh1.PNG" alt="">
+                    <div class="flex1">Information</div>
+                </div>
+                <div class="d-flex p-3 bg-secondary text-white khoi">
+                    <img src="/content/icon/anh2.PNG" alt="">
+                    <div class="flex5">{{cV.name}}</div>
+                </div>
+                <div class="d-flex p-3 bg-secondary text-white khoi">
+                    <img src="/content/icon/anh3.PNG" alt="">
+                    <div class="flex5">{{cV.birthday}}</div>
+                </div>
+                <div class="d-flex p-3 bg-secondary text-white khoi">
+                    <img src="/content/icon/anh4.PNG" alt="">
+                    <div class="flex5">{{cV.gender}}</div>
+                </div>
+                <div class="d-flex p-3 bg-secondary text-white khoi">
+                    <img src="/content/icon/anh5.PNG" alt="">
+                    <div class="flex5">{{cV.phone}}</div>
+                </div>
+                <div class="d-flex p-3 bg-secondary text-white khoi">
+                    <img src="/content/icon/anh12.PNG" alt="">
+                    <div class="flex5">{{cV.email}}</div>
+                </div>
+                <div class="d-flex p-3 bg-secondary text-white khoi	">
+                    <img src="/content/icon/anh13.PNG" alt="">
+                    <div class="flex5">{{cV.address}}</div>
+                </div>
 
-<!--            <button type="button"-->
-<!--                    [routerLink]="['/cv', cV.id, 'edit']"-->
-<!--                    class="btn btn-primary">-->
-<!--                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span > OK</span>-->
-<!--            </button>-->
+            </div>
+        </div>
+        <div class="col-sm-7 phai-detail">
+            <div class="d-flex p-3 bg-secondary text-white khoi1">
+                <img src="/content/icon/anh8.PNG" alt="">
+                <div class="flex1">Education</div>
+            </div>
+            <div class="hoc_van">
+                <p>Đại Học : Điện Lực</p>
+                <p>Chuyên Ngành : Quản trị doanh nghiệp</p>
+                <p>Tốt nghiệp : loại giỏi</p>
+            </div>
+            <div class="d-flex p-3 bg-secondary text-white khoi">
+                <img src="/content/icon/anh9.PNG" alt="">
+                <div class="flex1">Job And Reason </div>
+            </div>
+            <div class="hoc_van">
+                <p> Company :   <a href="#"> {{cV.idCompany}} </a> </p>
+                <p>Job : {{cV.job}}</p>
+                <p>Reason :{{cV.reason}}</p>
+
+            </div>
+            <div class="d-flex p-3 bg-secondary text-white khoi">
+                <img src="/content/icon/anh10.PNG" alt="">
+                <div class="flex1">Attachments </div>
+            </div>
+            <div class="d-flex p-3  text-white justify-content-end khoianh">
+                <div class="thumb"></div>
+            </div>
         </div>
     </div>
 </div>
+

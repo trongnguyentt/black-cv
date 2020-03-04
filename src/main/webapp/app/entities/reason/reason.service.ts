@@ -32,8 +32,6 @@ export class ReasonService {
     return this.http.get<IReason[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
-
-
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

@@ -9,7 +9,6 @@ export class SendCvService {
   constructor(private http: HttpClient) {}
 
   save(info: string): Observable<{}> {
-
-    return this.http.post(SERVER_API_URL + 'api/account/send-cv',  info );
+    return this.http.post(SERVER_API_URL + 'api/account/send-cv', info);
   }
 }

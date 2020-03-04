@@ -1,29 +1,31 @@
-<div class="row justify-content-center">
-    <h3>  Không có kết quả tìm kiếm </h3>
-</div>
-<br>
-<br>
-<div><h3>Bạn có thể hỏi công ty cũ về người này tại đây</h3></div>
-<br>
-<form name="searchForm" role="form" novalidate (ngSubmit)="onSearch()" [formGroup]="searchForm">
-    <div class="row justify-content-center">
-        <div class="form-group col-sm-6 row text-color">
-            <label class="col-4 col-form-label text-right"
-                   for="field_cName">Tên công ty</label>
-            <div class="col-8">
-                <input type="text" class="form-control" name="field_cVName" id="field_cName"
-                       formControlName="name"/>
-            </div>
-            <br>
+<div class="container">
+        <div class="row">
+            <div class="result"><h2>Không có kết quả tìm kiếm !</h2></div>
+        </div>
+    <div class="row">
+        <div class="result-2 col-sm-6">
+            <h4>Bạn có thể hỏi công ty cũ về người này tại đây ?</h4>
+            <form class="form-search" name="searchForm" role="form" novalidate (ngSubmit)="onSearch()"
+                  [formGroup]="searchForm">
+                <div class="row justify-content-center">
+                    <div class="form-group  col-sm-12 row text-color">
+                        <input type="text" class="form-control" name="field_cVName" id="field_cName"
+                               formControlName="name" placeholder="Enter company name"/>
+                        <br>
+                    </div>
+                </div>
+                <fa-icon [icon]="'search'"></fa-icon>
+                <button class="btn btn-primary">Tìm kiếm</button>
+            </form>
+        </div>
+
+        <div class="result-3  col-sm-6">
+            <table class="table table-bordered table-hover ">
+                <tr *ngFor="let company of companies ;">
+                    <td [routerLink]="['/company', company.id, 'view' ]">{{company.name}}</td>
+                </tr>
+            </table>
         </div>
     </div>
-    <div class="text-center">
-        <button type="submit" class="btn btn-search">
-            <fa-icon [icon]="'search'"></fa-icon>
-            <span class="d-none d-md-inline">Tìm kiếm</span>
-        </button>
-    </div>
-</form>
-<tr *ngFor="let company of companies ;">
-    <td [routerLink]="['/company', company.id, 'view' ]">{{company.name}}</td>
-</tr>
+
+

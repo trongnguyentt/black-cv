@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
-import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { IStaffOrigin, StaffOrigin } from 'app/shared/model/staff-origin.model';
 import { StaffOriginService } from './staff-origin.service';
-import {EMAIL_NOT_FOUND_TYPE} from "app/shared/constants/error.constants";
+import { EMAIL_NOT_FOUND_TYPE } from 'app/shared/constants/error.constants';
 
 @Component({
   selector: 'jhi-staff-origin-update',
@@ -29,7 +29,12 @@ export class StaffOriginUpdateComponent implements OnInit {
     status: []
   });
 
-  constructor(protected staffOriginService: StaffOriginService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder,protected router: Router) {}
+  constructor(
+    protected staffOriginService: StaffOriginService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    protected router: Router
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ staffOrigin }) => {
@@ -67,16 +72,16 @@ export class StaffOriginUpdateComponent implements OnInit {
     }
   }
   requestReset(email: any): void {
-      this.staffOriginService.save(email).subscribe(
-        () => (this.success = true),
-        (response: HttpErrorResponse) => {
-          if (response.status === 400 && response.error.type === EMAIL_NOT_FOUND_TYPE) {
-            this.errorEmailNotExists = true;
-          } else {
-            this.error = true;
-          }
+    this.staffOriginService.save(email).subscribe(
+      () => (this.success = true),
+      (response: HttpErrorResponse) => {
+        if (response.status === 400 && response.error.type === EMAIL_NOT_FOUND_TYPE) {
+          this.errorEmailNotExists = true;
+        } else {
+          this.error = true;
         }
-      );
+      }
+    );
   }
   private createFromForm(): IStaffOrigin {
     return {

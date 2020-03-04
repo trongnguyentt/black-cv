@@ -219,20 +219,40 @@ ui bootstrap tweaks
 }
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */
-.avatar{
-height: 17rem;
-}
-.trai{
-  border: 1px solid black;
-  height: 900px;
 
+/*
+file deitail của đat*/
+
+.khoianh1 {
+  width: 100%;
+  /*display: inline-block;*/
+  margin-top: 60px;
+  margin-bottom: 40px;
+
+  border-radius: 20px;
 }
-.top_trai{
+.thum1 {
+  width: 100%;
+  height: 225px;
+
+  background-image: url('../images/hinh-nen-hoa-anh-dao.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+.avatar {
+  height: 17rem;
+}
+.trai {
+  height: 900px;
+}
+.top_trai {
   text-align: center;
   margin-top: 60px;
-
 }
-.top_trai img{
+.top_trai img {
   border-radius: 20px;
   margin-top: 15px;
   margin-bottom: 40px;
@@ -240,25 +260,195 @@ height: 17rem;
 .thong_tin_ca_nhan {
   height: 50px;
   width: 100%;
-  border: 1px solid black;
 }
-.thong_tin_ca_nhan h3{
-  display: inline-block;
+.thong_tin_ca_nhan h3 {
+  /*//display: inline-block;*/
   float: right;
   margin-right: 50px;
 }
-.khoi{
+.khoi {
   margin-top: 5px;
+  border-radius: 5px;
 }
-.flex1{
+.flex1 {
   margin-left: 20px;
   font-size: 25px;
 }
-.flex5{
+.flex5 {
   margin-left: 20px;
 }
+/* hết css khối trái  */
 
-.phai{
+.phai-detail {
+  height: 900px;
+}
+.khoi1 {
+  margin-top: 75px;
+  border-radius: 5px;
+}
+.hoc_van {
+  margin-top: 20px;
+  margin-left: 70px;
+}
+.khoianh {
+  width: 100%;
+  height: auto;
+  padding: 5px;
+  cursor: pointer;
+}
+.thumb {
+  width: 200px;
+  height: 150px;
+
+  background-image: url('../images/hinh-nen-hoa-anh-dao.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+/*
+phần code css cho trang Home (đạt)*/
+.anhnen {
+  background-image: url('../../content/images/anh2_component_home.jpg');
+  height: 800px;
+  position: absolute;
+}
+.phanform {
+  position: relative;
+  width: 680px;
+  height: 520px;
+  margin-top: 165px;
+  margin-left: 320px;
+
+  border-radius: 10px;
+  background-color: white;
+}
+
+.phanform-top {
+  width: 100%;
+  height: 62px;
+  background-color: #2c3e50;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+.phanform-top img {
+  margin-top: -25px;
+  margin-left: 45px;
+}
+.phanform-top p {
+  display: block;
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding-top: 10px;
+  padding-left: 40px;
+}
+.noidung-form {
+  padding-top: 40px;
+  padding-right: 55px;
+  padding-left: 55px;
+}
+.row0 {
+  padding-left: 15px;
+  margin-right: 83px;
+}
+.row1 {
+  float: right;
+}
+
+.row2 {
+  margin-top: 40px;
+}
+
+.borderduoi {
+  border-bottom: 2px solid #95a5a6;
+}
+.btn-submit {
+  display: block;
+  margin-top: 32px;
+  width: 100%;
+  line-height: 50px;
+  font-family: inherit;
+  background: #2c3e50;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 10px;
+}
+.btn-submit:hover {
+  cursor: pointer;
+}
+.khoi {
+  margin-top: 5px;
+}
+.flex1 {
+  margin-left: 20px;
+  font-size: 25px;
+}
+.flex5 {
+  margin-left: 20px;
+}
+.phai {
   background-color: #718093;
   height: 500px;
+}
+input[type='text'] {
+  border: none;
+  border-bottom: 2px solid #7f8c8d;
+}
+input[type='email'] {
+  border: none;
+  border-bottom: 2px solid #7f8c8d;
+}
+input[type='tel'] {
+  border: none;
+  border-bottom: 2px solid #7f8c8d;
+}
+input[type='date'] {
+  border: none;
+  border-bottom: 2px solid #7f8c8d;
+}
+
+/*
+//css cho phần result-cv (dat)*/
+.result {
+  /* border: 1px solid black;*/
+  height: 300px;
+  width: 100%;
+  text-align: center;
+  color: black;
+}
+.result h2 {
+  padding-top: 135px;
+}
+.result-2 {
+  padding-top: 20px;
+
+  /*border: 1px solid black;*/
+  height: 250px;
+  width: 100%;
+  text-align: center;
+
+  color: black;
+}
+
+.form-search {
+  width: 300px;
+  margin: auto;
+  margin-top: 30px;
+}
+.table {
+  color: black;
+  font-size: 18px;
+}
+.result-3 {
+  padding-top: 20px;
+  background-color: white;
+  /*border: 1px solid black;*/
+  height: 250px;
+  width: 100%;
+  text-align: center;
+
+  color: white;
 }

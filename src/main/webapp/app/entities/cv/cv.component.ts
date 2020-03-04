@@ -10,11 +10,11 @@ import { ICV } from 'app/shared/model/cv.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { CVService } from './cv.service';
 import { CVDeleteDialogComponent } from './cv-delete-dialog.component';
-import {FormBuilder} from "@angular/forms";
-import {AccountService} from "app/core/auth/account.service";
-import {Account} from "app/core/user/account.model";
-import {IReason} from "app/shared/model/reason.model";
-import {ReasonService} from "app/entities/reason/reason.service";
+import { FormBuilder } from '@angular/forms';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/user/account.model';
+import { IReason } from 'app/shared/model/reason.model';
+import { ReasonService } from 'app/entities/reason/reason.service';
 
 @Component({
   selector: 'jhi-cv',
@@ -46,7 +46,7 @@ export class CVComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     protected parseLinks: JhiParseLinks,
     private accountService: AccountService,
-    protected reasonService: ReasonService,
+    protected reasonService: ReasonService
   ) {}
 
   loadPage(page?: number): void {
@@ -95,8 +95,6 @@ export class CVComponent implements OnInit, OnDestroy {
     });
     this.loadAll();
     this.registerChangeInCVS();
-
-
   }
 
   ngOnDestroy(): void {

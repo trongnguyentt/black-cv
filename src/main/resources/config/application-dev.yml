@@ -39,7 +39,9 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://localhost:3306/blackcv?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
     username: root
-    password: kthhaunjh2th
+
+    password: anhdat1996@
+
     hikari:
       poolName: Hikari
       auto-commit: false

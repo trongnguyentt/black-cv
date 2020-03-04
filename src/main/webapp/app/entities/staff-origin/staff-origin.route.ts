@@ -10,7 +10,7 @@ import { StaffOriginService } from './staff-origin.service';
 import { StaffOriginComponent } from './staff-origin.component';
 import { StaffOriginDetailComponent } from './staff-origin-detail.component';
 import { StaffOriginUpdateComponent } from './staff-origin-update.component';
-import {CompanyResolve} from "app/entities/company/company.route";
+import { CompanyResolve } from 'app/entities/company/company.route';
 
 @Injectable({ providedIn: 'root' })
 export class StaffOriginResolve implements Resolve<IStaffOrigin> {
