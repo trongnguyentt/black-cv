@@ -1,5 +1,6 @@
 package blackcv.service;
 
+import blackcv.domain.StaffOrigin;
 import blackcv.domain.User;
 
 import io.github.jhipster.config.JHipsterProperties;
@@ -37,6 +38,8 @@ public class MailService {
     private static final String BASE_URL = "baseUrl";
 
     private static final String INFO = "info";
+
+    private static final String INFOs = "infos";
 
     private final JHipsterProperties jHipsterProperties;
 
@@ -91,10 +94,21 @@ public class MailService {
     }
 
     @Async
-    public void sendEmailCVFromTemplate(Object info, String templateName, String titleKey) {
+    public void sendEmailCVFromTemplate(StaffOrigin info, String templateName, String titleKey) {
         Locale locale = Locale.forLanguageTag("en");
         Context context = new Context(locale);
         context.setVariable(INFO, info);
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        String mailMine="anhtrong97abc@gmail.com";
+        sendEmail(mailMine, subject, content, false, true);
+    }
+
+    @Async
+    public void sendEmailRespondCVFromTemplate(StaffOrigin infos, String templateName, String titleKey) {
+        Locale locale = Locale.forLanguageTag("en");
+        Context context = new Context(locale);
+        context.setVariable(INFOs, infos);
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, locale);
         String mailMine="anhtrong97abc@gmail.com";
@@ -119,7 +133,12 @@ public class MailService {
         sendEmailFromTemplate(user, "mail/passwordResetEmail", "email.reset.title");
     }
     @Async
-    public void sendCVMail(Object info) {
+    public void sendCVMail(StaffOrigin info) {
+
         sendEmailCVFromTemplate(info, "mail/CVEmail", "email.reset.title");
+    }
+    @Async
+    public void respondCVMail(StaffOrigin infos) {
+        sendEmailRespondCVFromTemplate(infos, "mail/RespondCVEmail", "email.reset.title");
     }
 }

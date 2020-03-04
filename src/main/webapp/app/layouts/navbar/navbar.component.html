@@ -62,6 +62,14 @@
                             <span jhiTranslate="global.menu.entities.reason">Reason</span>
                         </a>
                     </li>
+
+<li>
+                        <a class="dropdown-item" routerLink="staff-origin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.staffOrigin">Staff Origin</span>
+                        </a>
+                    </li>
+
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
 

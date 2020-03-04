@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="blackcvApp.staffOrigin.home.title">Staff Origins</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-staff-origin" [routerLink]="['/staff-origin/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="blackcvApp.staffOrigin.home.createLabel">
+            Create a new Staff Origin
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="staffOrigins?.length === 0">
+        <span jhiTranslate="blackcvApp.staffOrigin.home.notFound">No staffOrigins found</span>
+    </div>
+    <div class="table-responsive" *ngIf="staffOrigins?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.name">Name</span></th>
+            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.email">Email</span></th>
+            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.job">Job</span></th>
+            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.advantages">Advantages</span></th>
+            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.defect">Defect</span></th>
+            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.more">More</span></th>
+            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.status">Status</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let staffOrigin of staffOrigins ;trackBy: trackId">
+                <td><a [routerLink]="['/staff-origin', staffOrigin.id, 'view' ]">{{staffOrigin.id}}</a></td>
+                <td>{{staffOrigin.name}}</td>
+                <td>{{staffOrigin.email}}</td>
+                <td>{{staffOrigin.job}}</td>
+                <td>{{staffOrigin.advantages}}</td>
+                <td>{{staffOrigin.defect}}</td>
+                <td>{{staffOrigin.more}}</td>
+                <td>{{staffOrigin.status}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/staff-origin', staffOrigin.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/staff-origin', staffOrigin.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(staffOrigin)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
