@@ -13,10 +13,10 @@
                 <form class="noidung-form "  name="searchForm" role="form" novalidate (ngSubmit)="onSearch()" [formGroup]="searchForm">
 
                     <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-6 ">
+                        <div class="form-row ">
+                            <div class="col-md-6 formGroup ">
 
-                                 <input type="text" class="form-control borderduoi" placeholder="Enter name" name="field_cVName" id="field_cVName"
+                                <input type="text" class="form-control borderduoi" placeholder="Enter name" name="field_cVName" id="field_cVName"
                                    formControlName="name">
                                  <div
                                      *ngIf="searchForm.get('name').invalid && (searchForm.get('name').dirty || searchForm.get('name').touched)">
@@ -41,7 +41,7 @@
                                  </div>
 
                              </div>
-                            <div class="col-md-6 ">
+                            <div class="col-md-6 formGroup ">
 
                                 <input type="date" class="form-control borderduoi " placeholder="Birthday" id="field_birthday" name="field_birthday" formControlName="birthday">
                                 <div
@@ -58,7 +58,7 @@
                          </div>
                         <div>
                             <div class="row row2">
-                                <div class=" col col2 ">
+                                <div class=" col col2 formGroup ">
                                     <input type="email" class="form-control borderduoi" placeholder="Enter mail" name="field_email" id="field_email" formControlName="email">
                                     <div
                                         *ngIf="searchForm.get('email').invalid && (searchForm.get('email').dirty || searchForm.get('email').touched)">
@@ -80,7 +80,7 @@
 
                             </div>
                             <div class="row row2">
-                                <div class="  col  ">
+                                <div class="  col  formGroup">
                                     <input type="tel" class="form-control borderduoi" placeholder="Enter phone" name="field_phone" id="field_phone" formControlName="phone">
                                     <div
                                         *ngIf="searchForm.get('phone').invalid && (searchForm.get('phone').dirty || searchForm.get('phone').touched)">
