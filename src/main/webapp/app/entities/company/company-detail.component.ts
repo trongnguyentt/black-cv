@@ -23,13 +23,13 @@ export class CompanyDetailComponent implements OnInit {
     window.history.back();
   }
 
-  sendCV() {
-    this.router.navigate(['/account/send-cv'], {
-      queryParams: {
-        id: this.company!.id
-      }
-    });
-  }
+  // sendCV() {
+  //   this.router.navigate(['/account/send-cv'], {
+  //     queryParams: {
+  //       id: this.company!.id
+  //     }
+  //   });
+
   // requestResetPassword(): void {
   //   this.activeModal.dismiss('to state requestReset');
   //   this.router.navigate(['/account/reset', 'request']);

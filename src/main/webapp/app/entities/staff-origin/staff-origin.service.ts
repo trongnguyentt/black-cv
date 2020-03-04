@@ -35,4 +35,7 @@ export class StaffOriginService {
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
+  save(email: string): Observable<{}> {
+    return this.http.post(SERVER_API_URL + 'api/account/respond-cv', email);
+  }
 }

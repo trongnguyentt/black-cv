@@ -6,6 +6,8 @@ export interface IStaffOrigin {
   advantages?: string;
   defect?: string;
   more?: string;
+  from?: string;
+  to?: string;
   status?: number;
 }
 
@@ -18,6 +20,8 @@ export class StaffOrigin implements IStaffOrigin {
     public advantages?: string,
     public defect?: string,
     public more?: string,
+    public from?: string,
+    public to?: string,
     public status?: number
   ) {}
 }

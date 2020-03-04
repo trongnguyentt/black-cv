@@ -1,7 +1,9 @@
 package blackcv.web.rest;
 
 
+import blackcv.domain.StaffOrigin;
 import blackcv.domain.User;
+import blackcv.repository.StaffOriginRepository;
 import blackcv.repository.UserRepository;
 import blackcv.security.SecurityUtils;
 import blackcv.service.MailService;
@@ -39,22 +41,25 @@ public class AccountResource {
 
     private final UserRepository userRepository;
 
+    private final StaffOriginRepository staffOriginRepository;
+
     private final UserService userService;
 
     private final MailService mailService;
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
+    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService,StaffOriginRepository staffOriginRepository) {
 
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
+        this.staffOriginRepository=staffOriginRepository;
     }
 
     /**
      * {@code POST  /register} : register the user.
      *
      * @param managedUserVM the managed user View Model.
-     * @throws InvalidPasswordException {@code 400 (Bad Request)} if the password is incorrect.
+     * @throws InvalidPasswordException  {@code 400 (Bad Request)} if the password is incorrect.
      * @throws EmailAlreadyUsedException {@code 400 (Bad Request)} if the email is already used.
      * @throws LoginAlreadyUsedException {@code 400 (Bad Request)} if the login is already used.
      */
@@ -112,7 +117,7 @@ public class AccountResource {
      *
      * @param userDTO the current user information.
      * @throws EmailAlreadyUsedException {@code 400 (Bad Request)} if the email is already used.
-     * @throws RuntimeException {@code 500 (Internal Server Error)} if the user login wasn't found.
+     * @throws RuntimeException          {@code 500 (Internal Server Error)} if the user login wasn't found.
      */
     @PostMapping("/account")
     public void saveAccount(@Valid @RequestBody UserDTO userDTO) {
@@ -156,9 +161,24 @@ public class AccountResource {
                 .orElseThrow(EmailNotFoundException::new)
         );
     }
+
     @PostMapping(path = "/account/send-cv")
-    public void requestSendCV(@RequestBody Object info) {
-        mailService.sendCVMail(info);
+    public void requestSendCV(@RequestBody String info) {
+        if(staffOriginRepository.findOneByEmailIgnoreCase(info).isPresent()) {
+            StaffOrigin staffOrigin = staffOriginRepository.findOneByEmailIgnoreCase(info).get();
+            mailService.sendCVMail(staffOrigin);
+        }
+
+    }
+
+    @PostMapping(path = "/account/respond-cv")
+    public void requestRespondCV(@RequestBody String email) {
+
+if(staffOriginRepository.findOneByEmailIgnoreCase(email).isPresent()) {
+    StaffOrigin staffOrigin = staffOriginRepository.findOneByEmailIgnoreCase(email).get();
+    mailService.respondCVMail(staffOrigin);
+}
+
     }
 
     /**
@@ -166,7 +186,7 @@ public class AccountResource {
      *
      * @param keyAndPassword the generated key and the new password.
      * @throws InvalidPasswordException {@code 400 (Bad Request)} if the password is incorrect.
-     * @throws RuntimeException {@code 500 (Internal Server Error)} if the password could not be reset.
+     * @throws RuntimeException         {@code 500 (Internal Server Error)} if the password could not be reset.
      */
     @PostMapping(path = "/account/reset-password/finish")
     public void finishPasswordReset(@RequestBody KeyAndPasswordVM keyAndPassword) {

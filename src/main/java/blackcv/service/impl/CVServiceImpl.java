@@ -55,7 +55,9 @@ public class CVServiceImpl implements CVService {
     public CVDTO save(CVDTO cVDTO) {
         log.debug("Request to save CV : {}", cVDTO);
         List<Company> companies = companyRepository.findByCreatedBy(userService.getUserWithAuthorities().get().getLogin());
+        if(!companies.isEmpty()) {
         cVDTO.setIdCompany(Math.toIntExact(companies.get(0).getId()));
+        }
         cVDTO.setStatus(1);
         CV cV = cVMapper.toEntity(cVDTO);
         cV = cVRepository.save(cV);
