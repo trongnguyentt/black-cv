@@ -7,10 +7,10 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Thực thể",
-        "company": "Company",
-        "cv": "CV",
-        "reasonList": "Reason List",
-        "reason": "Reason",
+        "company": "Công ty",
+        "cv": "Hồ sơ",
+        "reasonList": "Danh sách lý do",
+        "reason": "Lý do",
         "staffOrigin": "Staff Origin",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
