@@ -49,6 +49,9 @@ public class CV extends AbstractAuditingEntity implements Serializable {
     @Column(name = "reason")
     private String reason;
 
+    @Column(name = "reason_detail")
+    private String reasonDetail;
+
     @Column(name = "file_upload_cv")
     private String fileUploadCV;
 
@@ -166,6 +169,14 @@ public class CV extends AbstractAuditingEntity implements Serializable {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getReasonDetail() {
+        return reasonDetail;
+    }
+
+    public void setReasonDetail(String reasonDetail) {
+        this.reasonDetail = reasonDetail;
     }
 
     public String getFileUploadCV() {

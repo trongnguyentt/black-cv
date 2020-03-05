@@ -1,18 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { JhiEventManager, JhiParseLinks } from 'ng-jhipster';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {HttpHeaders, HttpResponse} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {JhiEventManager, JhiParseLinks} from 'ng-jhipster';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
-import { ICompany } from 'app/shared/model/company.model';
+import {ICompany} from 'app/shared/model/company.model';
 
-import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
-import { CompanyService } from './company.service';
-import { CompanyDeleteDialogComponent } from './company-delete-dialog.component';
-import { FormBuilder } from '@angular/forms';
-import { Account } from 'app/core/user/account.model';
-import { AccountService } from 'app/core/auth/account.service';
+import {ITEMS_PER_PAGE} from 'app/shared/constants/pagination.constants';
+import {CompanyService} from './company.service';
+import {CompanyDeleteDialogComponent} from './company-delete-dialog.component';
+import {FormBuilder} from '@angular/forms';
+import {Account} from 'app/core/user/account.model';
+import {AccountService} from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-company',
@@ -43,7 +43,8 @@ export class CompanyComponent implements OnInit, OnDestroy {
     private accountService: AccountService,
     protected parseLinks: JhiParseLinks,
     protected modalService: NgbModal
-  ) {}
+  ) {
+  }
 
   loadPage(page?: number): void {
     const pageToLoad: number = page ? page : this.page;
@@ -116,7 +117,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
   }
 
   delete(company: ICompany): void {
-    const modalRef = this.modalService.open(CompanyDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    const modalRef = this.modalService.open(CompanyDeleteDialogComponent, {size: 'lg', backdrop: 'static'});
     modalRef.componentInstance.company = company;
   }
 
@@ -168,27 +169,19 @@ export class CompanyComponent implements OnInit, OnDestroy {
     // this.companies = data ? data : [];
     // this.company = this.companies[0];
     // console.log("length: " + this.companies.length);
-    console.log('authorities: ' + this.account.authorities);
-    for (let i of this.companies) {
-      console.log(i + ': ' + i.name);
-      console.log(i + ': ' + i.businessAreas);
-      console.log(i + ': ' + i.address);
-      console.log(i + ': ' + i.id);
-      console.log(i + ': ' + i.email);
-    }
-
-    if (this.account.authorities.length == 2) {
+    if (this.account.authorities.includes("ROLE_ADMIN")) {
       this.router.navigate(['/company']);
-    }
-    if (this.account.authorities.length == 1) {
+    } else if (!(this.companies.length == 0)) {
+      const id = '/company/' + this.companies[0].id + '/view';
+      this.router.navigate([id]);
+    } else {
       if (this.companies.length == 0) {
         this.router.navigate(['/company/new']);
       }
-      if (!(this.companies.length == 0)) {
-        const id = '/company/' + this.companies[0].id + '/view';
-        this.router.navigate([id]);
-      }
+      console.log(this.account.authorities)
     }
+
+
   }
 
   protected onError(): void {
