@@ -4,28 +4,28 @@
             <h2 id="jhi-cv-heading" jhiTranslate="blackcvApp.cV.home.createOrEditLabel">Create or edit a CV</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
-<!--                <div class="form-group" [hidden]="!editForm.get('id')!.value">-->
-<!--                    <label for="id" jhiTranslate="global.field.id">ID</label>-->
-<!--                    <input type="text" class="form-control" id="id" name="id" formControlName="id"-->
-<!--                        readonly />-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.idCompany" for="field_idCompany">Id Company</label>-->
-<!--                    <input type="number" class="form-control" name="idCompany" id="field_idCompany"-->
-<!--                           formControlName="idCompany"/>-->
-<!--                    <div-->
-<!--                        *ngIf="editForm.get('idCompany').invalid && (editForm.get('idCompany').dirty || editForm.get('idCompany').touched)">-->
+                <!--                <div class="form-group" [hidden]="!editForm.get('id')!.value">-->
+                <!--                    <label for="id" jhiTranslate="global.field.id">ID</label>-->
+                <!--                    <input type="text" class="form-control" id="id" name="id" formControlName="id"-->
+                <!--                        readonly />-->
+                <!--                </div>-->
+                <!--                <div class="form-group">-->
+                <!--                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.idCompany" for="field_idCompany">Id Company</label>-->
+                <!--                    <input type="number" class="form-control" name="idCompany" id="field_idCompany"-->
+                <!--                           formControlName="idCompany"/>-->
+                <!--                    <div-->
+                <!--                        *ngIf="editForm.get('idCompany').invalid && (editForm.get('idCompany').dirty || editForm.get('idCompany').touched)">-->
 
-<!--                        <small-->
-<!--                            class="form-text text-danger"-->
-<!--                            *ngIf="editForm.get('idCompany').errors.required"-->
-<!--                            jhiTranslate="entity.validation.required"-->
-<!--                        >This field is required.-->
-<!--                        </small>-->
+                <!--                        <small-->
+                <!--                            class="form-text text-danger"-->
+                <!--                            *ngIf="editForm.get('idCompany').errors.required"-->
+                <!--                            jhiTranslate="entity.validation.required"-->
+                <!--                        >This field is required.-->
+                <!--                        </small>-->
 
-<!--                    </div>-->
+                <!--                    </div>-->
 
-<!--                </div>-->
+                <!--                </div>-->
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blackcvApp.cV.name" for="field_name">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
@@ -33,46 +33,48 @@
                     <div
                         *ngIf="editForm.get('name').invalid && (editForm.get('name').dirty || editForm.get('name').touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('name').errors.minlength"
+                               *ngIf="editForm.get('name')?.errors?.minlength"
                                jhiTranslate="entity.validation.minlength"
                                [translateValues]="{ min: 1 }">
                             This field is required to be at least 10 characters.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('name').errors.maxlength"
+                               *ngIf="editForm.get('name')?.errors?.maxlength"
                                jhiTranslate="entity.validation.maxlength"
-                               [translateValues]="{ max: 100 }">
+                               [translateValues]="{ max: 254 }">
                             This field cannot be longer than 50 characters.
                         </small>
                         <small
                             class="form-text text-danger"
-                            *ngIf="editForm.get('name').errors.required"
+                            *ngIf="editForm.get('name')?.errors?.required"
                             jhiTranslate="entity.validation.required"
                         >This field is required.
                         </small>
-
+                        <small
+                            class="form-text text-danger"
+                            *ngIf="editForm.get('name')?.errors?.pattern"
+                            jhiTranslate="entity.validation.pattern"
+                            [translateValues]="{ pattern: 'Nguyen Van A' }">
+                            >Please provide a valid name
+                        </small>
                     </div>
-
-
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" for="field_name">Birth Day</label>
                     <input type="date" class="form-control" name="birthday" id="field_birthday"
                            formControlName="birthday"/>
                     <div
                         *ngIf="editForm.get('birthday').invalid && (editForm.get('birthday').dirty || editForm.get('birthday').touched)">
-
                         <small
                             class="form-text text-danger"
-                            *ngIf="editForm.get('birthday').errors.required"
+                            *ngIf="editForm.get('birthday')?.errors?.required"
                             jhiTranslate="entity.validation.required"
                         >This field is required.
                         </small>
-
                     </div>
-
-
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blackcvApp.cV.phone" for="field_phone">Phone</label>
                     <input type="text" class="form-control" name="phone" id="field_phone"
@@ -80,78 +82,79 @@
                     <div
                         *ngIf="editForm.get('phone').invalid && (editForm.get('phone').dirty || editForm.get('phone').touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('phone').errors.minlength"
+                               *ngIf="editForm.get('phone')?.errors?.minlength"
                                jhiTranslate="entity.validation.minlength"
                                [translateValues]="{ min: 10 }">
                             This field is required to be at least 10 characters.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('phone').errors.maxlength"
+                               *ngIf="editForm.get('phone')?.errors?.maxlength"
                                jhiTranslate="entity.validation.maxlength"
                                [translateValues]="{ max: 10 }">
                             This field cannot be longer than 50 characters.
                         </small>
                         <small
                             class="form-text text-danger"
-                            *ngIf="editForm.get('phone').errors.required"
+                            *ngIf="editForm.get('phone')?.errors?.required"
                             jhiTranslate="entity.validation.required"
                         >This field is required.
                         </small>
-
+                        <small
+                            class="form-text text-danger"
+                            *ngIf="editForm.get('phone')?.errors?.pattern"
+                            jhiTranslate="entity.validation.pattern"
+                            [translateValues]="{ pattern: '0123456789' }">
+                            >Please provide a valid name
+                        </small>
                     </div>
-
-
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blackcvApp.cV.email" for="field_email">Email</label>
                     <input type="text" class="form-control" name="email" id="field_email"
                            formControlName="email"/>
                     <div
-                        *ngIf="editForm.get('email').invalid && (editForm.get('email').dirty || editForm.get('email').touched)">
+                        *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('email').errors.minlength"
-                               jhiTranslate="entity.validation.minlength"
-                               [translateValues]="{ min: 1 }">
-                            This field is required to be at least 10 characters.
+                               *ngIf="editForm.get('email')?.errors?.required"
+                               jhiTranslate="global.messages.validate.email.required">
+                            Your email is required.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('email').errors.maxlength"
-                               jhiTranslate="entity.validation.maxlength"
-                               [translateValues]="{ max: 50 }">
-                            This field cannot be longer than 50 characters.
+                               *ngIf="editForm.get('email')?.errors?.email"
+                               jhiTranslate="global.messages.validate.email.invalid">
+                            Your email is invalid.
                         </small>
-                        <small
-                            class="form-text text-danger"
-                            *ngIf="editForm.get('email').errors.required"
-                            jhiTranslate="entity.validation.required"
-                        >This field is required.
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email')?.errors?.minlength"
+                               jhiTranslate="global.messages.validate.email.minlength">
+                            Your email is required to be at least 5 characters.
                         </small>
-                        <small
-                            class="form-text text-danger"
-                            *ngIf="editForm.get('email').errors.pattern"
-                            jhiTranslate="entity.validation.pattern"
-                            [translateValues]="{ pattern: 'admin@gmail.com' }">
-                            >Please provide a valid email address
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email')?.errors?.maxlength"
+                               jhiTranslate="global.messages.validate.email.maxlength">
+                            Your email cannot be longer than 100 characters.
                         </small>
                     </div>
-
                 </div>
+
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.address" for="field_address">Address</label>
+                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.address"
+                           for="field_address">Address</label>
                     <input type="text" class="form-control" name="address" id="field_address"
                            formControlName="address"/>
                     <div
                         *ngIf="editForm.get('address').invalid && (editForm.get('address').dirty || editForm.get('address').touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('address').errors.minlength"
+                               *ngIf="editForm.get('address')?.errors?.minlength"
                                jhiTranslate="entity.validation.minlength"
                                [translateValues]="{ min: 1 }">
                             This field is required to be at least 10 characters.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('address').errors.maxlength"
+                               *ngIf="editForm.get('address')?.errors?.maxlength"
                                jhiTranslate="entity.validation.maxlength"
-                               [translateValues]="{ max: 100 }">
+                               [translateValues]="{ max: 254 }">
                             This field cannot be longer than 50 characters.
                         </small>
                         <small
@@ -160,10 +163,9 @@
                             jhiTranslate="entity.validation.required"
                         >This field is required.
                         </small>
-
                     </div>
-
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="blackcvApp.cV.job" for="field_job">Job</label>
                     <input type="text" class="form-control" name="job" id="field_job"
@@ -171,32 +173,33 @@
                     <div
                         *ngIf="editForm.get('job').invalid && (editForm.get('job').dirty || editForm.get('job').touched)">
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('job').errors.minlength"
+                               *ngIf="editForm.get('job')?.errors?.minlength"
                                jhiTranslate="entity.validation.minlength"
                                [translateValues]="{ min: 1 }">
                             This field is required to be at least 10 characters.
                         </small>
                         <small class="form-text text-danger"
-                               *ngIf="editForm.get('job').errors.maxlength"
+                               *ngIf="editForm.get('job')?.errors?.maxlength"
                                jhiTranslate="entity.validation.maxlength"
-                               [translateValues]="{ max: 20 }">
+                               [translateValues]="{ max: 254 }">
                             This field cannot be longer than 50 characters.
                         </small>
                         <small
                             class="form-text text-danger"
-                            *ngIf="editForm.get('job').errors.required"
+                            *ngIf="editForm.get('job')?.errors?.required"
                             jhiTranslate="entity.validation.required"
                         >This field is required.
                         </small>
                     </div>
-
-
                 </div>
+
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.gender" for="field_gender">Gender</label>
+                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.gender"
+                           for="field_gender">Gender</label>
                     <input type="text" class="form-control" name="gender" id="field_gender"
                            formControlName="gender"/>
                 </div>
+
                 <div class="form-group">
                     <label class="form-control-label">Reason</label>
                     <ng-multiselect-dropdown
@@ -209,68 +212,72 @@
                         *ngIf="editForm.get('reason').invalid && (editForm.get('reason').dirty || editForm.get('reason').touched)">
                         <small
                             class="form-text text-danger"
-                            *ngIf="editForm.get('reason').errors.required"
+                            *ngIf="editForm.get('reason')?.errors?.required"
                             jhiTranslate="entity.validation.required"
                         >This field is required.
                         </small>
-
                     </div>
                 </div>
+
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.avatar" for="field_avatar">Avatar</label>
+                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.avatar"
+                           for="field_avatar">Avatar</label>
                     <br>
                     <img class="img-fluid icon-image sizeImage" [src]="getIcon()" alt=""/>
-                    <input type="file" name="avatar" id="field_avatar" formControlName="avatar" accept=".jpg, .png, .bmp, .jpeg"
+                    <input type="file" name="avatar" id="field_avatar" formControlName="avatar"
+                           accept=".jpg, .png, .bmp, .jpeg"
                            (change)="selectIcon($event)"/>
-<!--                    <div-->
-<!--                        *ngIf="editForm.get('avatar').invalid && (editForm.get('avatar').dirty || editForm.get('avatar').touched)">-->
-<!--                        <small-->
-<!--                            class="form-text text-danger"-->
-<!--                            *ngIf="editForm.get('avatar').errors.required"-->
-<!--                            jhiTranslate="entity.validation.required"-->
-<!--                        >This field is required.-->
-<!--                        </small>-->
+                    <!--                    <div-->
+                    <!--                        *ngIf="editForm.get('avatar').invalid && (editForm.get('avatar').dirty || editForm.get('avatar').touched)">-->
+                    <!--                        <small-->
+                    <!--                            class="form-text text-danger"-->
+                    <!--                            *ngIf="editForm.get('avatar').errors.required"-->
+                    <!--                            jhiTranslate="entity.validation.required"-->
+                    <!--                        >This field is required.-->
+                    <!--                        </small>-->
 
-<!--                    </div>-->
+                    <!--                    </div>-->
 
 
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.fileUploadCV" for="field_fileupload">File Upload CV</label>
+                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.fileUploadCV" for="field_fileupload">File
+                        Upload CV</label>
                     <!--                    <input type="text" class="form-control" name="fileUploadCV" id="field_fileUploadCV"-->
                     <!--                           formControlName="fileUploadCV"/>-->
                     <br>
                     <img class="img-fluid icon-image sizeImage" [src]="getIcon2()" alt=""/>
-                    <input type="file" name="fileupload" id="field_fileupload" formControlName="fileUploadCV" accept=".jpg, .png, .bmp, .jpeg"
+                    <input type="file" name="fileupload" id="field_fileupload" formControlName="fileUploadCV"
+                           accept=".jpg, .png, .bmp, .jpeg"
                            (change)="selectIcon2($event)"/>
                     <div
                         *ngIf="editForm.get('fileUploadCV').invalid && (editForm.get('fileUploadCV').dirty || editForm.get('fileUploadCV').touched)">
                         <small
                             class="form-text text-danger"
-                            *ngIf="editForm.get('fileUploadCV').errors.required"
+                            *ngIf="editForm.get('fileUploadCV')?.errors?.required"
                             jhiTranslate="entity.validation.required"
                         >This field is required.
                         </small>
-
                     </div>
                 </div>
-<!--                <div class="form-group">-->
-<!--                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.status" for="field_status">Status</label>-->
-<!--                    <input type="number" class="form-control" name="status" id="field_status"-->
-<!--                           formControlName="status"/>-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.status" for="field_status">Status</label>-->
-<!--                    <input type="number" class="form-control" name="status" id="field_status"-->
-<!--                           formControlName="status"/>-->
-<!--                </div>-->
+                <!--                <div class="form-group">-->
+                <!--                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.status" for="field_status">Status</label>-->
+                <!--                    <input type="number" class="form-control" name="status" id="field_status"-->
+                <!--                           formControlName="status"/>-->
+                <!--                </div>-->
+                <!--                <div class="form-group">-->
+                <!--                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.status" for="field_status">Status</label>-->
+                <!--                    <input type="number" class="form-control" name="status" id="field_status"-->
+                <!--                           formControlName="status"/>-->
+                <!--                </div>-->
 
             </div>
             <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving"
+                        class="btn btn-primary">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>

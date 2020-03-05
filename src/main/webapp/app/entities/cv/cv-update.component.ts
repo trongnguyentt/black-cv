@@ -24,20 +24,20 @@ export class CVUpdateComponent implements OnInit {
   totalItems = 0;
   page!: number;
   itemsPerPage = ITEMS_PER_PAGE;
-  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
+  mobNumberPattern = '^((\\+91-?)|0)?[0-9]{10}$';
   editForm = this.fb.group({
     id: [],
-    idCompany: [null],
-    name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
-    birthday: [null, [Validators.required]],
-    phone: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-    email: [null, [Validators.required, Validators.pattern(this.emailPattern), Validators.minLength(1), Validators.maxLength(50)]],
-    address: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
-    job: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
-    gender: [],
-    avatar: [null],
-    reason: [null, [Validators.required]],
-    fileUploadCV: [null, [Validators.required]],
+    idCompany: [''],
+    name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
+    birthday: ['', [Validators.required]],
+    phone: ['', [Validators.required, Validators.pattern(this.mobNumberPattern), Validators.minLength(10), Validators.maxLength(10)]],
+    email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
+    address: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
+    job: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
+    gender: [''],
+    avatar: [''],
+    reason: ['', [Validators.required]],
+    fileUploadCV: ['', [Validators.required]],
     status: []
   });
   predicate!: string;

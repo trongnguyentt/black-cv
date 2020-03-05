@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ICV } from 'app/shared/model/cv.model';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ICompany } from 'app/shared/model/company.model';
 import { CompanyService } from 'app/entities/company/company.service';
@@ -15,7 +15,7 @@ export class CvNoResultlComponent implements OnInit {
   cV: ICV | null = null;
   companies?: ICompany[];
   searchForm = this.fb.group({
-    name: ['']
+    name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]]
   });
   constructor(protected activatedRoute: ActivatedRoute, private fb: FormBuilder, protected companyService: CompanyService) {}
 
