@@ -168,26 +168,16 @@ export class CompanyComponent implements OnInit, OnDestroy {
     // this.companies = data ? data : [];
     // this.company = this.companies[0];
     // console.log("length: " + this.companies.length);
-    console.log('authorities: ' + this.account.authorities);
-    for (let i of this.companies) {
-      console.log(i + ': ' + i.name);
-      console.log(i + ': ' + i.businessAreas);
-      console.log(i + ': ' + i.address);
-      console.log(i + ': ' + i.id);
-      console.log(i + ': ' + i.email);
-    }
-
-    if (this.account.authorities.length == 2) {
+    if (this.account.authorities.includes('ROLE_ADMIN')) {
       this.router.navigate(['/company']);
-    }
-    if (this.account.authorities.length == 1) {
+    } else if (!(this.companies.length == 0)) {
+      const id = '/company/' + this.companies[0].id + '/view';
+      this.router.navigate([id]);
+    } else {
       if (this.companies.length == 0) {
         this.router.navigate(['/company/new']);
       }
-      if (!(this.companies.length == 0)) {
-        const id = '/company/' + this.companies[0].id + '/view';
-        this.router.navigate([id]);
-      }
+      console.log(this.account.authorities);
     }
   }
 

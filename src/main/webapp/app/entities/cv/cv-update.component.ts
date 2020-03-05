@@ -37,6 +37,7 @@ export class CVUpdateComponent implements OnInit {
     gender: [],
     avatar: [null],
     reason: [null, [Validators.required]],
+    reasonDetail: [null],
     fileUploadCV: [null, [Validators.required]],
     status: []
   });
@@ -93,7 +94,9 @@ export class CVUpdateComponent implements OnInit {
     }
     return result;
   }
-
+  check(reason: string) {
+    console.log(reason + ' ' + this.editForm.get(['reasonDetail'])!.value);
+  }
   toArray(reason: any) {
     if (reason) {
       return reason.split(',');
@@ -113,6 +116,7 @@ export class CVUpdateComponent implements OnInit {
       gender: cV.gender,
       avatar: cV.avatar,
       reason: this.toArray(cV.reason),
+      reasonDetail: cV.reasonDetail,
       fileUploadCV: cV.fileUploadCV,
       status: cV.status
     });
@@ -148,6 +152,7 @@ export class CVUpdateComponent implements OnInit {
       gender: this.editForm.get(['gender'])!.value,
       avatar: this.editForm.get(['avatar'])!.value,
       reason: this.editForm.get(['reason'])!.value.toString(),
+      reasonDetail: this.editForm.get(['reasonDetail'])!.value,
       fileUploadCV: this.editForm.get(['fileUploadCV'])!.value,
       status: this.editForm.get(['status'])!.value
     };
@@ -156,6 +161,7 @@ export class CVUpdateComponent implements OnInit {
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICV>>): void {
     result.subscribe(
       res => {
+        console.log(this.reasonDetailList);
         if (res.body) {
           this.a = res.body;
         }
@@ -215,7 +221,6 @@ export class CVUpdateComponent implements OnInit {
       }
     );
   }
-
   protected onSaveSuccess(): void {
     this.isSaving = false;
     const cV = this.createFromForm();
@@ -224,8 +229,6 @@ export class CVUpdateComponent implements OnInit {
     } else {
       this.previousState();
     }
-    console.log(cV.id);
-    console.log(cV.address);
   }
   protected onSaveError(): void {
     this.isSaving = false;
