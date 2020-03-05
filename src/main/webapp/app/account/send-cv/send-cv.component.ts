@@ -58,18 +58,18 @@ export class SendCvComponent implements OnInit {
 
     const staffOrigin = this.createFromForm();
     this.subscribeToSaveResponse(this.staffOriginService.create(staffOrigin));
-    if (this.company.name) {
-      this.SendCvService.save(this.resetRequestForm.get(['info'])!.value).subscribe(
-        () => (this.success = true),
-        (response: HttpErrorResponse) => {
-          if (response.status === 400 && response.error.type === EMAIL_NOT_FOUND_TYPE) {
-            this.errorEmailNotExists = true;
-          } else {
-            this.error = true;
-          }
-        }
-      );
-    }
+    // if (this.company.name) {
+    //   this.SendCvService.save(this.resetRequestForm.get(['info'])!.value).subscribe(
+    //     () => (this.success = true),
+    //     (response: HttpErrorResponse) => {
+    //       if (response.status === 400 && response.error.type === EMAIL_NOT_FOUND_TYPE) {
+    //         this.errorEmailNotExists = true;
+    //       } else {
+    //         this.error = true;
+    //       }
+    //     }
+    //   );
+    // }
   }
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IStaffOrigin>>): void {
     result.subscribe(() => this.onSaveSuccess());
@@ -91,5 +91,17 @@ export class SendCvComponent implements OnInit {
   }
   protected onSaveSuccess(): void {
     this.isSaving = false;
+    if (this.company.name) {
+      this.SendCvService.save(this.resetRequestForm.get(['info'])!.value).subscribe(
+        () => (this.success = true),
+        (response: HttpErrorResponse) => {
+          if (response.status === 400 && response.error.type === EMAIL_NOT_FOUND_TYPE) {
+            this.errorEmailNotExists = true;
+          } else {
+            this.error = true;
+          }
+        }
+      );
+    }
   }
 }
