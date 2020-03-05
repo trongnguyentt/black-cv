@@ -4,6 +4,7 @@ import blackcv.domain.StaffOrigin;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -14,5 +15,5 @@ import java.util.Optional;
 @Repository
 public interface StaffOriginRepository extends JpaRepository<StaffOrigin, Long> {
     Optional<StaffOrigin> findOneByEmailIgnoreCase(String email);
-    Optional<StaffOrigin> findOneByEmail(String email);
+    List<StaffOrigin> findOneByEmail(String email);
 }
