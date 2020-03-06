@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 
 import { ICompany, Company } from 'app/shared/model/company.model';
 import { CompanyService } from './company.service';
+import { COMPANY_ALREADY_USED_TYPE, EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/shared/constants/error.constants';
 
 @Component({
   selector: 'jhi-company-update',
@@ -15,6 +16,10 @@ import { CompanyService } from './company.service';
 export class CompanyUpdateComponent implements OnInit {
   isSaving = false;
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
+  errorEmailExists = false;
+  errorUserExists = false;
+  error = false;
+  success = false;
 
   editForm = this.fb.group({
     id: [],
@@ -49,6 +54,8 @@ export class CompanyUpdateComponent implements OnInit {
   }
 
   save(): void {
+    this.errorEmailExists = false;
+    this.errorUserExists = false;
     this.isSaving = true;
     const company = this.createFromForm();
     if (company.id !== undefined) {
@@ -73,7 +80,7 @@ export class CompanyUpdateComponent implements OnInit {
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICompany>>): void {
     result.subscribe(
       () => this.onSaveSuccess(),
-      () => this.onSaveError()
+      response => this.onSaveError(response)
     );
   }
 
@@ -82,7 +89,14 @@ export class CompanyUpdateComponent implements OnInit {
     this.previousState();
   }
 
-  protected onSaveError(): void {
+  protected onSaveError(response: HttpErrorResponse): void {
+    if (response.status === 400 && response.error.type === COMPANY_ALREADY_USED_TYPE) {
+      this.errorUserExists = true;
+    } else if (response.status === 400 && response.error.type === EMAIL_ALREADY_USED_TYPE) {
+      this.errorEmailExists = true;
+    } else {
+      this.error = true;
+    }
     this.isSaving = false;
   }
 }
