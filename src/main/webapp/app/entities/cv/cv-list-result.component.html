@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row">
+        <div class="result"><h2>Chúng tôi tìm được nhiều kết quả</h2></div>
+    </div>
+    <div class="row">
+        <div *ngFor="let cV of cVS ">
+            <h4>Tên: {{cV.name}}</h4>
+                <h4>Nghề nghiệp: {{cV.job}}</h4>
+                <h4>Lý do: {{cV.reason}}</h4>
+        </div>
+    </div>
+</div>
