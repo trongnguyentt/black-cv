@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -60,6 +61,21 @@ public class StaffOriginServiceImpl implements StaffOriginService {
         return staffOriginRepository.findAll().stream()
             .map(staffOriginMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
+    }
+
+    @Override
+    public List<StaffOriginDTO> listStaffNameAndEmail(String name, String email) {
+        List<StaffOriginDTO> staffOriginDTOList = staffOriginRepository
+            .findByNameIgnoreCaseAndEmailIgnoreCase(name, email).stream()
+            .map(staffOriginMapper::toDto)
+            .collect(Collectors.toList());
+        List<StaffOriginDTO> list = new ArrayList<>();
+        for (StaffOriginDTO staffOriginDTO : staffOriginDTOList) {
+            if (staffOriginDTO.getAdvantages() != null || staffOriginDTO.getDefect() != null) {
+                list.add(staffOriginDTO);
+            }
+        }
+        return list;
     }
 
 
