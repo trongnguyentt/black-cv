@@ -1,12 +1,21 @@
 <div class="container">
     <div class="row">
-        <div class="result" ><h2>Chúng tôi tìm được nhiều kết quả</h2></div>
+        <div class="result" ><h2>Người này nằm trong danh sách đen của nhiều công ty!</h2></div>
     </div>
-    <div class="row">
-        <div *ngFor="let cV of cVS ">
-            <h4>Tên: {{cV.name}}</h4>
-                <h4>Nghề nghiệp: {{cV.job}}</h4>
-                <h4>Lý do: {{cV.reason}}</h4>
+    <div *ngFor="let cV of cVS " >
+        <div class="card" type="button" [routerLink]="['/cv', cV.id, 'view']">
+            <h5 class="card-header" style="color: #17a2b8">Công ty: {{cV.company}}</h5>
+            <div class="card-body">
+                <table role="form" novalidate >
+                    <div class="row justify-content-center">
+                        <div class="form-group col-sm-7 row text-color">
+                            <td> <h5>Họ Tên: {{cV.name}}</h5></td>
+                            <td><h5>Nghề Nghiệp: {{cV.job}}</h5></td>
+                            <td><h5>Lý Do: {{cV.reason}}</h5></td>
+                        </div>
+                    </div>
+                </table>
+            </div>
         </div>
     </div>
 </div>
