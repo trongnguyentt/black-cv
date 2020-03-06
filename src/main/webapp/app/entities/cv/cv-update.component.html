@@ -217,6 +217,18 @@
                         >This field is required.
                         </small>
                     </div>
+                    <div
+                        *ngIf="!editForm.get('reason').invalid && (editForm.get('reason').dirty && !editForm.get('reason').touched)">
+                        <p
+                            class="form-text text-primary"
+                        > Bạn có thể thêm chi tiết cho các lý do này
+                        </p>
+                        <div class="form-group">
+                                <label class="form-control-label" for="field_reasonDetail">Chi tiết lý do</label>
+                                <input type="text" class="form-control" name="job" id="field_reasonDetail"
+                                       formControlName="reasonDetail"/>
+                            </div>
+                    </div>
                 </div>
 
                 <div class="form-group">

@@ -13,8 +13,9 @@ import { CVDeleteDialogComponent } from './cv-delete-dialog.component';
 import { FormBuilder } from '@angular/forms';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
-import { IReason } from 'app/shared/model/reason.model';
 import { ReasonService } from 'app/entities/reason/reason.service';
+import { CompanyService } from 'app/entities/company/company.service';
+import { ICompany } from 'app/shared/model/company.model';
 
 @Component({
   selector: 'jhi-cv',
@@ -22,6 +23,7 @@ import { ReasonService } from 'app/entities/reason/reason.service';
 })
 export class CVComponent implements OnInit, OnDestroy {
   cVS?: ICV[];
+  isCheck?: ICompany[];
   eventSubscriber?: Subscription;
   totalItems = 0;
   account!: Account;
@@ -39,6 +41,7 @@ export class CVComponent implements OnInit, OnDestroy {
 
   constructor(
     protected cVService: CVService,
+    protected companyService: CompanyService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
@@ -100,6 +103,20 @@ export class CVComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.eventSubscriber) {
       this.eventManager.destroy(this.eventSubscriber);
+    }
+  }
+
+  checkCompanyExist(): void {
+    this.companyService.checkExist().subscribe((res: HttpResponse<ICompany[]>) => this.getLen(res.body!));
+  }
+
+  protected getLen(data: ICompany[] | null) {
+    this.isCheck = data ? data : [];
+    console.log('isCheck:' + this.isCheck.length);
+    if (this.isCheck.length != 0) {
+      this.router.navigate(['/cv/new']);
+    } else {
+      this.router.navigate(['/company/new']);
     }
   }
 
