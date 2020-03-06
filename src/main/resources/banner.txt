@@ -1,9 +1,10 @@
 
-  ${AnsiColor.GREEN}██   ██╗${AnsiColor.RED} ██████╗${AnsiColor.GREEN}║ ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI
-  ${AnsiColor.GREEN}██   ██║${AnsiColor.RED} ██║   ██║${AnsiColor.GREEN}║ ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI
-  ${AnsiColor.GREEN}██████║${AnsiColor.RED} ███████${AnsiColor.GREEN}║ ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI
-  ${AnsiColor.GREEN}██   ██║${AnsiColor.RED} ██╔═══██║${AnsiColor.GREEN}║ ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI
-  ${AnsiColor.GREEN}██   ██║${AnsiColor.RED} ██║   ██║${AnsiColor.GREEN}║ ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI ĐẸP TRAI
+  ${AnsiColor.GREEN}      ██╗${AnsiColor.RED} ██╗   ██╗ ████████╗ ███████╗   ██████╗ ████████╗ ████████╗ ███████╗
+  ${AnsiColor.GREEN}      ██║${AnsiColor.RED} ██║   ██║ ╚══██╔══╝ ██╔═══██╗ ██╔════╝ ╚══██╔══╝ ██╔═════╝ ██╔═══██╗
+  ${AnsiColor.GREEN}      ██║${AnsiColor.RED} ████████║    ██║    ███████╔╝ ╚█████╗     ██║    ██████╗   ███████╔╝
+  ${AnsiColor.GREEN}██╗   ██║${AnsiColor.RED} ██╔═══██║    ██║    ██╔════╝   ╚═══██╗    ██║    ██╔═══╝   ██╔══██║
+  ${AnsiColor.GREEN}╚██████╔╝${AnsiColor.RED} ██║   ██║ ████████╗ ██║       ██████╔╝    ██║    ████████╗ ██║  ╚██╗
+  ${AnsiColor.GREEN} ╚═════╝ ${AnsiColor.RED} ╚═╝   ╚═╝ ╚═══════╝ ╚═╝       ╚═════╝     ╚═╝    ╚═══════╝ ╚═╝   ╚═╝
 
-${AnsiColor.BRIGHT_BLUE}:: VŨ XUÂN HÀ 🤓  :: BLACK LIST => EVOTEK ${spring-boot.version} ::
-:: https://evotek.vn/vi/trang-chu/ ::${AnsiColor.DEFAULT}
+${AnsiColor.BRIGHT_BLUE}:: JHipster 🤓  :: Running Spring Boot ${spring-boot.version} ::
+:: https://www.jhipster.tech ::${AnsiColor.DEFAULT}

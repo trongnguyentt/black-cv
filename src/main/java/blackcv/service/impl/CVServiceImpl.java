@@ -5,6 +5,7 @@ import blackcv.repository.CompanyRepository;
 import blackcv.service.CVService;
 import blackcv.domain.CV;
 import blackcv.repository.CVRepository;
+import blackcv.service.CompanyService;
 import blackcv.service.UserService;
 import blackcv.service.dto.CVDTO;
 import blackcv.service.mapper.CVMapper;
@@ -35,14 +36,16 @@ public class CVServiceImpl implements CVService {
     private final CompanyRepository companyRepository;
 
     private final CVMapper cVMapper;
+    private final CompanyService companyService;
 
     private final UserService userService;
 
-    public CVServiceImpl(CVRepository cVRepository, CompanyRepository companyRepository, CVMapper cVMapper, UserService userService) {
+    public CVServiceImpl(CVRepository cVRepository, CompanyRepository companyRepository, CVMapper cVMapper, UserService userService,CompanyService companyService) {
         this.cVRepository = cVRepository;
         this.companyRepository = companyRepository;
         this.cVMapper = cVMapper;
         this.userService = userService;
+        this.companyService=companyService;
     }
 
     /**
@@ -55,8 +58,8 @@ public class CVServiceImpl implements CVService {
     public CVDTO save(CVDTO cVDTO) {
         log.debug("Request to save CV : {}", cVDTO);
         List<Company> companies = companyRepository.findByCreatedBy(userService.getUserWithAuthorities().get().getLogin());
-        if(!companies.isEmpty()) {
-        cVDTO.setIdCompany(Math.toIntExact(companies.get(0).getId()));
+        if (!companies.isEmpty()) {
+            cVDTO.setIdCompany(Math.toIntExact(companies.get(0).getId()));
         }
         cVDTO.setStatus(1);
         CV cV = cVMapper.toEntity(cVDTO);
@@ -81,12 +84,17 @@ public class CVServiceImpl implements CVService {
     @Override
     public Page<CVDTO> findInHome(MultiValueMap<String, String> queryParams, Pageable pageable) {
         log.debug("Request to get all CVS");
-        List<CV> device = cVRepository.searchInHome(queryParams, pageable);
-        if(device!=null){
-        Page<CV> pages = new PageImpl<>(device, pageable, cVRepository.countCV(queryParams));
-        return pages.map(cVMapper::toDto);}
-        return null;
+        List<CVDTO> device = cVMapper.toDto(cVRepository.searchInHome(queryParams, pageable));
+        for (CVDTO cvdto : device) {
+            Long x = new Long(cvdto.getIdCompany());
+            if (companyService.findOne(x).isPresent()) {
+                String company = companyService.findOne(x).get().getName();
+                cvdto.setCompany(company);
+            }
+        }
+        return new PageImpl<>(device, pageable, cVRepository.countCV(queryParams));
     }
+
     /**
      * Get one cV by id.
      *

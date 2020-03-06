@@ -1,17 +1,17 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Subscription} from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
-import {LoginModalService} from 'app/core/login/login-modal.service';
-import {AccountService} from 'app/core/auth/account.service';
-import {Account} from 'app/core/user/account.model';
-import {Router} from '@angular/router';
-import {HttpHeaders, HttpResponse} from '@angular/common/http';
-import {ICV} from 'app/shared/model/cv.model';
-import {CVService} from 'app/entities/cv/cv.service';
-import {ITEMS_PER_PAGE} from 'app/shared/constants/pagination.constants';
-import {JhiParseLinks} from 'ng-jhipster';
-import {FormBuilder, Validators} from '@angular/forms';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { LoginModalService } from 'app/core/login/login-modal.service';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/user/account.model';
+import { Router } from '@angular/router';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { ICV } from 'app/shared/model/cv.model';
+import { CVService } from 'app/entities/cv/cv.service';
+import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
+import { JhiParseLinks } from 'ng-jhipster';
+import { FormBuilder, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-home',
@@ -40,8 +40,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     protected parseLinks: JhiParseLinks,
     private fb: FormBuilder,
     protected modalService: NgbModal
-  ) {
-  }
+  ) {}
 
   searchForm = this.fb.group({
     name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
@@ -116,14 +115,12 @@ export class HomeComponent implements OnInit, OnDestroy {
           name: this.searchForm.get(['name'])!.value.trim(),
           email: this.searchForm.get(['email'])!.value.trim(),
           phone: this.searchForm.get(['phone'])!.value.trim(),
-          birthday: this.searchForm.get(['birthday'])!.value.toString(),
+          birthday: this.searchForm.get(['birthday'])!.value.toString()
         }
       });
-    }
-    else if(this.cVS.length == 1){
-      this.router.navigate(['/cv/', this.cVS[0].id,'view']);
-    }
-    else {
+    } else if (this.cVS.length == 1) {
+      this.router.navigate(['/cv/', this.cVS[0].id, 'view']);
+    } else {
       // this.modalService.open(NoResultComponent);
       // // console.log("sssss")
       this.router.navigate(['/cv', 'no-result']);
