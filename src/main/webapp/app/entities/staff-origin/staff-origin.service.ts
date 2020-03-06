@@ -32,6 +32,10 @@ export class StaffOriginService {
     return this.http.get<IStaffOrigin[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
+  getListStaff(name: string, email: string): Observable<EntityArrayResponseType> {
+    return this.http.get<IStaffOrigin[]>(`${this.resourceUrl}/${name}/${email}`, { observe: 'response' });
+  }
+
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

@@ -26,6 +26,8 @@ public interface StaffOriginService {
     List<StaffOriginDTO> findAll();
 
 
+    List<StaffOriginDTO> listStaffNameAndEmail(String name, String email);
+
     /**
      * Get the "id" staffOrigin.
      *

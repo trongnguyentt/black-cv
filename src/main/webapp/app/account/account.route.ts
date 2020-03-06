@@ -8,6 +8,7 @@ import { registerRoute } from './register/register.route';
 import { settingsRoute } from './settings/settings.route';
 import { sendCvRoute } from 'app/account/send-cv/send-cv.route';
 import { loginRoute } from 'app/account/login/login.route';
+import { listRoute } from 'app/account/list-staff/list.route';
 
 const ACCOUNT_ROUTES = [
   activateRoute,
@@ -17,7 +18,8 @@ const ACCOUNT_ROUTES = [
   registerRoute,
   loginRoute,
   settingsRoute,
-  sendCvRoute
+  sendCvRoute,
+  listRoute
 ];
 
 export const accountState: Routes = [
