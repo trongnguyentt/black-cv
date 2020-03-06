@@ -99,6 +99,11 @@ public class StaffOriginResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @GetMapping("/staff-origins/{name}/{email}")
+    public List<StaffOriginDTO> getAllStaffNameAndEmail(@PathVariable String name, @PathVariable String email) {
+        return staffOriginService.listStaffNameAndEmail(name, email);
+    }
+
     /**
      * {@code GET  /staff-origins/:id} : get the "id" staffOrigin.
      *

@@ -4,8 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CV, ICV } from 'app/shared/model/cv.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ICompany } from 'app/shared/model/company.model';
+import { Company, ICompany } from 'app/shared/model/company.model';
 import { CompanyService } from 'app/entities/company/company.service';
+
 import { CVService } from 'app/entities/cv/cv.service';
 
 @Component({
@@ -15,7 +16,7 @@ import { CVService } from 'app/entities/cv/cv.service';
 export class CvListResultlComponent implements OnInit {
   // @Input() cVa!:ICV;
   cVS?: ICV[];
-  companies?: ICompany[];
+  companies!: ICompany;
   searchForm = this.fb.group({
     name: [],
     phone: [],
@@ -42,6 +43,7 @@ export class CvListResultlComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
   transition() {
     this.router.navigate(['/cv/list-result'], {
       queryParams: {

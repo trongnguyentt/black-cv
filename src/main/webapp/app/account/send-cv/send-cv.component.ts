@@ -1,17 +1,17 @@
-import { Component, AfterViewInit, Renderer, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, Renderer, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 import { EMAIL_NOT_FOUND_TYPE } from 'app/shared/constants/error.constants';
-import { PasswordResetInitService } from 'app/account/password-reset/init/password-reset-init.service';
 import { SendCvService } from 'app/account/send-cv/send-cv.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ICompany } from 'app/shared/model/company.model';
 import { StaffOriginService } from 'app/entities/staff-origin/staff-origin.service';
 import { Observable } from 'rxjs';
 import { IStaffOrigin, StaffOrigin } from 'app/shared/model/staff-origin.model';
+import { ListStaffService } from 'app/account/list-staff/list.service';
 
 @Component({
   selector: 'jhi-send-cv',
@@ -34,11 +34,16 @@ export class SendCvComponent implements OnInit {
     name: ['']
   });
 
+  listStaff!: IStaffOrigin[];
+  listStaffLength?: number;
+
   constructor(
+    protected listStaffService: ListStaffService,
     private SendCvService: SendCvService,
     protected activatedRoute: ActivatedRoute,
     private renderer: Renderer,
     private fb: FormBuilder,
+    protected router: Router,
     private accountService: AccountService,
     protected staffOriginService: StaffOriginService
   ) {}
@@ -48,6 +53,18 @@ export class SendCvComponent implements OnInit {
       console.log(this.company);
     });
   }
+
+  toUnsigned(name: string) {
+    name = name.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
+    name = name.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, 'e');
+    name = name.replace(/ì|í|ị|ỉ|ĩ/g, 'i');
+    name = name.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, 'o');
+    name = name.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, 'u');
+    name = name.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, 'y');
+    name = name.replace(/đ/g, 'd');
+    return name;
+  }
+
   requestReset(): void {
     this.accountService.identity().subscribe(account => {
       if (account) {
@@ -59,6 +76,11 @@ export class SendCvComponent implements OnInit {
 
     const staffOrigin = this.createFromForm();
     this.subscribeToSaveResponse(this.staffOriginService.create(staffOrigin));
+
+    this.staffOriginService
+      .getListStaff(this.toUnsigned(this.resetRequestForm.get(['name'])!.value), this.resetRequestForm.get(['email'])!.value)
+      .subscribe((res: HttpResponse<IStaffOrigin[]>) => this.list(res.body!));
+
     // if (this.company.name) {
     //   this.SendCvService.save(this.resetRequestForm.get(['info'])!.value).subscribe(
     //     () => (this.success = true),
@@ -72,6 +94,17 @@ export class SendCvComponent implements OnInit {
     //   );
     // }
   }
+
+  createMessage(message: IStaffOrigin[]) {
+    this.listStaffService.changeMessage(message);
+    this.router.navigate(['/account/list-staff']);
+  }
+
+  protected list(data: IStaffOrigin[]) {
+    this.listStaff = data;
+    this.listStaffLength = data.length;
+  }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IStaffOrigin>>): void {
     result.subscribe(() => this.onSaveSuccess());
   }

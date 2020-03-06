@@ -76,6 +76,7 @@ public class CVResource {
         if(file2 !=null){
             String path = request.getSession().getServletContext().getRealPath("/") + "/content/images/";
             File upload2 = new File(path + file2.getOriginalFilename());
+           //đổi tên file
             file2.transferTo(upload2);
             String imagePath2 = request.getContextPath() + "/content/images/" + file2.getOriginalFilename();
             cVDTO.setFileUploadCV(imagePath2);

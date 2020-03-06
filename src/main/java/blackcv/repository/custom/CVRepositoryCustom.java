@@ -1,6 +1,7 @@
 package blackcv.repository.custom;
 
 import blackcv.domain.CV;
+import blackcv.service.dto.CVDTO;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.MultiValueMap;
 

@@ -19,6 +19,8 @@ import java.util.Optional;
 public interface StaffOriginRepository extends JpaRepository<StaffOrigin, Long>, StaffOriginRepositoryCustom {
     Optional<StaffOrigin> findOneByEmailIgnoreCase(String email);
 
+    List<StaffOrigin> findByNameIgnoreCaseAndEmailIgnoreCase(String name, String email);
+
     List<StaffOrigin> findOneByEmail(String email);
 
 }

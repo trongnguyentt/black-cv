@@ -21,7 +21,8 @@
         "sessions": "Phiên đăng nhập",
         "login": "Đăng nhập",
         "logout": "Đăng xuất",
-        "register": "Đăng ký"
+        "register": "Đăng ký",
+        "sendEmail": "Gửi Email"
       },
       "admin": {
         "main": "Quản trị",

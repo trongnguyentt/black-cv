@@ -29,6 +29,8 @@ public interface StaffOriginService {
     Page<StaffOriginDTO> findAll(MultiValueMap<String, String> queryParams, Pageable pageable);
 
 
+    List<StaffOriginDTO> listStaffNameAndEmail(String name, String email);
+
     /**
      * Get the "id" staffOrigin.
      *
