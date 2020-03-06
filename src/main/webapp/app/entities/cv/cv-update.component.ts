@@ -162,7 +162,6 @@ export class CVUpdateComponent implements OnInit {
     result.subscribe(
       res => {
         // console.log(this.reasonDetailList)
-
         if (res.body) {
           this.a = res.body;
         }
