@@ -7,6 +7,7 @@ import { passwordResetInitRoute } from './password-reset/init/password-reset-ini
 import { registerRoute } from './register/register.route';
 import { settingsRoute } from './settings/settings.route';
 import { sendCvRoute } from 'app/account/send-cv/send-cv.route';
+import { loginRoute } from 'app/account/login/login.route';
 
 const ACCOUNT_ROUTES = [
   activateRoute,
@@ -14,6 +15,7 @@ const ACCOUNT_ROUTES = [
   passwordResetFinishRoute,
   passwordResetInitRoute,
   registerRoute,
+  loginRoute,
   settingsRoute,
   sendCvRoute
 ];

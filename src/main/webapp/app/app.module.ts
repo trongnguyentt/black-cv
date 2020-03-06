@@ -18,6 +18,8 @@ import { SearchcvComponent } from './full-image/searchcv.component';
 import { SearchcvModule } from 'app/full-image/searchcv.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AppFooterModule, AppHeaderModule, AppSidebarModule } from '@coreui/angular';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -42,6 +44,7 @@ import { AppFooterModule, AppHeaderModule, AppSidebarModule } from '@coreui/angu
     FooterComponent,
     SearchcvComponent
   ],
+  providers: [NgbActiveModal],
   bootstrap: [MainComponent]
 })
 export class BlackcvAppModule {}
