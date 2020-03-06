@@ -109,7 +109,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.cVS = data;
     console.log(this.cVS.length);
     if (this.cVS.length != 0) {
-      this.router.navigate(['/cv', this.cVS[0].id, 'view']);
+      this.router.navigate(['/cv','list-result']);
     } else {
       // this.modalService.open(NoResultComponent);
       // // console.log("sssss")

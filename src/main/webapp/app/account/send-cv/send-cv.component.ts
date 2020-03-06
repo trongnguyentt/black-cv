@@ -30,7 +30,8 @@ export class SendCvComponent implements OnInit {
   company!: ICompany;
   staffOrigin!: IStaffOrigin;
   resetRequestForm = this.fb.group({
-    info: ['']
+    email: [''],
+    name: ['']
   });
 
   constructor(
@@ -78,8 +79,8 @@ export class SendCvComponent implements OnInit {
     return {
       ...new StaffOrigin(),
       id: undefined,
-      name: undefined,
-      email: this.resetRequestForm.get(['info'])!.value,
+      name: this.resetRequestForm.get(['name'])!.value,
+      email: this.resetRequestForm.get(['email'])!.value,
       job: undefined,
       advantages: undefined,
       defect: undefined,
@@ -92,7 +93,7 @@ export class SendCvComponent implements OnInit {
   protected onSaveSuccess(): void {
     this.isSaving = false;
     if (this.company.name) {
-      this.SendCvService.save(this.resetRequestForm.get(['info'])!.value).subscribe(
+      this.SendCvService.save(this.resetRequestForm.get(['email'])!.value).subscribe(
         () => (this.success = true),
         (response: HttpErrorResponse) => {
           if (response.status === 400 && response.error.type === EMAIL_NOT_FOUND_TYPE) {
