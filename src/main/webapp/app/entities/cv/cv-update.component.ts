@@ -24,20 +24,21 @@ export class CVUpdateComponent implements OnInit {
   totalItems = 0;
   page!: number;
   itemsPerPage = ITEMS_PER_PAGE;
-  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
+  mobNumberPattern = '^((\\+91-?)|0)?[0-9]{10}$';
   editForm = this.fb.group({
     id: [],
-    idCompany: [null],
-    name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
-    birthday: [null, [Validators.required]],
-    phone: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-    email: [null, [Validators.required, Validators.pattern(this.emailPattern), Validators.minLength(1), Validators.maxLength(50)]],
-    address: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(100)]],
-    job: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
-    gender: [],
-    avatar: [null],
-    reason: [null, [Validators.required]],
-    fileUploadCV: [null, [Validators.required]],
+    idCompany: [''],
+    name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
+    birthday: ['', [Validators.required]],
+    phone: ['', [Validators.required, Validators.pattern(this.mobNumberPattern), Validators.minLength(10), Validators.maxLength(10)]],
+    email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
+    address: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
+    job: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
+    gender: [''],
+    avatar: [''],
+    reasonDetail: [''],
+    reason: ['', [Validators.required]],
+    fileUploadCV: ['', [Validators.required]],
     status: []
   });
   predicate!: string;
@@ -93,7 +94,9 @@ export class CVUpdateComponent implements OnInit {
     }
     return result;
   }
-
+  check(reason: string) {
+    console.log(reason + ' ' + this.editForm.get(['reasonDetail'])!.value);
+  }
   toArray(reason: any) {
     if (reason) {
       return reason.split(',');
@@ -113,6 +116,7 @@ export class CVUpdateComponent implements OnInit {
       gender: cV.gender,
       avatar: cV.avatar,
       reason: this.toArray(cV.reason),
+      reasonDetail: cV.reasonDetail,
       fileUploadCV: cV.fileUploadCV,
       status: cV.status
     });
@@ -148,6 +152,7 @@ export class CVUpdateComponent implements OnInit {
       gender: this.editForm.get(['gender'])!.value,
       avatar: this.editForm.get(['avatar'])!.value,
       reason: this.editForm.get(['reason'])!.value.toString(),
+      reasonDetail: this.editForm.get(['reasonDetail'])!.value,
       fileUploadCV: this.editForm.get(['fileUploadCV'])!.value,
       status: this.editForm.get(['status'])!.value
     };
@@ -156,6 +161,7 @@ export class CVUpdateComponent implements OnInit {
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICV>>): void {
     result.subscribe(
       res => {
+        // console.log(this.reasonDetailList)
         if (res.body) {
           this.a = res.body;
         }
@@ -215,7 +221,6 @@ export class CVUpdateComponent implements OnInit {
       }
     );
   }
-
   protected onSaveSuccess(): void {
     this.isSaving = false;
     const cV = this.createFromForm();
@@ -224,8 +229,6 @@ export class CVUpdateComponent implements OnInit {
     } else {
       this.previousState();
     }
-    console.log(cV.id);
-    console.log(cV.address);
   }
   protected onSaveError(): void {
     this.isSaving = false;

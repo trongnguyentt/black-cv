@@ -53,27 +53,27 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr>
-            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+<!--            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>-->
             <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.name">Name</span></th>
             <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.email">Email</span></th>
             <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.job">Job</span></th>
             <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.advantages">Advantages</span></th>
             <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.defect">Defect</span></th>
             <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.more">More</span></th>
-            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.status">Status</span></th>
+<!--            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.status">Status</span></th>-->
             <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let staffOrigin of staffOrigins ;trackBy: trackId">
-                <td><a [routerLink]="['/staff-origin', staffOrigin.id, 'view' ]">{{staffOrigin.id}}</a></td>
+<!--                <td><a [routerLink]="['/staff-origin', staffOrigin.id, 'view' ]">{{staffOrigin.id}}</a></td>-->
                 <td>{{staffOrigin.name}}</td>
                 <td>{{staffOrigin.email}}</td>
                 <td>{{staffOrigin.job}}</td>
                 <td>{{staffOrigin.advantages}}</td>
                 <td>{{staffOrigin.defect}}</td>
                 <td>{{staffOrigin.more}}</td>
-                <td>{{staffOrigin.status}}</td>
+<!--                <td>{{staffOrigin.status}}</td>-->
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

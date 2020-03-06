@@ -18,11 +18,11 @@ export class CompanyUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-    businessAreas: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-    address: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
+    businessAreas: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
+    address: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
     status: [],
-    email: [null, [Validators.required, Validators.pattern(this.emailPattern), Validators.minLength(1), Validators.maxLength(50)]]
+    email: ['', [Validators.required, Validators.email, Validators.minLength(5), Validators.maxLength(254)]]
   });
 
   constructor(protected companyService: CompanyService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}

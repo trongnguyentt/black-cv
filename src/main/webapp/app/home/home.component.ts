@@ -28,8 +28,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   links: any;
   totalItems = 0;
   fail!: boolean;
+  isSaving = false;
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
   mobNumberPattern = '^((\\+91-?)|0)?[0-9]{10}$';
+
   constructor(
     private accountService: AccountService,
     private loginModalService: LoginModalService,
@@ -41,10 +43,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   searchForm = this.fb.group({
-    name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
-    phone: [null, [Validators.required, Validators.pattern(this.mobNumberPattern), Validators.minLength(10), Validators.maxLength(10)]],
-    email: [null, [Validators.required, Validators.pattern(this.emailPattern)]],
-    birthday: [null, [Validators.required]]
+    name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
+    phone: ['', [Validators.required, Validators.pattern(this.mobNumberPattern), Validators.minLength(10), Validators.maxLength(10)]],
+    email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
+    birthday: ['', [Validators.required]]
   });
 
   ngOnInit(): void {
@@ -107,8 +109,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.totalItems = parseInt(headers.get('X-Total-Count')!, 10);
     this.cVS = data;
     console.log(this.cVS.length);
-    if (this.cVS.length != 0) {
-      this.router.navigate(['/cv', this.cVS[0].id, 'view']);
+    if (this.cVS.length > 1) {
+      this.router.navigate(['/cv/', 'list-result'], {
+        queryParams: {
+          name: this.searchForm.get(['name'])!.value.trim(),
+          email: this.searchForm.get(['email'])!.value.trim(),
+          phone: this.searchForm.get(['phone'])!.value.trim(),
+          birthday: this.searchForm.get(['birthday'])!.value.toString()
+        }
+      });
+    } else if (this.cVS.length == 1) {
+      this.router.navigate(['/cv/', this.cVS[0].id, 'view']);
     } else {
       // this.modalService.open(NoResultComponent);
       // // console.log("sssss")

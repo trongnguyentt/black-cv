@@ -163,9 +163,9 @@ public class AccountResource {
     }
 
     @PostMapping(path = "/account/send-cv")
-    public void requestSendCV(@RequestBody String info) {
-        if(staffOriginRepository.findOneByEmailIgnoreCase(info).isPresent()) {
-            StaffOrigin staffOrigin = staffOriginRepository.findOneByEmailIgnoreCase(info).get();
+    public void requestSendCV(@RequestBody String email) {
+        if(!staffOriginRepository.findOneByEmail(email).isEmpty()) {
+            StaffOrigin staffOrigin = staffOriginRepository.findOneByEmail(email).get(staffOriginRepository.findOneByEmail(email).size()-1);
             mailService.sendCVMail(staffOrigin);
         }
 
@@ -174,8 +174,8 @@ public class AccountResource {
     @PostMapping(path = "/account/respond-cv")
     public void requestRespondCV(@RequestBody String email) {
 
-if(staffOriginRepository.findOneByEmailIgnoreCase(email).isPresent()) {
-    StaffOrigin staffOrigin = staffOriginRepository.findOneByEmailIgnoreCase(email).get();
+if(!staffOriginRepository.findOneByEmail(email).isEmpty()) {
+    StaffOrigin staffOrigin = staffOriginRepository.findOneByEmail(email).get(staffOriginRepository.findOneByEmail(email).size()-1);
     mailService.respondCVMail(staffOrigin);
 }
 
