@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   links: any;
   totalItems = 0;
   fail!: boolean;
+  isSaving = false;
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
   mobNumberPattern = '^((\\+91-?)|0)?[0-9]{10}$';
 
@@ -43,10 +44,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   searchForm = this.fb.group({
-    name: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
-    phone: [null, [Validators.required, Validators.pattern(this.mobNumberPattern), Validators.minLength(10), Validators.maxLength(10)]],
-    email: [null, [Validators.required, Validators.pattern(this.emailPattern)]],
-    birthday: [null, [Validators.required]]
+    name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
+    phone: ['', [Validators.required, Validators.pattern(this.mobNumberPattern), Validators.minLength(10), Validators.maxLength(10)]],
+    email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
+    birthday: ['', [Validators.required]]
   });
 
   ngOnInit(): void {

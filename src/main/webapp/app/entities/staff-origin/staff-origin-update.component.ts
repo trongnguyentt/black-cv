@@ -20,12 +20,12 @@ export class StaffOriginUpdateComponent implements OnInit {
   success = false;
   editForm = this.fb.group({
     id: [],
-    name: [],
-    email: [],
-    job: [],
-    advantages: [],
-    defect: [],
-    more: [],
+    name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
+    email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
+    job: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
+    advantages: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
+    defect: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
+    more: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
     status: []
   });
 
