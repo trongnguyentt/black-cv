@@ -1,9 +1,15 @@
 package blackcv.web.rest;
 
+import blackcv.config.Constants;
+import blackcv.domain.Company;
+import blackcv.repository.CompanyRepository;
 import blackcv.service.CompanyService;
 import blackcv.web.rest.errors.BadRequestAlertException;
 import blackcv.service.dto.CompanyDTO;
 
+import blackcv.web.rest.errors.EmailAlreadyUsedException;
+import blackcv.web.rest.errors.LoginAlreadyUsedException;
+import blackcv.web.rest.errors.NameAlreadyUsedException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -13,7 +19,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
@@ -42,8 +47,11 @@ public class CompanyResource {
 
     private final CompanyService companyService;
 
-    public CompanyResource(CompanyService companyService) {
+    private final CompanyRepository companyRepository;
+
+    public CompanyResource(CompanyService companyService, CompanyRepository companyRepository) {
         this.companyService = companyService;
+        this.companyRepository = companyRepository;
     }
 
     /**
@@ -58,11 +66,16 @@ public class CompanyResource {
         log.debug("REST request to save Company : {}", companyDTO);
         if (companyDTO.getId() != null) {
             throw new BadRequestAlertException("A new company cannot already have an ID", ENTITY_NAME, "idexists");
+        } else if (companyRepository.findOneByNameAndStatusGreaterThan(companyDTO.getName().toLowerCase(),0).isPresent()) {
+            throw new NameAlreadyUsedException();
+        } else if (companyRepository.findOneByEmailIgnoreCaseAndStatusGreaterThan(companyDTO.getEmail(),0).isPresent()) {
+            throw new EmailAlreadyUsedException();
+        } else{
+            CompanyDTO result = companyService.save(companyDTO);
+            return ResponseEntity.created(new URI("/api/companies/" + result.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
+                .body(result);
         }
-        CompanyDTO result = companyService.save(companyDTO);
-        return ResponseEntity.created(new URI("/api/companies/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
-            .body(result);
     }
 
     /**
@@ -79,6 +92,15 @@ public class CompanyResource {
         log.debug("REST request to update Company : {}", companyDTO);
         if (companyDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        Optional<Company> existingCompany = companyRepository.findOneByNameAndStatusGreaterThan(companyDTO.getName().toLowerCase(),0);
+        if (existingCompany.isPresent() && (!existingCompany.get().getId().equals(companyDTO.getId()))) {
+            throw new NameAlreadyUsedException();
+        }
+
+        existingCompany = companyRepository.findOneByEmailIgnoreCaseAndStatusGreaterThan(companyDTO.getEmail(),0);
+        if (existingCompany.isPresent() && (!existingCompany.get().getId().equals(companyDTO.getId()))) {
+            throw new EmailAlreadyUsedException();
         }
         CompanyDTO result = companyService.save(companyDTO);
         return ResponseEntity.ok()
