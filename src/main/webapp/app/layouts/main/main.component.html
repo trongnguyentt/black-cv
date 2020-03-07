@@ -16,7 +16,7 @@
             <li class="nav-item">
                 <a class="nav-link" (click)="changeShow()">
                 <span>
-                    <fa-icon icon="home"></fa-icon>
+                    <fa-icon icon="tasks"></fa-icon>
                 </span>
                 </a>
             </li>
@@ -81,7 +81,7 @@
                         </a>
                     </li>
                     <li *ngSwitchCase="false">
-                        <a class="dropdown-item" routerLink="account/login" id="login">
+                        <a class="dropdown-item" (click)="login()" id="login">
                             <fa-icon icon="sign-in-alt" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.account.login">Sign in</span>
                         </a>
