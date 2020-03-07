@@ -66,12 +66,29 @@
                 <p> Company :   <a href="#"> {{cV.idCompany}} </a> </p>
                 <p>Job : {{cV.job}}</p>
                 <p>Reason :{{cV.reason}}</p>
-
             </div>
-            <div class="d-flex p-3 bg-secondary text-white khoi">
-                <img style="height: 10rem" src="{{cV.fileUploadCV}}" alt="">
+            <div class="d-flex p-3 bg-secondary text-white khoi fixHeader">
                 <div class="flex1">Attachments </div>
             </div>
+
+            <div class="d-flex p-3  text-white justify-content-end khoianh">
+                <img data-toggle="modal" data-target="#exampleModalCenter" src="{{cV.fileUploadCV}}" style="width:25%; height: 25% ">
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content ">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img id="myImg" src="{{cV.fileUploadCV}}" alt="" style="width: 100%; max-width: 800px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <div class="d-flex p-3  text-white justify-content-end khoianh">
                 <div class="thumb"></div>
             </div>
