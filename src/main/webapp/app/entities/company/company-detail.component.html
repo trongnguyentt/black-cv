@@ -27,7 +27,7 @@
 <!--                </dd>-->
             </dl>
 
-            <button type="submit"
+            <button type="submit" *jhiHasAnyAuthority="'ROLE_ADMIN'"
                     (click)="previousState()"
                     class="btn btn-info">
                 <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
