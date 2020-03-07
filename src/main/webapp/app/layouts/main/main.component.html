@@ -107,18 +107,18 @@
                          class="rounded" alt="Evotek">
                 </div>
             </li>
-            <li class="nav-item" *jhiHasAnyAuthority="'ROLE_USER'">
-                <a class="dropdown-item" routerLink="cv" routerLinkActive="active">
+            <li class="nav-item">
+                <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item" routerLink="cv" routerLinkActive="active">
                     <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
                     <span jhiTranslate="global.menu.entities.cv">Cv</span>
                 </a>
 
-                <a class="dropdown-item" routerLink="company" routerLinkActive="active">
+                <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item" routerLink="company" routerLinkActive="active">
                     <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
                     <span jhiTranslate="global.menu.entities.company">Company</span>
                 </a>
 
-                <a class="dropdown-item" routerLink="reason" routerLinkActive="active">
+                <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item" routerLink="reason" routerLinkActive="active">
                     <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
                     <span jhiTranslate="global.menu.entities.reason">Reason</span>
                 </a>
@@ -128,7 +128,7 @@
 <!--                    <span jhiTranslate="global.menu.entities.reasonList">Reason List</span>-->
 <!--                </a>-->
 
-                <a class="dropdown-item" routerLink="staff-origin" routerLinkActive="active">
+                <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item" routerLink="staff-origin" routerLinkActive="active">
                     <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
                     <span jhiTranslate="global.menu.entities.staffOrigin">Staff Origin</span>
                 </a>

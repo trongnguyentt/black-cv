@@ -42,7 +42,7 @@ export const reasonRoute: Routes = [
       pagingParams: JhiResolvePagingParams
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       defaultSort: 'id,asc',
       pageTitle: 'blackcvApp.reason.home.title'
     },
@@ -55,7 +55,7 @@ export const reasonRoute: Routes = [
       reason: ReasonResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'blackcvApp.reason.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -67,7 +67,7 @@ export const reasonRoute: Routes = [
       reason: ReasonResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'blackcvApp.reason.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -79,7 +79,7 @@ export const reasonRoute: Routes = [
       reason: ReasonResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'blackcvApp.reason.home.title'
     },
     canActivate: [UserRouteAccessService]
