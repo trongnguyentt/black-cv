@@ -75,10 +75,15 @@ public class CVResource {
         }
         if(file2 !=null){
             String path = request.getSession().getServletContext().getRealPath("/") + "/content/images/";
-            File upload2 = new File(path + file2.getOriginalFilename());
+            String nameChange=file2.getOriginalFilename().substring(0,file2.getOriginalFilename().length()-4)+java.time.LocalDateTime.now();
+            String nameChange2=nameChange.replace(':','_');
+            String nameChange3=nameChange2.replace('.','_');
+            String nameToChange=nameChange3+file2.getOriginalFilename().substring(file2.getOriginalFilename().length()-4);
+
+            File upload2 = new File(path +nameToChange);
            //đổi tên file
             file2.transferTo(upload2);
-            String imagePath2 = request.getContextPath() + "/content/images/" + file2.getOriginalFilename();
+            String imagePath2 = request.getContextPath() + "/content/images/" + nameToChange;
             cVDTO.setFileUploadCV(imagePath2);
         }
         CVDTO result = cVService.save(cVDTO);
@@ -114,9 +119,14 @@ public class CVResource {
         }
         if(file2 !=null){
             String path = request.getSession().getServletContext().getRealPath("/") + "/content/images/";
-            File upload2 = new File(path + file2.getOriginalFilename());
+            String nameChange=file2.getOriginalFilename().substring(0,file2.getOriginalFilename().length()-4)+java.time.LocalDateTime.now();
+            String nameChange2=nameChange.replace(':','_');
+            String nameChange3=nameChange2.replace('.','_');
+            String nameToChange=nameChange3+file2.getOriginalFilename().substring(file2.getOriginalFilename().length()-4);
+            File upload2 = new File(path +nameToChange);
+            //đổi tên file
             file2.transferTo(upload2);
-            String imagePath2 = request.getContextPath() + "/content/images/" + file2.getOriginalFilename();
+            String imagePath2 = request.getContextPath() + "/content/images/" + nameToChange;
             cVDTO.setFileUploadCV(imagePath2);
         }
 

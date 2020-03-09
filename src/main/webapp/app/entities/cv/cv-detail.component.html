@@ -49,15 +49,15 @@
             </div>
         </div>
         <div class="col-sm-7 phai-detail">
-            <div class="d-flex p-3 bg-secondary text-white khoi1">
-                <img src="/content/icon/anh8.PNG" alt="">
-                <div class="flex1">Education</div>
-            </div>
-            <div class="hoc_van">
-                <p>Đại Học : Điện Lực</p>
-                <p>Chuyên Ngành : Quản trị doanh nghiệp</p>
-                <p>Tốt nghiệp : loại giỏi</p>
-            </div>
+<!--            <div class="d-flex p-3 bg-secondary text-white khoi1">-->
+<!--                <img src="/content/icon/anh8.PNG" alt="">-->
+<!--                <div class="flex1">Education</div>-->
+<!--            </div>-->
+<!--            <div class="hoc_van">-->
+<!--                <p>Đại Học : Điện Lực</p>-->
+<!--                <p>Chuyên Ngành : Quản trị doanh nghiệp</p>-->
+<!--                <p>Tốt nghiệp : loại giỏi</p>-->
+<!--            </div>-->
             <div class="d-flex p-3 bg-secondary text-white khoi">
                 <img src="/content/icon/anh9.PNG" alt="">
                 <div class="flex1">Job And Reason </div>
@@ -66,33 +66,17 @@
                 <p> Company :   <a href="#"> {{cV.idCompany}} </a> </p>
                 <p>Job : {{cV.job}}</p>
                 <p>Reason :{{cV.reason}}</p>
-
             </div>
             <div class="d-flex p-3 bg-secondary text-white khoi fixHeader">
-<!--                <img style="height: 10rem" src="{{cV.fileUploadCV}}" alt="">-->
+
                 <div class="flex1">Attachments </div>
             </div>
 
             <div class="d-flex p-3  text-white justify-content-end khoianh">
-                <!-- The Modal -->
-<!--                <img data-toggle="modal" data-target=".cd-example-modal-xl" src="{{cV.fileUploadCV}}" style="width:25%; height: 25% ">-->
-
-<!--                <div class="modal fade cd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">-->
-<!--                    <div class="modal-dialog modal-xl">-->
-<!--                        <div class="modal-content">-->
-<!--                            <img id="myImg" src="{{cV.fileUploadCV}}" alt="" style="width: 75%; max-width: 300px">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-
-                <!-- Button trigger modal -->
-                <img data-toggle="modal" data-target="#exampleModalCenter" src="{{cV.fileUploadCV}}" style="width:25%; height: 25% ">
-
-
+                <img data-toggle="modal" data-target="#exampleModalCenter" src="{{cV.fileUploadCV}}" style="width:40%; height: 40% ">
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="picture">
                         <div class="modal-content ">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
@@ -103,13 +87,10 @@
                             <div class="modal-body">
                                 <img id="myImg" src="{{cV.fileUploadCV}}" alt="" style="width: 100%; max-width: 800px">
                             </div>
-<!--                            <div class="modal-footer">-->
-<!--                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-<!--                                <button type="button" class="btn btn-primary">Save changes</button>-->
-<!--                            </div>-->
                         </div>
                     </div>
                 </div>
+
                 <div class="thumb"></div>
             </div>
         </div>

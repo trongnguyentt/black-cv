@@ -15,7 +15,7 @@
                 </div>
                 <button type="submit" [disabled]="resetRequestForm.invalid" class="btn btn-primary">Send</button>
             </form>
-            <a *ngIf="listStaffLength > 1" (click)="createMessage(listStaff)" class="btn btn-primary">We have more 2 record about this staff !</a>
+            <a *ngIf="listStaffLength > 0" (click)="createMessage(listStaff)" class="btn btn-primary">Bạn muốn có thêm thông tin về người này?</a>
         </div>
     </div>
 </div>

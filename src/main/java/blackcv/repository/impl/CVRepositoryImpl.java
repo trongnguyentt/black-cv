@@ -20,26 +20,20 @@ public class CVRepositoryImpl implements CVRepositoryCustom {
     @Override
     public List<CV> search(MultiValueMap<String, String> queryParams, Pageable pageable) {
         Map<String, Object> values = new HashMap<>();
+        String sql = "";
         if (queryParams.containsKey("login") && !queryParams.get("author").get(0).contains("ROLE_ADMIN")) {
-            String sql = "select C from CV C where C.status <> 0 and C.createdBy like :login";
+            sql = "select C from CV C where C.status <> 0 and C.createdBy like :login";
             values.put("login", queryParams.get("login").get(0));
-            sql += createWhereQuery(queryParams, values);
-            sql += createOrderQuery(queryParams);
-            Query query = entityManager.createQuery(sql, CV.class);
-            values.forEach(query::setParameter);
-            query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
-            query.setMaxResults(pageable.getPageSize());
-            return query.getResultList();
         } else {
-            String sql = "select C from CV C where C.status <> 0 ";
-            sql += createWhereQuery(queryParams, values);
-            sql += createOrderQuery(queryParams);
-            Query query = entityManager.createQuery(sql, CV.class);
-            values.forEach(query::setParameter);
-            query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
-            query.setMaxResults(pageable.getPageSize());
-            return query.getResultList();
+            sql = "select C from CV C where C.status <> 0 ";
         }
+        sql += createWhereQuery(queryParams, values);
+        sql += createOrderQuery(queryParams);
+        Query query = entityManager.createQuery(sql, CV.class);
+        values.forEach(query::setParameter);
+        query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
+        query.setMaxResults(pageable.getPageSize());
+        return query.getResultList();
     }
 
     @Override
@@ -62,8 +56,14 @@ public class CVRepositoryImpl implements CVRepositoryCustom {
 
     @Override
     public Long countCV(MultiValueMap<String, String> queryParams) {
-        String sql = "select count(C) from CV C where C.status <> 0";
         Map<String, Object> values = new HashMap<>();
+        String sql = "";
+        if (queryParams.containsKey("login") && !queryParams.get("author").get(0).contains("ROLE_ADMIN")) {
+            sql = "select count(C) from CV C where C.status <> 0 and C.createdBy like :login";
+            values.put("login", queryParams.get("login").get(0));
+        } else {
+            sql = "select count(C) from CV C where C.status <> 0";
+        }
         sql += createWhereQuery(queryParams, values);
         Query query = entityManager.createQuery(sql, Long.class);
         values.forEach(query::setParameter);

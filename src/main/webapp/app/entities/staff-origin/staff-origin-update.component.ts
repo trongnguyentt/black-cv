@@ -25,7 +25,8 @@ export class StaffOriginUpdateComponent implements OnInit {
     job: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
     advantages: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
     defect: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
-    more: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
+    // more: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
+    more: [''],
     status: []
   });
 
