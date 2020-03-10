@@ -8,8 +8,12 @@ import blackcv.service.mapper.StaffOriginMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.MultiValueMap;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -44,24 +48,38 @@ public class StaffOriginServiceImpl implements StaffOriginService {
     @Override
     public StaffOriginDTO save(StaffOriginDTO staffOriginDTO) {
         log.debug("Request to save StaffOrigin : {}", staffOriginDTO);
+        if (staffOriginDTO.getAdvantages() != null || staffOriginDTO.getDefect() != null) {
+            staffOriginDTO.setStatus(1);
+        } else {
+            staffOriginDTO.setStatus(2);
+        }
         StaffOrigin staffOrigin = staffOriginMapper.toEntity(staffOriginDTO);
         staffOrigin = staffOriginRepository.save(staffOrigin);
         return staffOriginMapper.toDto(staffOrigin);
     }
+
+    @Override
+    public Page<StaffOriginDTO> findAll(MultiValueMap<String, String> queryParams, Pageable pageable) {
+        log.debug("Request to get all CVS");
+        List<StaffOrigin> device = staffOriginRepository.search(queryParams, pageable);
+        Page<StaffOrigin> pages = new PageImpl<>(device, pageable, staffOriginRepository.countStaffOrigin(queryParams));
+        return pages.map(staffOriginMapper::toDto);
+    }
+
 
     /**
      * Get all the staffOrigins.
      *
      * @return the list of entities.
      */
-    @Override
-    @Transactional(readOnly = true)
-    public List<StaffOriginDTO> findAll() {
-        log.debug("Request to get all StaffOrigins");
-        return staffOriginRepository.findAll().stream()
-            .map(staffOriginMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
-    }
+//    @Override
+//    @Transactional(readOnly = true)
+//    public List<StaffOriginDTO> findAll() {
+//        log.debug("Request to get all StaffOrigins");
+//        return staffOriginRepository.findAll().stream()
+//            .map(staffOriginMapper::toDto)
+//            .collect(Collectors.toCollection(LinkedList::new));
+//    }
 
     @Override
     public List<StaffOriginDTO> listStaffNameAndEmail(String name, String email) {
@@ -93,6 +111,13 @@ public class StaffOriginServiceImpl implements StaffOriginService {
             .map(staffOriginMapper::toDto);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<StaffOriginDTO> findOneByLogin(String login) {
+//        return companyRepository.findByCreatedBy(login);
+        return null;
+    }
+
     /**
      * Delete the staffOrigin by id.
      *
@@ -102,5 +127,8 @@ public class StaffOriginServiceImpl implements StaffOriginService {
     public void delete(Long id) {
         log.debug("Request to delete StaffOrigin : {}", id);
         staffOriginRepository.deleteById(id);
+        StaffOrigin staffOrigin = staffOriginRepository.findById(id).get();
+        staffOrigin.setStatus(0);
+        staffOriginRepository.save(staffOrigin);
     }
 }

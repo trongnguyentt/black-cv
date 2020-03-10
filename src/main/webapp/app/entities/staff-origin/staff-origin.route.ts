@@ -11,6 +11,7 @@ import { StaffOriginComponent } from './staff-origin.component';
 import { StaffOriginDetailComponent } from './staff-origin-detail.component';
 import { StaffOriginUpdateComponent } from './staff-origin-update.component';
 import { CompanyResolve } from 'app/entities/company/company.route';
+import { JhiResolvePagingParams } from 'ng-jhipster';
 
 @Injectable({ providedIn: 'root' })
 export class StaffOriginResolve implements Resolve<IStaffOrigin> {
@@ -38,8 +39,12 @@ export const staffOriginRoute: Routes = [
   {
     path: '',
     component: StaffOriginComponent,
+    resolve: {
+      pagingParams: JhiResolvePagingParams
+    },
     data: {
       authorities: ['ROLE_USER'],
+      defaultSort: 'id,desc',
       pageTitle: 'blackcvApp.staffOrigin.home.title'
     },
     canActivate: [UserRouteAccessService]

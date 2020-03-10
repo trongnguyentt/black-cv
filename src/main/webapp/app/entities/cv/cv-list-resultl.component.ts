@@ -1,21 +1,20 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import {CV, ICV} from 'app/shared/model/cv.model';
-import {FormBuilder, Validators} from '@angular/forms';
+import { CV, ICV } from 'app/shared/model/cv.model';
+import { FormBuilder, Validators } from '@angular/forms';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
-import {Company, ICompany} from 'app/shared/model/company.model';
+import { Company, ICompany } from 'app/shared/model/company.model';
 import { CompanyService } from 'app/entities/company/company.service';
-import {CVService} from "app/entities/cv/cv.service";
-import {flatMap} from "rxjs/operators";
-import {EMPTY, of} from "rxjs";
+
+import { CVService } from 'app/entities/cv/cv.service';
 
 @Component({
   selector: 'jhi-cv-list-result',
   templateUrl: './cv-list-result.component.html'
 })
 export class CvListResultlComponent implements OnInit {
-// @Input() cVa!:ICV;
+  // @Input() cVa!:ICV;
   cVS?: ICV[];
   companies!: ICompany;
   searchForm = this.fb.group({
@@ -25,8 +24,13 @@ export class CvListResultlComponent implements OnInit {
     birthday: []
   });
 
-  constructor(protected activatedRoute: ActivatedRoute, private fb: FormBuilder, protected companyService: CompanyService,
-              protected router: Router,protected cVService: CVService) {
+  constructor(
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    protected companyService: CompanyService,
+    protected router: Router,
+    protected cVService: CVService
+  ) {
     this.activatedRoute.queryParams.subscribe(data => {
       const res = {};
       res['name'] = data.hasOwnProperty('name') ? data['name'].trim() : '';
@@ -38,12 +42,12 @@ export class CvListResultlComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+
   transition() {
     this.router.navigate(['/cv/list-result'], {
       queryParams: {
-       ...this.getFormValues()
+        ...this.getFormValues()
       }
     });
     this.loadAll();
@@ -79,6 +83,5 @@ export class CvListResultlComponent implements OnInit {
   }
   protected paginateCV(data: ICV[], headers: HttpHeaders) {
     this.cVS = data;
-
   }
 }

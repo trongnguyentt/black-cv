@@ -10,10 +10,11 @@ import { IStaffOrigin } from 'app/shared/model/staff-origin.model';
 })
 export class ListStaffComponent {
   staffOrigins!: IStaffOrigin[];
-
+  // backHome!: string;
   constructor(private data: ListStaffService) {}
 
   ngOnInit() {
     this.data.currentMessage.subscribe(listStaff => (this.staffOrigins = listStaff));
+    // this.data.currentBack.subscribe( content => (this.backHome = content));
   }
 }

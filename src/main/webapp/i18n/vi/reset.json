@@ -18,8 +18,8 @@
       },
       "messages": {
         "info": "Chọn mật khẩu mới",
-        "success": "<strong>Mật khẩu của bạn đã được đặt lại.</strong> Bạn vui lòng ",
-        "keymissing": "Không tìm thấy khóa để đặt lại mật khẩu.",
+        "success": "<strong>Mật khẩu của bạn đã được đặt lại.</strong>   ",
+        "keymissing": "Khóa đặt lại sai",
         "error": "Không thể đặt lại mật khẩu của bạn. Lưu ý, yêu cầu đặt lại mật khẩu chỉ có hiệu lực trong 24 giờ."
       }
     }
