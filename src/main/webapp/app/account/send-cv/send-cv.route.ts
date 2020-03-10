@@ -38,6 +38,6 @@ export const sendCvRoute: Route = {
   },
   data: {
     authorities: [],
-    pageTitle: 'global.menu.account.password'
+    pageTitle: 'global.menu.account.sendEmail'
   }
 };

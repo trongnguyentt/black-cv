@@ -12,7 +12,7 @@ import { CVComponent } from './cv.component';
 import { CVDetailComponent } from './cv-detail.component';
 import { CVUpdateComponent } from './cv-update.component';
 import { CvNoResultlComponent } from 'app/entities/cv/cv-no-resultl.component';
-import {CvListResultlComponent} from "app/entities/cv/cv-list-resultl.component";
+import { CvListResultlComponent } from 'app/entities/cv/cv-list-resultl.component';
 
 @Injectable({ providedIn: 'root' })
 export class CVResolve implements Resolve<ICV> {
@@ -45,7 +45,7 @@ export const cVRoute: Routes = [
     },
     data: {
       authorities: ['ROLE_USER'],
-      defaultSort: 'id,asc',
+      defaultSort: 'id,desc',
       pageTitle: 'blackcvApp.cV.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -98,7 +98,8 @@ export const cVRoute: Routes = [
       pageTitle: 'blackcvApp.cV.home.title'
     },
     canActivate: [UserRouteAccessService]
-  },{
+  },
+  {
     path: 'list-result',
     component: CvListResultlComponent,
     resolve: {

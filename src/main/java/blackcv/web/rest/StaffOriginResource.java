@@ -5,12 +5,19 @@ import blackcv.web.rest.errors.BadRequestAlertException;
 import blackcv.service.dto.StaffOriginDTO;
 
 import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -85,9 +92,11 @@ public class StaffOriginResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of staffOrigins in body.
      */
     @GetMapping("/staff-origins")
-    public List<StaffOriginDTO> getAllStaffOrigins() {
+    public ResponseEntity<List<StaffOriginDTO>> getAllStaffOrigins(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
         log.debug("REST request to get all StaffOrigins");
-        return staffOriginService.findAll();
+        Page<StaffOriginDTO> page = staffOriginService.findAll(queryParams, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     @GetMapping("/staff-origins/{name}/{email}")

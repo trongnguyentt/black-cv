@@ -1,6 +1,6 @@
 {
   "logs": {
-    "title": "Ghi logs",
+    "title": "Bản ghi logs",
     "nbloggers": "Có tổng cộng {{ total }} điểm ghi logs.",
     "filter": "Lọc",
     "table": {

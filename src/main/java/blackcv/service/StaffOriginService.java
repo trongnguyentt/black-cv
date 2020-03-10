@@ -1,6 +1,9 @@
 package blackcv.service;
 
 import blackcv.service.dto.StaffOriginDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.util.MultiValueMap;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +26,7 @@ public interface StaffOriginService {
      *
      * @return the list of entities.
      */
-    List<StaffOriginDTO> findAll();
+    Page<StaffOriginDTO> findAll(MultiValueMap<String, String> queryParams, Pageable pageable);
 
 
     List<StaffOriginDTO> listStaffNameAndEmail(String name, String email);
@@ -35,6 +38,8 @@ public interface StaffOriginService {
      * @return the entity.
      */
     Optional<StaffOriginDTO> findOne(Long id);
+
+    Optional<StaffOriginDTO> findOneByLogin(String login);
 
     /**
      * Delete the "id" staffOrigin.
