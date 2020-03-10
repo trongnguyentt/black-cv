@@ -20,7 +20,6 @@
                 </span>
                 </a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link" routerLink="/">
                 <span>
@@ -28,9 +27,9 @@
                 </span>
                 </a>
             </li>
-
             <li class="nav-item dropdown">
-                <a style="color: black;" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+                <a style="color: black;" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                   aria-expanded="false"
                    jhiTranslate="global.menu.language">Language</a>
                 <ul class="dropdown-menu" aria-labelledby="languagesnavBarDropdown">
                     <li *ngFor="let language of languages">
@@ -98,12 +97,13 @@
         </ul>
     </div>
 </header>
-<div class="app-body">
-    <div class="sidebar" *ngIf="status" [ngSwitch]="isAuthenticated()">
+<div class="app-body anhnen" id="cc">
+    <div class="sidebar" *ngIf="isAuthenticated()&&status" [ngSwitch]="isAuthenticated()">
         <nav class="sidebar-nav" *ngSwitchCase="true">
-            <li class="nav-item" >
+            <li class="nav-item">
                 <div class="text-center">
-                    <img style="height: 3rem;" src="https://evotek.vn/wp-content/uploads/2019/08/logo_with_sologan-300x112.png"
+                    <img style="height: 3rem;"
+                         src="https://evotek.vn/wp-content/uploads/2019/08/logo_with_sologan-300x112.png"
                          class="rounded" alt="Evotek">
                 </div>
             </li>
@@ -113,22 +113,25 @@
                     <span jhiTranslate="global.menu.entities.cv">Cv</span>
                 </a>
 
-                <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item" routerLink="company" routerLinkActive="active">
+                <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item" routerLink="company"
+                   routerLinkActive="active">
                     <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
                     <span jhiTranslate="global.menu.entities.company">Company</span>
                 </a>
 
-                <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item" routerLink="reason" routerLinkActive="active">
+                <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item" routerLink="reason"
+                   routerLinkActive="active">
                     <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
                     <span jhiTranslate="global.menu.entities.reason">Reason</span>
                 </a>
 
-<!--                <a class="dropdown-item" routerLink="reason-list" routerLinkActive="active">-->
-<!--                    <fa-icon icon="tasks" fixedWidth="true"></fa-icon>-->
-<!--                    <span jhiTranslate="global.menu.entities.reasonList">Reason List</span>-->
-<!--                </a>-->
+                <!--                <a class="dropdown-item" routerLink="reason-list" routerLinkActive="active">-->
+                <!--                    <fa-icon icon="tasks" fixedWidth="true"></fa-icon>-->
+                <!--                    <span jhiTranslate="global.menu.entities.reasonList">Reason List</span>-->
+                <!--                </a>-->
 
-                <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item" routerLink="staff-origin" routerLinkActive="active">
+                <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item" routerLink="staff-origin"
+                   routerLinkActive="active">
                     <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
                     <span jhiTranslate="global.menu.entities.staffOrigin">Staff Origin</span>
                 </a>
