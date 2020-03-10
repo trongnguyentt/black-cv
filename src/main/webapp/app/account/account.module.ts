@@ -25,7 +25,7 @@ import { ListStaffComponent } from 'app/account/list-staff/list.component';
     PasswordResetFinishComponent,
     SettingsComponent,
     SendCvComponent,
-    ListStaffComponent,
+    ListStaffComponent
   ]
 })
 export class AccountModule {}

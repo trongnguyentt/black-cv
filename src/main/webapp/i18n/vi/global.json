@@ -21,7 +21,8 @@
         "sessions": "Phiên đăng nhập",
         "login": "Đăng nhập",
         "logout": "Đăng xuất",
-        "register": "Đăng ký"
+        "register": "Đăng ký",
+        "sendEmail": "Gửi Email"
       },
       "admin": {
         "main": "Quản trị",
@@ -30,7 +31,7 @@
         "metrics": "Số liệu",
         "health": "Tình trạng",
         "configuration": "Cấu hình",
-        "logs": "Ghi logs",
+        "logs": "Bản ghi logs",
         "audits": "Kiểm duyệt",
         "apidocs": "API",
         "database": "Cơ sở dữ liệu",
@@ -126,18 +127,18 @@
   "error": {
     "internalServerError": "Lỗi máy chủ nội bộ",
     "server.not.reachable": "Không tìm thấy máy chủ",
-    "url.not.found": "Không tìm thấy",
+    "url.not.found": "Không tìm thấy đường dẫn",
     "NotNull": "Trường {{ fieldName }} không được để trống!",
     "Size": "Trường {{ fieldName }} không nằm trong giới hạn tối thiểu/tối đa!",
     "userexists": "Tên đăng nhập đã được sử dụng!",
     "emailexists": "Email đã được sử dụng!",
     "companyexists": "Tên công ty đã được sử dụng!",
     "idexists": "Thêm mới {{ entityName }} không được trùng với định danh đã tồn tại",
-    "idnull": "Invalid ID",
+    "idnull": "ID không hợp lệ",
     "file": {
-      "could.not.extract": "Could not extract file",
-      "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
+      "could.not.extract": "Không thể giải nén tập tin",
+      "not.image": "Tập tin đã được cho rằng là 1 hình ảnh nhưng được tìm thấy ở \"{{ fileType }}\""
     }
   },
-  "footer": "Đây là chân trang của bạn"
+  "footer": "Đây là phần cuối của trang"
 }

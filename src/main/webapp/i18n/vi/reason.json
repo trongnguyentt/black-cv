@@ -5,13 +5,13 @@
         "title": "Lý do",
         "createLabel": "Thêm mới",
         "createOrEditLabel": "Thêm mới hoặc cập nhật",
-        "notFound": "Không tìm thấy bản ghi hợp lệ"
+        "notFound": "Không tìm thấy Lý do hợp lệ"
       },
-      "created": "Bản ghi mới được tạo với định danh {{ param }}",
-      "updated": "Bản ghi cập nhật với định danh {{ param }}",
-      "deleted": "Bản ghi đã xóa với định danh {{ param }}",
+      "created": "Lý do mới được tạo với định danh {{ param }}",
+      "updated": "Lý do được cập nhật với định danh {{ param }}",
+      "deleted": "Lý do đã xóa với định danh {{ param }}",
       "delete": {
-        "question": "Bạn có chắc là muốn xóa bản ghi {{ id }}?"
+        "question": "Bạn có chắc là muốn xóa lý do {{ id }}?"
       },
       "detail": {
         "title": "Lý do"
