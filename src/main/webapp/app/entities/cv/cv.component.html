@@ -83,7 +83,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let cV of cVS ;trackBy: trackId">
+            <tr *ngFor="let cV of cVS ;trackBy: trackId" class="color-white">
                 <td><a [routerLink]="['/cv', cV.id, 'view' ]">{{cV.id}}</a></td>
                 <td>{{cV.idCompany}}</td>
                 <td>{{cV.name}}</td>
@@ -122,7 +122,7 @@
         </table>
     </div>
     <div *ngIf="cVS?.length > 0">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center color-white">
             <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
