@@ -12,7 +12,6 @@ import { PasswordResetFinishComponent } from './password-reset/finish/password-r
 import { SettingsComponent } from './settings/settings.component';
 import { accountState } from './account.route';
 import { SendCvComponent } from 'app/account/send-cv/send-cv.component';
-import { LoginModalComponent } from 'app/account/login/login.component';
 import { ListStaffComponent } from 'app/account/list-staff/list.component';
 
 @NgModule({
@@ -26,8 +25,7 @@ import { ListStaffComponent } from 'app/account/list-staff/list.component';
     PasswordResetFinishComponent,
     SettingsComponent,
     SendCvComponent,
-    ListStaffComponent,
-    LoginModalComponent
+    ListStaffComponent
   ]
 })
 export class AccountModule {}

@@ -1,6 +1,6 @@
 import { Component, Renderer, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 import { EMAIL_NOT_FOUND_TYPE } from 'app/shared/constants/error.constants';
 import { SendCvService } from 'app/account/send-cv/send-cv.service';
@@ -30,12 +30,15 @@ export class SendCvComponent implements OnInit {
   company!: ICompany;
   staffOrigin!: IStaffOrigin;
   resetRequestForm = this.fb.group({
-    email: [''],
-    name: ['']
+    email: ['', [Validators.required, Validators.email]],
+    name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]]
   });
 
   listStaff!: IStaffOrigin[];
   listStaffLength?: number;
+
+  // content!: string;
+  // contentLength?: number;
 
   constructor(
     protected listStaffService: ListStaffService,
@@ -100,10 +103,19 @@ export class SendCvComponent implements OnInit {
     this.router.navigate(['/account/list-staff']);
   }
 
+  // createLocal(local: string){
+  //   this.listStaffService.changLocal(local);
+  //   this.router.navigate(['/home']);
+  // }
+
   protected list(data: IStaffOrigin[]) {
     this.listStaff = data;
     this.listStaffLength = data.length;
   }
+  // protected backH(backHom: string) {
+  //   this.content = backHom;
+  //   this.contentLength = backHom.length;
+  // }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IStaffOrigin>>): void {
     result.subscribe(() => this.onSaveSuccess());

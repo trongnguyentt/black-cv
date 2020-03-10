@@ -8,7 +8,7 @@
       "entities": {
         "main": "Entities",
         "company": "Company",
-        "cv": "CV",
+        "cv": "Curriculum Vitae",
         "reasonList": "Reason List",
         "reason": "Reason",
         "staffOrigin": "Staff Origin",
