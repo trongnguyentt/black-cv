@@ -100,7 +100,7 @@ public class MailService {
         context.setVariable(INFO, info);
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, locale);
-        String mailMine="anhtrong97abc@gmail.com";
+        String mailMine=info.getEmail();
         sendEmail(mailMine, subject, content, false, true);
     }
 
@@ -111,7 +111,7 @@ public class MailService {
         context.setVariable(INFOs, infos);
         String content = templateEngine.process(templateName, context);
         String subject = messageSource.getMessage(titleKey, null, locale);
-        String mailMine="anhtrong97abc@gmail.com";
+        String mailMine=infos.getEmail();
         sendEmail(mailMine, subject, content, false, true);
     }
 
