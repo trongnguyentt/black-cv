@@ -48,7 +48,11 @@ public class StaffOriginServiceImpl implements StaffOriginService {
     @Override
     public StaffOriginDTO save(StaffOriginDTO staffOriginDTO) {
         log.debug("Request to save StaffOrigin : {}", staffOriginDTO);
-        staffOriginDTO.setStatus(1);
+        if (staffOriginDTO.getAdvantages() != null || staffOriginDTO.getDefect() != null) {
+            staffOriginDTO.setStatus(1);
+        } else {
+            staffOriginDTO.setStatus(2);
+        }
         StaffOrigin staffOrigin = staffOriginMapper.toEntity(staffOriginDTO);
         staffOrigin = staffOriginRepository.save(staffOrigin);
         return staffOriginMapper.toDto(staffOrigin);
@@ -123,5 +127,8 @@ public class StaffOriginServiceImpl implements StaffOriginService {
     public void delete(Long id) {
         log.debug("Request to delete StaffOrigin : {}", id);
         staffOriginRepository.deleteById(id);
+        StaffOrigin staffOrigin = staffOriginRepository.findById(id).get();
+        staffOrigin.setStatus(0);
+        staffOriginRepository.save(staffOrigin);
     }
 }
