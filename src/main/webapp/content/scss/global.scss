@@ -311,13 +311,14 @@ phần code css cho trang Home (đạt)*/
   background-image: url('../../content/images/anh2_component_home.jpg');
   height: 800px;
   position: absolute;
+  width: 100%;
 }
 .phanform {
   position: relative;
-  width: 680px;
-  height: 520px;
-  margin-top: 165px;
-  margin-left: 320px;
+  width: 48rem;
+  height: 28rem;
+  margin-left: 11rem;
+  margin-top: 4rem;
 
   border-radius: 10px;
   background-color: white;
@@ -493,4 +494,7 @@ css cho phần Create new CV*/
   background-position: center center;
   background-size: cover;
   border-radius: 5px;
+}
+.color-white {
+  color: white;
 }

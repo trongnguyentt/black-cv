@@ -51,7 +51,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let reason of reasons ;trackBy: trackId">
+            <tr *ngFor="let reason of reasons ;trackBy: trackId" class="color-white">
 <!--                <td><a [routerLink]="['/reason', reason.id, 'view' ]">{{reason.id}}</a></td>-->
                 <td>{{reason.descriptons}}</td>
                 <td>{{reason.reasonName}}</td>
@@ -82,7 +82,7 @@
         </table>
     </div>
     <div *ngIf="reasons?.length > 0">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center color-white">
             <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">

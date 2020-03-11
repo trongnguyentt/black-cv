@@ -9,13 +9,13 @@
 <div class="container">
     <div class="row"  >
         <div class="col-sm-5 trai" >
-            <div class="top_trai">
-                <div class="khoianh1">
-                    <div class=" thum1">
-                        <img style="height: 15rem" src="{{cV.avatar}}" alt="">
-                    </div>
-                </div>
-            </div>
+<!--            <div class="top_trai">-->
+<!--                <div class="khoianh1">-->
+<!--                    <div class=" thum1">-->
+<!--                        <img style="height: 15rem" src="{{cV.avatar}}" alt="">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="top_trai_body">
                 <div class="d-flex p-3 bg-secondary text-white khoi">
                     <img src="/content/icon/anh1.PNG" alt="">
@@ -23,27 +23,28 @@
                 </div>
                 <div class="d-flex p-3 bg-secondary text-white khoi">
                     <img src="/content/icon/anh2.PNG" alt="">
-                    <div class="flex5">{{cV.name}}</div>
+                    <div class="flex5">Name: {{cV.name}}</div>
                 </div>
                 <div class="d-flex p-3 bg-secondary text-white khoi">
                     <img src="/content/icon/anh3.PNG" alt="">
-                    <div class="flex5">{{cV.birthday}}</div>
+                    <div class="flex5">Birthday: {{cV.birthday}}</div>
                 </div>
                 <div class="d-flex p-3 bg-secondary text-white khoi">
                     <img src="/content/icon/anh4.PNG" alt="">
-                    <div class="flex5">{{cV.gender}}</div>
+                    <div class="flex5" *ngIf="cV.gender==1">Gender: Nam</div>
+                    <div class="flex5" *ngIf="cV.gender==0">Gender: Nữ</div>
                 </div>
                 <div class="d-flex p-3 bg-secondary text-white khoi">
                     <img src="/content/icon/anh5.PNG" alt="">
-                    <div class="flex5">{{cV.phone}}</div>
+                    <div class="flex5">Phone Number: {{cV.phone}}</div>
                 </div>
                 <div class="d-flex p-3 bg-secondary text-white khoi">
                     <img src="/content/icon/anh12.PNG" alt="">
-                    <div class="flex5">{{cV.email}}</div>
+                    <div class="flex5">Email: {{cV.email}}</div>
                 </div>
                 <div class="d-flex p-3 bg-secondary text-white khoi	">
                     <img src="/content/icon/anh13.PNG" alt="">
-                    <div class="flex5">{{cV.address}}</div>
+                    <div class="flex5">Address: {{cV.address}}</div>
                 </div>
 
             </div>
@@ -60,12 +61,18 @@
 <!--            </div>-->
             <div class="d-flex p-3 bg-secondary text-white khoi">
                 <img src="/content/icon/anh9.PNG" alt="">
-                <div class="flex1">Job And Reason </div>
+                <div class="flex1">Job</div>
             </div>
             <div class="hoc_van">
-                <p> Company :   <a href="#"> {{cV.idCompany}} </a> </p>
+                <p> Company :  <a href="#"> {{cV.idCompany}} </a> </p>
                 <p>Job : {{cV.job}}</p>
-                <p>Reason :{{cV.reason}}</p>
+            </div>
+            <div class="d-flex p-3 bg-secondary text-white khoi">
+                <div class="flex1">Reason </div>
+            </div>
+            <div class="hoc_van">
+                <p>Reason: {{cV.reason}}</p>
+                <p>Reason Detail: {{cV.reasonDetail}}</p>
             </div>
             <div class="d-flex p-3 bg-secondary text-white khoi fixHeader">
 
