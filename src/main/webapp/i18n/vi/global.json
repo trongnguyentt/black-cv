@@ -121,7 +121,8 @@
       "maxbytes": "Dung lượng trường này phải nhỏ hơn {{ max }} bytes.",
       "pattern": "Trường này phải theo định dạng {{ pattern }}.",
       "number": "Trường này phải là một số.",
-      "datetimelocal": "Trường này phải là định dạng thời gian."
+      "datetimelocal": "Trường này phải là định dạng thời gian.",
+      "info": "Vui lòng nhập đầy đủ thông tin."
     }
   },
   "error": {
