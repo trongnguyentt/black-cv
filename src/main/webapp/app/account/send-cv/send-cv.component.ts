@@ -105,7 +105,7 @@ export class SendCvComponent implements OnInit {
 
   // createLocal(local: string){
   //   this.listStaffService.changLocal(local);
-  //   this.router.navigate(['/home']);
+  //   this.router.navigate(['/home']);list
   // }
 
   protected list(data: IStaffOrigin[]) {

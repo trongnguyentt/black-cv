@@ -9,10 +9,10 @@
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@2.1.7/dist/js/coreui.min.js"></script>
 
-<body class="app header-fixed sidebar-fixed sidebar-lg-show">
-<header class="app-header navbar">
-    <div [ngSwitch]="isAuthenticated()">
-        <ul class="nav nav-pills">
+<body class="app header-fixed sidebar-fixed sidebar-xl-show">
+    <header class="app-header navbar">
+        <div [ngSwitch]="isAuthenticated()">
+            <ul class="nav nav-pills">
             <li class="nav-item">
                 <a class="nav-link" (click)="changeShow()">
                 <span>
@@ -94,11 +94,11 @@
                     </li>
                 </ul>
             </li>
-        </ul>
-    </div>
-</header>
-<div class="app-body anhnen" id="cc">
-    <div class="sidebar" *ngIf="isAuthenticated()&&status" [ngSwitch]="isAuthenticated()">
+            </ul>
+        </div>
+    </header>
+    <div class="app-body anhnen" id="cc">
+        <div class="sidebar" *ngIf="isAuthenticated()&&status" [ngSwitch]="isAuthenticated()">
         <nav class="sidebar-nav" *ngSwitchCase="true">
             <li class="nav-item">
                 <div class="text-center">
@@ -180,15 +180,15 @@
                 </a>
             </li>
         </nav>
-    </div>
-    <main class="main">
-        <router-outlet></router-outlet>
-    </main>
+        </div>
+        <main class="main">
+            <router-outlet></router-outlet>
+        </main>
     <!--    <aside class="aside-menu">-->
     <!--        &lt;!&ndash; Aside menu content here &ndash;&gt;-->
     <!--    </aside>-->
-</div>
-<footer class="app-footer">
-    <jhi-footer></jhi-footer>
-</footer>
+    </div>
+    <footer class="app-footer">
+        <jhi-footer></jhi-footer>
+    </footer>
 </body>
