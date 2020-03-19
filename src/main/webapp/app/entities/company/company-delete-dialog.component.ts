@@ -20,7 +20,6 @@ export class CompanyDeleteDialogComponent {
   confirmDelete(id: number): void {
     this.companyService.delete(id).subscribe(() => {
       this.eventManager.broadcast('companyListModification');
-      this.activeModal.close();
     });
   }
 }

@@ -17,7 +17,8 @@
                                        name="field_cVName" id="field_cVName"
                                        formControlName="name">
                                 <div
-                                    *ngIf="searchForm.get('name').invalid && (searchForm.get('name').dirty || searchForm.get('name').touched)">
+                                    *ngIf="searchForm.get('name').invalid && (searchForm.get('name').dirty ||
+                                     searchForm.get('name').untouched || searchForm.get('name').touched )">
                                     <small class="form-text text-danger"
                                            *ngIf="searchForm.get('name')?.errors?.minlength"
                                            jhiTranslate="entity.validation.minlength"
@@ -50,7 +51,8 @@
                                 <input type="date" class="form-control borderduoi " placeholder="Birthday"
                                        id="field_birthday" name="field_birthday" formControlName="birthday">
                                 <div
-                                    *ngIf="searchForm.get('birthday').invalid && (searchForm.get('birthday').dirty || searchForm.get('birthday').touched)">
+                                    *ngIf="searchForm.get('birthday').invalid && (searchForm.get('birthday').dirty ||
+                                     searchForm.get('birthday').untouched || searchForm.get('birthday').touched)">
                                     <small
                                         class="form-text text-danger"
                                         *ngIf="searchForm.get('birthday')?.errors?.required"
@@ -67,7 +69,8 @@
                                     <input type="email" class="form-control borderduoi" placeholder="Enter mail"
                                            name="field_email" id="field_email" formControlName="email">
                                     <div
-                                        *ngIf="searchForm.get('email')!.invalid && (searchForm.get('email')!.dirty || searchForm.get('email')!.touched)">
+                                        *ngIf="searchForm.get('email')!.invalid && (searchForm.get('email').dirty ||
+                                         searchForm.get('email').untouched || searchForm.get('email').touched)">
                                         <small class="form-text text-danger"
                                                *ngIf="searchForm.get('email')?.errors?.required"
                                                jhiTranslate="global.messages.validate.email.required">
@@ -97,7 +100,8 @@
                                     <input type="tel" class="form-control borderduoi" placeholder="Enter phone"
                                            name="field_phone" id="field_phone" formControlName="phone">
                                     <div
-                                        *ngIf="searchForm.get('phone').invalid && (searchForm.get('phone').dirty || searchForm.get('phone').touched)">
+                                        *ngIf="searchForm.get('phone').invalid && (searchForm.get('phone').dirty ||
+                                         searchForm.get('phone').touched || searchForm.get('phone').untouched)">
                                         <small class="form-text text-danger"
                                                *ngIf="searchForm.get('phone')?.errors?.minlength"
                                                jhiTranslate="entity.validation.minlength"
@@ -129,24 +133,25 @@
 
                             </div>
                             <div class="row row2">
-<!--                                <div class="col ">-->
-<!--                                    <button class="btn-submit btn-block" type="submit">search</button>-->
-<!--                                </div>-->
-
+                                <div>
+                                    <div *ngIf="fail" class="noidung-form-center"
+                                         style="color: red"
+                                         jhiTranslate="entity.validation.info">
+                                        Please enter full information.
+                                    </div>
+                                    <button type="submit" id="save-entity"
+                                            class="btn btn-primary btn-search">
+                                        <span>Search</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <button type="submit" id="save-entity" [disabled]="searchForm.invalid"
-                                class="btn btn-primary" style="margin-left: 15rem;width: 11rem">
-                            <span>Search</span>
-                        </button>
-                    </div>
-                    <div *ngIf="fail" style="color: red">Bạn cần nhập đầy đủ thông tin</div>
-                </form>
-<!--                <jhi-cv-list-result>-->
 
-<!--                </jhi-cv-list-result>-->
+                </form>
+                <!--                <jhi-cv-list-result>-->
+
+                <!--                </jhi-cv-list-result>-->
             </div>
         </div>
     </div>
