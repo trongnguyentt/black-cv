@@ -145,7 +145,7 @@ export class CVComponent implements OnInit, OnDestroy {
   }
 
   details(cV: ICV, id: number): void {
-    const modalRef = this.modalService.open(CVDetailComponent, { size: 'xl', backdrop: 'static' });
+    const modalRef = this.modalService.open(CVDetailComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.cV = cV;
     modalRef.componentInstance.id = id;
   }

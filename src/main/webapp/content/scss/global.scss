@@ -203,6 +203,7 @@ ui bootstrap tweaks
 .sizeImage {
   height: 12rem;
 }
+
 .multiselect-dropdown {
   .dropdown-btn {
     border: 1px solid #e4e7ea !important;
@@ -231,6 +232,7 @@ file deitail của đat*/
 
   border-radius: 20px;
 }
+
 .thum1 {
   width: 100%;
   height: 225px;
@@ -245,57 +247,70 @@ file deitail của đat*/
 .avatar {
   height: 17rem;
 }
+
 .trai {
   height: 900px;
 }
+
 .top_trai {
   text-align: center;
   margin-top: 60px;
 }
+
 .top_trai img {
   border-radius: 20px;
   margin-top: 15px;
   margin-bottom: 40px;
 }
+
 .thong_tin_ca_nhan {
   height: 50px;
   width: 100%;
 }
+
 .thong_tin_ca_nhan h3 {
   /*//display: inline-block;*/
   float: right;
   margin-right: 50px;
 }
+
 .khoi {
   margin-top: 5px;
   border-radius: 5px;
 }
+
 .flex1 {
   margin-left: 20px;
   font-size: 25px;
 }
+
 .flex5 {
   margin-left: 20px;
 }
+
 /* hết css khối trái  */
 
 .phai-detail {
   height: 900px;
 }
+
 .khoi1 {
   margin-top: 75px;
   border-radius: 5px;
 }
+
 .hoc_van {
   margin-top: 20px;
   margin-left: 70px;
 }
+
 .khoianh {
   width: 100%;
   height: auto;
   padding: 5px;
   cursor: pointer;
 }
+
 .thumb {
   width: 200px;
   height: 150px;
@@ -305,6 +320,7 @@ file deitail của đat*/
   background-position: center center;
   background-size: cover;
 }
+
 /*
 phần code css cho trang Home (đạt)*/
 .anhnen {
@@ -313,6 +329,7 @@ phần code css cho trang Home (đạt)*/
   position: absolute;
   width: 100%;
 }
+
 .phanform {
   position: relative;
   width: 48rem;
@@ -331,10 +348,12 @@ phần code css cho trang Home (đạt)*/
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 }
+
 .phanform-top img {
   margin-top: -25px;
   margin-left: 45px;
 }
+
 .phanform-top p {
   display: block;
   color: white;
@@ -344,13 +363,14 @@ phần code css cho trang Home (đạt)*/
   padding-top: 10px;
   padding-left: 40px;
 }
+
 .noidung-form {
   padding-top: 40px;
   padding-right: 55px;
   padding-left: 55px;
 }
 
-.noidung-form-center {
+<<<<<<< head ======= .noidung-form-center {
   text-align: center;
   margin-left: 14.8rem;
 }
@@ -360,10 +380,11 @@ phần code css cho trang Home (đạt)*/
   width: 11rem;
   margin-top: 10px;
 }
-.row0 {
+>>>>>>>develop .row0 {
   padding-left: 15px;
   margin-right: 83px;
 }
+
 .row1 {
   float: right;
 }
@@ -375,6 +396,7 @@ phần code css cho trang Home (đạt)*/
 .borderduoi {
   border-bottom: 2px solid #95a5a6;
 }
+
 .btn-submit {
   display: block;
   margin-top: 32px;
@@ -388,35 +410,44 @@ phần code css cho trang Home (đạt)*/
   font-weight: 700;
   border-radius: 10px;
 }
+
 .btn-submit:hover {
   cursor: pointer;
 }
+
 .khoi {
   margin-top: 5px;
 }
+
 .flex1 {
   margin-left: 20px;
   font-size: 25px;
 }
+
 .flex5 {
   margin-left: 20px;
 }
+
 .phai {
   background-color: #718093;
   height: 500px;
 }
+
 input[type='text'] {
   border: none;
   border-bottom: 2px solid #7f8c8d;
 }
+
 input[type='email'] {
   border: none;
   border-bottom: 2px solid #7f8c8d;
 }
+
 input[type='tel'] {
   border: none;
   border-bottom: 2px solid #7f8c8d;
 }
+
 input[type='date'] {
   border: none;
   border-bottom: 2px solid #7f8c8d;
@@ -604,9 +635,11 @@ input[type='date'] {
   text-align: center;
   color: black;
 }
+
 .result h2 {
   padding-top: 135px;
 }
+
 .result-2 {
   padding-top: 20px;
 
@@ -623,10 +656,12 @@ input[type='date'] {
   margin: auto;
   margin-top: 30px;
 }
+
 .table {
   color: black;
   font-size: 18px;
 }
+
 .result-3 {
   padding-top: 20px;
   background-color: white;
@@ -637,17 +672,20 @@ input[type='date'] {
 
   color: white;
 }
+
 /*
 css cho phần Create new CV*/
 .bo {
   border: 1px solid #7f8c8d;
   border-radius: 5px;
 }
+
 .khoiform {
   /* border: 1px solid black;  */
   height: auto;
   margin-top: 40px;
 }
+
 .khoiform h2 {
   margin-bottom: 50px;
 }
@@ -669,6 +707,7 @@ css cho phần Create new CV*/
   background-size: cover;
   border-radius: 5px;
 }
+
 .resizeanh-2 {
   width: 400px;
   height: 250px !important;
@@ -679,201 +718,11 @@ css cho phần Create new CV*/
   background-size: cover;
   border-radius: 5px;
 }
+
 .color-white {
   color: white;
 }
 
-/*
-    DEMO STYLE
-*/
-
-@import 'https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700';
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #fafafa;
-}
-
-p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.1em;
-  font-weight: 300;
-  line-height: 1.7em;
-  color: #999;
-}
-
-a,
-a:hover,
-a:focus {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.navbar {
-  padding: 15px 10px;
-  background: #fff;
-  border: none;
-  border-radius: 0;
-  margin-bottom: 40px;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-btn {
-  box-shadow: none;
-  outline: none !important;
-  border: none;
-}
-
-.line {
-  width: 100%;
-  height: 1px;
-  border-bottom: 1px dashed #ddd;
-  margin: 40px 0;
-}
-
-/* ---------------------------------------------------
-    SIDEBAR STYLE
------------------------------------------------------ */
-
-#sidebar {
-  width: 250px;
-  position: fixed;
-  top: 0;
-  left: -250px;
-  height: 100vh;
-  z-index: 999;
-  background: #7386d5;
-  color: #fff;
-  transition: all 0.3s;
-  overflow-y: scroll;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
-}
-
-#sidebar.active {
-  left: 0;
-}
-
-#dismiss {
-  width: 35px;
-  height: 35px;
-  line-height: 35px;
-  text-align: center;
-  background: #7386d5;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
-}
-
-#dismiss:hover {
-  background: #fff;
-  color: #7386d5;
-}
-
-.overlay {
-  display: none;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 998;
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
-}
-.overlay.active {
-  display: block;
-  opacity: 1;
-}
-
-#sidebar .sidebar-header {
-  padding: 20px;
-  background: #6d7fcc;
-}
-
-#sidebar ul.components {
-  padding: 20px 0;
-  border-bottom: 1px solid #47748b;
-}
-
-#sidebar ul p {
-  color: #fff;
-  padding: 10px;
-}
-
-#sidebar ul li a {
-  padding: 10px;
-  font-size: 1.1em;
-  display: block;
-}
-
-#sidebar ul li a:hover {
-  color: #7386d5;
-  background: #fff;
-}
-
-#sidebar ul li.active > a,
-a[aria-expanded='true'] {
-  color: #fff;
-  background: #6d7fcc;
-}
-
-a[data-toggle='collapse'] {
-  position: relative;
-}
-
-.dropdown-toggle::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-}
-
-ul ul a {
-  font-size: 0.9em !important;
-  padding-left: 30px !important;
-  background: #6d7fcc;
-}
-
-ul.CTAs {
-  padding: 20px;
-}
-
-ul.CTAs a {
-  text-align: center;
-  font-size: 0.9em !important;
-  display: block;
-  border-radius: 5px;
-  margin-bottom: 5px;
-}
-
-a.download {
-  background: #fff;
-  color: #7386d5;
-}
-
-a.article,
-a.article:hover {
-  background: #6d7fcc !important;
-  color: #fff !important;
-}
-
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-
-#content {
-  width: 100%;
-  padding: 20px;
-  min-height: 100vh;
-  transition: all 0.3s;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
 .text-wrap {
   word-wrap: break-word;
 }
