@@ -12,6 +12,8 @@ import { ReasonService } from './reason.service';
 import { ReasonDeleteDialogComponent } from './reason-delete-dialog.component';
 import { ICompany } from 'app/shared/model/company.model';
 import { FormBuilder } from '@angular/forms';
+import { CompanyDetailComponent } from 'app/entities/company/company-detail.component';
+import { ReasonDetailComponent } from 'app/entities/reason/reason-detail.component';
 
 @Component({
   selector: 'jhi-reason',
@@ -146,5 +148,10 @@ export class ReasonComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page;
+  }
+
+  details(reason: IReason): void {
+    const modalRef = this.modalService.open(ReasonDetailComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.reason = reason;
   }
 }
