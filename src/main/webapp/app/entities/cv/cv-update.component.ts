@@ -78,7 +78,7 @@ export class CVUpdateComponent implements OnInit {
     this.reasons = data;
     this.reason = [];
     if (data.length != 0) {
-      for (let reason of this.reasons) {
+      for (const reason of this.reasons) {
         if (reason.reasonName != undefined) {
           this.reason.push(reason.reasonName);
         }
@@ -94,9 +94,11 @@ export class CVUpdateComponent implements OnInit {
     }
     return result;
   }
+
   check(reason: string) {
     console.log(reason + ' ' + this.editForm.get(['reasonDetail'])!.value);
   }
+
   toArray(reason: any) {
     if (reason) {
       return reason.split(',');
@@ -165,10 +167,8 @@ export class CVUpdateComponent implements OnInit {
         if (res.body) {
           this.a = res.body;
         }
-        console.log(this.a.id + 'xxxxx');
         this.isSaving = false;
-
-        this.router.navigate(['/cv', this.a.id, 'view']);
+        this.previousState();
       },
       () => this.onSaveError()
     );
@@ -194,33 +194,34 @@ export class CVUpdateComponent implements OnInit {
     return null;
   }
 
-  selectIcon(event) {
+  selectIcon(event: any): void {
     const file = event.target.files[0];
     this.loadFile(
       file,
-      result => {
+      (result: any) => {
         this.iconPath = result;
         this.iconUpload = file;
       },
-      error => {
+      (error: any) => {
         this.alertService.error(error);
       }
     );
   }
 
-  selectIcon2(event) {
+  selectIcon2(event: any): void {
     const file = event.target.files[0];
     this.loadFile(
       file,
-      result => {
+      (result: any) => {
         this.iconPath2 = result;
         this.iconUpload2 = file;
       },
-      error => {
+      (error: any) => {
         this.alertService.error(error);
       }
     );
   }
+
   protected onSaveSuccess(): void {
     this.isSaving = false;
     const cV = this.createFromForm();
@@ -230,11 +231,12 @@ export class CVUpdateComponent implements OnInit {
       this.previousState();
     }
   }
+
   protected onSaveError(): void {
     this.isSaving = false;
   }
 
-  loadFile(file: File, success?, error?) {
+  loadFile(file: File, success?: any, error?: any) {
     if (!file || !['image/jpeg', 'image/jpg', 'image/bmp', 'image/png'].includes(file.type)) {
       return error('file.error.format');
     }

@@ -1,27 +1,24 @@
 <div>
-    <h2 id="page-heading">
-        <span jhiTranslate="blackcvApp.staffOrigin.home.title">Staff Origins</span>
-<!--        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-staff-origin" [routerLink]="['/staff-origin/new']">-->
-<!--            <fa-icon [icon]="'plus'"></fa-icon>-->
-<!--            <span  jhiTranslate="blackcvApp.staffOrigin.home.createLabel">-->
-<!--            Create a new Staff Origin-->
-<!--            </span>-->
-<!--        </button>-->
-    </h2>
+<!--    <h2 id="page-heading">-->
+<!--        <span jhiTranslate="blackcvApp.staffOrigin.home.title">Staff Origins</span>-->
+<!--&lt;!&ndash;        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-staff-origin" [routerLink]="['/staff-origin/new']">&ndash;&gt;-->
+<!--&lt;!&ndash;            <fa-icon [icon]="'plus'"></fa-icon>&ndash;&gt;-->
+<!--&lt;!&ndash;            <span  jhiTranslate="blackcvApp.staffOrigin.home.createLabel">&ndash;&gt;-->
+<!--&lt;!&ndash;            Create a new Staff Origin&ndash;&gt;-->
+<!--&lt;!&ndash;            </span>&ndash;&gt;-->
+<!--&lt;!&ndash;        </button>&ndash;&gt;-->
+<!--    </h2>-->
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <br/>
 
-    <div class="card">
-        <h5 class="card-header">Tìm kiếm</h5>
-        <div class="card-body">
             <form name="searchForm" role="form" novalidate (ngSubmit)="onSearch()" [formGroup]="searchForm">
                 <div class="row justify-content-center">
                     <div class="form-group col-sm-6 row text-color">
                         <label class="col-4 col-form-label text-right"
-                               for="field_cVName">Name</label>
+                               >Name</label>
                         <div class="col-8">
-                            <input type="text" class="form-control" name="field_cVName" id="field_cVName"
+                            <input type="text" class="form-control" placeholder="Search name"
                                    formControlName="name"/>
                         </div>
                     </div>
@@ -29,50 +26,50 @@
                 <div class="row justify-content-center">
                     <div class="form-group col-sm-6 row text-color">
                         <label class="col-4 col-form-label text-right"
-                               for="field_cVName">Email</label>
+                               >Email</label>
                         <div class="col-8">
-                            <input type="text" class="form-control" name="field_reason" id="field_reason"
+                            <input type="text" class="form-control" placeholder="Search email"
                                    formControlName="email"/>
                         </div>
                     </div>
                 </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-search">
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-info">
                         <fa-icon [icon]="'search'"></fa-icon>
-                        <span class="d-none d-md-inline">Tìm kiếm</span>
+                        <span class="d-none d-md-inline">Search</span>
                     </button>
                 </div>
             </form>
-        </div>
-    </div>
 
+    <br>
     <div class="alert alert-warning" *ngIf="staffOrigins?.length === 0">
         <span jhiTranslate="blackcvApp.staffOrigin.home.notFound">No staffOrigins found</span>
     </div>
     <div class="table-responsive" *ngIf="staffOrigins?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
-            <thead>
+            <caption>List of Staff Origin</caption>
+            <thead class="thead-light">
             <tr>
 <!--            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>-->
             <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.name">Name</span></th>
             <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.email">Email</span></th>
             <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.job">Job</span></th>
-            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.advantages">Advantages</span></th>
-            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.defect">Defect</span></th>
-            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.more">More</span></th>
+<!--            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.advantages">Advantages</span></th>-->
+<!--            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.defect">Defect</span></th>-->
+<!--            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.more">More</span></th>-->
 <!--            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.status">Status</span></th>-->
             <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let staffOrigin of staffOrigins ;trackBy: trackId" class="color-white">
+            <tr *ngFor="let staffOrigin of staffOrigins ;trackBy: trackId">
 <!--                <td><a [routerLink]="['/staff-origin', staffOrigin.id, 'view' ]">{{staffOrigin.id}}</a></td>-->
                 <td>{{staffOrigin.name}}</td>
                 <td>{{staffOrigin.email}}</td>
                 <td>{{staffOrigin.job}}</td>
-                <td>{{staffOrigin.advantages}}</td>
-                <td>{{staffOrigin.defect}}</td>
-                <td>{{staffOrigin.more}}</td>
+<!--                <td>{{staffOrigin.advantages}}</td>-->
+<!--                <td>{{staffOrigin.defect}}</td>-->
+<!--                <td>{{staffOrigin.more}}</td>-->
 <!--                <td>{{staffOrigin.status}}</td>-->
                 <td class="text-right">
                     <div class="btn-group">

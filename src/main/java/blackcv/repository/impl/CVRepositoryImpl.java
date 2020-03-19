@@ -76,6 +76,16 @@ public class CVRepositoryImpl implements CVRepositoryCustom {
             sql += "and lower(C.name) like lower(:name)";
             values.put("name", queryParams.get("name").get(0));
         }
+
+        if (queryParams.containsKey("phone")) {
+            sql += "and lower(C.phone) like lower(:phone)";
+            values.put("phone", queryParams.get("phone").get(0));
+        }
+
+        if (queryParams.containsKey("email")) {
+            sql += "and lower(C.email) like lower(:email)";
+            values.put("email", queryParams.get("email").get(0));
+        }
         return sql;
     }
 

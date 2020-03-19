@@ -16,6 +16,7 @@ import { Account } from 'app/core/user/account.model';
 import { ReasonService } from 'app/entities/reason/reason.service';
 import { CompanyService } from 'app/entities/company/company.service';
 import { ICompany } from 'app/shared/model/company.model';
+import { CVDetailComponent } from 'app/entities/cv/cv-detail.component';
 
 @Component({
   selector: 'jhi-cv',
@@ -24,6 +25,7 @@ import { ICompany } from 'app/shared/model/company.model';
 export class CVComponent implements OnInit, OnDestroy {
   cVS?: ICV[];
   isCheck?: ICompany[];
+  temp?: ICompany;
   eventSubscriber?: Subscription;
   totalItems = 0;
   account!: Account;
@@ -35,6 +37,8 @@ export class CVComponent implements OnInit, OnDestroy {
   links: any;
   searchForm = this.fb.group({
     name: [''],
+    phone: [''],
+    email: [''],
     login: [''],
     author: []
   });
@@ -69,11 +73,22 @@ export class CVComponent implements OnInit, OnDestroy {
   getFormValues() {
     const res = {};
     const name = this.searchForm.get(['name'])!.value.trim();
+    const phone = this.searchForm.get(['phone'])!.value.trim();
+    const email = this.searchForm.get(['email'])!.value.trim();
     const login = this.account.login;
     const author = this.account.authorities;
     if (name) {
       res['name'] = name;
     }
+
+    if (phone) {
+      res['phone'] = phone;
+    }
+
+    if (email) {
+      res['email'] = email;
+    }
+
     if (login) {
       res['login'] = login;
     }
@@ -107,7 +122,7 @@ export class CVComponent implements OnInit, OnDestroy {
   }
 
   checkCompanyExist(): void {
-    this.companyService.checkExist().subscribe((res: HttpResponse<ICompany[]>) => this.getLen(res.body!));
+    this.companyService.checkExist().subscribe((res: HttpResponse<ICompany[]>) => this.getLen(res.body));
   }
 
   protected getLen(data: ICompany[] | null) {
@@ -129,6 +144,12 @@ export class CVComponent implements OnInit, OnDestroy {
     this.eventSubscriber = this.eventManager.subscribe('cVListModification', () => this.loadPage());
   }
 
+  details(cV: ICV, id: number): void {
+    const modalRef = this.modalService.open(CVDetailComponent, { size: 'xl', backdrop: 'static' });
+    modalRef.componentInstance.cV = cV;
+    modalRef.componentInstance.id = id;
+  }
+
   delete(cV: ICV): void {
     const modalRef = this.modalService.open(CVDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
     modalRef.componentInstance.cV = cV;
@@ -141,6 +162,7 @@ export class CVComponent implements OnInit, OnDestroy {
     }
     return result;
   }
+
   protected onSuccess(data: ICV[] | null, headers: HttpHeaders, page: number): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.page = page;
@@ -163,6 +185,11 @@ export class CVComponent implements OnInit, OnDestroy {
         ...this.getFormValues()
       })
       .subscribe((res: HttpResponse<ICV[]>) => this.paginateCV(res.body!, res.headers));
+    this.searchForm = this.fb.group({
+      name: [''],
+      phone: [''],
+      email: ['']
+    });
   }
 
   onSearch() {
@@ -177,5 +204,13 @@ export class CVComponent implements OnInit, OnDestroy {
     this.links = this.parseLinks.parse(headers.get('link')!);
     this.totalItems = parseInt(headers.get('X-Total-Count')!, 10);
     this.cVS = data;
+    // for (let i = 0; i < data.length; i++) {
+    //   this.companyService.find(data[i].idCompany!).subscribe(
+    //     (data) => {
+    //       this.temp = data.body!;
+    //       this.cVS[i].nameCompany = this.temp!.name!;
+    //     }
+    //   );
+    // }
   }
 }

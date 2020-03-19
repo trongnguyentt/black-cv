@@ -11,7 +11,7 @@ import { PasswordResetInitComponent } from './password-reset/init/password-reset
 import { PasswordResetFinishComponent } from './password-reset/finish/password-reset-finish.component';
 import { SettingsComponent } from './settings/settings.component';
 import { accountState } from './account.route';
-import { SendCvComponent } from 'app/account/send-cv/send-cv.component';
+import { DisableFormComponent, SendCvComponent } from 'app/account/send-cv/send-cv.component';
 import { ListStaffComponent } from 'app/account/list-staff/list.component';
 
 @NgModule({
@@ -25,7 +25,8 @@ import { ListStaffComponent } from 'app/account/list-staff/list.component';
     PasswordResetFinishComponent,
     SettingsComponent,
     SendCvComponent,
-    ListStaffComponent
+    ListStaffComponent,
+    DisableFormComponent
   ]
 })
 export class AccountModule {}
