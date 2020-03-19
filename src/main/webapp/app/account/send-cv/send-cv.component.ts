@@ -1,6 +1,6 @@
-import { Component, Renderer, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, Renderer, ElementRef, ViewChild, OnInit, Input } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 import { EMAIL_NOT_FOUND_TYPE } from 'app/shared/constants/error.constants';
 import { SendCvService } from 'app/account/send-cv/send-cv.service';
@@ -12,6 +12,30 @@ import { StaffOriginService } from 'app/entities/staff-origin/staff-origin.servi
 import { Observable } from 'rxjs';
 import { IStaffOrigin, StaffOrigin } from 'app/shared/model/staff-origin.model';
 import { ListStaffService } from 'app/account/list-staff/list.service';
+
+@Component({
+  selector: '[disableForm]',
+  styles: [
+    `
+      fieldset {
+        display: block;
+        margin: unset;
+        padding: unset;
+        border: unset;
+      }
+    `
+  ],
+  template: `
+    <fieldset [disabled]="disableForm">
+      <ng-content></ng-content>
+    </fieldset>
+  `
+})
+export class DisableFormComponent {
+  @Input('disableForm') disableForm: boolean;
+
+  constructor() {}
+}
 
 @Component({
   selector: 'jhi-send-cv',
@@ -30,8 +54,18 @@ export class SendCvComponent implements OnInit {
   company!: ICompany;
   staffOrigin!: IStaffOrigin;
   resetRequestForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]]
+    // email: ['', [Validators.required, Validators.email]],
+    // email: [{ value: '', disabled: this.success }, [Validators.email, Validators.required]],
+    email: new FormControl({ value: '', disabled: this.success }, [Validators.required, Validators.email]),
+    name: new FormControl(
+      {
+        value: '',
+        disabled: this.success
+      },
+      [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]
+    )
+    // name: [{ value: '', disabled: this.success }, [Validators.pattern(/^[a-zA-Z\s]*$/), Validators.required]],
+    // name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]]
   });
 
   listStaff!: IStaffOrigin[];
@@ -50,6 +84,7 @@ export class SendCvComponent implements OnInit {
     private accountService: AccountService,
     protected staffOriginService: StaffOriginService
   ) {}
+
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ company }) => {
       this.company = company;
@@ -74,6 +109,7 @@ export class SendCvComponent implements OnInit {
         this.account = account;
       }
     });
+
     this.to = this.account.email;
     this.from = this.company.email;
 
@@ -112,6 +148,7 @@ export class SendCvComponent implements OnInit {
     this.listStaff = data;
     this.listStaffLength = data.length;
   }
+
   // protected backH(backHom: string) {
   //   this.content = backHom;
   //   this.contentLength = backHom.length;
@@ -120,6 +157,7 @@ export class SendCvComponent implements OnInit {
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IStaffOrigin>>): void {
     result.subscribe(() => this.onSaveSuccess());
   }
+
   private createFromForm(): IStaffOrigin {
     return {
       ...new StaffOrigin(),
@@ -135,6 +173,7 @@ export class SendCvComponent implements OnInit {
       status: undefined
     };
   }
+
   protected onSaveSuccess(): void {
     this.isSaving = false;
     if (this.company.name) {

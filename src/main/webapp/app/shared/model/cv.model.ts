@@ -1,6 +1,7 @@
 export interface ICV {
   id?: number;
   idCompany?: number;
+  nameCompany?: string;
   name?: string;
   birthday?: string;
   phone?: string;
@@ -20,6 +21,7 @@ export class CV implements ICV {
   constructor(
     public id?: number,
     public idCompany?: number,
+    public nameCompany?: string,
     public name?: string,
     public birthday?: string,
     public phone?: string,

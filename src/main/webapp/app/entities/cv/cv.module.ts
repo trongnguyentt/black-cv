@@ -11,9 +11,19 @@ import { CvNoResultlComponent } from 'app/entities/cv/cv-no-resultl.component';
 import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CvListResultlComponent } from 'app/entities/cv/cv-list-resultl.component';
+import { ReplacePipe } from 'app/entities/cv/replaceCharacter.directives';
+
 @NgModule({
   imports: [BlackcvSharedModule, RouterModule.forChild(cVRoute), MultiSelectModule, NgMultiSelectDropDownModule],
-  declarations: [CVComponent, CVDetailComponent, CVUpdateComponent, CVDeleteDialogComponent, CvNoResultlComponent, CvListResultlComponent],
+  declarations: [
+    ReplacePipe,
+    CVComponent,
+    CVDetailComponent,
+    CVUpdateComponent,
+    CVDeleteDialogComponent,
+    CvNoResultlComponent,
+    CvListResultlComponent
+  ],
   exports: [CvListResultlComponent],
 
   entryComponents: [CVDeleteDialogComponent]

@@ -1,7 +1,15 @@
 <div>
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form *ngIf="!success" name="form" role="form" (ngSubmit)="requestReset()" [formGroup]="resetRequestForm">
+            <br><br>
+            <!-- Flexbox container for aligning the toasts -->
+            <div *ngIf="success" class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Bạn đã gửi email thành công.</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [disableForm]="success"  name="form" role="form" (ngSubmit)="requestReset()" [formGroup]="resetRequestForm">
                 <div class="form-group">
                     <label class="form-control-label" for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name"
@@ -25,7 +33,8 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="email">Email</label>
-                    <input type="text" class="form-control" id="email" name="email" placeholder="{{'global.form.email.placeholder' | translate}}"
+                    <input type="text" class="form-control" id="email" name="email"
+                           placeholder="{{'global.form.email.placeholder' | translate}}"
                            formControlName="email">
                     <div
                         *ngIf="resetRequestForm.get('email')!.invalid && (resetRequestForm.get('email')!.dirty || resetRequestForm.get('email')!.touched)">
@@ -43,8 +52,11 @@
                 </div>
                 <button type="submit" [disabled]="resetRequestForm.invalid" class="btn btn-primary">Send</button>
             </form>
-            <a *ngIf="listStaffLength > 0" (click)="createMessage(listStaff)" class="btn btn-primary">Bạn muốn có thêm thông tin về người này?</a>
-<!--            <a *ngIf="contentLength > 0" (click)="createLocal(content)" class="btn btn-primary">Bạn đã gửi email thành công. Click vào đây để về trang chủ.</a>-->
+            <br>
+            <br>
+            <!--            <a *ngIf="contentLength > 0" (click)="createLocal(content)" class="btn btn-primary">Bạn đã gửi email thành công. Click vào đây để về trang chủ.</a>-->
+            <button type="button" *ngIf="listStaffLength > 0" (click)="createMessage(listStaff)" class="btn btn-primary">Bạn muốn có thêm
+                thông tin về người này?</button>
         </div>
     </div>
 </div>

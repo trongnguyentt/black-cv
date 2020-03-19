@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IStaffOrigin } from 'app/shared/model/staff-origin.model';
+import { ICompany } from 'app/shared/model/company.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ListStaffService {
-  private messageSource = new BehaviorSubject<IStaffOrigin[]>([]);
+export class DetailService {
+  private messageSource = new BehaviorSubject<ICompany[]>([]);
 
   currentMessage = this.messageSource.asObservable();
 
   constructor() {}
 
-  changeMessage(message: IStaffOrigin[]) {
+  changeMessage(message: ICompany[]) {
     this.messageSource.next(message);
   }
 }

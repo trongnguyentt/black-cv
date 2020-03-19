@@ -13,6 +13,7 @@ import { CompanyDeleteDialogComponent } from './company-delete-dialog.component'
 import { FormBuilder } from '@angular/forms';
 import { Account } from 'app/core/user/account.model';
 import { AccountService } from 'app/core/auth/account.service';
+import { DetailService } from 'app/entities/company/detail.service';
 
 @Component({
   selector: 'jhi-company',
@@ -35,6 +36,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
   });
 
   constructor(
+    protected detailService: DetailService,
     protected companyService: CompanyService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
@@ -165,19 +167,16 @@ export class CompanyComponent implements OnInit, OnDestroy {
     this.links = this.parseLinks.parse(headers.get('link')!);
     this.totalItems = parseInt(headers.get('X-Total-Count')!, 10);
     this.companies = data;
-    // this.companies = data ? data : [];
-    // this.company = this.companies[0];
-    // console.log("length: " + this.companies.length);
+
     if (this.account.authorities.includes('ROLE_ADMIN')) {
       this.router.navigate(['/company']);
-    } else if (!(this.companies.length == 0)) {
-      const id = '/company/' + this.companies[0].id + '/view';
-      this.router.navigate([id]);
     } else {
       if (this.companies.length == 0) {
         this.router.navigate(['/company/new']);
+      } else {
+        this.detailService.changeMessage(data);
+        this.router.navigate(['/company/view']);
       }
-      console.log(this.account.authorities);
     }
   }
 

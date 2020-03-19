@@ -1,106 +1,273 @@
+<!--&lt;!&ndash; Large modal &ndash;&gt;-->
+<!--<button type="button"-->
+<!--        class="btn btn-primary"-->
+<!--        data-toggle="modal"-->
+<!--        data-target=".bd-example-modal-lg">-->
+<!--    Large modal-->
+<!--</button>-->
 
+<!--<div class="modal fade bd-example-modal-lg"-->
+<!--     tabindex="-1"-->
+<!--     role="dialog"-->
+<!--     aria-labelledby="myLargeModalLabel"-->
+<!--     aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-lg">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="container">-->
+<!--                <div class="row"  >-->
+<!--                    <div class="col-sm-5 trai" >-->
+<!--                        <div class="top_trai_body">-->
+<!--                            <div class="d-flex p-3 bg-secondary text-white khoi">-->
+<!--                                <img src="/content/icon/anh1.PNG" alt="">-->
+<!--                                <div class="flex1">Information</div>-->
+<!--                            </div>-->
+<!--                            <div class="d-flex p-3 bg-secondary text-white khoi">-->
+<!--                                <img src="/content/icon/anh2.PNG" alt="">-->
+<!--                                <div class="flex5">Name: {{cV.name}}</div>-->
+<!--                            </div>-->
+<!--                            <div class="d-flex p-3 bg-secondary text-white khoi">-->
+<!--                                <img src="/content/icon/anh3.PNG" alt="">-->
+<!--                                <div class="flex5">Birthday: {{cV.birthday}}</div>-->
+<!--                            </div>-->
+<!--                            <div class="d-flex p-3 bg-secondary text-white khoi">-->
+<!--                                <img src="/content/icon/anh4.PNG" alt="">-->
+<!--                                <div class="flex5" *ngIf="cV.gender==1">Gender: Nam</div>-->
+<!--                                <div class="flex5" *ngIf="cV.gender==0">Gender: Nữ</div>-->
+<!--                            </div>-->
+<!--                            <div class="d-flex p-3 bg-secondary text-white khoi">-->
+<!--                                <img src="/content/icon/anh5.PNG" alt="">-->
+<!--                                <div class="flex5">Phone Number: {{cV.phone}}</div>-->
+<!--                            </div>-->
+<!--                            <div class="d-flex p-3 bg-secondary text-white khoi">-->
+<!--                                <img src="/content/icon/anh12.PNG" alt="">-->
+<!--                                <div class="flex5">Email: {{cV.email}}</div>-->
+<!--                            </div>-->
+<!--                            <div class="d-flex p-3 bg-secondary text-white khoi	">-->
+<!--                                <img src="/content/icon/anh13.PNG" alt="">-->
+<!--                                <div class="flex5">Address: {{cV.address}}</div>-->
+<!--                            </div>-->
 
-<div class="container">
-    <div class="row">
-        <button type="button" class="btn btn-dark">File Upload CV</button>
-        <button type="button" class="btn btn-info" hidden="hidden">{{cV.status}}</button>
-    </div>
-</div>
-<div class="container">
-    <div class="row"  >
-        <div class="col-sm-5 trai" >
-<!--            <div class="top_trai">-->
-<!--                <div class="khoianh1">-->
-<!--                    <div class=" thum1">-->
-<!--                        <img style="height: 15rem" src="{{cV.avatar}}" alt="">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-7 phai-detail">-->
+<!--                        <div class="d-flex p-3 bg-secondary text-white khoi">-->
+<!--                            <img src="/content/icon/anh9.PNG" alt="">-->
+<!--                            <div class="flex1">Job</div>-->
+<!--                        </div>-->
+<!--                        <div class="hoc_van">-->
+<!--                            <p> Company :  <a href="#"> {{cV.idCompany}} </a> </p>-->
+<!--                            <p>Job : {{cV.job}}</p>-->
+<!--                        </div>-->
+<!--                        <div class="d-flex p-3 bg-secondary text-white khoi">-->
+<!--                            <div class="flex1">Reason </div>-->
+<!--                        </div>-->
+<!--                        <div class="hoc_van">-->
+<!--                            <p>Reason: {{cV.reason}}</p>-->
+<!--                            <p>Reason Detail: {{cV.reasonDetail}}</p>-->
+<!--                        </div>-->
+<!--                        <div class="d-flex p-3 bg-secondary text-white khoi fixHeader">-->
+
+<!--                            <div class="flex1">Attachments </div>-->
+<!--                        </div>-->
+
+<!--                        <div class="d-flex p-3  text-white justify-content-end khoianh">-->
+<!--                            <img data-toggle="modal" data-target="#exampleModalCenter" src="{{cV.fileUploadCV}}" style="width:40%; height: 40% ">-->
+<!--                            &lt;!&ndash; Modal &ndash;&gt;-->
+<!--                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
+<!--                                <div class="modal-dialog modal-dialog-centered modal-lg" role="picture">-->
+<!--                                    <div class="modal-content ">-->
+<!--                                        <div class="modal-header">-->
+<!--                                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>-->
+<!--                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                                                <span aria-hidden="true">&times;</span>-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                        <div class="modal-body">-->
+<!--                                            <img id="myImg" src="{{cV.fileUploadCV}}" alt="" style="width: 100%; max-width: 800px">-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+<!--                            <div class="thumb"></div>-->
+<!--                        </div>-->
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
-            <div class="top_trai_body">
-                <div class="d-flex p-3 bg-secondary text-white khoi">
-                    <img src="/content/icon/anh1.PNG" alt="">
-                    <div class="flex1">Information</div>
-                </div>
-                <div class="d-flex p-3 bg-secondary text-white khoi">
-                    <img src="/content/icon/anh2.PNG" alt="">
-                    <div class="flex5">Name: {{cV.name}}</div>
-                </div>
-                <div class="d-flex p-3 bg-secondary text-white khoi">
-                    <img src="/content/icon/anh3.PNG" alt="">
-                    <div class="flex5">Birthday: {{cV.birthday}}</div>
-                </div>
-                <div class="d-flex p-3 bg-secondary text-white khoi">
-                    <img src="/content/icon/anh4.PNG" alt="">
-                    <div class="flex5" *ngIf="cV.gender==1">Gender: Nam</div>
-                    <div class="flex5" *ngIf="cV.gender==0">Gender: Nữ</div>
-                </div>
-                <div class="d-flex p-3 bg-secondary text-white khoi">
-                    <img src="/content/icon/anh5.PNG" alt="">
-                    <div class="flex5">Phone Number: {{cV.phone}}</div>
-                </div>
-                <div class="d-flex p-3 bg-secondary text-white khoi">
-                    <img src="/content/icon/anh12.PNG" alt="">
-                    <div class="flex5">Email: {{cV.email}}</div>
-                </div>
-                <div class="d-flex p-3 bg-secondary text-white khoi	">
-                    <img src="/content/icon/anh13.PNG" alt="">
-                    <div class="flex5">Address: {{cV.address}}</div>
-                </div>
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
-            </div>
-        </div>
-        <div class="col-sm-7 phai-detail">
-<!--            <div class="d-flex p-3 bg-secondary text-white khoi1">-->
-<!--                <img src="/content/icon/anh8.PNG" alt="">-->
-<!--                <div class="flex1">Education</div>-->
+<!--<div class="modal fade bd-example-modal-lg"-->
+<!--     tabindex="-1"-->
+<!--     role="dialog"-->
+<!--     aria-labelledby="myLargeModalLabel"-->
+<!--     aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-lg">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="container-fluid text-left">-->
+<!--                <br>-->
+<!--                -->
+<!--                <br>-->
 <!--            </div>-->
-<!--            <div class="hoc_van">-->
-<!--                <p>Đại Học : Điện Lực</p>-->
-<!--                <p>Chuyên Ngành : Quản trị doanh nghiệp</p>-->
-<!--                <p>Tốt nghiệp : loại giỏi</p>-->
-<!--            </div>-->
-            <div class="d-flex p-3 bg-secondary text-white khoi">
-                <img src="/content/icon/anh9.PNG" alt="">
-                <div class="flex1">Job</div>
-            </div>
-            <div class="hoc_van">
-                <p> Company :  <a href="#"> {{cV.idCompany}} </a> </p>
-                <p>Job : {{cV.job}}</p>
-            </div>
-            <div class="d-flex p-3 bg-secondary text-white khoi">
-                <div class="flex1">Reason </div>
-            </div>
-            <div class="hoc_van">
-                <p>Reason: {{cV.reason}}</p>
-                <p>Reason Detail: {{cV.reasonDetail}}</p>
-            </div>
-            <div class="d-flex p-3 bg-secondary text-white khoi fixHeader">
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
-                <div class="flex1">Attachments </div>
-            </div>
 
-            <div class="d-flex p-3  text-white justify-content-end khoianh">
-                <img data-toggle="modal" data-target="#exampleModalCenter" src="{{cV.fileUploadCV}}" style="width:40%; height: 40% ">
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="picture">
-                        <div class="modal-content ">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <img id="myImg" src="{{cV.fileUploadCV}}" alt="" style="width: 100%; max-width: 800px">
+<form *ngIf="cV" name="detailsForm" (ngSubmit)="clear()">
+    <div class="modal-header">
+<!--        <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>-->
+        <h4 class="modal-title" >Detail | {{cV.name}}</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card" style="width: 45rem;">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Personal Information</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">
+                                <fa-icon style="color: #20a8d8;" [icon]="'building'"></fa-icon>
+                            </th>
+                            <td>
+                                <span class="d-none d-md-inline badge badge-primary text-wrap">{{company.name}}</span><br>
+                                <span class="d-none d-md-inline badge badge-primary text-wrap">{{company.email}}</span><br>
+                                <span class="d-none d-md-inline badge badge-primary text-wrap">{{company.address}}</span><br>
+                                <span class="d-none d-md-inline badge badge-primary text-wrap">{{company.businessAreas}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <fa-icon style="color: #20a8d8;" [icon]="'user'"></fa-icon>
+                            </th>
+                            <td><span
+                                class="d-none d-md-inline badge badge-primary text-wrap">{{cV.name}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <fa-icon style="color: #20a8d8;" [icon]="'phone'"></fa-icon>
+                            </th>
+                            <td><span
+                                class="d-none d-md-inline badge badge-primary">{{cV.phone}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <fa-icon style="color: #20a8d8;" [icon]="'envelope'"></fa-icon>
+                            </th>
+                            <td><span
+                                class="d-none d-md-inline badge badge-primary text-wrap">{{cV.email}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <fa-icon style="color: #20a8d8;" [icon]="'birthday-cake'"></fa-icon>
+                            </th>
+                            <td><span
+                                class="d-none d-md-inline badge badge-primary">{{cV.birthday}}</span>
+                            </td>
+                        </tr>
+                        <tr *ngIf="cV.gender == 1">
+                            <th scope="row">
+                                <fa-icon style="color: #20a8d8;" [icon]="'male'"></fa-icon>
+                            </th>
+                            <td><span class="d-none d-md-inline badge badge-primary">Male</span>
+                            </td>
+                        </tr>
+                        <tr *ngIf="cV.gender == 0">
+                            <th scope="row">
+                                <fa-icon style="color: #20a8d8;" [icon]="'female'"></fa-icon>
+                            </th>
+                            <td><span
+                                class="d-none d-md-inline badge badge-primary">Female</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <fa-icon style="color: #20a8d8;" [icon]="'briefcase'"></fa-icon>
+                            </th>
+                            <td><span
+                                class="d-none d-md-inline badge badge-primary text-wrap">{{cV.job}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <fa-icon style="color: #20a8d8;" [icon]="'map-marker'"></fa-icon>
+                            </th>
+                            <td><span
+                                class="d-none d-md-inline badge badge-primary text-wrap">{{cV.address}}</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="" style="width: 22rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-danger">Reason</span>
+                        </div>
+                        <div class="col">
+                            <p [innerHTML]="cV.reason | tempConverter"></p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-danger">Evidence</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex p-3 text-black justify-content-end">
+                                <img data-toggle="modal" data-target="#exampleModalCenter"
+                                     src="{{cV.fileUploadCV}}" style="width:100%; height: 55% ">
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+                                     role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg"
+                                         role="picture">
+                                        <div class="modal-content ">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img id="myImg" src="{{cV.fileUploadCV}}" alt="Evidence"
+                                                     style="width: 100%; max-width: 850px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thumb"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="thumb"></div>
             </div>
         </div>
     </div>
-</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+<!--            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Close</span>-->
+            <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span>Close</span>
+        </button>
+    </div>
+</form>
+
 

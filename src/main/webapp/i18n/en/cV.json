@@ -2,21 +2,21 @@
   "blackcvApp": {
     "cV": {
       "home": {
-        "title": "CVS",
-        "createLabel": "Create a new CV",
-        "createOrEditLabel": "Create or edit a CV",
-        "notFound": "No CVS found"
+        "title": "Curriculum Vitae",
+        "createLabel": "Create a new Curriculum Vitae",
+        "createOrEditLabel": "Create or edit a Curriculum Vitae",
+        "notFound": "No Curriculum Vitae found"
       },
-      "created": "A new CV is created with identifier {{ param }}",
-      "updated": "A CV is updated with identifier {{ param }}",
-      "deleted": "A CV is deleted with identifier {{ param }}",
+      "created": "A new Curriculum Vitae is created with identifier {{ param }}",
+      "updated": "A Curriculum Vitae is updated with identifier {{ param }}",
+      "deleted": "A Curriculum Vitae is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete CV {{ id }}?"
+        "question": "Are you sure you want to delete Curriculum Vitae {{ id }}?"
       },
       "detail": {
-        "title": "CV"
+        "title": "Curriculum Vitae"
       },
-      "idCompany": "Id Company",
+      "idCompany": "Company",
       "name": "Name",
       "phone": "Phone",
       "email": "Email",
