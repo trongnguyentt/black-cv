@@ -1,59 +1,55 @@
 <div>
-    <h2 id="page-heading">
-        <span jhiTranslate="blackcvApp.company.home.title">Companies</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-company"
-                [routerLink]="['/company/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span jhiTranslate="blackcvApp.company.home.createLabel">
-            Create a new Company
-            </span>
-        </button>
-    </h2>
+<!--    <h2 id="page-heading">-->
+<!--        <span jhiTranslate="blackcvApp.company.home.title">Companies</span>-->
+<!--        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-company"-->
+<!--                [routerLink]="['/company/new']">-->
+<!--            <fa-icon [icon]="'plus'"></fa-icon>-->
+<!--            <span jhiTranslate="blackcvApp.company.home.createLabel">-->
+<!--            Create a new Company-->
+<!--            </span>-->
+<!--        </button>-->
+<!--    </h2>-->
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <br/>
 
-    <div class="card">
-        <h5 class="card-header">Tìm kiếm</h5>
-        <div class="card-body">
-            <form name="searchForm" role="form" novalidate (ngSubmit)="onSearch()" [formGroup]="searchForm">
-                <div class="row justify-content-center">
-                    <div class="form-group col-sm-6 row text-color">
-                        <label class="col-4 col-form-label text-right"
-                               for="field_cVName">Name</label>
-                        <div class="col-8">
-                            <input type="text" class="form-control" name="field_cVName" id="field_cVName"
-                                   formControlName="name"/>
-                        </div>
-                        <br>
-                    </div>
+    <form name="searchForm" role="form" novalidate (ngSubmit)="onSearch()" [formGroup]="searchForm">
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-6 row text-color">
+                <label class="col-4 col-form-label text-right"
+                >Name</label>
+                <div class="col-8">
+                    <input type="text" class="form-control" placeholder="Search name"
+                           formControlName="name"/>
                 </div>
-                <div class="row justify-content-center">
-                    <div class="form-group col-sm-6 row text-color">
-                        <label class="col-4 col-form-label text-right"
-                               for="field_cVName">Business Area</label>
-                        <div class="col-8">
-                            <input type="text" class="form-control" name="field_cVName1" id="field_cVName1"
-                                   formControlName="business"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-search">
-                        <fa-icon [icon]="'search'"></fa-icon>
-                        <span class="d-none d-md-inline">Tìm kiếm</span>
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-6 row text-color">
+                <label class="col-4 col-form-label text-right"
+                >Business Area</label>
+                <div class="col-8">
+                    <input type="text" class="form-control" placeholder="Search business"
+                           formControlName="business"/>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <button type="submit" class="btn btn-info">
+                <fa-icon [icon]="'search'"></fa-icon>
+                <span class="d-none d-md-inline">Search</span>
+            </button>
+        </div>
+    </form>
 
+    <br>
     <div class="alert alert-warning" *ngIf="companies?.length === 0">
         <span jhiTranslate="blackcvApp.company.home.notFound">No companies found</span>
     </div>
     <div class="table-responsive" *ngIf="companies?.length > 0">
-        <table class="table table-striped" aria-describedby="page-heading">
-            <thead>
+        <table class="table table-hover" aria-describedby="page-heading">
+            <caption>List of Company</caption>
+            <thead class="thead-light">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                 <!--                <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>-->
                 <!--                    <fa-icon [icon]="'sort'"></fa-icon>-->
@@ -73,11 +69,20 @@
                 <!--                <th scope="col" jhiSortBy="status"><span jhiTranslate="blackcvApp.company.status">Status</span>-->
                 <!--                    <fa-icon [icon]="'sort'"></fa-icon>-->
                 <!--                </th>-->
-                <th scope="col"></th>
+                <th scope="col">
+                    <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-company"
+                            [routerLink]="['/company/new']">
+                        <fa-icon [icon]="'plus'"></fa-icon>
+                        <span jhiTranslate="blackcvApp.company.home.createLabel">
+                            Create a new Company
+                        </span>
+                    </button>
+                </th>
+
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let company of companies ;trackBy: trackId" class="color-white">
+            <tr *ngFor="let company of companies ;trackBy: trackId">
                 <!--                <td><a [routerLink]="['/company', company.id, 'view' ]">{{company.id}}</a></td>-->
                 <td>{{company.name}}</td>
                 <td>{{company.businessAreas}}</td>
@@ -110,7 +115,7 @@
         </table>
     </div>
     <div *ngIf="companies?.length > 0">
-        <div class="row justify-content-center color-white" >
+        <div class="row justify-content-center" >
             <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">

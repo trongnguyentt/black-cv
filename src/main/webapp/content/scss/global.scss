@@ -316,7 +316,7 @@ phần code css cho trang Home (đạt)*/
 .phanform {
   position: relative;
   width: 48rem;
-  height: 28rem;
+  height: 32rem;
   margin-left: 11rem;
   margin-top: 4rem;
 
@@ -348,6 +348,17 @@ phần code css cho trang Home (đạt)*/
   padding-top: 40px;
   padding-right: 55px;
   padding-left: 55px;
+}
+
+.noidung-form-center {
+  text-align: center;
+  margin-left: 14.8rem;
+}
+
+.btn-search {
+  margin-left: 15.5rem;
+  width: 11rem;
+  margin-top: 10px;
 }
 .row0 {
   padding-left: 15px;
@@ -409,6 +420,179 @@ input[type='tel'] {
 input[type='date'] {
   border: none;
   border-bottom: 2px solid #7f8c8d;
+}
+
+/* đây là phần css responsive */
+/* đây là màn iphone 678 plus */
+@media only screen and (max-width: 414px) and (min-width: 320px) {
+  .phanform {
+    position: relative;
+    width: 320px;
+    height: 485px;
+    margin-top: 55px !important;
+    margin: auto;
+    border-radius: 10px;
+    background-color: white;
+  }
+
+  .phanform-top p {
+    display: block;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-left: 36px;
+  }
+
+  .noidung-form {
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .noidung-form-center {
+    text-align: center;
+    margin-left: 4.5rem;
+  }
+
+  .btn-search {
+    margin-left: 5rem;
+    width: 11rem;
+    margin-top: 10px;
+  }
+
+  .row0 {
+    padding-left: 16px;
+    margin-right: 20px;
+  }
+  .row2 {
+    margin-top: 24px;
+  }
+
+  .form-control1 {
+    height: 35px;
+    width: 160px;
+    border-radius: 5px;
+  }
+}
+
+/* màn hình ipad */
+@media only screen and (max-width: 1024px) and (min-width: 415px) {
+  .phanform {
+    position: relative;
+    width: 630px;
+    height: 520px;
+    margin-top: 165px !important;
+    margin: auto;
+
+    border-radius: 10px;
+    background-color: white;
+  }
+
+  .phanform-top p {
+    display: block;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-left: 145px;
+  }
+
+  .noidung-form-center {
+    text-align: center;
+    margin-left: 12.3rem;
+  }
+
+  .btn-search {
+    margin-left: 12.3rem;
+    width: 11rem;
+    margin-top: 10px;
+  }
+
+  .row0 {
+    padding-left: 16px;
+    margin-right: 35px;
+  }
+  .row2 {
+    margin-top: 40px;
+  }
+  .form-control1 {
+    height: 45px;
+    width: 250px;
+    border-radius: 5px;
+  }
+}
+
+/* // iphone 5 */
+
+@media only screen and (max-width: 360px) {
+  .phanform {
+    position: relative;
+    width: 263px;
+    height: 465px;
+    margin-top: 24px !important;
+    margin: auto;
+    border-radius: 10px;
+    background-color: white;
+  }
+
+  .phanform-top {
+    width: 100%;
+    height: 50px;
+    background-color: #2c3e50;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+
+  .phanform-top p {
+    display: block;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-left: 30px;
+  }
+
+  .noidung-form-center {
+    text-align: center;
+    margin-left: 3.3rem;
+  }
+
+  .btn-search {
+    margin-left: 3.3rem;
+    width: 11rem;
+    margin-top: 10px;
+  }
+
+  .noidung-form {
+    padding-top: 7px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .row0 {
+    padding-left: 14px;
+    margin-right: 20px;
+  }
+  .row2 {
+    margin-top: 24px;
+  }
+
+  .form-control1 {
+    height: 30px;
+    width: 135px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+  }
+  .form-control {
+    font-size: 0.75rem;
+  }
+  .btn-submit {
+    height: 48px;
+    margin-top: 16px;
+  }
 }
 
 /*
@@ -499,6 +683,197 @@ css cho phần Create new CV*/
   color: white;
 }
 
+/*
+    DEMO STYLE
+*/
+
+@import 'https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700';
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #fafafa;
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+  color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.navbar {
+  padding: 15px 10px;
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 40px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+  box-shadow: none;
+  outline: none !important;
+  border: none;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed #ddd;
+  margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+#sidebar {
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  height: 100vh;
+  z-index: 999;
+  background: #7386d5;
+  color: #fff;
+  transition: all 0.3s;
+  overflow-y: scroll;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+#sidebar.active {
+  left: 0;
+}
+
+#dismiss {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  background: #7386d5;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+#dismiss:hover {
+  background: #fff;
+  color: #7386d5;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 998;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+.overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+#sidebar .sidebar-header {
+  padding: 20px;
+  background: #6d7fcc;
+}
+
+#sidebar ul.components {
+  padding: 20px 0;
+  border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+
+#sidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+}
+
+#sidebar ul li a:hover {
+  color: #7386d5;
+  background: #fff;
+}
+
+#sidebar ul li.active > a,
+a[aria-expanded='true'] {
+  color: #fff;
+  background: #6d7fcc;
+}
+
+a[data-toggle='collapse'] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: #6d7fcc;
+}
+
+ul.CTAs {
+  padding: 20px;
+}
+
+ul.CTAs a {
+  text-align: center;
+  font-size: 0.9em !important;
+  display: block;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+a.download {
+  background: #fff;
+  color: #7386d5;
+}
+
+a.article,
+a.article:hover {
+  background: #6d7fcc !important;
+  color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+  transition: all 0.3s;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 .text-wrap {
   word-wrap: break-word;
 }

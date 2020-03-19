@@ -102,7 +102,8 @@
       "edit": "Sửa",
       "open": "Mở",
       "save": "Lưu",
-      "view": "Xem"
+      "view": "Xem",
+      "info": "Thông tin công ty"
     },
     "detail": {
       "field": "Trường",
@@ -121,7 +122,8 @@
       "maxbytes": "Dung lượng trường này phải nhỏ hơn {{ max }} bytes.",
       "pattern": "Trường này phải theo định dạng {{ pattern }}.",
       "number": "Trường này phải là một số.",
-      "datetimelocal": "Trường này phải là định dạng thời gian."
+      "datetimelocal": "Trường này phải là định dạng thời gian.",
+      "info": "Vui lòng nhập đầy đủ thông tin."
     }
   },
   "error": {
