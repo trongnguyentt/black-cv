@@ -99,20 +99,21 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item" routerLink="cv" routerLinkActive="active">
-                    <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
+                <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item" routerLink="cv"
+                   routerLinkActive="active">
+                    <fa-icon icon="file" fixedWidth="true"></fa-icon>
                     <span jhiTranslate="global.menu.entities.cv">Cv</span>
                 </a>
 
                 <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item" routerLink="company"
                    routerLinkActive="active">
-                    <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
+                    <fa-icon icon="building" fixedWidth="true"></fa-icon>
                     <span jhiTranslate="global.menu.entities.company">Company</span>
                 </a>
 
                 <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item" routerLink="reason"
                    routerLinkActive="active">
-                    <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
+                    <fa-icon icon="exclamation-circle" fixedWidth="true"></fa-icon>
                     <span jhiTranslate="global.menu.entities.reason">Reason</span>
                 </a>
 
@@ -123,7 +124,7 @@
 
                 <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item" routerLink="staff-origin"
                    routerLinkActive="active">
-                    <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
+                    <fa-icon icon="address-card" fixedWidth="true"></fa-icon>
                     <span jhiTranslate="global.menu.entities.staffOrigin">Staff Origin</span>
                 </a>
             </li>

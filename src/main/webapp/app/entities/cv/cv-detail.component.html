@@ -117,112 +117,112 @@
 
 <form *ngIf="cV" name="detailsForm" (ngSubmit)="clear()">
     <div class="modal-header">
-<!--        <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>-->
-        <h4 class="modal-title" >Detail | {{cV.name}}</h4>
+        <!--        <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>-->
+        <h4 class="modal-title text-center">Detail</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                (click)="clear()">&times;</button>
+                (click)="clear()">&times;
+        </button>
     </div>
     <div class="modal-body">
         <div class="row">
-            <div class="col-md-8">
-                <div class="card" style="width: 45rem;">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Personal Information</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th scope="row">
-                                <fa-icon style="color: #20a8d8;" [icon]="'building'"></fa-icon>
-                            </th>
-                            <td>
-                                <span class="d-none d-md-inline badge badge-primary text-wrap">{{company.name}}</span><br>
-                                <span class="d-none d-md-inline badge badge-primary text-wrap">{{company.email}}</span><br>
-                                <span class="d-none d-md-inline badge badge-primary text-wrap">{{company.address}}</span><br>
-                                <span class="d-none d-md-inline badge badge-primary text-wrap">{{company.businessAreas}}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <fa-icon style="color: #20a8d8;" [icon]="'user'"></fa-icon>
-                            </th>
-                            <td><span
-                                class="d-none d-md-inline badge badge-primary text-wrap">{{cV.name}}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <fa-icon style="color: #20a8d8;" [icon]="'phone'"></fa-icon>
-                            </th>
-                            <td><span
-                                class="d-none d-md-inline badge badge-primary">{{cV.phone}}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <fa-icon style="color: #20a8d8;" [icon]="'envelope'"></fa-icon>
-                            </th>
-                            <td><span
-                                class="d-none d-md-inline badge badge-primary text-wrap">{{cV.email}}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <fa-icon style="color: #20a8d8;" [icon]="'birthday-cake'"></fa-icon>
-                            </th>
-                            <td><span
-                                class="d-none d-md-inline badge badge-primary">{{cV.birthday}}</span>
-                            </td>
-                        </tr>
-                        <tr *ngIf="cV.gender == 1">
-                            <th scope="row">
-                                <fa-icon style="color: #20a8d8;" [icon]="'male'"></fa-icon>
-                            </th>
-                            <td><span class="d-none d-md-inline badge badge-primary">Male</span>
-                            </td>
-                        </tr>
-                        <tr *ngIf="cV.gender == 0">
-                            <th scope="row">
-                                <fa-icon style="color: #20a8d8;" [icon]="'female'"></fa-icon>
-                            </th>
-                            <td><span
-                                class="d-none d-md-inline badge badge-primary">Female</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <fa-icon style="color: #20a8d8;" [icon]="'briefcase'"></fa-icon>
-                            </th>
-                            <td><span
-                                class="d-none d-md-inline badge badge-primary text-wrap">{{cV.job}}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                <fa-icon style="color: #20a8d8;" [icon]="'map-marker'"></fa-icon>
-                            </th>
-                            <td><span
-                                class="d-none d-md-inline badge badge-primary text-wrap">{{cV.address}}</span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+            <div class="col-md-7">
+                <div style="width: 26rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-info">Company</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col">
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'user'"></fa-icon></div>
+                                <div class="col">{{company.name}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'envelope'"></fa-icon></div>
+                                <div class="col">{{company.email}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'map-marker'"></fa-icon></div>
+                                <div class="col">{{company.address}}</div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="" style="width: 22rem;">
+            <div class="col-md-5">
+                <div class="" style="width: 18rem;">
                     <div class="row">
                         <div class="col-md-3">
                             <span class="d-none d-md-inline badge badge-pill badge-danger">Reason</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1">
                         </div>
                         <div class="col">
                             <p [innerHTML]="cV.reason | tempConverter"></p>
                         </div>
                     </div>
-                    <hr>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-md-7">
+                <div style="width: 26rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-info">Curriculum Vitae Detail</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col">
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'user'"></fa-icon></div>
+                                <div class="col">{{cV.name}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'phone'"></fa-icon></div>
+                                <div class="col">{{cV.phone}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'envelope'"></fa-icon></div>
+                                <div class="col">{{cV.email}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'birthday-cake'"></fa-icon></div>
+                                <div class="col">{{cV.birthday}}</div>
+                            </div>
+                            <div class="row pb-2" *ngIf="cV.gender == 1">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'male'"></fa-icon></div>
+                                <div class="col">Male</div>
+                            </div>
+                            <div class="row pb-2" *ngIf="cV.gender == 0" >
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'female'"></fa-icon></div>
+                                <div class="col">Female</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'briefcase'"></fa-icon></div>
+                                <div class="col">{{cV.job}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'map-marker'"></fa-icon></div>
+                                <div class="col">{{cV.address}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="" style="width: 18rem;">
                     <div class="row">
                         <div class="col-md-3">
                             <span class="d-none d-md-inline badge badge-pill badge-danger">Evidence</span>
@@ -264,7 +264,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-<!--            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Close</span>-->
+            <!--            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Close</span>-->
             <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span>Close</span>
         </button>
     </div>

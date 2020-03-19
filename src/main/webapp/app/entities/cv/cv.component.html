@@ -152,9 +152,7 @@
                         <!--                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>-->
                         <!--                        </button>-->
                         <button type="submit" (click)="details(cV, cV.idCompany)"
-                                class="btn btn-info btn-sm"
-                                data-toggle="modal"
-                                data-target=".bd-example-modal-lg">
+                                class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
@@ -176,7 +174,7 @@
         </table>
     </div>
     <div *ngIf="cVS?.length > 0">
-        <div class="row justify-content-center color-white">
+        <div class="row justify-content-center text-dark">
             <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
