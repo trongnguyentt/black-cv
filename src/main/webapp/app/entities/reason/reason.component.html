@@ -15,7 +15,7 @@
                 <div class="row justify-content-center">
                     <div class="form-group col-sm-6 row text-color">
                         <label class="col-4 col-form-label text-right"
-                        >Reason name</label>
+                               jhiTranslate="blackcvApp.reason.reasonName">Reason name</label>
                         <div class="col-8">
                             <input type="text" class="form-control" placeholder="Search name"
                                    formControlName="name"/>
@@ -25,7 +25,8 @@
                 <div class="row justify-content-center">
                     <button type="submit" class="btn btn-info">
                         <fa-icon [icon]="'search'"></fa-icon>
-                        <span class="d-none d-md-inline">Search</span>
+                        <span class="d-none d-md-inline"
+                              jhiTranslate="blackcvApp.company.search">Search</span>
                     </button>
                 </div>
             </form>
@@ -36,7 +37,7 @@
     </div>
     <div class="table-responsive" *ngIf="reasons?.length > 0">
         <table class="table table-hover" aria-describedby="page-heading">
-            <caption>List of Reason</caption>
+            <caption jhiTranslate="blackcvApp.reason.titleList">List of Reason</caption>
             <thead class="thead-light">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
 <!--            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->

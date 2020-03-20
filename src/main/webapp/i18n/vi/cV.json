@@ -14,7 +14,8 @@
         "question": "Bạn có chắc là muốn xóa hồ sơ {{ id }}?"
       },
       "detail": {
-        "title": "Hồ sơ"
+        "title": "Thông tin cá nhân",
+        "detail": "Thông tin hồ sơ"
       },
       "idCompany": "Công ty",
       "name": "Tên",
@@ -25,7 +26,12 @@
       "gender": "Giới tính",
       "avatar": "Ảnh",
       "fileUploadCV": "Bằng chứng",
-      "status": "Trạng thái"
+      "status": "Trạng thái",
+      "titleList": "Danh sách hồ sơ ",
+      "search": "Tìm kiếm",
+      "reason": "Lý do",
+      "evidence": "Bằng chứng",
+      "close": "Đóng"
     }
   }
 }

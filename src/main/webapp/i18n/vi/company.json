@@ -19,7 +19,10 @@
       "name": "Tên công ty",
       "businessAreas": "Lĩnh vực kinh doanh",
       "address": "Địa chỉ",
-      "status": "Trạng thái"
+      "status": "Trạng thái",
+      "search": "Tìm kiếm",
+      "titleList": "Danh sách công ty",
+      "detail": "Thông tin công ty"
     }
   }
 }

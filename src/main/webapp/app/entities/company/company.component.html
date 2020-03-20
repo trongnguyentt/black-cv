@@ -17,9 +17,9 @@
         <div class="row justify-content-center">
             <div class="form-group col-sm-6 row text-color">
                 <label class="col-4 col-form-label text-right"
-                >Name</label>
+                       jhiTranslate="blackcvApp.company.name">Name</label>
                 <div class="col-8">
-                    <input type="text" class="form-control" placeholder="Search name"
+                    <input type="text" class="form-control" placeholder="Enter name"
                            formControlName="name"/>
                 </div>
             </div>
@@ -27,9 +27,9 @@
         <div class="row justify-content-center">
             <div class="form-group col-sm-6 row text-color">
                 <label class="col-4 col-form-label text-right"
-                >Business Area</label>
+                       jhiTranslate="blackcvApp.company.businessAreas">Business Area</label>
                 <div class="col-8">
-                    <input type="text" class="form-control" placeholder="Search business"
+                    <input type="text" class="form-control" placeholder="Enter business"
                            formControlName="business"/>
                 </div>
             </div>
@@ -37,7 +37,8 @@
         <div class="row justify-content-center">
             <button type="submit" class="btn btn-info">
                 <fa-icon [icon]="'search'"></fa-icon>
-                <span class="d-none d-md-inline">Search</span>
+                <span class="d-none d-md-inline"
+                      jhiTranslate="blackcvApp.company.search">Search</span>
             </button>
         </div>
     </form>
@@ -48,7 +49,7 @@
     </div>
     <div class="table-responsive" *ngIf="companies?.length > 0">
         <table class="table table-hover" aria-describedby="page-heading">
-            <caption>List of Company</caption>
+            <caption jhiTranslate="blackcvApp.company.titleList">List of Company</caption>
             <thead class="thead-light">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                 <!--                <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>-->

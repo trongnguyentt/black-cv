@@ -53,7 +53,7 @@
 
 <form *ngIf="staffOrigin" name="detailsForm" (ngSubmit)="clear()">
     <div class="modal-header">
-        <h4 class="modal-title text-center">Detail</h4>
+        <h4 class="modal-title text-center" jhiTranslate="blackcvApp.staffOrigin.detail.detail">Detail</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;
         </button>
@@ -64,7 +64,8 @@
                 <div style="width: 26rem;">
                     <div class="row">
                         <div class="col-md-3">
-                            <span class="d-none d-md-inline badge badge-pill badge-info">Staff Origin</span>
+                            <span class="d-none d-md-inline badge badge-pill badge-info"
+                                  jhiTranslate="blackcvApp.staffOrigin.detail.title">Staff Origin</span>
                         </div>
                     </div>
                     <br>
@@ -104,7 +105,8 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span>Close</span>
+            <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span
+            jhiTranslate="blackcvApp.cV.close">Close</span>
         </button>
     </div>
 </form>

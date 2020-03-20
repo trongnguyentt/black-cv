@@ -14,11 +14,13 @@
         "question": "Bạn có chắc là muốn xóa lý do {{ id }}?"
       },
       "detail": {
-        "title": "Lý do"
+        "title": "Lý do",
+        "detail": "Thông tin lý do"
       },
       "descriptons": "Mô tả",
       "reasonName": "Tên lý do",
-      "status": "Trạng thái"
+      "status": "Trạng thái",
+      "titleList": "Danh sách lý do"
     }
   }
 }
