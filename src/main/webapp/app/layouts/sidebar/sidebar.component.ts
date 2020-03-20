@@ -11,6 +11,10 @@ import { SessionStorageService } from 'ngx-webstorage';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
 import { Account } from 'app/core/user/account.model';
+import { CompanyService } from 'app/entities/company/company.service';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { ICompany } from 'app/shared/model/company.model';
+import { DetailService } from 'app/entities/company/detail.service';
 
 @Component({
   selector: 'jhi-sidebar',
@@ -28,8 +32,17 @@ export class SidebarComponent implements OnInit {
   status?: boolean;
   swaggerEnabled?: boolean;
   inProduction?: boolean;
+  companies?: ICompany[];
+  listCompany: any;
+  newCompany: any;
+  viewCompany: any;
+  checkEnableAdmin?: boolean;
+  checkEnableUserNew?: boolean;
+  checkEnableUserView?: boolean;
 
   constructor(
+    protected detailService: DetailService,
+    protected companyService: CompanyService,
     private translateService: TranslateService,
     private languageService: JhiLanguageService,
     private sessionStorage: SessionStorageService,
@@ -90,6 +103,8 @@ export class SidebarComponent implements OnInit {
       }
     });
 
+    this.companyService.query({}).subscribe((res: HttpResponse<ICompany[]>) => this.paginateCompany(res.body!));
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.updateTitle();
@@ -100,6 +115,10 @@ export class SidebarComponent implements OnInit {
     });
 
     this.translateService.onLangChange.subscribe(() => this.updateTitle());
+  }
+
+  protected paginateCompany(data: ICompany[]) {
+    this.companies = data;
   }
 
   getSideBarState() {
@@ -167,5 +186,18 @@ export class SidebarComponent implements OnInit {
       pageTitle = 'global.title';
     }
     this.translateService.get(pageTitle).subscribe(title => this.titleService.setTitle(title));
+  }
+
+  check() {
+    if (this.account.authorities.includes('ROLE_ADMIN')) {
+      this.router.navigate(['/company']);
+    } else {
+      if (this.companies.length == 0) {
+        this.router.navigate(['/company/new']);
+      } else {
+        this.detailService.changeMessage(this.companies);
+        this.router.navigate(['/company/view']);
+      }
+    }
   }
 }
