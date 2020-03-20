@@ -24,6 +24,7 @@ import { CompanyDetailComponent } from 'app/entities/company/company-detail.comp
 })
 export class CompanyComponent implements OnInit, OnDestroy {
   companies?: ICompany[];
+  checkRole?: boolean;
   eventSubscriber?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -48,7 +49,9 @@ export class CompanyComponent implements OnInit, OnDestroy {
     private accountService: AccountService,
     protected parseLinks: JhiParseLinks,
     protected modalService: NgbModal
-  ) {}
+  ) {
+    this.checkRole = true;
+  }
 
   loadPage(page?: number): void {
     const pageToLoad: number = page ? page : this.page;
@@ -99,8 +102,10 @@ export class CompanyComponent implements OnInit, OnDestroy {
     this.accountService.identity().subscribe(account => {
       if (account) {
         this.account = account;
+        this.account.authorities.includes('ROLE_ADMIN') ? (this.checkRole = false) : (this.checkRole = true);
       }
     });
+
     this.loadAll();
     this.registerChangeInCompanies();
   }

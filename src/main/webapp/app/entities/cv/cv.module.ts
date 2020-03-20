@@ -25,8 +25,7 @@ import { GetLengthPipe, ReplacePipe } from 'app/entities/cv/replaceCharacter.dir
     CvNoResultlComponent,
     CvListResultlComponent
   ],
-  exports: [CvListResultlComponent],
-
-  entryComponents: [CVDeleteDialogComponent]
+  entryComponents: [CVDeleteDialogComponent],
+  exports: [CvListResultlComponent]
 })
 export class BlackcvCVModule {}

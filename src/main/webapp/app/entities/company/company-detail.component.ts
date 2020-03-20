@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ICompany } from 'app/shared/model/company.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CompanyService } from 'app/entities/company/company.service';
+import { ICV } from 'app/shared/model/cv.model';
 
 @Component({
   selector: 'jhi-company-detail',
@@ -11,13 +12,14 @@ import { CompanyService } from 'app/entities/company/company.service';
 })
 export class CompanyDetailComponent implements OnInit {
   company?: ICompany;
+  companyNoresult: ICompany | null = null;
 
   constructor(protected activatedRoute: ActivatedRoute, protected router: Router, public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {
-    // this.activatedRoute.data.subscribe(({ company }) => {
-    //   this.company = company;
-    // });
+    this.activatedRoute.data.subscribe(({ company }) => {
+      this.companyNoresult = company;
+    });
   }
 
   previousState(): void {

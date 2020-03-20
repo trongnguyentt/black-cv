@@ -121,7 +121,7 @@
                 <!--                    <fa-icon [icon]="'sort'"></fa-icon>-->
                 <!--                </th>-->
                 <th scope="col">
-                    <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cv"
+                    <button *ngIf="checkRole" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cv"
                             (click)="checkCompanyExist()">
                         <fa-icon [icon]="'plus'"></fa-icon>
                         <span jhiTranslate="blackcvApp.cV.home.createLabel">
