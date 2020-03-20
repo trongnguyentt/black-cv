@@ -10,6 +10,7 @@ import { SessionStorageService } from 'ngx-webstorage';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { LANGUAGES } from 'app/core/language/language.constants';
+import { SidebarService } from 'app/layouts/sidebar/sidebar.service';
 
 @Component({
   selector: 'jhi-main',
@@ -24,6 +25,7 @@ export class MainComponent implements OnInit {
   status?: boolean;
 
   constructor(
+    public sidebarService: SidebarService,
     private translateService: TranslateService,
     private titleService: Title,
     private router: Router,
@@ -58,6 +60,22 @@ export class MainComponent implements OnInit {
     this.translateService.onLangChange.subscribe(() => this.updateTitle());
   }
 
+  toggleSidebar() {
+    this.sidebarService.setSidebarState(!this.sidebarService.getSidebarState());
+  }
+
+  toggleBackgroundImage() {
+    this.sidebarService.hasBackgroundImage = !this.sidebarService.hasBackgroundImage;
+  }
+
+  getSideBarState() {
+    return this.sidebarService.getSidebarState();
+  }
+
+  hideSidebar() {
+    this.sidebarService.setSidebarState(true);
+  }
+
   changeLanguage(languageKey: string): void {
     this.sessionStorage.store('locale', languageKey);
     this.languageService.changeLanguage(languageKey);
@@ -74,6 +92,7 @@ export class MainComponent implements OnInit {
   changeShow(): void {
     this.status = !this.status;
   }
+
   login(): void {
     this.loginModalService.open();
   }
