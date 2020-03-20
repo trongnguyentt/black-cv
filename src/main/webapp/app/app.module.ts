@@ -19,10 +19,17 @@ import { SearchcvModule } from 'app/full-image/searchcv.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AppFooterModule, AppHeaderModule, AppSidebarModule } from '@coreui/angular';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SidebarComponent } from 'app/layouts/sidebar/sidebar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     BlackcvSharedModule,
     BlackcvCoreModule,
     BlackcvHomeModule,
@@ -30,13 +37,16 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     SearchcvModule,
     BlackcvEntityModule,
     BlackcvAppRoutingModule,
-    NgMultiSelectDropDownModule.forRoot(),
-    AppFooterModule,
-    AppHeaderModule,
-    AppSidebarModule
+    // NgMultiSelectDropDownModule.forRoot(),
+    // AppFooterModule,
+    // AppHeaderModule,
+    // AppSidebarModule,
+    BsDropdownModule.forRoot(),
+    PerfectScrollbarModule
   ],
   declarations: [
     MainComponent,
+    SidebarComponent,
     NavbarComponent,
     ErrorComponent,
     PageRibbonComponent,
@@ -44,7 +54,18 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     SearchcvComponent
   ],
-  providers: [NgbActiveModal],
+  providers: [
+    NgbActiveModal,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: PERFECT_SCROLLBAR_CONFIG
+    }
+  ],
+  //   providers: [
+  //     NgbActiveModal,
+  //     provide:PERFECT_SCROLLBAR_CONFIG,
+  //     useValue:DEFAULT_PERFECT_SCROLLBAR_CONFIG
+  // ],
   bootstrap: [MainComponent]
 })
 export class BlackcvAppModule {}

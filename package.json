@@ -8,6 +8,7 @@
     "node_modules"
   ],
   "dependencies": {
+    "@angular/animations": "8.2.14",
     "@angular/common": "8.2.14",
     "@angular/compiler": "8.2.14",
     "@angular/core": "8.2.14",
@@ -18,12 +19,15 @@
     "@coreui/angular": "^2.9.0",
     "@coreui/coreui": "^3.0.0",
     "@coreui/icons": "^1.0.1",
+    "@fortawesome/fontawesome-free": "^5.5.0",
     "@fortawesome/angular-fontawesome": "0.5.0",
     "@fortawesome/fontawesome-svg-core": "1.2.26",
     "@fortawesome/free-solid-svg-icons": "5.12.0",
     "@ng-bootstrap/ng-bootstrap": "5.1.4",
     "@ngx-translate/core": "11.0.1",
     "@ngx-translate/http-loader": "4.0.0",
+    "ngx-bootstrap": "^3.2.0",
+    "ngx-perfect-scrollbar": "^7.1.0",
     "@syncfusion/ej2-angular-dropdowns": "^17.4.51",
     "bootstrap": "4.4.1",
     "core-js": "3.5.0",
