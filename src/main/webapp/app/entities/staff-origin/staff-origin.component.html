@@ -16,7 +16,7 @@
                 <div class="row justify-content-center">
                     <div class="form-group col-sm-6 row text-color">
                         <label class="col-4 col-form-label text-right"
-                               >Name</label>
+                               jhiTranslate="blackcvApp.staffOrigin.name">Name</label>
                         <div class="col-8">
                             <input type="text" class="form-control" placeholder="Search name"
                                    formControlName="name"/>
@@ -26,7 +26,7 @@
                 <div class="row justify-content-center">
                     <div class="form-group col-sm-6 row text-color">
                         <label class="col-4 col-form-label text-right"
-                               >Email</label>
+                               jhiTranslate="blackcvApp.staffOrigin.email">Email</label>
                         <div class="col-8">
                             <input type="text" class="form-control" placeholder="Search email"
                                    formControlName="email"/>
@@ -36,7 +36,8 @@
                 <div class="row justify-content-center">
                     <button type="submit" class="btn btn-info">
                         <fa-icon [icon]="'search'"></fa-icon>
-                        <span class="d-none d-md-inline">Search</span>
+                        <span class="d-none d-md-inline"
+                              jhiTranslate="blackcvApp.company.search">Search</span>
                     </button>
                 </div>
             </form>
@@ -47,7 +48,7 @@
     </div>
     <div class="table-responsive" *ngIf="staffOrigins?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
-            <caption>List of Staff Origin</caption>
+            <caption jhiTranslate="blackcvApp.staffOrigin.titleList">List of Staff Origin</caption>
             <thead class="thead-light">
             <tr>
 <!--            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>-->
@@ -74,7 +75,7 @@
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"
-                                [routerLink]="['/staff-origin', staffOrigin.id, 'view' ]"
+                                (click)="details(staffOrigin)"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>

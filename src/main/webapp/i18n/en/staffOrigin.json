@@ -14,7 +14,8 @@
         "question": "Are you sure you want to delete Staff Origin {{ id }}?"
       },
       "detail": {
-        "title": "Staff Origin"
+        "title": "Staff Origin",
+        "detail": "Detail"
       },
       "name": "Name",
       "email": "Email",
@@ -22,7 +23,8 @@
       "advantages": "Advantages",
       "defect": "Defect",
       "more": "More",
-      "status": "Status"
+      "status": "Status",
+      "titleList": "List of Staff Origin"
     }
   }
 }
