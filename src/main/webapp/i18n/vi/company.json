@@ -7,11 +7,11 @@
         "createOrEditLabel": "Thêm mới hoặc chỉnh sửa Công ty",
         "notFound": "Không tìm thấy Công ty hợp lệ"
       },
-      "created": "Công ty mới được tạo với định danh {{ param }}",
-      "updated": "Công ty được cập nhật với định danh {{ param }}",
-      "deleted": "Công ty đã xóa với định danh {{ param }}",
+      "created": "Công ty mới được tạo.",
+      "updated": "Công ty đã cập nhật.",
+      "deleted": "Công ty đã xóa.",
       "delete": {
-        "question": "Bạn có chắc là muốn xóa Công ty {{ id }}?"
+        "question": "Bạn có chắc là muốn xóa Công ty {{ name }}?"
       },
       "detail": {
         "title": "Công Ty"

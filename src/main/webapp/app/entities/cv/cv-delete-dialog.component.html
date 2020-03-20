@@ -6,7 +6,44 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <p id="jhi-delete-cV-heading" jhiTranslate="blackcvApp.cV.delete.question" [translateValues]="{id: cV.id}">Are you sure you want to delete this CV?</p>
+        <p id="jhi-delete-cV-heading" jhiTranslate="blackcvApp.cV.delete.question" [translateValues]="{name: cV.name}">Are you sure you want to delete this CV?</p>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col">
+                <div class="row pb-2">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'user'"></fa-icon></div>
+                    <div class="col" data-toggle="tooltip" data-placement="top" title="Name">{{cV.name}}</div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'phone'"></fa-icon></div>
+                    <div class="col" data-toggle="tooltip" data-placement="top" title="Phone">{{cV.phone}}</div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'envelope'"></fa-icon></div>
+                    <div class="col" data-toggle="tooltip" data-placement="top" title="Email">{{cV.email}}</div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'birthday-cake'"></fa-icon></div>
+                    <div class="col" data-toggle="tooltip" data-placement="top" title="Birthday">{{cV.birthday}}</div>
+                </div>
+                <div class="row pb-2" *ngIf="cV.gender == 1">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'male'"></fa-icon></div>
+                    <div class="col">Male</div>
+                </div>
+                <div class="row pb-2" *ngIf="cV.gender == 0" >
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'female'"></fa-icon></div>
+                    <div class="col" >Female</div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'briefcase'"></fa-icon></div>
+                    <div class="col" data-toggle="tooltip" data-placement="top" title="Job">{{cV.job}}</div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'map-marker'"></fa-icon></div>
+                    <div class="col" data-toggle="tooltip" data-placement="top" title="Address">{{cV.address}}</div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

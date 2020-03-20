@@ -7,11 +7,11 @@
         "createOrEditLabel": "Thêm mới hoặc cập nhật hồ sơ",
         "notFound": "Không tìm thấy hồ sơ hợp lệ"
       },
-      "created": "Hồ sơ mới được tạo với định danh {{ param }}",
-      "updated": "Hồ sơ được cập nhật với định danh {{ param }}",
-      "deleted": "Hồ sơ đã xóa với định danh {{ param }}",
+      "created": "Hồ sơ mới được tạo.",
+      "updated": "Hồ sơ được cập nhật.",
+      "deleted": "Hồ sơ đã xóa.",
       "delete": {
-        "question": "Bạn có chắc là muốn xóa hồ sơ {{ id }}?"
+        "question": "Bạn có chắc là muốn xóa hồ sơ của {{ name }}?"
       },
       "detail": {
         "title": "Thông tin cá nhân",
