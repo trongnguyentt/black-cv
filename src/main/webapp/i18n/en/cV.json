@@ -14,7 +14,8 @@
         "question": "Are you sure you want to delete Curriculum Vitae {{ id }}?"
       },
       "detail": {
-        "title": "Curriculum Vitae"
+        "title": "Curriculum Vitae Detail",
+        "detail": "Detail"
       },
       "idCompany": "Company",
       "name": "Name",
@@ -25,7 +26,12 @@
       "gender": "Gender",
       "avatar": "Avatar",
       "fileUploadCV": "Document",
-      "status": "Status"
+      "status": "Status",
+      "titleList": "List of Curriculum Vitae",
+      "search": "Search",
+      "reason": "Reason",
+      "evidence": "Evidence",
+      "close": "Close"
     }
   }
 }

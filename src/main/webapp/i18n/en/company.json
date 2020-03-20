@@ -19,7 +19,10 @@
       "name": "Name",
       "businessAreas": "Business Areas",
       "address": "Address",
-      "status": "Status"
+      "status": "Status",
+      "search": "Search",
+      "titleList": "List of Company",
+      "detail": "Detail"
     }
   }
 }

@@ -14,7 +14,8 @@
         "question": "Bạn có chắc là muốn xóa hồ sơ nhân sự {{ id }}?"
       },
       "detail": {
-        "title": "Hồ sơ nhân sự"
+        "title": "Hồ sơ nhân sự",
+        "detail": "Thông tin hồ sơ"
       },
       "name": "Họ tên",
       "email": "Email",
@@ -22,7 +23,8 @@
       "advantages": "Ưu điểm",
       "defect": "Nhược điểm",
       "more": "Ghi chú",
-      "status": "Trạng thái"
+      "status": "Trạng thái",
+      "titleList": "Danh sách hồ sơ"
     }
   }
 }

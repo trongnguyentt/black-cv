@@ -20,9 +20,10 @@
         <div class="row justify-content-center">
             <div class="form-group col-sm-6 row text-color">
                 <label class="col-4 col-form-label text-right"
+                       jhiTranslate="blackcvApp.cV.name"
                 >Name</label>
                 <div class="col-8">
-                    <input type="text" class="form-control" placeholder="Search name"
+                    <input type="text" class="form-control" placeholder="Enter name"
                            formControlName="name"/>
                 </div>
             </div>
@@ -30,9 +31,10 @@
         <div class="row justify-content-center">
             <div class="form-group col-sm-6 row text-color">
                 <label class="col-4 col-form-label text-right"
+                       jhiTranslate="blackcvApp.cV.phone"
                 >Phone</label>
                 <div class="col-8">
-                    <input type="text" class="form-control" placeholder="Search phone"
+                    <input type="text" class="form-control" placeholder="Enter phone"
                            formControlName="phone"/>
                 </div>
             </div>
@@ -40,9 +42,10 @@
         <div class="row justify-content-center">
             <div class="form-group col-sm-6 row text-color">
                 <label class="col-4 col-form-label text-right"
+                       jhiTranslate="blackcvApp.cV.email"
                 >Email</label>
                 <div class="col-8">
-                    <input type="text" class="form-control" placeholder="Search email"
+                    <input type="text" class="form-control" placeholder="Enter email"
                            formControlName="email"/>
                 </div>
             </div>
@@ -50,7 +53,7 @@
         <div class="row justify-content-center">
             <button type="submit" class="btn btn-info">
                 <fa-icon [icon]="'search'"></fa-icon>
-                <span class="d-none d-md-inline">Search</span>
+                <span class="d-none d-md-inline" jhiTranslate="blackcvApp.cV.search">Search</span>
             </button>
         </div>
     </form>
@@ -78,7 +81,7 @@
     <br>
     <div class="table-responsive" *ngIf="cVS?.length > 0">
         <table class="table table-hover" aria-describedby="page-heading">
-            <caption>List of Curriculum Vitae</caption>
+            <caption jhiTranslate="blackcvApp.cV.titleList">List of Curriculum Vitae</caption>
             <thead class="thead-light">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                 <!--                <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>-->

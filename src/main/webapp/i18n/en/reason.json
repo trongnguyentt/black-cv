@@ -14,11 +14,13 @@
         "question": "Are you sure you want to delete Reason {{ id }}?"
       },
       "detail": {
-        "title": "Reason"
+        "title": "Reason",
+        "detail": "Detail"
       },
       "descriptons": "Descriptons",
       "reasonName": "Reason Name",
-      "status": "Status"
+      "status": "Status",
+      "titleList": "List of Reason"
     }
   }
 }

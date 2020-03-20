@@ -14,6 +14,9 @@ import { FormBuilder } from '@angular/forms';
 import { Account } from 'app/core/user/account.model';
 import { AccountService } from 'app/core/auth/account.service';
 import { DetailService } from 'app/entities/company/detail.service';
+import { ICV } from 'app/shared/model/cv.model';
+import { CVDetailComponent } from 'app/entities/cv/cv-detail.component';
+import { CompanyDetailComponent } from 'app/entities/company/company-detail.component';
 
 @Component({
   selector: 'jhi-company',
@@ -115,6 +118,11 @@ export class CompanyComponent implements OnInit, OnDestroy {
 
   registerChangeInCompanies(): void {
     this.eventSubscriber = this.eventManager.subscribe('companyListModification', () => this.loadPage());
+  }
+
+  details(company: ICompany): void {
+    const modalRef = this.modalService.open(CompanyDetailComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.company = company;
   }
 
   delete(company: ICompany): void {
