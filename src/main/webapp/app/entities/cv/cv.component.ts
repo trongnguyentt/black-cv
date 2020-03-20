@@ -35,6 +35,7 @@ export class CVComponent implements OnInit, OnDestroy {
   ascending!: boolean;
   ngbPaginationPage = 1;
   links: any;
+  checkRole?: boolean;
   searchForm = this.fb.group({
     name: [''],
     phone: [''],
@@ -54,7 +55,9 @@ export class CVComponent implements OnInit, OnDestroy {
     protected parseLinks: JhiParseLinks,
     private accountService: AccountService,
     protected reasonService: ReasonService
-  ) {}
+  ) {
+    this.checkRole = true;
+  }
 
   loadPage(page?: number): void {
     const pageToLoad: number = page ? page : this.page;
@@ -111,6 +114,13 @@ export class CVComponent implements OnInit, OnDestroy {
         this.account = account;
       }
     });
+
+    if (this.account.authorities.includes('ROLE_ADMIN')) {
+      this.checkRole = false;
+    } else {
+      this.checkRole = true;
+    }
+
     this.loadAll();
     this.registerChangeInCVS();
   }

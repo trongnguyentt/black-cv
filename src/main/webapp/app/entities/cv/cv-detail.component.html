@@ -1,120 +1,3 @@
-<!--&lt;!&ndash; Large modal &ndash;&gt;-->
-<!--<button type="button"-->
-<!--        class="btn btn-primary"-->
-<!--        data-toggle="modal"-->
-<!--        data-target=".bd-example-modal-lg">-->
-<!--    Large modal-->
-<!--</button>-->
-
-<!--<div class="modal fade bd-example-modal-lg"-->
-<!--     tabindex="-1"-->
-<!--     role="dialog"-->
-<!--     aria-labelledby="myLargeModalLabel"-->
-<!--     aria-hidden="true">-->
-<!--    <div class="modal-dialog modal-lg">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="container">-->
-<!--                <div class="row"  >-->
-<!--                    <div class="col-sm-5 trai" >-->
-<!--                        <div class="top_trai_body">-->
-<!--                            <div class="d-flex p-3 bg-secondary text-white khoi">-->
-<!--                                <img src="/content/icon/anh1.PNG" alt="">-->
-<!--                                <div class="flex1">Information</div>-->
-<!--                            </div>-->
-<!--                            <div class="d-flex p-3 bg-secondary text-white khoi">-->
-<!--                                <img src="/content/icon/anh2.PNG" alt="">-->
-<!--                                <div class="flex5">Name: {{cV.name}}</div>-->
-<!--                            </div>-->
-<!--                            <div class="d-flex p-3 bg-secondary text-white khoi">-->
-<!--                                <img src="/content/icon/anh3.PNG" alt="">-->
-<!--                                <div class="flex5">Birthday: {{cV.birthday}}</div>-->
-<!--                            </div>-->
-<!--                            <div class="d-flex p-3 bg-secondary text-white khoi">-->
-<!--                                <img src="/content/icon/anh4.PNG" alt="">-->
-<!--                                <div class="flex5" *ngIf="cV.gender==1">Gender: Nam</div>-->
-<!--                                <div class="flex5" *ngIf="cV.gender==0">Gender: Nữ</div>-->
-<!--                            </div>-->
-<!--                            <div class="d-flex p-3 bg-secondary text-white khoi">-->
-<!--                                <img src="/content/icon/anh5.PNG" alt="">-->
-<!--                                <div class="flex5">Phone Number: {{cV.phone}}</div>-->
-<!--                            </div>-->
-<!--                            <div class="d-flex p-3 bg-secondary text-white khoi">-->
-<!--                                <img src="/content/icon/anh12.PNG" alt="">-->
-<!--                                <div class="flex5">Email: {{cV.email}}</div>-->
-<!--                            </div>-->
-<!--                            <div class="d-flex p-3 bg-secondary text-white khoi	">-->
-<!--                                <img src="/content/icon/anh13.PNG" alt="">-->
-<!--                                <div class="flex5">Address: {{cV.address}}</div>-->
-<!--                            </div>-->
-
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-sm-7 phai-detail">-->
-<!--                        <div class="d-flex p-3 bg-secondary text-white khoi">-->
-<!--                            <img src="/content/icon/anh9.PNG" alt="">-->
-<!--                            <div class="flex1">Job</div>-->
-<!--                        </div>-->
-<!--                        <div class="hoc_van">-->
-<!--                            <p> Company :  <a href="#"> {{cV.idCompany}} </a> </p>-->
-<!--                            <p>Job : {{cV.job}}</p>-->
-<!--                        </div>-->
-<!--                        <div class="d-flex p-3 bg-secondary text-white khoi">-->
-<!--                            <div class="flex1">Reason </div>-->
-<!--                        </div>-->
-<!--                        <div class="hoc_van">-->
-<!--                            <p>Reason: {{cV.reason}}</p>-->
-<!--                            <p>Reason Detail: {{cV.reasonDetail}}</p>-->
-<!--                        </div>-->
-<!--                        <div class="d-flex p-3 bg-secondary text-white khoi fixHeader">-->
-
-<!--                            <div class="flex1">Attachments </div>-->
-<!--                        </div>-->
-
-<!--                        <div class="d-flex p-3  text-white justify-content-end khoianh">-->
-<!--                            <img data-toggle="modal" data-target="#exampleModalCenter" src="{{cV.fileUploadCV}}" style="width:40%; height: 40% ">-->
-<!--                            &lt;!&ndash; Modal &ndash;&gt;-->
-<!--                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">-->
-<!--                                <div class="modal-dialog modal-dialog-centered modal-lg" role="picture">-->
-<!--                                    <div class="modal-content ">-->
-<!--                                        <div class="modal-header">-->
-<!--                                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>-->
-<!--                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-<!--                                                <span aria-hidden="true">&times;</span>-->
-<!--                                            </button>-->
-<!--                                        </div>-->
-<!--                                        <div class="modal-body">-->
-<!--                                            <img id="myImg" src="{{cV.fileUploadCV}}" alt="" style="width: 100%; max-width: 800px">-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-<!--                            <div class="thumb"></div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--<div class="modal fade bd-example-modal-lg"-->
-<!--     tabindex="-1"-->
-<!--     role="dialog"-->
-<!--     aria-labelledby="myLargeModalLabel"-->
-<!--     aria-hidden="true">-->
-<!--    <div class="modal-dialog modal-lg">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="container-fluid text-left">-->
-<!--                <br>-->
-<!--                -->
-<!--                <br>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-
 <form *ngIf="cV" name="detailsForm" (ngSubmit)="clear()">
     <div class="modal-header">
         <!--        <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>-->
@@ -238,21 +121,21 @@
                                 <img data-toggle="modal" data-target="#exampleModalCenter"
                                      src="{{cV.fileUploadCV}}" style="width:100%; height: 55% ">
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+                                <div class="modal fade" tabindex="-1"
                                      role="dialog" aria-labelledby="exampleModalCenterTitle"
                                      aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg"
                                          role="picture">
                                         <div class="modal-content ">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
+                                                <h5 class="modal-title"></h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <img id="myImg" src="{{cV.fileUploadCV}}" alt="Evidence"
+                                                <img src="{{cV.fileUploadCV}}" alt="Evidence"
                                                      style="width: 100%; max-width: 850px">
                                             </div>
                                         </div>
@@ -275,4 +158,134 @@
     </div>
 </form>
 
+<form *ngIf="cVx" name="detailsForm" (ngSubmit)="clear()">
+    <div class="modal-header">
+        <!--        <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>-->
+        <h4 class="modal-title text-center" jhiTranslate="blackcvApp.cV.detail.detail">Detail</h4>
+<!--        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"-->
+<!--                (click)="clear()">&times;-->
+<!--        </button>-->
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col">
+                <div class="" style="width: 18rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-danger"
+                                  jhiTranslate="blackcvApp.cV.reason">Reason</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col">
+                            <p [innerHTML]="cVx.reason | tempConverter"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-md-7">
+                <div style="width: 26rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-info"
+                                  jhiTranslate="blackcvApp.cV.detail.title">Curriculum Vitae Detail</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col">
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'user'"></fa-icon></div>
+                                <div class="col">{{cVx.name}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'phone'"></fa-icon></div>
+                                <div class="col">{{cVx.phone}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'envelope'"></fa-icon></div>
+                                <div class="col">{{cVx.email}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'birthday-cake'"></fa-icon></div>
+                                <div class="col">{{cVx.birthday}}</div>
+                            </div>
+                            <div class="row pb-2" *ngIf="cVx.gender == 1">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'male'"></fa-icon></div>
+                                <div class="col">Male</div>
+                            </div>
+                            <div class="row pb-2" *ngIf="cVx.gender == 0" >
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'female'"></fa-icon></div>
+                                <div class="col">Female</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'briefcase'"></fa-icon></div>
+                                <div class="col">{{cVx.job}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'map-marker'"></fa-icon></div>
+                                <div class="col">{{cVx.address}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="" style="width: 18rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-danger"
+                                  jhiTranslate="blackcvApp.cV.evidence">Evidence</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex p-3 text-black justify-content-end">
+                                <img data-toggle="modal" data-target="#exampleModalCenter"
+                                     src="{{cVx.fileUploadCV}}" style="width:100%; height: 55% ">
+                                <!-- Modal -->
+                                <div class="modal fade" tabindex="-1"
+                                     role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg"
+                                         role="picture">
+                                        <div class="modal-content ">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"></h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{cVx.fileUploadCV}}" alt="Evidence"
+                                                     style="width: 100%; max-width: 850px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thumb"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="previousState()">
+            <!--            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Close</span>-->
+            <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span
+            jhiTranslate="blackcvApp.cV.close">Close</span>
+        </button>
+    </div>
+</form>
 

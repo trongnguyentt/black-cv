@@ -11,9 +11,7 @@ import { FormBuilder } from '@angular/forms';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { Account } from 'app/core/user/account.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ICV } from 'app/shared/model/cv.model';
 import { AccountService } from 'app/core/auth/account.service';
-import { CompanyDetailComponent } from 'app/entities/company/company-detail.component';
 import { StaffOriginDetailComponent } from 'app/entities/staff-origin/staff-origin-detail.component';
 
 @Component({

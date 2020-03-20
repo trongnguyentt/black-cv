@@ -33,12 +33,6 @@ export class SidebarComponent implements OnInit {
   swaggerEnabled?: boolean;
   inProduction?: boolean;
   companies?: ICompany[];
-  listCompany: any;
-  newCompany: any;
-  viewCompany: any;
-  checkEnableAdmin?: boolean;
-  checkEnableUserNew?: boolean;
-  checkEnableUserView?: boolean;
 
   constructor(
     protected detailService: DetailService,
@@ -103,8 +97,6 @@ export class SidebarComponent implements OnInit {
       }
     });
 
-    this.companyService.query({}).subscribe((res: HttpResponse<ICompany[]>) => this.paginateCompany(res.body!));
-
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.updateTitle();
@@ -119,6 +111,34 @@ export class SidebarComponent implements OnInit {
 
   protected paginateCompany(data: ICompany[]) {
     this.companies = data;
+    let author = this.account.authorities;
+    console.log('author:' + author);
+    if (this.account.authorities.includes('ROLE_ADMIN')) {
+      this.router.navigate(['/company']);
+    } else {
+      if (this.companies == undefined || this.companies!.length == 0) {
+        this.router.navigate(['/company/new']);
+      } else {
+        this.detailService.changeMessage(this.companies!);
+        this.router.navigate(['/company/view']);
+      }
+    }
+  }
+
+  getFormValues() {
+    const res = {};
+    const login = this.account.login;
+    const author = this.account.authorities;
+
+    if (login) {
+      res['login'] = login;
+    }
+
+    if (author) {
+      res['author'] = author;
+    }
+
+    return res;
   }
 
   getSideBarState() {
@@ -189,15 +209,6 @@ export class SidebarComponent implements OnInit {
   }
 
   check() {
-    if (this.account.authorities.includes('ROLE_ADMIN')) {
-      this.router.navigate(['/company']);
-    } else {
-      if (this.companies.length == 0) {
-        this.router.navigate(['/company/new']);
-      } else {
-        this.detailService.changeMessage(this.companies);
-        this.router.navigate(['/company/view']);
-      }
-    }
+    this.companyService.query({}).subscribe((res: HttpResponse<ICompany[]>) => this.paginateCompany(res.body!));
   }
 }
