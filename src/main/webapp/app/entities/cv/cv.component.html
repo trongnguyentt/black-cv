@@ -12,10 +12,6 @@
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="alert alert-warning" *ngIf="cVS?.length === 0">
-        <span jhiTranslate="blackcvApp.cV.home.notFound">No cVS found</span>
-    </div>
-    <br/>
     <form name="searchForm" role="form" novalidate (ngSubmit)="onSearch()" [formGroup]="searchForm">
         <div class="row justify-content-center">
             <div class="form-group col-sm-6 row text-color">
@@ -77,9 +73,12 @@
     <!--                </button>-->
     <!--            </div>-->
     <!--        </form>-->
-
-    <br>
-    <div class="table-responsive" *ngIf="cVS?.length > 0">
+    <br/>
+    <div class="alert alert-warning" *ngIf="cVS?.length === 0">
+        <span jhiTranslate="blackcvApp.cV.home.notFound">No cVS found</span>
+    </div>
+<!--    <div class="table-responsive" *ngIf="cVS?.length > 0">-->
+    <div class="table-responsive">
         <table class="table table-hover" aria-describedby="page-heading">
             <caption jhiTranslate="blackcvApp.cV.titleList">List of Curriculum Vitae</caption>
             <thead class="thead-light">

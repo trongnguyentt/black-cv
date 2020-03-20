@@ -176,16 +176,16 @@ export class CompanyComponent implements OnInit, OnDestroy {
     this.totalItems = parseInt(headers.get('X-Total-Count')!, 10);
     this.companies = data;
 
-    if (this.account.authorities.includes('ROLE_ADMIN')) {
-      this.router.navigate(['/company']);
-    } else {
-      if (this.companies.length == 0) {
-        this.router.navigate(['/company/new']);
-      } else {
-        this.detailService.changeMessage(data);
-        this.router.navigate(['/company/view']);
-      }
-    }
+    // if (this.account.authorities.includes('ROLE_ADMIN')) {
+    //   this.router.navigate(['/company']);
+    // } else {
+    //   if (this.companies.length == 0) {
+    //     this.router.navigate(['/company/new']);
+    //   } else {
+    //     this.detailService.changeMessage(data);
+    //     this.router.navigate(['/company/view']);
+    //   }
+    // }
   }
 
   protected onError(): void {

@@ -49,7 +49,7 @@
     <div class="alert alert-warning" *ngIf="reasonLists?.length === 0">
         <span jhiTranslate="blackcvApp.reasonList.home.notFound">No reasonLists found</span>
     </div>
-    <div class="table-responsive" *ngIf="reasonLists?.length > 0">
+    <div class="table-responsive">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
