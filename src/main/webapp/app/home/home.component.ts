@@ -12,6 +12,7 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { JhiParseLinks } from 'ng-jhipster';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CVDetailComponent } from 'app/entities/cv/cv-detail.component';
 
 @Component({
   selector: 'jhi-home',
@@ -119,6 +120,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
       });
     } else if (this.cVS.length == 1) {
+      // const modalRef = this.modalService.open(CVDetailComponent, { size: 'lg', backdrop: 'static' });
+      // modalRef.componentInstance.cV = this.cVS[0];
       this.router.navigate(['/cv/', this.cVS[0].id, 'view']);
     } else {
       // this.modalService.open(NoResultComponent);

@@ -1,14 +1,23 @@
-<div class="page-wrapper" [ngClass]="{'toggled' : getSideBarState()}" style="background-image: url('../content/images/background5.jpg');">
-    <jhi-sidebar></jhi-sidebar>
-    <main class="page-content">
+<div class="page-wrapper main" [ngClass]="{'toggled' : getSideBarState()}">
+<jhi-sidebar></jhi-sidebar>
+    <main class="page-content main">
         <div class="container-fluid">
             <div class="row">
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-12 ">
+                    <div class="col-md-9">
+                        <nav class="navbar navbar-light bg-white">
+                            <span>
+                                <button class="navbar-toggler pl-2 pr-2 mr-2" (click)="toggleSidebar()"
+                                        type="button" data-toggle="collapse">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <a class="homebutton" jhiTranslate="global.menu.home" routerLink="/">Home</a>
+                            </span>
+                        </nav>
+                    </div>
                     <hr>
-                    <p>This is a responsive sidebar template with dropdown menu built with angular 7 and bootstrap 4.</p>
-                    <hr>
-                    <a class="btn btn-outline-secondary mr-1 mb-1" (click)="toggleSidebar()">Toggle Sidebar</a>
-                    <a class="btn btn-secondary" (click)="toggleBackgroundImage()">Toggle Background Image</a>
+                    <!--                    <a class="btn btn-outline-secondary mr-1 mb-1" (click)="toggleSidebar()">Toggle Sidebar</a>-->
+                    <!--                    <a class="btn btn-secondary" (click)="toggleBackgroundImage()">Toggle Background Image</a>-->
                     <router-outlet></router-outlet>
                 </div>
             </div>

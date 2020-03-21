@@ -11,6 +11,10 @@ import { SessionStorageService } from 'ngx-webstorage';
 import { TranslateService } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
 import { Account } from 'app/core/user/account.model';
+import { CompanyService } from 'app/entities/company/company.service';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { ICompany } from 'app/shared/model/company.model';
+import { DetailService } from 'app/entities/company/detail.service';
 
 @Component({
   selector: 'jhi-sidebar',
@@ -28,8 +32,11 @@ export class SidebarComponent implements OnInit {
   status?: boolean;
   swaggerEnabled?: boolean;
   inProduction?: boolean;
+  companies?: ICompany[];
 
   constructor(
+    protected detailService: DetailService,
+    protected companyService: CompanyService,
     private translateService: TranslateService,
     private languageService: JhiLanguageService,
     private sessionStorage: SessionStorageService,
@@ -102,6 +109,38 @@ export class SidebarComponent implements OnInit {
     this.translateService.onLangChange.subscribe(() => this.updateTitle());
   }
 
+  protected paginateCompany(data: ICompany[]) {
+    this.companies = data;
+    let author = this.account.authorities;
+    console.log('author:' + author);
+    if (this.account.authorities.includes('ROLE_ADMIN')) {
+      this.router.navigate(['/company']);
+    } else {
+      if (this.companies == undefined || this.companies!.length == 0) {
+        this.router.navigate(['/company/new']);
+      } else {
+        this.detailService.changeMessage(this.companies!);
+        this.router.navigate(['/company/view']);
+      }
+    }
+  }
+
+  getFormValues() {
+    const res = {};
+    const login = this.account.login;
+    const author = this.account.authorities;
+
+    if (login) {
+      res['login'] = login;
+    }
+
+    if (author) {
+      res['author'] = author;
+    }
+
+    return res;
+  }
+
   getSideBarState() {
     return this.sidebarService.getSidebarState();
   }
@@ -167,5 +206,9 @@ export class SidebarComponent implements OnInit {
       pageTitle = 'global.title';
     }
     this.translateService.get(pageTitle).subscribe(title => this.titleService.setTitle(title));
+  }
+
+  check() {
+    this.companyService.query({}).subscribe((res: HttpResponse<ICompany[]>) => this.paginateCompany(res.body!));
   }
 }

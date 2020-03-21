@@ -6,6 +6,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ICompany } from 'app/shared/model/company.model';
 import { CompanyService } from 'app/entities/company/company.service';
+import { CompanyDetailComponent } from 'app/entities/company/company-detail.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-cv-no-result',
@@ -17,13 +19,20 @@ export class CvNoResultlComponent implements OnInit {
   searchForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]]
   });
-  constructor(protected activatedRoute: ActivatedRoute, private fb: FormBuilder, protected companyService: CompanyService) {}
+
+  constructor(
+    protected modalService: NgbModal,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    protected companyService: CompanyService
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ cV }) => {
       this.cV = cV;
     });
   }
+
   getFormValues() {
     const res = {};
     const name = this.searchForm.get(['name'])!.value.trim();
@@ -32,6 +41,7 @@ export class CvNoResultlComponent implements OnInit {
     }
     return res;
   }
+
   loadAll() {
     this.companyService
       .query({
@@ -39,12 +49,20 @@ export class CvNoResultlComponent implements OnInit {
       })
       .subscribe((res: HttpResponse<ICompany[]>) => this.paginateCompany(res.body!, res.headers));
   }
+
   onSearch() {
     this.loadAll();
   }
+
+  details(company: ICompany): void {
+    const modalRef = this.modalService.open(CompanyDetailComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.company = company;
+  }
+
   protected paginateCompany(data: ICompany[], headers: HttpHeaders) {
     this.companies = data;
   }
+
   previousState(): void {
     window.history.back();
   }

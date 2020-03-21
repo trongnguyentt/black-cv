@@ -4,23 +4,23 @@
             <div class="sidebar-header">
                 <a jhiTranslate="global.menu.home" routerLink="/">Home</a>
             </div>
-<!--            <div class="sidebar-profile" *ngIf="isAuthenticated()&&status" [ngSwitch]="isAuthenticated()">-->
-<!--                <div class="user-pic">-->
-<!--                    <img class="img-responsive img-rounded"-->
-<!--                         src="../../../content/images/ava.png"-->
-<!--                         alt="User picture">-->
-<!--                </div>-->
-<!--                <div class="user-info">-->
-<!--                    <span class="user-name">-->
-<!--                        <h5><strong>{{account.login}}</strong></h5>-->
-<!--                    </span>-->
-<!--                    <span class="user-role">{{role}}</span>-->
-<!--                    <span class="user-status">-->
-<!--                        <i class="fa fa-circle"></i>-->
-<!--                        <span>Online</span>-->
-<!--                    </span>-->
-<!--                </div>-->
-<!--            </div>-->
+            <!--            <div class="sidebar-profile" *ngIf="isAuthenticated()&&status" [ngSwitch]="isAuthenticated()">-->
+            <!--                <div class="user-pic">-->
+            <!--                    <img class="img-responsive img-rounded"-->
+            <!--                         src="../../../content/images/ava.png"-->
+            <!--                         alt="User picture">-->
+            <!--                </div>-->
+            <!--                <div class="user-info">-->
+            <!--                    <span class="user-name">-->
+            <!--                        <h5><strong>{{account.login}}</strong></h5>-->
+            <!--                    </span>-->
+            <!--                    <span class="user-role">{{role}}</span>-->
+            <!--                    <span class="user-status">-->
+            <!--                        <i class="fa fa-circle"></i>-->
+            <!--                        <span>Online</span>-->
+            <!--                    </span>-->
+            <!--                </div>-->
+            <!--            </div>-->
             <div class="sidebar-search">
                 <div>
                     <div class="input-group">
@@ -90,7 +90,7 @@
                                             </a>
 
                                             <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item"
-                                               routerLink="company"
+                                               (click)="check()"
                                                routerLinkActive="active">
                                                 <fa-icon icon="building" fixedWidth="true"></fa-icon>
                                                 <span jhiTranslate="global.menu.entities.company">Company</span>

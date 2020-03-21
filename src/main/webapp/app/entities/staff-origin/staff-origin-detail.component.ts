@@ -10,13 +10,14 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class StaffOriginDetailComponent implements OnInit {
   staffOrigin?: IStaffOrigin;
+  staffOriginX: IStaffOrigin | null = null;
 
   constructor(protected activatedRoute: ActivatedRoute, public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {
-    // this.activatedRoute.data.subscribe(({ staffOrigin }) => {
-    //   this.staffOrigin = staffOrigin;
-    // });
+    this.activatedRoute.data.subscribe(({ staffOrigin }) => {
+      this.staffOriginX = staffOrigin;
+    });
   }
 
   previousState(): void {

@@ -362,6 +362,12 @@ file deitail của đat*/
   background-size: cover;
 }
 
+.cusbackmain {
+  //color: #fff;
+  //background-color: #fff;
+  background-image: url('../../content/images/background4.png');
+}
+
 /*
 phần code css cho trang Home (đạt)*/
 .anhnen {
@@ -758,4 +764,12 @@ css cho phần Create new CV*/
 
 .color-white {
   color: white;
+}
+
+.homebutton {
+  color: #17a2b8;
+  font-weight: bold;
+  a:hover {
+    color: #17a2b8;
+  }
 }

@@ -47,7 +47,7 @@
     <div class="alert alert-warning" *ngIf="companies?.length === 0">
         <span jhiTranslate="blackcvApp.company.home.notFound">No companies found</span>
     </div>
-    <div class="table-responsive" *ngIf="companies?.length > 0">
+    <div class="table-responsive">
         <table class="table table-hover" aria-describedby="page-heading">
             <caption jhiTranslate="blackcvApp.company.titleList">List of Company</caption>
             <thead class="thead-light">
@@ -71,7 +71,7 @@
                 <!--                    <fa-icon [icon]="'sort'"></fa-icon>-->
                 <!--                </th>-->
                 <th scope="col">
-                    <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-company"
+                    <button *ngIf="checkRole" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-company"
                             [routerLink]="['/company/new']">
                         <fa-icon [icon]="'plus'"></fa-icon>
                         <span jhiTranslate="blackcvApp.company.home.createLabel">
