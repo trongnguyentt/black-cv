@@ -6,7 +6,20 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <p id="jhi-delete-reason-heading" jhiTranslate="blackcvApp.reason.delete.question" [translateValues]="{id: reason.id}">Are you sure you want to delete this Reason?</p>
+        <p id="jhi-delete-reason-heading" jhiTranslate="blackcvApp.reason.delete.question" [translateValues]="{reasonName: reason.reasonName}">Are you sure you want to delete this Reason?</p>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col">
+                <div class="row pb-2">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'list-ul'"></fa-icon></div>
+                    <div class="col" data-toggle="tooltip" data-placement="top" title="Reason's name">{{reason.reasonName}}</div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'info'"></fa-icon></div>
+                    <div class="col" data-toggle="tooltip" data-placement="top" title="Reason's descriptions">{{reason.descriptons}}</div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
