@@ -335,7 +335,7 @@
                 </div>
 
                 <div class="col-md-4 mb-4">
-                    <label class="form-control-label" for="field_name">Birth Day</label>
+                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.birthday" for="field_name">Birth Day</label>
                     <input type="date" class="form-control" name="birthday" id="field_birthday"
                            formControlName="birthday" required/>
                     <div
@@ -378,6 +378,12 @@
                             *ngIf="editForm.get('phone')?.errors?.pattern"
                             jhiTranslate="entity.validation.pattern"
                             [translateValues]="{ pattern: '0123456789' }">
+                            >Please provide a valid name
+                        </small>
+                        <small
+                            class="form-text text-danger"
+                            *ngIf="editForm.get('phone')?.errors?.phone"
+                            jhiTranslate="entity.validation.phoneduplicate">
                             >Please provide a valid name
                         </small>
                     </div>
@@ -478,7 +484,7 @@
                 </div>
 
                 <div class="col-md-6 mb-4">
-                    <label class="form-control-label">Reason</label>
+                    <label class="form-control-label" jhiTranslate="blackcvApp.cV.reason">Reason</label>
                     <ng-multiselect-dropdown
                         required
                         id="reason"

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { ICV } from 'app/shared/model/cv.model';
-import { map } from 'rxjs/operators';
+import { IStaffOrigin } from 'app/shared/model/staff-origin.model';
 
 type EntityResponseType = HttpResponse<ICV>;
 type EntityArrayResponseType = HttpResponse<ICV[]>;
@@ -13,8 +13,14 @@ type EntityArrayResponseType = HttpResponse<ICV[]>;
 @Injectable({ providedIn: 'root' })
 export class CVService {
   public resourceUrl = SERVER_API_URL + 'api/cvs';
+  private messageSource = new BehaviorSubject<ICV[]>([]);
+  currentMessage = this.messageSource.asObservable();
 
   constructor(protected http: HttpClient) {}
+
+  changeMessage(message: ICV[]) {
+    this.messageSource.next(message);
+  }
 
   create(cV: ICV, iconPath: File, iconPath2: File): Observable<EntityResponseType> {
     const data: FormData = new FormData();

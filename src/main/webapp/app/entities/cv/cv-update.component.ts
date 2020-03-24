@@ -10,6 +10,7 @@ import { JhiAlertService, JhiParseLinks } from 'ng-jhipster';
 import { IReason } from 'app/shared/model/reason.model';
 import { ReasonService } from 'app/entities/reason/reason.service';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
+import { ValidatePhone } from 'app/entities/cv/phone.validator';
 
 @Component({
   selector: 'jhi-cv-update',
@@ -20,6 +21,7 @@ export class CVUpdateComponent implements OnInit {
   reason!: any[];
   links: any;
   a!: ICV;
+  listCV = [''];
   reasons!: IReason[];
   totalItems = 0;
   page!: number;
@@ -30,7 +32,16 @@ export class CVUpdateComponent implements OnInit {
     idCompany: [''],
     name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
     birthday: ['', [Validators.required]],
-    phone: ['', [Validators.required, Validators.pattern(this.mobNumberPattern), Validators.minLength(10), Validators.maxLength(10)]],
+    phone: [
+      '',
+      [
+        Validators.required,
+        ValidatePhone(this.listCV),
+        Validators.pattern(this.mobNumberPattern),
+        Validators.minLength(10),
+        Validators.maxLength(10)
+      ]
+    ],
     email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
     address: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
     job: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
@@ -69,6 +80,15 @@ export class CVUpdateComponent implements OnInit {
       this.updateForm(cV);
     });
 
+    this.cVService.currentMessage.subscribe((res: ICV[]) => {
+      for (const item of res) {
+        if (item.phone != null) {
+          this.listCV.push(item.phone);
+        }
+      }
+    });
+    // console.log("listCV 1:" + this.listCV);
+
     this.reasonService.query({}).subscribe((res: HttpResponse<IReason[]>) => this.paginateReason(res.body!, res.headers));
   }
 
@@ -83,7 +103,7 @@ export class CVUpdateComponent implements OnInit {
           this.reason.push(reason.reasonName);
         }
       }
-      console.log(this.reason);
+      // console.log(this.reason);
     }
   }
 
@@ -96,7 +116,7 @@ export class CVUpdateComponent implements OnInit {
   }
 
   check(reason: string) {
-    console.log(reason + ' ' + this.editForm.get(['reasonDetail'])!.value);
+    // console.log(reason + ' ' + this.editForm.get(['reasonDetail'])!.value);
   }
 
   toArray(reason: any) {
@@ -122,7 +142,7 @@ export class CVUpdateComponent implements OnInit {
       fileUploadCV: cV.fileUploadCV,
       status: cV.status
     });
-    console.log(cV.reason);
+    // console.log(cV.reason);
   }
 
   previousState(): void {

@@ -23,9 +23,10 @@ import { CVDetailComponent } from 'app/entities/cv/cv-detail.component';
   templateUrl: './cv.component.html'
 })
 export class CVComponent implements OnInit, OnDestroy {
-  cVS?: ICV[];
+  cVS!: ICV[];
   isCheck?: ICompany[];
-  temp?: ICompany;
+  isNew!: boolean;
+  isRedirectCompany!: boolean;
   eventSubscriber?: Subscription;
   totalItems = 0;
   account!: Account;
@@ -53,10 +54,11 @@ export class CVComponent implements OnInit, OnDestroy {
     protected modalService: NgbModal,
     private fb: FormBuilder,
     protected parseLinks: JhiParseLinks,
-    private accountService: AccountService,
-    protected reasonService: ReasonService
+    private accountService: AccountService
   ) {
     this.checkRole = true;
+    this.isNew = false;
+    this.isRedirectCompany = false;
   }
 
   loadPage(page?: number): void {
@@ -115,13 +117,12 @@ export class CVComponent implements OnInit, OnDestroy {
       }
     });
 
-    if (this.account.authorities.includes('ROLE_ADMIN')) {
-      this.checkRole = false;
-    } else {
-      this.checkRole = true;
-    }
+    this.checkRole = !this.account.authorities.includes('ROLE_ADMIN');
 
     this.loadAll();
+    this.checkCompanyExist();
+    console.log('isNew: ' + this.isNew);
+    console.log('isCompanyNew: ' + this.isRedirectCompany);
     this.registerChangeInCVS();
   }
 
@@ -139,9 +140,14 @@ export class CVComponent implements OnInit, OnDestroy {
     this.isCheck = data ? data : [];
     console.log('isCheck:' + this.isCheck.length);
     if (this.isCheck.length != 0) {
-      this.router.navigate(['/cv/new']);
+      this.cVService.changeMessage(this.cVS);
+      this.isNew = true;
+      console.log('isNew:' + this.isNew);
+      // this.router.navigate(['/cv/new']);
     } else {
-      this.router.navigate(['/company/new']);
+      this.isRedirectCompany = true;
+      console.log('isRedirectCompany:' + this.isRedirectCompany);
+      // this.router.navigate(['/company/new']);
     }
   }
 

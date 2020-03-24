@@ -9,6 +9,7 @@ import { settingsRoute } from './settings/settings.route';
 import { sendCvRoute } from 'app/account/send-cv/send-cv.route';
 
 import { listRoute } from 'app/account/list-staff/list.route';
+import { loginRoute } from 'app/account/login/login.route';
 
 const ACCOUNT_ROUTES = [
   activateRoute,
@@ -18,7 +19,8 @@ const ACCOUNT_ROUTES = [
   registerRoute,
   settingsRoute,
   sendCvRoute,
-  listRoute
+  listRoute,
+  loginRoute
 ];
 
 export const accountState: Routes = [

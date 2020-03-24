@@ -40,6 +40,7 @@
       "language": "Language"
     },
     "form": {
+      "title.label": "LOGIN",
       "username.label": "Username",
       "username.placeholder": "Your username",
       "currentpassword.label": "Current password",
@@ -115,6 +116,7 @@
       "title": "Confirm delete operation"
     },
     "validation": {
+      "phoneduplicate": "Phone number already exists in the list",
       "required": "This field is required.",
       "minlength": "This field is required to be at least {{ min }} characters.",
       "maxlength": "This field cannot be longer than {{ max }} characters.",
