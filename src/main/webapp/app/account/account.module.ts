@@ -13,6 +13,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { accountState } from './account.route';
 import { DisableFormComponent, SendCvComponent } from 'app/account/send-cv/send-cv.component';
 import { ListStaffComponent } from 'app/account/list-staff/list.component';
+import { LoginComponent } from 'app/account/login/login.component';
 
 @NgModule({
   imports: [BlackcvSharedModule, RouterModule.forChild(accountState)],
@@ -26,7 +27,8 @@ import { ListStaffComponent } from 'app/account/list-staff/list.component';
     SettingsComponent,
     SendCvComponent,
     ListStaffComponent,
-    DisableFormComponent
+    DisableFormComponent,
+    LoginComponent
   ]
 })
 export class AccountModule {}
