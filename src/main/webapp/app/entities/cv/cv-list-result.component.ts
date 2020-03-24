@@ -13,15 +13,15 @@ import { CVService } from 'app/entities/cv/cv.service';
   selector: 'jhi-cv-list-result',
   templateUrl: './cv-list-result.component.html'
 })
-export class CvListResultlComponent implements OnInit {
+export class CvListResultComponent implements OnInit {
   // @Input() cVa!:ICV;
   cVS?: ICV[];
   companies!: ICompany;
   searchForm = this.fb.group({
-    name: [],
+    /*    name: [],*/
     phone: [],
-    email: [],
-    birthday: []
+    email: []
+    // birthday: []
   });
 
   constructor(
@@ -33,10 +33,10 @@ export class CvListResultlComponent implements OnInit {
   ) {
     this.activatedRoute.queryParams.subscribe(data => {
       const res = {};
-      res['name'] = data.hasOwnProperty('name') ? data['name'].trim() : '';
+      // res['name'] = data.hasOwnProperty('name') ? data['name'].trim() : '';
       res['phone'] = data.hasOwnProperty('phone') ? data['phone'].trim() : '';
       res['email'] = data.hasOwnProperty('email') ? data['email'].trim() : '';
-      res['birthday'] = data.hasOwnProperty('birthday') ? data['birthday'].toString() : '';
+      // res['birthday'] = data.hasOwnProperty('birthday') ? data['birthday'].toString() : '';
       this.searchForm.patchValue(res);
       this.loadAll();
     });
@@ -61,13 +61,13 @@ export class CvListResultlComponent implements OnInit {
   }
   getFormValues() {
     const res = {};
-    const name = this.searchForm.get(['name'])!.value.trim();
+    // const name = this.searchForm.get(['name'])!.value.trim();
     const phone = this.searchForm.get(['phone'])!.value.trim();
     const email = this.searchForm.get(['email'])!.value.trim();
-    const birthday = this.searchForm.get(['birthday'])!.value.toString();
-    if (name) {
-      res['name'] = name;
-    }
+    // const birthday = this.searchForm.get(['birthday'])!.value.toString();
+    // if (name) {
+    //   res['name'] = name;
+    // }
 
     if (phone) {
       res['phone'] = phone;
@@ -75,9 +75,9 @@ export class CvListResultlComponent implements OnInit {
     if (email) {
       res['email'] = email;
     }
-    if (birthday) {
-      res['birthday'] = birthday;
-    }
+    // if (birthday) {
+    //   res['birthday'] = birthday;
+    // }
 
     return res;
   }

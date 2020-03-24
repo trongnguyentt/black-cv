@@ -111,8 +111,8 @@ export class SidebarComponent implements OnInit {
 
   protected paginateCompany(data: ICompany[]) {
     this.companies = data;
-    let author = this.account.authorities;
-    console.log('author:' + author);
+    // let author = this.account.authorities;
+    // console.log('author:' + author);
     if (this.account.authorities.includes('ROLE_ADMIN')) {
       this.router.navigate(['/company']);
     } else {
