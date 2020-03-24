@@ -19,7 +19,6 @@ import { SidebarService } from 'app/layouts/sidebar/sidebar.service';
 })
 export class MainComponent implements OnInit {
   inProduction?: boolean;
-  isNavbarCollapsed = true;
   languages = LANGUAGES;
   swaggerEnabled?: boolean;
   status?: boolean;
@@ -64,33 +63,12 @@ export class MainComponent implements OnInit {
     this.sidebarService.setSidebarState(!this.sidebarService.getSidebarState());
   }
 
-  toggleBackgroundImage() {
-    this.sidebarService.hasBackgroundImage = !this.sidebarService.hasBackgroundImage;
-  }
-
   getSideBarState() {
     return this.sidebarService.getSidebarState();
   }
 
-  hideSidebar() {
-    this.sidebarService.setSidebarState(true);
-  }
-
-  changeLanguage(languageKey: string): void {
-    this.sessionStorage.store('locale', languageKey);
-    this.languageService.changeLanguage(languageKey);
-  }
-
-  collapseNavbar(): void {
-    this.isNavbarCollapsed = true;
-  }
-
   isAuthenticated(): boolean {
     return this.accountService.isAuthenticated();
-  }
-
-  changeShow(): void {
-    this.status = !this.status;
   }
 
   login(): void {
@@ -101,10 +79,6 @@ export class MainComponent implements OnInit {
     // this.collapseNavbar();
     this.loginService.logout();
     this.router.navigate(['']);
-  }
-
-  toggleNavbar(): void {
-    this.isNavbarCollapsed = !this.isNavbarCollapsed;
   }
 
   getImageUrl(): string {

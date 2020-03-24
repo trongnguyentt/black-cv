@@ -40,8 +40,9 @@
       "language": "Ngôn ngữ"
     },
     "form": {
-      "username.label": "Tên tài khoản",
-      "username.placeholder": "Nhập tên tài khoản của bạn",
+      "title.label": "ĐĂNG NHẬP",
+      "username.label": "Tài khoản",
+      "username.placeholder": "Tên tài khoản",
       "newpassword.label": "Mật khẩu mới",
       "newpassword.placeholder": "Nhập mật khẩu mới",
       "confirmpassword.label": "Xác nhận mật khẩu mới",
@@ -113,6 +114,7 @@
       "title": "Xác nhận hành động xóa"
     },
     "validation": {
+      "phoneduplicate": "Số điện thoại đã tồn tại trong danh sách",
       "required": "Trường này bắt buộc phải nhập.",
       "minlength": "Trường này phải có ít nhất {{ min }} ký tự.",
       "maxlength": "Trường này không được vượt quá {{ max }} ký tự.",

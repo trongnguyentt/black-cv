@@ -21,6 +21,7 @@
       "name": "Name",
       "phone": "Phone",
       "email": "Email",
+      "birdthday": "Birthday",
       "address": "Address",
       "job": "Job",
       "gender": "Gender",
