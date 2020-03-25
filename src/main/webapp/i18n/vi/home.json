@@ -18,7 +18,10 @@
     "search": "Tìm kiếm hồ sơ",
     "placeholder": {
       "searchEmail": "Nhập email",
-      "searchPhone": "Nhập số điện thoại"
+      "searchPhone": "Nhập số điện thoại",
+      "searchName": "Nhập tên",
+      "searchBusiness": "Nhập lĩnh vực kinh doanh",
+      "searchReason": "Nhập lý do"
     }
   }
 }
