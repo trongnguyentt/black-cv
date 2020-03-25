@@ -15,6 +15,10 @@
     },
     "like": "Nếu bạn thích JHipster, đừng quên cho chúng tôi thêm một ngôi sao trên",
     "github": "GitHub",
-    "search": "Tìm kiếm hồ sơ"
+    "search": "Tìm kiếm hồ sơ",
+    "placeholder": {
+      "searchEmail": "Nhập email",
+      "searchPhone": "Nhập số điện thoại"
+    }
   }
 }

@@ -28,11 +28,11 @@
 
                             <div class="form-inline">
                                 <input type="email" class="form-control form-control-underlined"
-                                       placeholder="Enter mail"
-                                       name="field_email" id="field_email" formControlName="email" style="width: 80%;">
+                                       placeholder="{{'home.placeholder.searchEmail' | translate}}"
+                                       name="field_email" id="field_email" formControlName="email" style="width: 80%; margin-right: 1rem;">
 
                                 <button type="submit" id="save-entity1" class="btn btn-info"
-                                        [disabled]="!searchFormEmail.valid">
+                                        [disabled]="!searchFormEmail.valid" style="border-radius: 25px">
                                     <fa-icon [icon]="'search'"></fa-icon>
                                     <span class="d-none d-md-inline"
                                           jhiTranslate="blackcvApp.company.search">Search</span>
@@ -46,10 +46,10 @@
                               [formGroup]="searchFormPhone">
 
                             <div class="form-inline">
-                                <input type="tel" class="form-control form-control-underlined" placeholder="Enter phone"
-                                       name="field_phone" id="field_phone" formControlName="phone" style="width: 80%;">
+                                <input type="tel" class="form-control form-control-underlined"  placeholder="{{'home.placeholder.searchPhone' | translate}}"
+                                       name="field_phone" id="field_phone" formControlName="phone" style="width: 80%; margin-right: 1rem;">
                                 <button type="submit" id="save-entity" class="btn btn-info"
-                                        [disabled]="!searchFormPhone.valid">
+                                        [disabled]="!searchFormPhone.valid" style="border-radius: 25px">
                                     <fa-icon [icon]="'search'"></fa-icon>
                                     <span class="d-none d-md-inline"
                                           jhiTranslate="blackcvApp.company.search">Search</span>
