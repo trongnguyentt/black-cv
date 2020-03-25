@@ -1,0 +1,195 @@
+.anhnen{
+	background-image: url('anh2.jpg');
+	height: 800px;
+	position: absolute;
+}
+.phanform{
+	position: relative;
+	width: 680px;
+	height: 520px;
+	margin-top: 165px;
+	margin-left: 320px;
+	
+	border-radius: 10px;
+	background-color: white;
+}
+
+.phanform-top{
+	width: 100%;
+	height: 62px;
+	background-color: #fa4251;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
+
+}
+.phanform-top img{
+	margin-top: -25px;
+	margin-left: 45px;
+
+}
+.phanform-top p{
+	display: block;
+	color: white;
+	font-size: 24px;
+	font-weight: 500;
+	text-transform: uppercase;
+	padding-top: 10px;
+	padding-left: 40px;
+}
+.noidung-form{
+	padding-top: 40px;
+
+	padding-right:55px; 
+	padding-left: 55px;
+}
+.row0{
+	padding-left: 15px;
+	margin-right: 83px;
+	
+
+}
+
+.row2{
+
+	margin-top: 40px;
+}
+
+.borderduoi{
+	border-bottom: 2px solid #95a5a6;
+}
+.btn-submit{
+	display: block;
+    margin-top: 32px;
+    width: 100%;
+    line-height: 50px;
+    font-family: inherit;
+    background: #00ad5f;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 10px;
+
+}
+.btn-submit:hover{
+	cursor: pointer;
+
+}
+.form-control1{
+	height: 35px;
+	width: 250px;
+	border-radius: 5px;
+}
+/* đây là phần css responsive */
+/* đây là màn iphone 67 plus */
+@media only screen and (max-width: 414px) and (min-width: 320px){
+	.phanform{
+	position: relative;
+	width: 346px;
+	height: 390px;
+	margin-top: 165px!important;
+	margin: auto;
+	border-radius: 10px;
+	background-color: white;
+	
+	}
+	.noidung-form{
+	padding-top: 30px;
+	padding-right:10px; 
+	padding-left: 10px;
+
+	}
+	.row0{			
+
+	padding-left: 16px;
+	margin-right: 20px;
+    }
+    .row2{
+    	margin-top: 24px;
+    }
+
+	.form-control1{
+	height: 35px;
+	width: 160px;
+	border-radius: 5px;
+	}
+
+
+}
+
+
+
+/* màn hình ipad */
+@media only screen and (max-width: 1024px) and (min-width: 415px){
+	.phanform{
+	position: relative;
+	width: 630px;
+	height: 520px;
+	margin-top: 165px !important;
+	margin: auto;
+	
+	border-radius: 10px;
+	background-color: white;
+	}
+
+	.row0{
+	
+	padding-left: 16px;
+	margin-right: 35px;
+	 }
+	.row2{
+	    	margin-top: 40px;
+	    } 
+	.form-control1{
+	height: 45px;
+	width: 250px;
+	border-radius: 5px;
+	}
+}
+
+
+/* // iphone 5 */
+
+@media only screen and (max-width:360px){
+
+	.phanform{
+	position: relative;
+	width: 295px;
+	height: 350px;
+	margin-top: 165px!important;
+	margin: auto;
+	border-radius: 10px;
+	background-color: white;
+	
+	}
+	.noidung-form{
+	padding-top: 30px;
+	padding-right:10px; 
+	padding-left: 10px;
+
+	}
+	.row0{
+
+	padding-left: 14px;
+	margin-right: 20px;
+    }
+    .row2{
+    	margin-top: 24px;
+    }
+
+	.form-control1{
+	height: 30px;
+	width: 135px;
+	border-radius: 5px;
+	font-size: 0.75rem;
+	}
+	.form-control{
+		font-size: 0.75rem;
+	}
+	.btn-submit{
+		height: 48px;
+		margin-top: 16px;
+
+	}
+
+}

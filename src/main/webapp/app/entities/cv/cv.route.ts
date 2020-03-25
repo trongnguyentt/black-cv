@@ -11,8 +11,8 @@ import { CVService } from './cv.service';
 import { CVComponent } from './cv.component';
 import { CVDetailComponent } from './cv-detail.component';
 import { CVUpdateComponent } from './cv-update.component';
-import { CvNoResultlComponent } from 'app/entities/cv/cv-no-resultl.component';
-import { CvListResultlComponent } from 'app/entities/cv/cv-list-resultl.component';
+import { CvNoResultComponent } from 'app/entities/cv/cv-no-result.component';
+import { CvListResultComponent } from 'app/entities/cv/cv-list-result.component';
 
 @Injectable({ providedIn: 'root' })
 export class CVResolve implements Resolve<ICV> {
@@ -88,7 +88,7 @@ export const cVRoute: Routes = [
   },
   {
     path: 'no-result',
-    component: CvNoResultlComponent,
+    component: CvNoResultComponent,
     resolve: {
       cV: CVResolve
     },
@@ -101,7 +101,7 @@ export const cVRoute: Routes = [
   },
   {
     path: 'list-result',
-    component: CvListResultlComponent,
+    component: CvListResultComponent,
     resolve: {
       cV: CVResolve
     },

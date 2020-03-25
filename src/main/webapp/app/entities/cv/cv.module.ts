@@ -7,10 +7,10 @@ import { CVDetailComponent } from './cv-detail.component';
 import { CVUpdateComponent } from './cv-update.component';
 import { CVDeleteDialogComponent } from './cv-delete-dialog.component';
 import { cVRoute } from './cv.route';
-import { CvNoResultlComponent } from 'app/entities/cv/cv-no-resultl.component';
+import { CvNoResultComponent } from 'app/entities/cv/cv-no-result.component';
 import { MultiSelectModule } from '@syncfusion/ej2-angular-dropdowns';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { CvListResultlComponent } from 'app/entities/cv/cv-list-resultl.component';
+import { CvListResultComponent } from 'app/entities/cv/cv-list-result.component';
 import { GetLengthPipe, ReplacePipe } from 'app/entities/cv/replaceCharacter.directives';
 
 @NgModule({
@@ -22,10 +22,10 @@ import { GetLengthPipe, ReplacePipe } from 'app/entities/cv/replaceCharacter.dir
     CVDetailComponent,
     CVUpdateComponent,
     CVDeleteDialogComponent,
-    CvNoResultlComponent,
-    CvListResultlComponent
+    CvNoResultComponent,
+    CvListResultComponent
   ],
   entryComponents: [CVDeleteDialogComponent],
-  exports: [CvListResultlComponent]
+  exports: [CvListResultComponent]
 })
 export class BlackcvCVModule {}
