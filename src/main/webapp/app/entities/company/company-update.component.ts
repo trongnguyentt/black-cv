@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { ICompany, Company } from 'app/shared/model/company.model';
 import { CompanyService } from './company.service';
-import { COMPANY_ALREADY_USED_TYPE, EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/shared/constants/error.constants';
+import { COMPANY_ALREADY_USED_TYPE, EMAIL_ALREADY_USED_TYPE } from 'app/shared/constants/error.constants';
+import { ValidatorsEmail } from 'app/entities/company/email-company.validator';
 
 @Component({
   selector: 'jhi-company-update',
@@ -15,7 +15,7 @@ import { COMPANY_ALREADY_USED_TYPE, EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_
 })
 export class CompanyUpdateComponent implements OnInit {
   isSaving = false;
-  emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
+  emailPattern = '^[a-z0-9._-]+@[a-z0-9._-]+.[a-z]{2,4}$';
   errorEmailExists = false;
   errorUserExists = false;
   error = false;
@@ -27,7 +27,7 @@ export class CompanyUpdateComponent implements OnInit {
     businessAreas: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
     address: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
     status: [],
-    email: ['', [Validators.required, Validators.email, Validators.minLength(5), Validators.maxLength(254)]]
+    email: ['', [Validators.required, ValidatorsEmail, Validators.email, Validators.minLength(5), Validators.maxLength(254)]]
   });
 
   constructor(protected companyService: CompanyService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
