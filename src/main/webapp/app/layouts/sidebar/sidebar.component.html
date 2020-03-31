@@ -37,7 +37,7 @@
                 <div [ngSwitch]="isAuthenticated()">
                     <ul>
                         <li>
-                            <div class="row">
+                            <div class="row col-md">
                                 <div class="col-md-7">
                                     <a style="text-align: center"
                                         [jhiActiveMenu]="vi"
@@ -73,7 +73,7 @@
                             </a>
                         </li>
                         <li *ngSwitchCase="false">
-                            <a class="dropdown-item" (click)="login()" id="login">
+                            <a class="dropdown-item" (click)="login()" id="signin">
                                 <fa-icon icon="sign-in-alt" fixedWidth="true"></fa-icon>
                                 <span jhiTranslate="global.menu.account.login">Sign in</span>
                             </a>
