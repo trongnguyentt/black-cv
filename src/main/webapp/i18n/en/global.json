@@ -116,6 +116,7 @@
       "title": "Confirm delete operation"
     },
     "validation": {
+      "emailInvalid": "Email must be a business domain name - info@business-name.com",
       "phoneduplicate": "Phone number already exists in the list",
       "required": "This field is required.",
       "minlength": "This field is required to be at least {{ min }} characters.",

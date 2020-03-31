@@ -125,6 +125,11 @@
                                jhiTranslate="global.messages.validate.email.maxlength">
                             Your email cannot be longer than 100 characters.
                         </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('email')?.errors?.emailInvalid"
+                               jhiTranslate="entity.validation.emailInvalid">
+                            >Please provide a valid name
+                        </small>
                     </div>
                 </div>
                 <!--                <div class="form-group">-->
