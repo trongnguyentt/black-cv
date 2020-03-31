@@ -12,7 +12,6 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { JhiParseLinks } from 'ng-jhipster';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CVDetailComponent } from 'app/entities/cv/cv-detail.component';
 
 @Component({
   selector: 'jhi-home',
@@ -21,7 +20,7 @@ import { CVDetailComponent } from 'app/entities/cv/cv-detail.component';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   cVS?: ICV[];
-  checkSearch?: boolean;
+  // checkSearch?: boolean;
   account: Account | null = null;
   authSubscription?: Subscription;
   page!: number;
@@ -32,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   fail!: boolean;
   isSaving = false;
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$';
-  mobNumberPattern = '^((\\+91-?)|0)?[0-9]{10}$';
+  mobNumberPattern = '^((\\+84-?)|0)?[0-9]{10}$';
 
   constructor(
     private accountService: AccountService,
@@ -43,29 +42,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     protected modalService: NgbModal
   ) {
-    this.checkSearch = true;
+    // this.checkSearch = true;
   }
 
-  changeForm = this.fb.group({
-    check: ['']
-    // name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
-    // email: ['', [Validators.minLength(5), Validators.maxLength(254), Validators.email]],
-    // birthday: ['', [Validators.required]]
-  });
-
-  searchFormPhone = this.fb.group({
-    // check: [''],
-    // name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
-    phone: ['', [Validators.required, Validators.pattern(this.mobNumberPattern), Validators.minLength(10), Validators.maxLength(10)]]
-    // email: ['', [ Validators.minLength(5), Validators.maxLength(254), Validators.email]],
-    // birthday: ['', [Validators.required]]
-  });
-
-  searchFormEmail = this.fb.group({
-    // check: [''],
-    // name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
-    email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]]
-    // birthday: ['', [Validators.required]]
+  searchForm = this.fb.group({
+    // phone: ['', [Validators.required, Validators.pattern(this.mobNumberPattern)]],
+    // email: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(254), Validators.email]]
+    phone: [''],
+    email: ['']
   });
 
   ngOnInit(): void {
@@ -75,26 +59,22 @@ export class HomeComponent implements OnInit, OnDestroy {
   getFormValues() {
     const res = {};
     // const name = this.searchForm.get(['name'])!.value.trim();
-    const phone = this.searchFormPhone.get(['phone'])!.value.trim();
-    if (phone != null) {
-      res['phone'] = phone;
-    }
-    const email = this.searchFormEmail.get(['email'])!.value.trim();
+
+    // const phone = this.searchForm.get(['email'])!.value.trim();
+    // if (phone != null) {
+    //   res['phone'] = phone;
+    // }
+    const email = this.searchForm.get(['email'])!.value.trim();
     if (email != null) {
       res['email'] = email;
+      res['phone'] = email;
     }
-    // const birthday = this.searchForm.get(['birthday'])!.value.toString();
-    // if (name) {
-    //   res['name'] = name;
-    // }
-    // if (birthday) {
-    //   res['birthday'] = birthday;
-    // }
-    if (!phone || !email) {
+
+    if (!email) {
       this.fail = true;
     }
     console.log(email);
-    console.log(phone);
+    // console.log(phone);
     return res;
   }
 
@@ -131,29 +111,29 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     console.log(this.cVS.length);
 
-    if (this.searchFormEmail.get(['email'])!.value.trim()) {
-      console.log(this.searchFormEmail.get(['email']));
+    if (this.searchForm.get(['email'])!.value.trim()) {
+      console.log(this.searchForm.get(['email']));
     } else {
-      this.searchFormEmail.setValue({
+      this.searchForm.patchValue({
         email: ''
       });
-      console.log('abc' + this.searchFormEmail.get(['email'])!.value);
+      console.log('abc' + this.searchForm.get(['email'])!.value);
     }
 
-    if (this.searchFormPhone.get(['phone'])!.value.trim()) {
-      console.log(this.searchFormPhone.get(['phone']));
+    if (this.searchForm.get(['phone'])!.value.trim()) {
+      console.log(this.searchForm.get(['phone']));
     } else {
-      this.searchFormPhone.setValue({
+      this.searchForm.patchValue({
         phone: ''
       });
-      console.log('123' + this.searchFormPhone.get(['phone'])!.value);
+      console.log('123' + this.searchForm.get(['phone'])!.value);
     }
 
     if (this.cVS.length > 1) {
       this.router.navigate(['/cv/', 'list-result'], {
         queryParams: {
-          email: this.searchFormEmail.get(['email'])!.value.trim(),
-          phone: this.searchFormPhone.get(['phone'])!.value.trim()
+          email: this.searchForm.get(['email'])!.value.trim(),
+          phone: this.searchForm.get(['email'])!.value.trim()
         }
       });
     } else if (this.cVS.length == 1) {
@@ -172,8 +152,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loadAll();
   }
 
-  onCheck() {
-    console.log('log:' + this.checkSearch);
-    this.checkSearch = this.changeForm.get(['check'])!.value == true;
-  }
+  // onCheck() {
+  //   console.log('log:' + this.checkSearch);
+  //   this.checkSearch = this.changeForm.get(['check'])!.value == true;
+  // }
 }

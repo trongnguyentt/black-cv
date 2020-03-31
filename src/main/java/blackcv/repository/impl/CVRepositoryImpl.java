@@ -42,15 +42,15 @@ public class CVRepositoryImpl implements CVRepositoryCustom {
             String sql = "select C from CV C where C.status <> 0 and (C.phone like :phone or C.email like :email)";
             Map<String, Object> values = new HashMap<>();
 //            values.put("name", queryParams.get("name").get(0));
-            if (queryParams.getFirst("phone") != null) {
-                values.put("phone", queryParams.get("phone").get(0));
-            } else {
-                values.put("phone", "");
-            }
             if (queryParams.getFirst("email") != null) {
                 values.put("email", queryParams.get("email").get(0));
             } else {
                 values.put("email", "");
+            }
+            if (queryParams.getFirst("phone") != null) {
+                values.put("phone", queryParams.get("phone").get(0));
+            } else {
+                values.put("phone", "");
             }
 
 

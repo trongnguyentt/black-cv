@@ -122,7 +122,7 @@
       "max": "Trường này phải nhỏ hơn {{ max }}.",
       "minbytes": "Dung lượng trường này phải lớn hơn {{ min }} bytes.",
       "maxbytes": "Dung lượng trường này phải nhỏ hơn {{ max }} bytes.",
-      "pattern": "Trường này phải theo định dạng {{ pattern }}.",
+      "pattern": "Trường này phải theo định dạng {{ pattern1 }} hoặc {{ pattern2 }} or {{ partern3 }}.",
       "number": "Trường này phải là một số.",
       "datetimelocal": "Trường này phải là định dạng thời gian.",
       "info": "Vui lòng nhập đầy đủ thông tin."

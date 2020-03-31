@@ -21,7 +21,8 @@
       "searchPhone": "Enter phone",
       "searchName": "Enter name",
       "searchBusiness": "Enter business",
-      "searchReason": "Enter reason"
+      "searchReason": "Enter reason",
+      "searchEmailPhone": "Enter email or phone"
     }
   }
 }

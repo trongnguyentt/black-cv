@@ -4,120 +4,138 @@
         <div class="col-lg-7 mx-auto">
             <div class="cusbackmain p-5 rounded shadow">
                 <div class="col-lg-9 mx-auto text-dark text-center">
-                    <h2 class="display-4" jhiTranslate="home.search" style="font-family: Arial;">Search Black Curriculum
-                        Vitae</h2>
+                    <h2 class="display-4" jhiTranslate="home.search" style="font-family: Arial;">
+                        Search Black Curriculum Vitae</h2>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-2">
-                        <form [formGroup]="changeForm">
-                            <div class="form-group ">
-                                <select id="inputState" class="form-control" [ngModel]="checkSearch"
-                                        formControlName="check"
-                                        (change)="onCheck()">
-                                    <option [ngValue]="true">Search Email</option>
-                                    <option [ngValue]="false">Search Phone</option>
-                                </select>
-                            </div>
-                        </form>
-                    </div>
-                    <div *ngIf="checkSearch" class="col-md-10">
-                        <form name="searchForm" role="form" novalidate
+<!--                <div class="row">-->
+<!--                    <div class="col-md-2">-->
+<!--                        <form [formGroup]="changeForm">-->
+<!--                            <div class="form-group ">-->
+<!--                                <select id="inputState" class="form-control" [ngModel]="checkSearch"-->
+<!--                                        formControlName="check"-->
+<!--                                        (change)="onCheck()">-->
+<!--                                    <option [ngValue]="true">Search Email</option>-->
+<!--                                    <option [ngValue]="false">Search Phone</option>-->
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                    <div *ngIf="!checkSearch" class="col-md-10">-->
+                        <form name="searchForm" role="form"
                               (ngSubmit)="onSearch()"
-                              [formGroup]="searchFormEmail">
+                              [formGroup]="searchForm">
 
-                            <div class="form-inline">
+                            <div class="form-group">
                                 <input type="email" class="form-control form-control-underlined"
-                                       placeholder="{{'home.placeholder.searchEmail' | translate}}"
-                                       name="field_email" id="field_email" formControlName="email" style="width: 80%; margin-right: 1rem;">
+                                       placeholder="{{'home.placeholder.searchEmailPhone' | translate}}"
+                                       name="field_email" id="field_email" formControlName="email" style="margin-right: 1rem;">
 
-                                <button type="submit" id="save-entity1" class="btn btn-info"
-                                        [disabled]="!searchFormEmail.valid" style="border-radius: 25px">
-                                    <fa-icon [icon]="'search'"></fa-icon>
-                                    <span class="d-none d-md-inline"
-                                          jhiTranslate="blackcvApp.company.search">Search</span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    <div *ngIf="!checkSearch" class="col-md-10">
-                        <form name="searchForm" role="form" novalidate
-                              (ngSubmit)="onSearch()"
-                              [formGroup]="searchFormPhone">
-
-                            <div class="form-inline">
-                                <input type="tel" class="form-control form-control-underlined"  placeholder="{{'home.placeholder.searchPhone' | translate}}"
-                                       name="field_phone" id="field_phone" formControlName="phone" style="width: 80%; margin-right: 1rem;">
+<!--                            </div>-->
+<!--                            <div class="form-group-center">-->
                                 <button type="submit" id="save-entity" class="btn btn-info"
-                                        [disabled]="!searchFormPhone.valid" style="border-radius: 25px">
+                                        [disabled]="!searchForm.valid" style="border-radius: 25px">
                                     <fa-icon [icon]="'search'"></fa-icon>
                                     <span class="d-none d-md-inline"
                                           jhiTranslate="blackcvApp.company.search">Search</span>
                                 </button>
                             </div>
                         </form>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                    </div>
-                    <div *ngIf="checkSearch" class="col-md-5">
-                        <div
-                            *ngIf="searchFormEmail.get('email')!.invalid && (searchFormEmail.get('email').dirty ||
-                                         searchFormEmail.get('email').untouched || searchFormEmail.get('email').touched)">
-                            <small class="form-text text-danger"
-                                   *ngIf="searchFormEmail.get('email')?.errors?.required"
-                                   jhiTranslate="global.messages.validate.email.required">
-                                Your email is required.
-                            </small>
-                            <small class="form-text text-danger"
-                                   *ngIf="searchFormEmail.get('email')?.errors?.email"
-                                   jhiTranslate="global.messages.validate.email.invalid">
-                                Your email is invalid.
-                            </small>
-                            <small class="form-text text-danger"
-                                   *ngIf="searchFormEmail.get('email')?.errors?.minlength"
-                                   jhiTranslate="global.messages.validate.email.minlength">
-                                Your email is required to be at least 5 characters.
-                            </small>
-                            <small class="form-text text-danger"
-                                   *ngIf="searchFormEmail.get('email')?.errors?.maxlength"
-                                   jhiTranslate="global.messages.validate.email.maxlength">
-                                Your email cannot be longer than 100 characters.
-                            </small>
-                        </div>
-                    </div>
-                    <div *ngIf="!checkSearch" class="col-md-5">
-                        <div
-                            *ngIf="searchFormPhone.get('phone').invalid && (searchFormPhone.get('phone').dirty ||
-                                         searchFormPhone.get('phone').touched || searchFormPhone.get('phone').untouched)">
-                            <small class="form-text text-danger"
-                                   *ngIf="searchFormPhone.get('phone')?.errors?.minlength"
-                                   jhiTranslate="entity.validation.minlength"
-                                   [translateValues]="{ min: 10 }">
-                                This field is required to be at least 10 characters.
-                            </small>
-                            <small class="form-text text-danger"
-                                   *ngIf="searchFormPhone.get('phone')?.errors?.maxlength"
-                                   jhiTranslate="entity.validation.maxlength"
-                                   [translateValues]="{ max: 50 }">
-                                This field cannot be longer than 50 characters.
-                            </small>
-                            <small
-                                class="form-text text-danger"
-                                *ngIf="searchFormPhone.get('phone')?.errors?.required"
-                                jhiTranslate="entity.validation.required"
-                            >This field is required.
-                            </small>
-                            <small
-                                class="form-text text-danger"
-                                *ngIf="searchFormPhone.get('phone')?.errors?.pattern"
-                                jhiTranslate="entity.validation.pattern"
-                                [translateValues]="{ pattern: '0123456789' }">
-                                >Please provide a valid phone number
-                            </small>
-                        </div>
-                    </div>
+<!--                    </div>-->
+<!--                    <div *ngIf="!checkSearch" class="col-md-10">-->
+<!--                        <form name="searchForm" role="form" novalidate-->
+<!--                              (ngSubmit)="onSearch()"-->
+<!--                              [formGroup]="searchFormPhone">-->
+
+<!--                            <div class="form-inline">-->
+<!--                                <input type="tel" class="form-control form-control-underlined"  placeholder="{{'home.placeholder.searchPhone' | translate}}"-->
+<!--                                       name="field_phone" id="field_phone" formControlName="phone" style="width: 80%; margin-right: 1rem;">-->
+<!--                                <button type="submit" id="save-entity" class="btn btn-info"-->
+<!--                                        [disabled]="!searchFormPhone.valid" style="border-radius: 25px">-->
+<!--                                    <fa-icon [icon]="'search'"></fa-icon>-->
+<!--                                    <span class="d-none d-md-inline"-->
+<!--                                          jhiTranslate="blackcvApp.company.search">Search</span>-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--&lt;!&ndash;                    <div class="col-md-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <div *ngIf="checkSearch" class="col-md-5">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="col-md-8">&ndash;&gt;-->
+<!--                        <div-->
+<!--                            *ngIf="searchForm.get('email' || 'phone')!.invalid && (searchForm.get('email' || 'phone').dirty ||-->
+<!--                                         searchForm.get('email' || 'phone').untouched || searchForm.get('email' || 'phone').touched)">-->
+<!--                            <small class="form-text text-danger"-->
+<!--                                   *ngIf="searchForm.get('email' || 'phone')?.errors?.required"-->
+<!--                                   jhiTranslate="entity.validation.required">-->
+<!--                                    This field is required.-->
+<!--&lt;!&ndash;                                   jhiTranslate="global.messages.validate.email.required">&ndash;&gt;-->
+<!--&lt;!&ndash;                                Your email is required.&ndash;&gt;-->
+<!--                            </small>-->
+<!--                            <small class="form-text text-danger"-->
+<!--                                   *ngIf="searchForm.get('email')?.errors?.email"-->
+<!--                                   jhiTranslate="global.messages.validate.email.invalid">-->
+<!--                                Your email is invalid.-->
+<!--                            </small>-->
+<!--                            <small class="form-text text-danger"-->
+<!--                                   *ngIf="searchForm.get('email')?.errors?.minlength"-->
+<!--                                   jhiTranslate="entity.validation.minlength"-->
+<!--                                   [translateValues]="{ min: 10 }">-->
+<!--                                This field is required to be at least 10 characters.-->
+<!--&lt;!&ndash;                                   jhiTranslate="global.messages.validate.email.minlength">&ndash;&gt;-->
+<!--&lt;!&ndash;                                Your email is required to be at least 5 characters.&ndash;&gt;-->
+<!--                            </small>-->
+<!--                            <small class="form-text text-danger"-->
+<!--                                   *ngIf="searchForm.get('email')?.errors?.maxlength"-->
+<!--                                   jhiTranslate="entity.validation.maxlength"-->
+<!--                                   [translateValues]="{ max: 100 }">-->
+<!--                                This field cannot be longer than 100 characters.-->
+<!--&lt;!&ndash;                                   jhiTranslate="global.messages.validate.email.maxlength">&ndash;&gt;-->
+<!--&lt;!&ndash;                                Your email cannot be longer than 100 characters.&ndash;&gt;-->
+<!--                            </small>-->
+<!--                            <small-->
+<!--                                class="form-text text-danger"-->
+<!--                                *ngIf="searchForm.get('phone')?.errors?.pattern"-->
+<!--                                jhiTranslate="entity.validation.pattern"-->
+<!--                                [translateValues]="{ pattern1: '0123456789', pattern2: '+84987654321', pattern3: '+84-987654321' }">-->
+<!--                                >Please provide a valid phone number-->
+<!--                            </small>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div *ngIf="!checkSearch" class="col-md-5">-->
+<!--                        <div-->
+<!--                            *ngIf="searchForm.get('phone').invalid && (searchForm.get('phone').dirty ||-->
+<!--                                         searchForm.get('phone').touched || searchForm.get('phone').untouched)">-->
+<!--&lt;!&ndash;                            <small class="form-text text-danger"&ndash;&gt;-->
+<!--&lt;!&ndash;                                   *ngIf="searchForm.get('phone')?.errors?.minlength"&ndash;&gt;-->
+<!--&lt;!&ndash;                                   jhiTranslate="entity.validation.minlength"&ndash;&gt;-->
+<!--&lt;!&ndash;                                   [translateValues]="{ min: 10 }">&ndash;&gt;-->
+<!--&lt;!&ndash;                                This field is required to be at least 10 characters.&ndash;&gt;-->
+<!--&lt;!&ndash;                            </small>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <small class="form-text text-danger"&ndash;&gt;-->
+<!--&lt;!&ndash;                                   *ngIf="searchForm.get('phone')?.errors?.maxlength"&ndash;&gt;-->
+<!--&lt;!&ndash;                                   jhiTranslate="entity.validation.maxlength"&ndash;&gt;-->
+<!--&lt;!&ndash;                                   [translateValues]="{ max: 50 }">&ndash;&gt;-->
+<!--&lt;!&ndash;                                This field cannot be longer than 50 characters.&ndash;&gt;-->
+<!--&lt;!&ndash;                            </small>&ndash;&gt;-->
+<!--                            <small-->
+<!--                                class="form-text text-danger"-->
+<!--                                *ngIf="searchForm.get('phone')?.errors?.required"-->
+<!--                                jhiTranslate="entity.validation.required"-->
+<!--                            >This field is required.-->
+<!--                            </small>-->
+<!--                            <small-->
+<!--                                class="form-text text-danger"-->
+<!--                                *ngIf="searchForm.get('phone')?.errors?.pattern"-->
+<!--                                jhiTranslate="entity.validation.pattern"-->
+<!--                                [translateValues]="{ pattern1: '0123456789', pattern2: '+84987654321', pattern3: '+84-987654321' }">-->
+<!--                                >Please provide a valid phone number-->
+<!--                            </small>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
 
             </div>

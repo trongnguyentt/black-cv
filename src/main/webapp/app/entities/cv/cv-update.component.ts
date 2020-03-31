@@ -26,7 +26,7 @@ export class CVUpdateComponent implements OnInit {
   totalItems = 0;
   page!: number;
   itemsPerPage = ITEMS_PER_PAGE;
-  mobNumberPattern = '^((\\+91-?)|0)?[0-9]{10}$';
+  mobNumberPattern = '^((\\+84-?)|0)?[0-9]{10}$';
   editForm = this.fb.group({
     id: [],
     idCompany: [''],
