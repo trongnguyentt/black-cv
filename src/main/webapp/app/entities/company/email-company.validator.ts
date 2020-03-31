@@ -1,7 +1,7 @@
 import { AbstractControl } from '@angular/forms';
 
 export function ValidatorsEmail(control: AbstractControl): { [key: string]: any } | null {
-  let arr = [
+  const arr = [
     'mail.com',
     'gmail.com',
     'google.com',
