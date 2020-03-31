@@ -15,6 +15,13 @@
     },
     "like": "If you like JHipster, don't forget to give us a star on",
     "github": "GitHub",
-    "search": "Search Black Curriculum Vitae"
+    "search": "Search Black Curriculum Vitae",
+    "placeholder": {
+      "searchEmail": "Enter email",
+      "searchPhone": "Enter phone",
+      "searchName": "Enter name",
+      "searchBusiness": "Enter business",
+      "searchReason": "Enter reason"
+    }
   }
 }

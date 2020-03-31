@@ -13,7 +13,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'jhi-cv-no-result',
   templateUrl: './cv-no-result.component.html'
 })
-export class CvNoResultlComponent implements OnInit {
+export class CvNoResultComponent implements OnInit {
   cV: ICV | null = null;
   companies?: ICompany[];
   searchForm = this.fb.group({

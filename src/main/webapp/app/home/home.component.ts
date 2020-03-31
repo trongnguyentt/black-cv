@@ -21,6 +21,7 @@ import { CVDetailComponent } from 'app/entities/cv/cv-detail.component';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   cVS?: ICV[];
+  checkSearch?: boolean;
   account: Account | null = null;
   authSubscription?: Subscription;
   page!: number;
@@ -41,13 +42,30 @@ export class HomeComponent implements OnInit, OnDestroy {
     protected parseLinks: JhiParseLinks,
     private fb: FormBuilder,
     protected modalService: NgbModal
-  ) {}
+  ) {
+    this.checkSearch = true;
+  }
 
-  searchForm = this.fb.group({
-    name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
-    phone: ['', [Validators.required, Validators.pattern(this.mobNumberPattern), Validators.minLength(10), Validators.maxLength(10)]],
-    email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]],
-    birthday: ['', [Validators.required]]
+  changeForm = this.fb.group({
+    check: ['']
+    // name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
+    // email: ['', [Validators.minLength(5), Validators.maxLength(254), Validators.email]],
+    // birthday: ['', [Validators.required]]
+  });
+
+  searchFormPhone = this.fb.group({
+    // check: [''],
+    // name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
+    phone: ['', [Validators.required, Validators.pattern(this.mobNumberPattern), Validators.minLength(10), Validators.maxLength(10)]]
+    // email: ['', [ Validators.minLength(5), Validators.maxLength(254), Validators.email]],
+    // birthday: ['', [Validators.required]]
+  });
+
+  searchFormEmail = this.fb.group({
+    // check: [''],
+    // name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
+    email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(254), Validators.email]]
+    // birthday: ['', [Validators.required]]
   });
 
   ngOnInit(): void {
@@ -56,27 +74,26 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getFormValues() {
     const res = {};
-    const name = this.searchForm.get(['name'])!.value.trim();
-    const phone = this.searchForm.get(['phone'])!.value.trim();
-    const email = this.searchForm.get(['email'])!.value.trim();
-    const birthday = this.searchForm.get(['birthday'])!.value.toString();
-    if (name) {
-      res['name'] = name;
-    }
-
-    if (phone) {
+    // const name = this.searchForm.get(['name'])!.value.trim();
+    const phone = this.searchFormPhone.get(['phone'])!.value.trim();
+    if (phone != null) {
       res['phone'] = phone;
     }
-    if (email) {
+    const email = this.searchFormEmail.get(['email'])!.value.trim();
+    if (email != null) {
       res['email'] = email;
     }
-    if (birthday) {
-      res['birthday'] = birthday;
-    }
-    if (!name || !phone || !email || !birthday) {
+    // const birthday = this.searchForm.get(['birthday'])!.value.toString();
+    // if (name) {
+    //   res['name'] = name;
+    // }
+    // if (birthday) {
+    //   res['birthday'] = birthday;
+    // }
+    if (!phone || !email) {
       this.fail = true;
     }
-    console.log(name);
+    console.log(email);
     console.log(phone);
     return res;
   }
@@ -109,14 +126,34 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.links = this.parseLinks.parse(headers.get('link')!);
     this.totalItems = parseInt(headers.get('X-Total-Count')!, 10);
     this.cVS = data;
+
+    console.log(this.cVS);
+
     console.log(this.cVS.length);
+
+    if (this.searchFormEmail.get(['email'])!.value.trim()) {
+      console.log(this.searchFormEmail.get(['email']));
+    } else {
+      this.searchFormEmail.setValue({
+        email: ''
+      });
+      console.log('abc' + this.searchFormEmail.get(['email'])!.value);
+    }
+
+    if (this.searchFormPhone.get(['phone'])!.value.trim()) {
+      console.log(this.searchFormPhone.get(['phone']));
+    } else {
+      this.searchFormPhone.setValue({
+        phone: ''
+      });
+      console.log('123' + this.searchFormPhone.get(['phone'])!.value);
+    }
+
     if (this.cVS.length > 1) {
       this.router.navigate(['/cv/', 'list-result'], {
         queryParams: {
-          name: this.searchForm.get(['name'])!.value.trim(),
-          email: this.searchForm.get(['email'])!.value.trim(),
-          phone: this.searchForm.get(['phone'])!.value.trim(),
-          birthday: this.searchForm.get(['birthday'])!.value.toString()
+          email: this.searchFormEmail.get(['email'])!.value.trim(),
+          phone: this.searchFormPhone.get(['phone'])!.value.trim()
         }
       });
     } else if (this.cVS.length == 1) {
@@ -133,5 +170,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   onSearch() {
     this.loadAll();
+  }
+
+  onCheck() {
+    console.log('log:' + this.checkSearch);
+    this.checkSearch = this.changeForm.get(['check'])!.value == true;
   }
 }

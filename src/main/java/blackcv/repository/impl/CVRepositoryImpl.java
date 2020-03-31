@@ -38,13 +38,23 @@ public class CVRepositoryImpl implements CVRepositoryCustom {
 
     @Override
     public List<CV> searchInHome(MultiValueMap<String, String> queryParams, Pageable pageable) {
-        if (queryParams.containsKey("name") && queryParams.containsKey("phone") && queryParams.containsKey("email") && queryParams.containsKey("birthday")) {
-            String sql = "select C from CV C where C.status <> 0 and lower(C.name) like lower(:name) and C.phone like :phone and C.email like :email and C.birthday like :birthday";
+        if (queryParams.containsKey("phone") || queryParams.containsKey("email")) {
+            String sql = "select C from CV C where C.status <> 0 and (C.phone like :phone or C.email like :email)";
             Map<String, Object> values = new HashMap<>();
-            values.put("name", queryParams.get("name").get(0));
-            values.put("phone", queryParams.get("phone").get(0));
-            values.put("email", queryParams.get("email").get(0));
-            values.put("birthday", queryParams.get("birthday").get(0));
+//            values.put("name", queryParams.get("name").get(0));
+            if (queryParams.getFirst("phone") != null) {
+                values.put("phone", queryParams.get("phone").get(0));
+            } else {
+                values.put("phone", "");
+            }
+            if (queryParams.getFirst("email") != null) {
+                values.put("email", queryParams.get("email").get(0));
+            } else {
+                values.put("email", "");
+            }
+
+
+//            values.put("birthday", queryParams.get("birthday").get(0));
             Query query = entityManager.createQuery(sql, CV.class);
             values.forEach(query::setParameter);
             query.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
