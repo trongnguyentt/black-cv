@@ -19,7 +19,7 @@
       },
       "idCompany": "Công ty",
       "name": "Tên",
-      "birdthday": "Ngày sinh",
+      "birthday": "Ngày sinh",
       "phone": "Số điện thoại",
       "email": "Email",
       "address": "Địa chỉ",
@@ -32,7 +32,11 @@
       "search": "Tìm kiếm",
       "reason": "Lý do",
       "evidence": "Bằng chứng",
-      "close": "Đóng"
+      "close": "Đóng",
+      "noResult": "Không có kết quả tìm kiếm!",
+      "askCompany": "Bạn có thể hỏi công ty cũ về người này tại đây :",
+      "searchCompany": "Nhập tên công ty",
+      "listResult": "Người này nằm trong danh sách đen của nhiều công ty!"
     }
   }
 }

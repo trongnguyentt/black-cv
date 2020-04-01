@@ -20,6 +20,7 @@ export class CVUpdateComponent implements OnInit {
   isSaving = false;
   reason!: any[];
   links: any;
+  tempPhone?: string | null;
   a!: ICV;
   listCV = [''];
   reasons!: IReason[];
@@ -78,11 +79,12 @@ export class CVUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ cV }) => {
       this.updateForm(cV);
+      this.tempPhone = cV.phone;
     });
 
     this.cVService.currentMessage.subscribe((res: ICV[]) => {
       for (const item of res) {
-        if (item.phone != null) {
+        if (item.phone != null && !(item.phone == this.tempPhone)) {
           this.listCV.push(item.phone);
         }
       }

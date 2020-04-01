@@ -21,7 +21,7 @@
       "name": "Name",
       "phone": "Phone",
       "email": "Email",
-      "birdthday": "Birthday",
+      "birthday": "Birthday",
       "address": "Address",
       "job": "Job",
       "gender": "Gender",
@@ -32,7 +32,11 @@
       "search": "Search",
       "reason": "Reason",
       "evidence": "Evidence",
-      "close": "Close"
+      "close": "Close",
+      "noResult": "No search results!",
+      "askCompany": "You can ask the old company about this person here :",
+      "searchCompany": "Enter company",
+      "listResult": "This person is in the black list of companies!"
     }
   }
 }

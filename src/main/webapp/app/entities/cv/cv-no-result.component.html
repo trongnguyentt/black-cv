@@ -1,18 +1,18 @@
 <div class="container">
     <div class="row">
-        <div class="result"><h2>Không có kết quả tìm kiếm !</h2></div>
+        <div class="result"><h2 jhiTranslate="blackcvApp.cV.noResult" >No search results!</h2></div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h4 class="text-center">Bạn có thể hỏi công ty cũ về người này tại đây ?</h4>
+            <h4 class="text-center" jhiTranslate="blackcvApp.cV.askCompany" >You can ask the old company about this person here :</h4>
             <form class="form-inline justify-content-center"
                   name="searchForm"
                   role="form" novalidate
                   (ngSubmit)="onSearch()"
                   [formGroup]="searchForm">
-                <input class="form-control mr-sm-2"
-                       formControlName="name"
-                       type="text" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2"  placeholder="{{'blackcvApp.cV.searchCompany' | translate}}"
+                       formControlName="name"  type="text" aria-label="Search">
+
                 <div
                     *ngIf="searchForm.get('name').invalid && (searchForm.get('name').dirty || searchForm.get('name').touched)">
                     <small class="form-text text-danger"

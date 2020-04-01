@@ -114,6 +114,7 @@
       "title": "Xác nhận hành động xóa"
     },
     "validation": {
+      "emailInvalid": "Email phải là tên miền doanh nghiệp - info@business-name.com",
       "phoneduplicate": "Số điện thoại đã tồn tại trong danh sách",
       "required": "Trường này bắt buộc phải nhập.",
       "minlength": "Trường này phải có ít nhất {{ min }} ký tự.",
