@@ -1,39 +1,95 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="company">
-            <h2><span jhiTranslate="blackcvApp.company.detail.title">Company</span> {{company.id}}</h2>
-            <hr>
-            <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="blackcvApp.company.name">Name</span></dt>
-                <dd>
-                    <span>{{company.name}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.company.businessAreas">Business Areas</span></dt>
-                <dd>
-                    <span>{{company.businessAreas}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.company.address">Address</span></dt>
-                <dd>
-                    <span>{{company.address}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.company.status">Status</span></dt>
-                <dd>
-                    <span>{{company.status}}</span>
-                </dd>
-            </dl>
+<form *ngIf="company" name="detailsForm" (ngSubmit)="clear()">
+    <div class="modal-header">
+        <h4 class="modal-title text-center" jhiTranslate="blackcvApp.company.detail">Detail</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-7">
+                <div style="width: 26rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-info"
+                                  jhiTranslate="blackcvApp.company.home.title">Company</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col">
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'user'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Company's name">{{company.name}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'envelope'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Company's email">{{company.email}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'map-marker'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Company's address">{{company.address}}</div>
+                            </div>
+                        </div>
+                    </div>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
-
-            <button type="button"
-                    [routerLink]="['/company', company.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span
+            jhiTranslate="blackcvApp.cV.close">Close</span>
+        </button>
+    </div>
+</form>
+
+<form *ngIf="companyNoresult" name="detailsForm" (ngSubmit)="clear()">
+    <div class="modal-header">
+        <h4 class="modal-title text-center" jhiTranslate="blackcvApp.company.detail">Detail</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-7">
+                <div style="width: 26rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-info"
+                                  jhiTranslate="blackcvApp.company.home.title">Company</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col">
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'user'"></fa-icon></div>
+                                <div class="col">{{companyNoresult.name}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'envelope'"></fa-icon></div>
+                                <div class="col">{{companyNoresult.email}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'map-marker'"></fa-icon></div>
+                                <div class="col">{{companyNoresult.address}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" [routerLink]="['/account/send-cv',companyNoresult.id]" class="btn btn-primary">
+            <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Send Email</span>
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="previousState()">
+            <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span
+            jhiTranslate="blackcvApp.cV.close">Close</span>
+        </button>
+    </div>
+</form>

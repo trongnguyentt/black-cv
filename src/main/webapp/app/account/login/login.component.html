@@ -1,0 +1,74 @@
+<section class="login-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 login-sec">
+                <div class="alert alert-danger" *ngIf="authenticationError" jhiTranslate="login.messages.error.authentication">
+                    <strong>Failed to sign in!</strong> Please check your credentials and try again.
+                </div>
+                <h2 class="text-center" jhiTranslate="global.form.title.label">Login Now</h2>
+                <form class="login-form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
+                    <div class="form-group">
+                        <label for="username" jhiTranslate="global.form.username.label" class="text-uppercase">Username</label>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="{{'global.form.username.placeholder' | translate}}"
+                               formControlName="username" #username>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" jhiTranslate="login.form.password" class="text-uppercase">Password</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="{{'login.form.password.placeholder' | translate}}"
+                               formControlName="password">
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="rememberMe" id="rememberMe" formControlName="rememberMe">
+                            <small jhiTranslate="login.form.rememberme">Remember Me</small>
+                        </label>
+                        <button type="submit" class="btn btn-login float-right" jhiTranslate="login.form.button">Submit</button>
+                    </div>
+
+                </form>
+                <div class="copy-text">Created with <i class="fa fa-heart"></i> by Evotek</div>
+            </div>
+            <div class="col-md-8 banner-sec">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+<!--                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>-->
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                            <img class="d-block img-fluid" [src]="netImage" alt="First slide">
+<!--                            <div class="carousel-caption d-none d-md-block">-->
+<!--                                <div class="banner-text">-->
+<!--                                    <h2>This is Heaven</h2>-->
+<!--                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block img-fluid" [src]="netImage1" alt="Two slide">
+<!--                            <div class="carousel-caption d-none d-md-block">-->
+<!--                                <div class="banner-text">-->
+<!--                                    <h2>This is Heaven</h2>-->
+<!--                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+<!--                        <div class="carousel-item">-->
+<!--                            <img class="d-block img-fluid" [src]="netImage2" alt="Three slide">-->
+<!--                            <div class="carousel-caption d-none d-md-block">-->
+<!--                                <div class="banner-text">-->
+<!--                                    <h2>This is Heaven</h2>-->
+<!--                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</section>

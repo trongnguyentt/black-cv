@@ -1,35 +1,83 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="reason">
-            <h2><span jhiTranslate="blackcvApp.reason.detail.title">Reason</span> {{reason.id}}</h2>
-            <hr>
-            <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="blackcvApp.reason.descriptons">Descriptons</span></dt>
-                <dd>
-                    <span>{{reason.descriptons}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.reason.reasonName">Reason Name</span></dt>
-                <dd>
-                    <span>{{reason.reasonName}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.reason.status">Status</span></dt>
-                <dd>
-                    <span>{{reason.status}}</span>
-                </dd>
-            </dl>
+<!--<div class="row justify-content-center">-->
+<!--    <div class="col-8">-->
+<!--        <div *ngIf="reason">-->
+<!--&lt;!&ndash;            <h2><span jhiTranslate="blackcvApp.reason.detail.title">Reason</span> {{reason.id}}</h2>&ndash;&gt;-->
+<!--            <hr>-->
+<!--            <jhi-alert-error></jhi-alert-error>-->
+<!--            <dl class="row-md jh-entity-details">-->
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
+<!--                <dt><span jhiTranslate="blackcvApp.reason.reasonName">Reason Name</span></dt>-->
+<!--                <dd>-->
+<!--                    <span>{{reason.reasonName}}</span>-->
+<!--                </dd>-->
 
-            <button type="button"
-                    [routerLink]="['/reason', reason.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
+<!--                <dt><span jhiTranslate="blackcvApp.reason.descriptons">Descriptons</span></dt>-->
+<!--                <dd>-->
+<!--                    <span>{{reason.descriptons}}</span>-->
+<!--                </dd>-->
+
+<!--&lt;!&ndash;                <dt><span jhiTranslate="blackcvApp.reason.status">Status</span></dt>&ndash;&gt;-->
+<!--&lt;!&ndash;                <dd>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span>{{reason.status}}</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                </dd>&ndash;&gt;-->
+<!--            </dl>-->
+
+<!--            <button type="submit"-->
+<!--                    (click)="previousState()"-->
+<!--                    class="btn btn-info">-->
+<!--                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>-->
+<!--            </button>-->
+
+<!--            <button type="button"-->
+<!--                    [routerLink]="['/reason', reason.id, 'edit']"-->
+<!--                    class="btn btn-primary">-->
+<!--                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>-->
+<!--            </button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<form *ngIf="reason" name="detailsForm" (ngSubmit)="clear()">
+    <div class="modal-header">
+        <h4 class="modal-title text-center" jhiTranslate="blackcvApp.reason.detail.detail">Detail</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-7">
+                <div style="width: 26rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-info"
+                                  jhiTranslate="blackcvApp.reason.detail.title">Reason</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col">
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'list-ul'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Reason's name">{{reason.reasonName}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'info'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Reason's descriptions">{{reason.descriptons}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span
+            jhiTranslate="blackcvApp.cV.close">Close</span>
+        </button>
+    </div>
+</form>

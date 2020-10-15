@@ -9,10 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.MultiValueMap;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -42,9 +45,18 @@ public class ReasonServiceImpl implements ReasonService {
     @Override
     public ReasonDTO save(ReasonDTO reasonDTO) {
         log.debug("Request to save Reason : {}", reasonDTO);
+        reasonDTO.setStatus(1);
         Reason reason = reasonMapper.toEntity(reasonDTO);
         reason = reasonRepository.save(reason);
         return reasonMapper.toDto(reason);
+    }
+
+    @Override
+    public Page<ReasonDTO> findAll(MultiValueMap<String, String> queryParams, Pageable pageable) {
+        log.debug("Request to get all Reasons");
+        List<Reason> device = reasonRepository.search(queryParams, pageable);
+        Page<Reason> pages = new PageImpl<>(device, pageable, reasonRepository.countReason(queryParams));
+        return pages.map(reasonMapper::toDto);
     }
 
     /**
@@ -53,14 +65,6 @@ public class ReasonServiceImpl implements ReasonService {
      * @param pageable the pagination information.
      * @return the list of entities.
      */
-    @Override
-    @Transactional(readOnly = true)
-    public Page<ReasonDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all Reasons");
-        return reasonRepository.findAll(pageable)
-            .map(reasonMapper::toDto);
-    }
-
 
     /**
      * Get one reason by id.
@@ -84,6 +88,10 @@ public class ReasonServiceImpl implements ReasonService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete Reason : {}", id);
-        reasonRepository.deleteById(id);
+        Reason reason = reasonRepository.findById(id).get();
+        reason.setStatus(0);
+        reasonRepository.save(reason);
+
+//        reasonRepository.deleteById(id);
     }
 }

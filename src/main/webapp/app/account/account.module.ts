@@ -11,6 +11,9 @@ import { PasswordResetInitComponent } from './password-reset/init/password-reset
 import { PasswordResetFinishComponent } from './password-reset/finish/password-reset-finish.component';
 import { SettingsComponent } from './settings/settings.component';
 import { accountState } from './account.route';
+import { DisableFormComponent, SendCvComponent } from 'app/account/send-cv/send-cv.component';
+import { ListStaffComponent } from 'app/account/list-staff/list.component';
+import { LoginComponent } from 'app/account/login/login.component';
 
 @NgModule({
   imports: [BlackcvSharedModule, RouterModule.forChild(accountState)],
@@ -21,7 +24,11 @@ import { accountState } from './account.route';
     PasswordStrengthBarComponent,
     PasswordResetInitComponent,
     PasswordResetFinishComponent,
-    SettingsComponent
+    SettingsComponent,
+    SendCvComponent,
+    ListStaffComponent,
+    DisableFormComponent,
+    LoginComponent
   ]
 })
 export class AccountModule {}

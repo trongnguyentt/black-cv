@@ -1,0 +1,110 @@
+<div>
+<!--    <h2 id="page-heading">-->
+<!--        <span jhiTranslate="blackcvApp.staffOrigin.home.title">Staff Origins</span>-->
+<!--&lt;!&ndash;        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-staff-origin" [routerLink]="['/staff-origin/new']">&ndash;&gt;-->
+<!--&lt;!&ndash;            <fa-icon [icon]="'plus'"></fa-icon>&ndash;&gt;-->
+<!--&lt;!&ndash;            <span  jhiTranslate="blackcvApp.staffOrigin.home.createLabel">&ndash;&gt;-->
+<!--&lt;!&ndash;            Create a new Staff Origin&ndash;&gt;-->
+<!--&lt;!&ndash;            </span>&ndash;&gt;-->
+<!--&lt;!&ndash;        </button>&ndash;&gt;-->
+<!--    </h2>-->
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+
+            <form name="searchForm" role="form" novalidate (ngSubmit)="onSearch()" [formGroup]="searchForm">
+                <div class="row justify-content-center">
+                    <div class="form-group col-sm-6 row text-color">
+                        <label class="col-4 col-form-label text-right"
+                               jhiTranslate="blackcvApp.staffOrigin.name">Name</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" placeholder="{{'home.placeholder.searchName' | translate}}"
+                                   formControlName="name"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="form-group col-sm-6 row text-color">
+                        <label class="col-4 col-form-label text-right"
+                               jhiTranslate="blackcvApp.staffOrigin.email">Email</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" placeholder="{{'home.placeholder.searchEmail' | translate}}"
+                                   formControlName="email"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-info">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                        <span class="d-none d-md-inline"
+                              jhiTranslate="blackcvApp.company.search">Search</span>
+                    </button>
+                </div>
+            </form>
+
+    <br>
+    <div class="alert alert-warning" *ngIf="staffOrigins?.length === 0">
+        <span jhiTranslate="blackcvApp.staffOrigin.home.notFound">No staffOrigins found</span>
+    </div>
+    <div class="table-responsive" *ngIf="staffOrigins?.length > 0">
+        <table class="table table-hover" aria-describedby="page-heading">
+            <caption jhiTranslate="blackcvApp.staffOrigin.titleList">List of Staff Origin</caption>
+            <thead class="thead-light">
+            <tr>
+<!--            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>-->
+            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.name">Name</span></th>
+            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.email">Email</span></th>
+            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.job">Job</span></th>
+<!--            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.advantages">Advantages</span></th>-->
+<!--            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.defect">Defect</span></th>-->
+<!--            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.more">More</span></th>-->
+<!--            <th scope="col" ><span jhiTranslate="blackcvApp.staffOrigin.status">Status</span></th>-->
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let staffOrigin of staffOrigins ;trackBy: trackId">
+<!--                <td><a [routerLink]="['/staff-origin', staffOrigin.id, 'view' ]">{{staffOrigin.id}}</a></td>-->
+                <td>{{staffOrigin.name}}</td>
+                <td>{{staffOrigin.email}}</td>
+                <td>{{staffOrigin.job}}</td>
+<!--                <td>{{staffOrigin.advantages}}</td>-->
+<!--                <td>{{staffOrigin.defect}}</td>-->
+<!--                <td>{{staffOrigin.more}}</td>-->
+<!--                <td>{{staffOrigin.status}}</td>-->
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                (click)="details(staffOrigin)"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/staff-origin', staffOrigin.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(staffOrigin)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="staffOrigins?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage"
+                            [maxSize]="5" [rotate]="true" [boundaryLinks]="true"
+                            (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

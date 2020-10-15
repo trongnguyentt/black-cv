@@ -2,30 +2,41 @@
   "blackcvApp": {
     "cV": {
       "home": {
-        "title": "CVS",
-        "createLabel": "Create a new CV",
-        "createOrEditLabel": "Create or edit a CV",
-        "notFound": "No CVS found"
+        "title": "Curriculum Vitae",
+        "createLabel": "Create a new Curriculum Vitae",
+        "createOrEditLabel": "Create or edit a Curriculum Vitae",
+        "notFound": "No Curriculum Vitae found"
       },
-      "created": "A new CV is created with identifier {{ param }}",
-      "updated": "A CV is updated with identifier {{ param }}",
-      "deleted": "A CV is deleted with identifier {{ param }}",
+      "created": "A new Curriculum Vitae is created.",
+      "updated": "A Curriculum Vitae is updated.",
+      "deleted": "A Curriculum Vitae is deleted.",
       "delete": {
-        "question": "Are you sure you want to delete CV {{ id }}?"
+        "question": "Are you sure you want to delete Curriculum Vitae of {{ name }}?"
       },
       "detail": {
-        "title": "CV"
+        "title": "Curriculum Vitae Detail",
+        "detail": "Detail"
       },
-      "idCompany": "Id Company",
+      "idCompany": "Company",
       "name": "Name",
       "phone": "Phone",
       "email": "Email",
+      "birthday": "Birthday",
       "address": "Address",
       "job": "Job",
       "gender": "Gender",
       "avatar": "Avatar",
-      "fileUploadCV": "File Upload CV",
-      "status": "Status"
+      "fileUploadCV": "Document",
+      "status": "Status",
+      "titleList": "List of Curriculum Vitae",
+      "search": "Search",
+      "reason": "Reason",
+      "evidence": "Evidence",
+      "close": "Close",
+      "noResult": "No search results!",
+      "askCompany": "You can ask the old company about this person here :",
+      "searchCompany": "Enter company",
+      "listResult": "This person is in the black list of companies!"
     }
   }
 }

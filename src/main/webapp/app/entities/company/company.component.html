@@ -1,42 +1,99 @@
 <div>
-    <h2 id="page-heading">
-        <span jhiTranslate="blackcvApp.company.home.title">Companies</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-company" [routerLink]="['/company/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="blackcvApp.company.home.createLabel">
-            Create a new Company
-            </span>
-        </button>
-    </h2>
+<!--    <h2 id="page-heading">-->
+<!--        <span jhiTranslate="blackcvApp.company.home.title">Companies</span>-->
+<!--        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-company"-->
+<!--                [routerLink]="['/company/new']">-->
+<!--            <fa-icon [icon]="'plus'"></fa-icon>-->
+<!--            <span jhiTranslate="blackcvApp.company.home.createLabel">-->
+<!--            Create a new Company-->
+<!--            </span>-->
+<!--        </button>-->
+<!--    </h2>-->
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <br/>
+
+    <form name="searchForm" role="form" novalidate (ngSubmit)="onSearch()" [formGroup]="searchForm">
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-6 row text-color">
+                <label class="col-4 col-form-label text-right"
+                       jhiTranslate="blackcvApp.company.name">Name</label>
+                <div class="col-8">
+                    <input type="text" class="form-control" placeholder="{{'home.placeholder.searchName' | translate}}"
+                           formControlName="name"/>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-6 row text-color">
+                <label class="col-4 col-form-label text-right"
+                       jhiTranslate="blackcvApp.company.businessAreas">Business Area</label>
+                <div class="col-8">
+                    <input type="text" class="form-control" placeholder="{{'home.placeholder.searchBusiness' | translate}}"
+                           formControlName="business"/>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <button type="submit" class="btn btn-info">
+                <fa-icon [icon]="'search'"></fa-icon>
+                <span class="d-none d-md-inline"
+                      jhiTranslate="blackcvApp.company.search">Search</span>
+            </button>
+        </div>
+    </form>
+
+    <br>
     <div class="alert alert-warning" *ngIf="companies?.length === 0">
         <span jhiTranslate="blackcvApp.company.home.notFound">No companies found</span>
     </div>
-    <div class="table-responsive" *ngIf="companies?.length > 0">
-        <table class="table table-striped" aria-describedby="page-heading">
-            <thead>
+    <div class="table-responsive">
+        <table class="table table-hover" aria-describedby="page-heading">
+            <caption jhiTranslate="blackcvApp.company.titleList">List of Company</caption>
+            <thead class="thead-light">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="name"><span jhiTranslate="blackcvApp.company.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="businessAreas"><span jhiTranslate="blackcvApp.company.businessAreas">Business Areas</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="address"><span jhiTranslate="blackcvApp.company.address">Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="status"><span jhiTranslate="blackcvApp.company.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"></th>
+                <!--                <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span>-->
+                <!--                    <fa-icon [icon]="'sort'"></fa-icon>-->
+                <!--                </th>-->
+                <th scope="col" jhiSortBy="name"><span jhiTranslate="blackcvApp.company.name">Name</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="businessAreas"><span jhiTranslate="blackcvApp.company.businessAreas">Business Areas</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="address"><span jhiTranslate="blackcvApp.company.address">Address</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <th scope="col" jhiSortBy="email"><span>Email</span>
+                    <fa-icon [icon]="'sort'"></fa-icon>
+                </th>
+                <!--                <th scope="col" jhiSortBy="status"><span jhiTranslate="blackcvApp.company.status">Status</span>-->
+                <!--                    <fa-icon [icon]="'sort'"></fa-icon>-->
+                <!--                </th>-->
+                <th scope="col">
+                    <button *ngIf="checkRole" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-company"
+                            [routerLink]="['/company/new']">
+                        <fa-icon [icon]="'plus'"></fa-icon>
+                        <span jhiTranslate="blackcvApp.company.home.createLabel">
+                            Create a new Company
+                        </span>
+                    </button>
+                </th>
+
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let company of companies ;trackBy: trackId">
-                <td><a [routerLink]="['/company', company.id, 'view' ]">{{company.id}}</a></td>
+                <!--                <td><a [routerLink]="['/company', company.id, 'view' ]">{{company.id}}</a></td>-->
                 <td>{{company.name}}</td>
                 <td>{{company.businessAreas}}</td>
                 <td>{{company.address}}</td>
-                <td>{{company.status}}</td>
+                <td>{{company.email}}</td>
+                <!--                <td>{{company.status}}</td>-->
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"
-                                [routerLink]="['/company', company.id, 'view' ]"
+                                (click)="details(company)"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
@@ -59,11 +116,13 @@
         </table>
     </div>
     <div *ngIf="companies?.length > 0">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" >
             <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage"
+                            [maxSize]="5" [rotate]="true" [boundaryLinks]="true"
+                            (pageChange)="loadPage($event)"></ngb-pagination>
         </div>
     </div>
 </div>

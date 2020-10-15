@@ -1,0 +1,329 @@
+<nav id="sidebar" class="sidebar" [ngClass]="{'sidebar-bg' : hasBackgroundImage()}">
+    <div class="sidebar-content">
+        <perfect-scrollbar>
+            <div class="sidebar-header">
+                <a jhiTranslate="global.menu.home" routerLink="/">Home</a>
+            </div>
+            <!--            <div class="sidebar-profile" *ngIf="isAuthenticated()&&status" [ngSwitch]="isAuthenticated()">-->
+            <!--                <div class="user-pic">-->
+            <!--                    <img class="img-responsive img-rounded"-->
+            <!--                         src="../../../content/images/ava.png"-->
+            <!--                         alt="User picture">-->
+            <!--                </div>-->
+            <!--                <div class="user-info">-->
+            <!--                    <span class="user-name">-->
+            <!--                        <h5><strong>{{account.login}}</strong></h5>-->
+            <!--                    </span>-->
+            <!--                    <span class="user-role">{{role}}</span>-->
+            <!--                    <span class="user-status">-->
+            <!--                        <i class="fa fa-circle"></i>-->
+            <!--                        <span>Online</span>-->
+            <!--                    </span>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <div class="sidebar-search">
+                <div>
+                    <div class="input-group">
+                        <input type="text" class="form-control search-menu" placeholder="Search...">
+                        <div class="input-group-append">
+                          <span class="input-group-text">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                          </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-menu">
+                <div [ngSwitch]="isAuthenticated()">
+                    <ul>
+                        <li>
+                            <div class="row col-md">
+                                <div class="col-md-7">
+                                    <a style="text-align: center"
+                                        [jhiActiveMenu]="vi"
+                                        (click)="changeLanguage(vi)">
+                                        {{vi | findLanguageFromKey}}</a>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <a style="text-align: center"
+                                        [jhiActiveMenu]="en"
+                                        (click)="changeLanguage(en)">
+                                        {{en | findLanguageFromKey}}</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li *ngSwitchCase="true">
+                            <a class="dropdown-item" routerLink="account/settings" routerLinkActive="active">
+                                <fa-icon icon="wrench" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.account.settings">Settings</span>
+                            </a>
+                        </li>
+                        <li *ngSwitchCase="true">
+                            <a class="dropdown-item" routerLink="account/password" routerLinkActive="active">
+                                <fa-icon icon="lock" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.account.password">Password</span>
+                            </a>
+                        </li>
+                        <li *ngSwitchCase="true">
+                            <a class="dropdown-item" (click)="logout()" id="logout">
+                                <fa-icon icon="sign-out-alt" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.account.logout">Sign out</span>
+                            </a>
+                        </li>
+                        <li *ngSwitchCase="false">
+                            <a class="dropdown-item" (click)="login()" id="signin">
+                                <fa-icon icon="sign-in-alt" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.account.login">Sign in</span>
+                            </a>
+                        </li>
+                        <li *ngSwitchCase="false">
+                            <a class="dropdown-item" routerLink="account/sign-in" id="login">
+                                <fa-icon icon="sign-in-alt" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.account.login">Login</span>
+                            </a>
+                        </li>
+                        <li *ngSwitchCase="false">
+                            <a class="dropdown-item" routerLink="account/register" routerLinkActive="active">
+                                <fa-icon icon="user-plus" fixedWidth="true"></fa-icon>
+                                <span jhiTranslate="global.menu.account.register">Register</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div *ngIf="isAuthenticated()&&status" [ngSwitch]="isAuthenticated()">
+                    <div *ngSwitchCase="true">
+                        <ul *jhiHasAnyAuthority="'ROLE_USER'">
+                            <li *ngFor="let menu of menus"
+                                [ngClass]="{'active': menu.active , 'sidebar-dropdown':menu.type === 'dropdown' , 'header-menu':menu.type === 'header'}">
+                                <span *ngIf="menu.type === 'header'">{{menu.title}}</span>
+                                <a *ngIf="menu.type !== 'header'" (click)='toggle(menu)'>
+                                    <i class="{{menu.icon}}"></i>
+                                    <span>{{menu.title}}</span>
+                                    <span *ngIf="menu.badge" class="badge badge-pill"
+                                          [ngClass]="menu.badge.class">{{menu.badge.text}}</span>
+                                </a>
+                                <div *ngIf="menu.type === 'dropdown'" class="sidebar-submenu" [@slide]="getState(menu)">
+                                    <ul>
+                                        <li>
+                                            <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item" routerLink="cv"
+                                               routerLinkActive="active">
+                                                <fa-icon icon="file" fixedWidth="true"></fa-icon>
+                                                <span jhiTranslate="global.menu.entities.cv">Cv</span>
+                                            </a>
+
+                                            <a *jhiHasAnyAuthority="'ROLE_USER'" class="dropdown-item"
+                                               (click)="check()"
+                                               routerLinkActive="active">
+                                                <fa-icon icon="building" fixedWidth="true"></fa-icon>
+                                                <span jhiTranslate="global.menu.entities.company">Company</span>
+                                            </a>
+
+                                            <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item"
+                                               routerLink="reason"
+                                               routerLinkActive="active">
+                                                <fa-icon icon="exclamation-circle" fixedWidth="true"></fa-icon>
+                                                <span jhiTranslate="global.menu.entities.reason">Reason</span>
+                                            </a>
+
+                                            <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item"
+                                               routerLink="staff-origin" routerLinkActive="active">
+                                                <fa-icon icon="address-card" fixedWidth="true"></fa-icon>
+                                                <span
+                                                    jhiTranslate="global.menu.entities.staffOrigin">Staff Origin</span>
+                                            </a>
+
+                                            <hr *jhiHasAnyAuthority="'ROLE_ADMIN'">
+
+                                            <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item"
+                                               routerLink="admin/user-management" routerLinkActive="active">
+                                                <fa-icon icon="user" fixedWidth="true"></fa-icon>
+                                                <span
+                                                    jhiTranslate="global.menu.admin.userManagement">User management</span>
+                                            </a>
+
+                                            <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item"
+                                               routerLink="admin/metrics" routerLinkActive="active">
+                                                <fa-icon icon="tachometer-alt" fixedWidth="true"></fa-icon>
+                                                <span jhiTranslate="global.menu.admin.metrics">Metrics</span>
+                                            </a>
+
+                                            <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item"
+                                               routerLink="admin/health" routerLinkActive="active">
+                                                <fa-icon icon="heart" fixedWidth="true"></fa-icon>
+                                                <span jhiTranslate="global.menu.admin.health">Health</span>
+                                            </a>
+
+                                            <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item"
+                                               routerLink="admin/configuration" routerLinkActive="active">
+                                                <fa-icon icon="list" fixedWidth="true"></fa-icon>
+                                                <span
+                                                    jhiTranslate="global.menu.admin.configuration">Configuration</span>
+                                            </a>
+
+                                            <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item"
+                                               routerLink="admin/audits" routerLinkActive="active">
+                                                <fa-icon icon="bell" fixedWidth="true"></fa-icon>
+                                                <span jhiTranslate="global.menu.admin.audits">Audits</span>
+                                            </a>
+
+                                            <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item"
+                                               routerLink="admin/logs" routerLinkActive="active">
+                                                <fa-icon icon="tasks" fixedWidth="true"></fa-icon>
+                                                <span jhiTranslate="global.menu.admin.logs">Logs</span>
+                                            </a>
+
+                                            <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="dropdown-item"
+                                               routerLink="admin/docs" routerLinkActive="active">
+                                                <fa-icon icon="book" fixedWidth="true"></fa-icon>
+                                                <span jhiTranslate="global.menu.admin.apidocs">API</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </perfect-scrollbar>
+    </div>
+    <div class="sidebar-footer">
+        <!--        <div class="dropdown" dropdown>-->
+
+        <!--            <a href="#" dropdownToggle>-->
+        <!--                <i class="fa fa-bell"></i>-->
+        <!--                <span class="badge badge-pill badge-warning notification">5</span>-->
+        <!--            </a>-->
+        <!--            <div class="dropdown-menu notifications" *dropdownMenu>-->
+        <!--                <div class="notifications-header">-->
+        <!--                    <i class="fa fa-bell"></i>-->
+        <!--                    Notifications-->
+        <!--                </div>-->
+        <!--                <div class="dropdown-divider"></div>-->
+        <!--                <a class="dropdown-item" href="#">-->
+        <!--                    <div class="notification-content">-->
+        <!--                        <div class="icon">-->
+        <!--                            <i class="fas fa-check text-success border border-success"></i>-->
+        <!--                        </div>-->
+        <!--                        <div class="content">-->
+        <!--                            <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing-->
+        <!--                                elit. In totam explicabo-->
+        <!--                            </div>-->
+        <!--                            <div class="notification-time">-->
+        <!--                                6 minutes ago-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </a>-->
+        <!--                <a class="dropdown-item" href="#">-->
+        <!--                    <div class="notification-content">-->
+        <!--                        <div class="icon">-->
+        <!--                            <i class="fas fa-exclamation text-info border border-info"></i>-->
+        <!--                        </div>-->
+        <!--                        <div class="content">-->
+        <!--                            <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing-->
+        <!--                                elit. In totam explicabo-->
+        <!--                            </div>-->
+        <!--                            <div class="notification-time">-->
+        <!--                                Today-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </a>-->
+        <!--                <a class="dropdown-item" href="#">-->
+        <!--                    <div class="notification-content">-->
+        <!--                        <div class="icon">-->
+        <!--                            <i class="fas fa-exclamation-triangle text-warning border border-warning"></i>-->
+        <!--                        </div>-->
+        <!--                        <div class="content">-->
+        <!--                            <div class="notification-detail">Lorem ipsum dolor sit amet consectetur adipisicing-->
+        <!--                                elit. In totam explicabo-->
+        <!--                            </div>-->
+        <!--                            <div class="notification-time">-->
+        <!--                                Yesterday-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </a>-->
+        <!--                <div class="dropdown-divider"></div>-->
+        <!--                <a class="dropdown-item text-center" href="#">View all notifications</a>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        <div class="dropdown" dropdown>-->
+        <!--            <a href="#" dropdownToggle>-->
+        <!--                <i class="fa fa-envelope"></i>-->
+        <!--                <span class="badge badge-pill badge-success notification">7</span>-->
+        <!--            </a>-->
+        <!--            <div class="dropdown-menu messages" *dropdownMenu>-->
+        <!--                <div class="messages-header">-->
+        <!--                    <i class="fa fa-envelope"></i>-->
+        <!--                    Messages-->
+        <!--                </div>-->
+        <!--                <div class="dropdown-divider"></div>-->
+        <!--                <a class="dropdown-item" href="#">-->
+        <!--                    <div class="message-content">-->
+        <!--                        <div class="pic">-->
+        <!--                            <img src="../../../content/images/user.jpg" alt="">-->
+        <!--                        </div>-->
+        <!--                        <div class="content">-->
+        <!--                            <div class="message-title">-->
+        <!--                                <strong> Jhon doe</strong>-->
+        <!--                            </div>-->
+        <!--                            <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing-->
+        <!--                                elit. In totam explicabo-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+
+        <!--                </a>-->
+        <!--                <a class="dropdown-item" href="#">-->
+        <!--                    <div class="message-content">-->
+        <!--                        <div class="pic">-->
+        <!--                            <img src="../../../content/images/user.jpg" alt="">-->
+        <!--                        </div>-->
+        <!--                        <div class="content">-->
+        <!--                            <div class="message-title">-->
+        <!--                                <strong> Jhon doe</strong>-->
+        <!--                            </div>-->
+        <!--                            <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing-->
+        <!--                                elit. In totam explicabo-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+
+        <!--                </a>-->
+        <!--                <a class="dropdown-item" href="#">-->
+        <!--                    <div class="message-content">-->
+        <!--                        <div class="pic">-->
+        <!--                            <img src="../../../content/images/user.jpg" alt="">-->
+        <!--                        </div>-->
+        <!--                        <div class="content">-->
+        <!--                            <div class="message-title">-->
+        <!--                                <strong> Jhon doe</strong>-->
+        <!--                            </div>-->
+        <!--                            <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing-->
+        <!--                                elit. In totam explicabo-->
+        <!--                            </div>-->
+        <!--                        </div>-->
+        <!--                    </div>-->
+        <!--                </a>-->
+        <!--                <div class="dropdown-divider"></div>-->
+        <!--                <a class="dropdown-item text-center" href="#">View all messages</a>-->
+
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        <div class="dropdown" dropdown>-->
+        <!--            <a href="#" dropdownToggle>-->
+        <!--                <i class="fa fa-cog"></i>-->
+        <!--                <span class="badge-sonar"></span>-->
+        <!--            </a>-->
+        <!--            <div class="dropdown-menu" *dropdownMenu>-->
+        <!--                <a class="dropdown-item" href="#">My profile</a>-->
+        <!--                <a class="dropdown-item" href="#">Help</a>-->
+        <!--                <a class="dropdown-item" href="#">Setting</a>-->
+        <!--            </div>-->
+        <!--        </div>-->
+
+    </div>
+</nav>

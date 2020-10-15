@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiParseLinks } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IReason } from 'app/shared/model/reason.model';
@@ -10,6 +10,10 @@ import { IReason } from 'app/shared/model/reason.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { ReasonService } from './reason.service';
 import { ReasonDeleteDialogComponent } from './reason-delete-dialog.component';
+import { ICompany } from 'app/shared/model/company.model';
+import { FormBuilder } from '@angular/forms';
+import { CompanyDetailComponent } from 'app/entities/company/company-detail.component';
+import { ReasonDetailComponent } from 'app/entities/reason/reason-detail.component';
 
 @Component({
   selector: 'jhi-reason',
@@ -24,12 +28,18 @@ export class ReasonComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  links: any;
+  searchForm = this.fb.group({
+    name: ['']
+  });
 
   constructor(
     protected reasonService: ReasonService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
+    private fb: FormBuilder,
+    protected parseLinks: JhiParseLinks,
     protected modalService: NgbModal
   ) {}
 
@@ -47,14 +57,26 @@ export class ReasonComponent implements OnInit, OnDestroy {
       );
   }
 
+  getFormValues() {
+    const res = {};
+    // const countryName = this.searchForm.get(['countryName']).value.trim();
+    // const countryCode = this.searchForm.get(['countryCode']).value.trim();
+    const name = this.searchForm.get(['name'])!.value.trim();
+    if (name) {
+      res['name'] = name;
+    }
+    return res;
+  }
+
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(data => {
       this.page = data.pagingParams.page;
       this.ascending = data.pagingParams.ascending;
       this.predicate = data.pagingParams.predicate;
       this.ngbPaginationPage = data.pagingParams.page;
-      this.loadPage();
+      // this.loadPage();
     });
+    this.loadAll();
     this.registerChangeInReasons();
   }
 
@@ -99,7 +121,37 @@ export class ReasonComponent implements OnInit, OnDestroy {
     this.reasons = data ? data : [];
   }
 
+  loadAll() {
+    this.reasonService
+      .query({
+        page: this.page - 1,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+        ...this.getFormValues()
+      })
+      .subscribe((res: HttpResponse<IReason[]>) => this.paginateReason(res.body!, res.headers));
+
+    this.searchForm = this.fb.group({
+      name: ['']
+    });
+  }
+
+  onSearch() {
+    this.loadAll();
+  }
+
+  protected paginateReason(data: IReason[], headers: HttpHeaders) {
+    this.links = this.parseLinks.parse(headers.get('link')!);
+    this.totalItems = parseInt(headers.get('X-Total-Count')!, 10);
+    this.reasons = data;
+  }
+
   protected onError(): void {
     this.ngbPaginationPage = this.page;
+  }
+
+  details(reason: IReason): void {
+    const modalRef = this.modalService.open(ReasonDetailComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.reason = reason;
   }
 }

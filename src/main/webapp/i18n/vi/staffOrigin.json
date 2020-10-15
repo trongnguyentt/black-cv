@@ -1,0 +1,30 @@
+{
+  "blackcvApp": {
+    "staffOrigin": {
+      "home": {
+        "title": "Hồ sơ nhân sự",
+        "createLabel": "Thêm mới một hồ sơ nhân sự",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật hồ sơ nhân sự",
+        "notFound": "Không có hồ sơ nhân sự nào được tìm thấy."
+      },
+      "created": "Một hồ sơ nhân sự mới được tạo.",
+      "updated": "Một hồ sơ nhân sự được cập nhật.",
+      "deleted": "Một hồ sơ nhân sư đã xóa.",
+      "delete": {
+        "question": "Bạn có chắc là muốn xóa hồ sơ nhân sự {{ name }}?"
+      },
+      "detail": {
+        "title": "Hồ sơ nhân sự",
+        "detail": "Thông tin hồ sơ"
+      },
+      "name": "Họ tên",
+      "email": "Email",
+      "job": "Nghề nghiệp",
+      "advantages": "Ưu điểm",
+      "defect": "Nhược điểm",
+      "more": "Ghi chú",
+      "status": "Trạng thái",
+      "titleList": "Danh sách hồ sơ"
+    }
+  }
+}

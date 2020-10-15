@@ -1,5 +1,7 @@
 package blackcv.domain;
 
+import org.springframework.data.annotation.CreatedBy;
+
 import javax.persistence.*;
 
 import java.io.Serializable;
@@ -9,7 +11,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "cv")
-public class CV implements Serializable {
+public class CV extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,6 +24,9 @@ public class CV implements Serializable {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "birthday")
+    private String birthday;
 
     @Column(name = "phone")
     private String phone;
@@ -40,6 +45,12 @@ public class CV implements Serializable {
 
     @Column(name = "avatar")
     private String avatar;
+
+    @Column(name = "reason")
+    private String reason;
+
+    @Column(name = "reason_detail")
+    private String reasonDetail;
 
     @Column(name = "file_upload_cv")
     private String fileUploadCV;
@@ -160,6 +171,14 @@ public class CV implements Serializable {
         this.avatar = avatar;
     }
 
+    public String getReasonDetail() {
+        return reasonDetail;
+    }
+
+    public void setReasonDetail(String reasonDetail) {
+        this.reasonDetail = reasonDetail;
+    }
+
     public String getFileUploadCV() {
         return fileUploadCV;
     }
@@ -185,6 +204,23 @@ public class CV implements Serializable {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -209,6 +245,7 @@ public class CV implements Serializable {
             "id=" + getId() +
             ", idCompany=" + getIdCompany() +
             ", name='" + getName() + "'" +
+            ", name='" + getBirthday() + "'" +
             ", phone='" + getPhone() + "'" +
             ", email='" + getEmail() + "'" +
             ", address='" + getAddress() + "'" +

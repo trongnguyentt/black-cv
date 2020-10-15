@@ -1,8 +1,13 @@
 package blackcv.repository;
 
 import blackcv.domain.Company;
+import blackcv.repository.custom.CompanyRepositoryCustom;
+import blackcv.service.dto.CompanyDTO;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -10,6 +15,12 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface CompanyRepository extends JpaRepository<Company, Long> {
+public interface CompanyRepository extends JpaRepository<Company, Long>, CompanyRepositoryCustom {
+
+    List<Company> findByCreatedBy(String name);
+
+    Optional<Company> findOneByEmailIgnoreCaseAndStatusGreaterThan(String email, int status);
+
+    Optional<Company> findOneByNameAndStatusGreaterThan(String name,int status);
 
 }

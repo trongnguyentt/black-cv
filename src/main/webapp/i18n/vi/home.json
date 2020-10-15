@@ -1,6 +1,6 @@
 {
   "home": {
-    "title": "Chào mừng bạn đến với Java Hipster!",
+    "title": "Chào mừng bạn đến với Black CV",
     "subtitle": "Đây là trang chủ của bạn",
     "logged": {
       "message": "Bạn đang đăng nhập bằng tài khoản \"{{username}}\"."
@@ -14,6 +14,15 @@
       "follow": "Theo dõi @jhipster trên Twitter"
     },
     "like": "Nếu bạn thích JHipster, đừng quên cho chúng tôi thêm một ngôi sao trên",
-    "github": "GitHub"
+    "github": "GitHub",
+    "search": "Tìm kiếm hồ sơ",
+    "placeholder": {
+      "searchEmail": "Nhập email",
+      "searchPhone": "Nhập số điện thoại",
+      "searchName": "Nhập tên",
+      "searchBusiness": "Nhập lĩnh vực kinh doanh",
+      "searchReason": "Nhập lý do",
+      "searchEmailPhone": "Nhập email hoặc số điện thoại"
+    }
   }
 }

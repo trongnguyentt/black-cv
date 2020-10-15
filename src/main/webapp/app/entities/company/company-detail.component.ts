@@ -1,24 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ICompany } from 'app/shared/model/company.model';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { CompanyService } from 'app/entities/company/company.service';
+import { ICV } from 'app/shared/model/cv.model';
 
 @Component({
   selector: 'jhi-company-detail',
   templateUrl: './company-detail.component.html'
 })
 export class CompanyDetailComponent implements OnInit {
-  company: ICompany | null = null;
+  company?: ICompany;
+  companyNoresult: ICompany | null = null;
 
-  constructor(protected activatedRoute: ActivatedRoute) {}
+  constructor(protected activatedRoute: ActivatedRoute, protected router: Router, public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ company }) => {
-      this.company = company;
+      this.companyNoresult = company;
     });
   }
 
   previousState(): void {
     window.history.back();
   }
+
+  clear(): void {
+    this.activeModal.dismiss();
+  }
+
+  // sendCV() {
+  //   this.router.navigate(['/account/send-cv'], {
+  //     queryParams: {
+  //       id: this.company!.id
+  //     }
+  //   });
+
+  // requestResetPassword(): void {
+  //   this.activeModal.dismiss('to state requestReset');
+  //   this.router.navigate(['/account/reset', 'request']);
+  // }
 }

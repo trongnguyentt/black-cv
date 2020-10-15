@@ -1,40 +1,70 @@
 <div>
-    <h2 id="page-heading">
-        <span jhiTranslate="blackcvApp.reason.home.title">Reasons</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-reason" [routerLink]="['/reason/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="blackcvApp.reason.home.createLabel">
-            Create a new Reason
-            </span>
-        </button>
-    </h2>
+<!--    <h2 id="page-heading">-->
+<!--        <span jhiTranslate="blackcvApp.reason.home.title">Reasons</span>-->
+<!--        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-reason" [routerLink]="['/reason/new']">-->
+<!--            <fa-icon [icon]="'plus'"></fa-icon>-->
+<!--            <span  jhiTranslate="blackcvApp.reason.home.createLabel">-->
+<!--            Create a new Reason-->
+<!--            </span>-->
+<!--        </button>-->
+<!--    </h2>-->
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <br/>
+            <form name="searchForm" role="form" novalidate (ngSubmit)="onSearch()" [formGroup]="searchForm">
+                <div class="row justify-content-center">
+                    <div class="form-group col-sm-6 row text-color">
+                        <label class="col-4 col-form-label text-right"
+                               jhiTranslate="blackcvApp.reason.reasonName">Reason name</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" placeholder="{{'home.placeholder.searchReason' | translate}}"
+                                   formControlName="name"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <button type="submit" class="btn btn-info">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                        <span class="d-none d-md-inline"
+                              jhiTranslate="blackcvApp.company.search">Search</span>
+                    </button>
+                </div>
+            </form>
+
+    <br>
     <div class="alert alert-warning" *ngIf="reasons?.length === 0">
         <span jhiTranslate="blackcvApp.reason.home.notFound">No reasons found</span>
     </div>
-    <div class="table-responsive" *ngIf="reasons?.length > 0">
-        <table class="table table-striped" aria-describedby="page-heading">
-            <thead>
+    <div class="table-responsive">
+        <table class="table table-hover" aria-describedby="page-heading">
+            <caption jhiTranslate="blackcvApp.reason.titleList">List of Reason</caption>
+            <thead class="thead-light">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+<!--            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th scope="col"  jhiSortBy="descriptons"><span jhiTranslate="blackcvApp.reason.descriptons">Descriptons</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th scope="col"  jhiSortBy="reasonName"><span jhiTranslate="blackcvApp.reason.reasonName">Reason Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"  jhiSortBy="status"><span jhiTranslate="blackcvApp.reason.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th scope="col"></th>
+<!--            <th scope="col"  jhiSortBy="status"><span jhiTranslate="blackcvApp.reason.status">Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+                <th scope="col">
+                    <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cv"
+                            [routerLink]="['/reason/new']">
+                        <fa-icon [icon]="'plus'"></fa-icon>
+                        <span jhiTranslate="blackcvApp.reason.home.createLabel">
+                            Create a new Reason
+                        </span>
+                    </button>
+                </th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let reason of reasons ;trackBy: trackId">
-                <td><a [routerLink]="['/reason', reason.id, 'view' ]">{{reason.id}}</a></td>
+<!--                <td><a [routerLink]="['/reason', reason.id, 'view' ]">{{reason.id}}</a></td>-->
                 <td>{{reason.descriptons}}</td>
                 <td>{{reason.reasonName}}</td>
-                <td>{{reason.status}}</td>
+<!--                <td>{{reason.status}}</td>-->
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"
-                                [routerLink]="['/reason', reason.id, 'view' ]"
+                                (click)="details(reason)"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>

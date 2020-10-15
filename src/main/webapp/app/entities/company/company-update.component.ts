@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpResponse } from '@angular/common/http';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { ICompany, Company } from 'app/shared/model/company.model';
 import { CompanyService } from './company.service';
+import { COMPANY_ALREADY_USED_TYPE, EMAIL_ALREADY_USED_TYPE } from 'app/shared/constants/error.constants';
+import { ValidatorsEmail } from 'app/entities/company/email-company.validator';
 
 @Component({
   selector: 'jhi-company-update',
@@ -14,13 +15,19 @@ import { CompanyService } from './company.service';
 })
 export class CompanyUpdateComponent implements OnInit {
   isSaving = false;
+  emailPattern = '^[a-z0-9._-]+@[a-z0-9._-]+.[a-z]{2,4}$';
+  errorEmailExists = false;
+  errorUserExists = false;
+  error = false;
+  success = false;
 
   editForm = this.fb.group({
     id: [],
-    name: [],
-    businessAreas: [],
-    address: [],
-    status: []
+    name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(1), Validators.maxLength(254)]],
+    businessAreas: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
+    address: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(254)]],
+    status: [],
+    email: ['', [Validators.required, ValidatorsEmail, Validators.email, Validators.minLength(5), Validators.maxLength(254)]]
   });
 
   constructor(protected companyService: CompanyService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -37,7 +44,8 @@ export class CompanyUpdateComponent implements OnInit {
       name: company.name,
       businessAreas: company.businessAreas,
       address: company.address,
-      status: company.status
+      status: company.status,
+      email: company.email
     });
   }
 
@@ -46,6 +54,8 @@ export class CompanyUpdateComponent implements OnInit {
   }
 
   save(): void {
+    this.errorEmailExists = false;
+    this.errorUserExists = false;
     this.isSaving = true;
     const company = this.createFromForm();
     if (company.id !== undefined) {
@@ -62,14 +72,15 @@ export class CompanyUpdateComponent implements OnInit {
       name: this.editForm.get(['name'])!.value,
       businessAreas: this.editForm.get(['businessAreas'])!.value,
       address: this.editForm.get(['address'])!.value,
-      status: this.editForm.get(['status'])!.value
+      status: this.editForm.get(['status'])!.value,
+      email: this.editForm.get(['email'])!.value
     };
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<ICompany>>): void {
     result.subscribe(
       () => this.onSaveSuccess(),
-      () => this.onSaveError()
+      response => this.onSaveError(response)
     );
   }
 
@@ -78,7 +89,14 @@ export class CompanyUpdateComponent implements OnInit {
     this.previousState();
   }
 
-  protected onSaveError(): void {
+  protected onSaveError(response: HttpErrorResponse): void {
+    if (response.status === 400 && response.error.type === COMPANY_ALREADY_USED_TYPE) {
+      this.errorUserExists = true;
+    } else if (response.status === 400 && response.error.type === EMAIL_ALREADY_USED_TYPE) {
+      this.errorEmailExists = true;
+    } else {
+      this.error = true;
+    }
     this.isSaving = false;
   }
 }

@@ -11,6 +11,8 @@ import { CompanyService } from './company.service';
 import { CompanyComponent } from './company.component';
 import { CompanyDetailComponent } from './company-detail.component';
 import { CompanyUpdateComponent } from './company-update.component';
+import { UserCompanyComponent } from 'app/entities/company/user-company.component';
+import { CompanyDetailUserComponent } from 'app/entities/company/company-detail-user.component';
 
 @Injectable({ providedIn: 'root' })
 export class CompanyResolve implements Resolve<ICompany> {
@@ -49,6 +51,18 @@ export const companyRoute: Routes = [
     canActivate: [UserRouteAccessService]
   },
   {
+    path: 'view',
+    component: CompanyDetailUserComponent,
+    resolve: {
+      company: CompanyResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'blackcvApp.company.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
     path: ':id/view',
     component: CompanyDetailComponent,
     resolve: {
@@ -75,6 +89,18 @@ export const companyRoute: Routes = [
   {
     path: ':id/edit',
     component: CompanyUpdateComponent,
+    resolve: {
+      company: CompanyResolve
+    },
+    data: {
+      authorities: ['ROLE_ADMIN'],
+      pageTitle: 'blackcvApp.company.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: 'edit',
+    component: UserCompanyComponent,
     resolve: {
       company: CompanyResolve
     },

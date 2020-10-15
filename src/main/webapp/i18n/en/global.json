@@ -8,9 +8,10 @@
       "entities": {
         "main": "Entities",
         "company": "Company",
-        "cv": "CV",
+        "cv": "Curriculum Vitae",
         "reasonList": "Reason List",
         "reason": "Reason",
+        "staffOrigin": "Staff Origin",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -20,7 +21,8 @@
         "sessions": "Sessions",
         "login": "Sign in",
         "logout": "Sign out",
-        "register": "Register"
+        "register": "Register",
+        "sendEmail": "Send Email"
       },
       "admin": {
         "main": "Administration",
@@ -38,6 +40,7 @@
       "language": "Language"
     },
     "form": {
+      "title.label": "LOGIN",
       "username.label": "Username",
       "username.placeholder": "Your username",
       "currentpassword.label": "Current password",
@@ -102,7 +105,8 @@
       "edit": "Edit",
       "open": "Open",
       "save": "Save",
-      "view": "View"
+      "view": "View",
+      "info": "Company Information"
     },
     "detail": {
       "field": "Field",
@@ -112,6 +116,8 @@
       "title": "Confirm delete operation"
     },
     "validation": {
+      "emailInvalid": "Email must be a business domain name - info@business-name.com",
+      "phoneduplicate": "Phone number already exists in the list",
       "required": "This field is required.",
       "minlength": "This field is required to be at least {{ min }} characters.",
       "maxlength": "This field cannot be longer than {{ max }} characters.",
@@ -119,10 +125,11 @@
       "max": "This field cannot be more than {{ max }}.",
       "minbytes": "This field should be at least {{ min }} bytes.",
       "maxbytes": "This field cannot be more than {{ max }} bytes.",
-      "pattern": "This field should follow pattern for {{ pattern }}.",
+      "pattern": "This field should follow pattern for {{ pattern1 }} or {{ partern2 }} or {{ partern3 }}.",
       "number": "This field should be a number.",
       "datetimelocal": "This field should be a date and time.",
-      "patternLogin": "This field can only contain letters, digits and e-mail addresses."
+      "patternLogin": "This field can only contain letters, digits and e-mail addresses.",
+      "info": "Please enter full information."
     }
   },
   "error": {

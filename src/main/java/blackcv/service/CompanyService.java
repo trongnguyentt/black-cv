@@ -4,7 +4,9 @@ import blackcv.service.dto.CompanyDTO;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.util.MultiValueMap;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -26,8 +28,10 @@ public interface CompanyService {
      * @param pageable the pagination information.
      * @return the list of entities.
      */
-    Page<CompanyDTO> findAll(Pageable pageable);
+    Page<CompanyDTO> findAll(MultiValueMap<String, String> queryParams, Pageable pageable);
 
+
+    List<CompanyDTO> checkExist();
 
     /**
      * Get the "id" company.
@@ -36,6 +40,8 @@ public interface CompanyService {
      * @return the entity.
      */
     Optional<CompanyDTO> findOne(Long id);
+
+    Optional<CompanyDTO> findOneByLogin(String login);
 
     /**
      * Delete the "id" company.

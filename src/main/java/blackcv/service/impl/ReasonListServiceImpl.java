@@ -9,10 +9,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.MultiValueMap;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -42,9 +45,18 @@ public class ReasonListServiceImpl implements ReasonListService {
     @Override
     public ReasonListDTO save(ReasonListDTO reasonListDTO) {
         log.debug("Request to save ReasonList : {}", reasonListDTO);
+        reasonListDTO.setStatus(1);
         ReasonList reasonList = reasonListMapper.toEntity(reasonListDTO);
         reasonList = reasonListRepository.save(reasonList);
         return reasonListMapper.toDto(reasonList);
+    }
+
+    @Override
+    public Page<ReasonListDTO> findAll(MultiValueMap<String, String> queryParams, Pageable pageable) {
+        log.debug("Request to get all ReasonLists");
+        List<ReasonList> device = reasonListRepository.search(queryParams, pageable);
+        Page<ReasonList> pages = new PageImpl<>(device, pageable, reasonListRepository.countReasonList(queryParams));
+        return pages.map(reasonListMapper::toDto);
     }
 
     /**
@@ -53,13 +65,13 @@ public class ReasonListServiceImpl implements ReasonListService {
      * @param pageable the pagination information.
      * @return the list of entities.
      */
-    @Override
-    @Transactional(readOnly = true)
-    public Page<ReasonListDTO> findAll(Pageable pageable) {
-        log.debug("Request to get all ReasonLists");
-        return reasonListRepository.findAll(pageable)
-            .map(reasonListMapper::toDto);
-    }
+//    @Override
+//    @Transactional(readOnly = true)
+//    public Page<ReasonListDTO> findAll(Pageable pageable) {
+//        log.debug("Request to get all ReasonLists");
+//        return reasonListRepository.findAll(pageable)
+//            .map(reasonListMapper::toDto);
+//    }
 
 
     /**
@@ -84,6 +96,9 @@ public class ReasonListServiceImpl implements ReasonListService {
     @Override
     public void delete(Long id) {
         log.debug("Request to delete ReasonList : {}", id);
-        reasonListRepository.deleteById(id);
+        ReasonList reasonList = reasonListRepository.findById(id).get();
+        reasonList.setStatus(0);
+        reasonListRepository.save(reasonList);
+//        reasonListRepository.deleteById(id);
     }
 }

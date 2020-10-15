@@ -2,24 +2,24 @@
   "blackcvApp": {
     "reasonList": {
       "home": {
-        "title": "Reason Lists",
-        "createLabel": "Thêm mới một Reason List",
-        "createOrEditLabel": "Thêm mới hoặc cập nhật Reason List",
-        "notFound": "No Reason Lists found"
+        "title": "Danh sách lý do",
+        "createLabel": "Thêm mới",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật",
+        "notFound": "Không tìm thấy danh sách hợp lệ"
       },
-      "created": "Một Reason List mới được tạo với định danh {{ param }}",
-      "updated": "Một Reason List cập nhật với định danh {{ param }}",
-      "deleted": "Một Reason List đã xóa với định danh {{ param }}",
+      "created": "Danh sách mới được tạo với định danh {{ param }}",
+      "updated": "Danh sách được cập nhật với định danh {{ param }}",
+      "deleted": "Danh sách đã xóa với định danh {{ param }}",
       "delete": {
-        "question": "Bạn có chắc là muốn xóa Reason List {{ id }}?"
+        "question": "Bạn có chắc là muốn xóa danh sách {{ id }}?"
       },
       "detail": {
-        "title": "Reason List"
+        "title": "Danh sách lý do"
       },
-      "idCV": "Id CV",
-      "document": "Document",
-      "id_reason": "Id Reason",
-      "status": "Status"
+      "idCV": "Hồ sơ",
+      "document": "Bằng chứng",
+      "id_reason": "Lý do",
+      "status": "Trạng thái"
     }
   }
 }

@@ -6,6 +6,47 @@
 Bootstrap tweaks
 ===============================================================*/
 
+/* You can add global styles to this file, and also import other style files */
+
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+
+body {
+  font-size: 0.9rem;
+}
+
+.page-wrapper.toggled .sidebar {
+  left: -300px;
+}
+
+// angular perfect scrollbar style
+.sidebar .ps.ps--scrolling-y > .ps__rail-y,
+.sidebar > .ps.ps--scrolling-x > .ps__rail-x,
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+  background-color: transparent !important;
+}
+
+.sidebar .ps.ps--active-y > .ps__rail-y:hover,
+.sidebar > .ps.ps--active-y > .ps__rail-y.ps--clicking {
+  width: 10px !important;
+}
+
+.ps__thumb-y {
+  background-color: #fff !important;
+  width: 6px !important;
+  border-radius: 0px !important;
+  opacity: 0.5;
+}
+
 body,
 h1,
 h2,
@@ -117,6 +158,7 @@ Custom alerts for notification
 .alerts {
   .alert {
     text-overflow: ellipsis;
+
     pre {
       background: none;
       border: none;
@@ -125,22 +167,28 @@ Custom alerts for notification
       padding: 0;
       margin: 0;
     }
+
     .popover pre {
       font-size: 10px;
     }
   }
+
   .jhi-toast {
     position: fixed;
     width: 100%;
+
     &.left {
       left: 5px;
     }
+
     &.right {
       right: 5px;
     }
+
     &.top {
       top: 55px;
     }
+
     &.bottom {
       bottom: 55px;
     }
@@ -167,6 +215,7 @@ entity detail page css
     dt {
       margin-bottom: 15px;
     }
+
     dd {
       border-bottom: 1px solid #eee;
       padding-left: 180px;
@@ -192,4 +241,533 @@ ui bootstrap tweaks
   white-space: nowrap;
 }
 
+.sizeImage {
+  height: 12rem;
+}
+
+.multiselect-dropdown {
+  .dropdown-btn {
+    border: 1px solid #e4e7ea !important;
+    border-radius: 0.25rem !important;
+  }
+
+  .dropdown-list {
+    padding-top: 0 !important;
+    border: 1px solid #e4e7ea !important;
+    border-radius: 0.25rem !important;
+    margin-top: 0.25rem !important;
+    box-shadow: none !important;
+  }
+}
+
 /* jhipster-needle-scss-add-main JHipster will add new css style */
+
+/*
+file deitail của đat*/
+
+.khoianh1 {
+  width: 100%;
+  /*display: inline-block;*/
+  margin-top: 60px;
+  margin-bottom: 40px;
+
+  border-radius: 20px;
+}
+
+.thum1 {
+  width: 100%;
+  height: 225px;
+  //background-image: url('../images/hinh-nen-hoa-anh-dao.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+.avatar {
+  height: 17rem;
+}
+
+.trai {
+  height: 900px;
+}
+
+.top_trai {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.top_trai img {
+  border-radius: 20px;
+  margin-top: 15px;
+  margin-bottom: 40px;
+}
+
+.thong_tin_ca_nhan {
+  height: 50px;
+  width: 100%;
+}
+
+.thong_tin_ca_nhan h3 {
+  /*//display: inline-block;*/
+  float: right;
+  margin-right: 50px;
+}
+
+.khoi {
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+.flex1 {
+  margin-left: 20px;
+  font-size: 25px;
+}
+
+.flex5 {
+  margin-left: 20px;
+}
+
+/* hết css khối trái  */
+
+.phai-detail {
+  height: 900px;
+}
+
+.khoi1 {
+  margin-top: 75px;
+  border-radius: 5px;
+}
+
+.hoc_van {
+  margin-top: 20px;
+  margin-left: 70px;
+}
+
+.khoianh {
+  width: 100%;
+  height: auto;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.thumb {
+  width: 200px;
+  height: 150px;
+
+  //background-image: url('../images/hinh-nen-hoa-anh-dao.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.cusbackmain {
+  //color: #fff;
+  //background-color: #fff;
+  background-image: url('../../content/images/background4.png');
+}
+
+/*
+phần code css cho trang Home (đạt)*/
+.anhnen {
+  background-image: url('../../content/images/anh2_component_home.jpg');
+  height: 800px;
+  position: absolute;
+  width: 100%;
+}
+
+.phanform {
+  position: relative;
+  width: 48rem;
+  height: 32rem;
+  margin-left: 11rem;
+  margin-top: 4rem;
+
+  border-radius: 10px;
+  background-color: white;
+}
+
+.phanform-top {
+  width: 100%;
+  height: 62px;
+  background-color: #2c3e50;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.phanform-top img {
+  margin-top: -25px;
+  margin-left: 45px;
+}
+
+.phanform-top p {
+  display: block;
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding-top: 10px;
+  padding-left: 40px;
+}
+
+.noidung-form {
+  padding-top: 40px;
+  padding-right: 55px;
+  padding-left: 55px;
+}
+
+.btn-search {
+  margin-left: 15.5rem;
+  width: 11rem;
+  margin-top: 10px;
+}
+
+develop .row0 {
+  padding-left: 15px;
+  margin-right: 83px;
+}
+
+.row1 {
+  float: right;
+}
+
+.row2 {
+  margin-top: 40px;
+}
+
+.borderduoi {
+  border-bottom: 2px solid #95a5a6;
+}
+
+.btn-submit {
+  display: block;
+  margin-top: 32px;
+  width: 100%;
+  line-height: 50px;
+  font-family: inherit;
+  background: #2c3e50;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+.btn-submit:hover {
+  cursor: pointer;
+}
+
+.khoi {
+  margin-top: 5px;
+}
+
+.flex1 {
+  margin-left: 20px;
+  font-size: 25px;
+}
+
+.flex5 {
+  margin-left: 20px;
+}
+
+.phai {
+  background-color: #718093;
+  height: 500px;
+}
+
+input[type='text'] {
+  border: none;
+  border-bottom: 2px solid #7f8c8d;
+}
+
+input[type='email'] {
+  border: none;
+  border-bottom: 2px solid #7f8c8d;
+}
+
+input[type='tel'] {
+  border: none;
+  border-bottom: 2px solid #7f8c8d;
+}
+
+input[type='date'] {
+  border: none;
+  border-bottom: 2px solid #7f8c8d;
+}
+
+/* đây là phần css responsive */
+/* đây là màn iphone 678 plus */
+@media only screen and (max-width: 414px) and (min-width: 320px) {
+  .phanform {
+    position: relative;
+    width: 320px;
+    height: 485px;
+    margin-top: 55px !important;
+    margin: auto;
+    border-radius: 10px;
+    background-color: white;
+  }
+
+  .phanform-top p {
+    display: block;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-left: 36px;
+  }
+
+  .noidung-form {
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .noidung-form-center {
+    text-align: center;
+    margin-left: 4.5rem;
+  }
+
+  .btn-search {
+    margin-left: 5rem;
+    width: 11rem;
+    margin-top: 10px;
+  }
+
+  .row0 {
+    padding-left: 16px;
+    margin-right: 20px;
+  }
+  .row2 {
+    margin-top: 24px;
+  }
+
+  .form-control1 {
+    height: 35px;
+    width: 160px;
+    border-radius: 5px;
+  }
+}
+
+/* màn hình ipad */
+@media only screen and (max-width: 1024px) and (min-width: 415px) {
+  .phanform {
+    position: relative;
+    width: 630px;
+    height: 520px;
+    margin-top: 165px !important;
+    margin: auto;
+
+    border-radius: 10px;
+    background-color: white;
+  }
+
+  .phanform-top p {
+    display: block;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-left: 145px;
+  }
+
+  .noidung-form-center {
+    text-align: center;
+    margin-left: 12.3rem;
+  }
+
+  .btn-search {
+    margin-left: 12.3rem;
+    width: 11rem;
+    margin-top: 10px;
+  }
+
+  .row0 {
+    padding-left: 16px;
+    margin-right: 35px;
+  }
+  .row2 {
+    margin-top: 40px;
+  }
+  .form-control1 {
+    height: 45px;
+    width: 250px;
+    border-radius: 5px;
+  }
+}
+
+/* // iphone 5 */
+
+@media only screen and (max-width: 360px) {
+  .phanform {
+    position: relative;
+    width: 263px;
+    height: 465px;
+    margin-top: 24px !important;
+    margin: auto;
+    border-radius: 10px;
+    background-color: white;
+  }
+
+  .phanform-top {
+    width: 100%;
+    height: 50px;
+    background-color: #2c3e50;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+
+  .phanform-top p {
+    display: block;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-left: 30px;
+  }
+
+  .noidung-form-center {
+    text-align: center;
+    margin-left: 3.3rem;
+  }
+
+  .btn-search {
+    margin-left: 3.3rem;
+    width: 11rem;
+    margin-top: 10px;
+  }
+
+  .noidung-form {
+    padding-top: 7px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .row0 {
+    padding-left: 14px;
+    margin-right: 20px;
+  }
+  .row2 {
+    margin-top: 24px;
+  }
+
+  .form-control1 {
+    height: 30px;
+    width: 135px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+  }
+  .form-control {
+    font-size: 0.75rem;
+  }
+  .btn-submit {
+    height: 48px;
+    margin-top: 16px;
+  }
+}
+
+/*
+//css cho phần result-cv (dat)*/
+.result {
+  /* border: 1px solid black;*/
+  height: 300px;
+  width: 100%;
+  text-align: center;
+  color: black;
+}
+
+.result h2 {
+  padding-top: 135px;
+}
+
+.result-2 {
+  padding-top: 20px;
+
+  /*border: 1px solid black;*/
+  height: 250px;
+  width: 100%;
+  text-align: center;
+
+  color: black;
+}
+
+.form-search {
+  width: 300px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.table {
+  color: black;
+  font-size: 18px;
+}
+
+.result-3 {
+  padding-top: 20px;
+  background-color: white;
+  /*border: 1px solid black;*/
+  height: auto;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+
+/*
+css cho phần Create new CV*/
+.bo {
+  border: 1px solid #7f8c8d;
+  border-radius: 5px;
+}
+
+.khoiform {
+  /* border: 1px solid black;  */
+  height: auto;
+  margin-top: 40px;
+}
+
+.khoiform h2 {
+  margin-bottom: 50px;
+}
+
+.save-button {
+  width: 140px;
+  margin-right: 10px;
+  height: 40px;
+  border-radius: 85px;
+}
+
+.resizeanh {
+  width: 300px;
+  height: 150px !important;
+  background-color: #3e3e3e;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border-radius: 5px;
+}
+
+.resizeanh-2 {
+  width: 400px;
+  height: 250px !important;
+  background-color: #3e3e3e;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border-radius: 5px;
+}
+
+.color-white {
+  color: white;
+}
+
+.homebutton {
+  color: #17a2b8;
+  font-weight: bold;
+  a:hover {
+    color: #17a2b8;
+  }
+}

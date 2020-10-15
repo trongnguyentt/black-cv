@@ -14,18 +14,55 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
+import { SearchcvComponent } from './full-image/searchcv.component';
+import { SearchcvModule } from 'app/full-image/searchcv.module';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { SidebarComponent } from 'app/layouts/sidebar/sidebar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     BlackcvSharedModule,
     BlackcvCoreModule,
     BlackcvHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
+    SearchcvModule,
     BlackcvEntityModule,
-    BlackcvAppRoutingModule
+    BlackcvAppRoutingModule,
+    // NgMultiSelectDropDownModule.forRoot(),
+    // AppFooterModule,
+    // AppHeaderModule,
+    // AppSidebarModule,
+    BsDropdownModule.forRoot(),
+    PerfectScrollbarModule
   ],
-  declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
+  declarations: [
+    MainComponent,
+    SidebarComponent,
+    NavbarComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    ActiveMenuDirective,
+    FooterComponent,
+    SearchcvComponent
+  ],
+  providers: [
+    NgbActiveModal,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: PERFECT_SCROLLBAR_CONFIG
+    }
+  ],
+  //   providers: [
+  //     NgbActiveModal,
+  //     provide:PERFECT_SCROLLBAR_CONFIG,
+  //     useValue:DEFAULT_PERFECT_SCROLLBAR_CONFIG
+  // ],
   bootstrap: [MainComponent]
 })
 export class BlackcvAppModule {}

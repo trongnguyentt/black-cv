@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="result" ><h2 jhiTranslate="blackcvApp.cV.listResult">This person is in the black list of companies!</h2></div>
+    </div>
+    <div *ngIf="cVS" >
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <tr *ngFor="let cV of cVS; let index = index">
+                        <a [routerLink]="['/cv', cV.id, 'view']">
+                            <span class="badge badge-success">{{index+1}}</span><span class="text-primary">   Công ty: {{cV.company}} </span>
+                            <br>
+                            <span class="text-dark"> Họ Tên: {{cV.name}} <span> | <span> Nghề Nghiệp: {{cV.job}} </span> | </span> Lý Do: {{cV.reason}} </span>
+                            <br>
+                            <br>
+                        </a>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

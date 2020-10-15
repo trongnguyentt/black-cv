@@ -1,0 +1,120 @@
+<form *ngIf="staffOrigin" name="detailsForm" (ngSubmit)="clear()">
+    <div class="modal-header">
+        <h4 class="modal-title text-center" jhiTranslate="blackcvApp.staffOrigin.detail.detail">Detail</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-7">
+                <div style="width: 26rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-info"
+                                  jhiTranslate="blackcvApp.staffOrigin.detail.title">Staff Origin</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col">
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'user'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Name">{{staffOrigin.name}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'envelope'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Email">{{staffOrigin.email}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'briefcase'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Job">{{staffOrigin.job}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'thumbs-up'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Advantages">{{staffOrigin.advantages}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'thumbs-down'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Defect">{{staffOrigin.defect}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'info'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="More">{{staffOrigin.more}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span
+            jhiTranslate="blackcvApp.cV.close">Close</span>
+        </button>
+    </div>
+</form>
+
+<form *ngIf="staffOriginX" name="detailsForm" (ngSubmit)="clear()">
+    <div class="modal-header">
+        <h4 class="modal-title text-center" jhiTranslate="blackcvApp.staffOrigin.detail.detail">Detail</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-7">
+                <div style="width: 26rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-info"
+                                  jhiTranslate="blackcvApp.staffOrigin.detail.title">Staff Origin</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col">
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'user'"></fa-icon></div>
+                                <div class="col">{{staffOriginX.name}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'envelope'"></fa-icon></div>
+                                <div class="col">{{staffOriginX.email}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'briefcase'"></fa-icon></div>
+                                <div class="col">{{staffOriginX.job}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'thumbs-up'"></fa-icon></div>
+                                <div class="col">{{staffOriginX.advantages}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'thumbs-down'"></fa-icon></div>
+                                <div class="col">{{staffOriginX.defect}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'info'"></fa-icon></div>
+                                <div class="col">{{staffOriginX.more}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="previousState()">
+            <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span
+            jhiTranslate="blackcvApp.cV.close">Close</span>
+        </button>
+    </div>
+</form>
+

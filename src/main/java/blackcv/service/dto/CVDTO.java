@@ -13,6 +13,8 @@ public class CVDTO implements Serializable {
 
     private String name;
 
+    private String birthday;
+
     private String phone;
 
     private String email;
@@ -23,7 +25,13 @@ public class CVDTO implements Serializable {
 
     private String gender;
 
+    private String reason;
+
     private String avatar;
+
+    private String reasonDetail;
+
+    private String company;
 
     private String fileUploadCV;
 
@@ -52,6 +60,14 @@ public class CVDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getPhone() {
@@ -118,6 +134,30 @@ public class CVDTO implements Serializable {
         this.status = status;
     }
 
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getReasonDetail() {
+        return reasonDetail;
+    }
+
+    public void setReasonDetail(String reasonDetail) {
+        this.reasonDetail = reasonDetail;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -145,6 +185,7 @@ public class CVDTO implements Serializable {
             "id=" + getId() +
             ", idCompany=" + getIdCompany() +
             ", name='" + getName() + "'" +
+            ", birthday='" + getBirthday() + "'" +
             ", phone='" + getPhone() + "'" +
             ", email='" + getEmail() + "'" +
             ", address='" + getAddress() + "'" +

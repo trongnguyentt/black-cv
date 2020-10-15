@@ -1,63 +1,291 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="cV">
-            <h2><span jhiTranslate="blackcvApp.cV.detail.title">CV</span> {{cV.id}}</h2>
-            <hr>
-            <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="blackcvApp.cV.idCompany">Id Company</span></dt>
-                <dd>
-                    <span>{{cV.idCompany}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.name">Name</span></dt>
-                <dd>
-                    <span>{{cV.name}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.phone">Phone</span></dt>
-                <dd>
-                    <span>{{cV.phone}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.email">Email</span></dt>
-                <dd>
-                    <span>{{cV.email}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.address">Address</span></dt>
-                <dd>
-                    <span>{{cV.address}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.job">Job</span></dt>
-                <dd>
-                    <span>{{cV.job}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.gender">Gender</span></dt>
-                <dd>
-                    <span>{{cV.gender}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.avatar">Avatar</span></dt>
-                <dd>
-                    <span>{{cV.avatar}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.fileUploadCV">File Upload CV</span></dt>
-                <dd>
-                    <span>{{cV.fileUploadCV}}</span>
-                </dd>
-                <dt><span jhiTranslate="blackcvApp.cV.status">Status</span></dt>
-                <dd>
-                    <span>{{cV.status}}</span>
-                </dd>
-            </dl>
+<form *ngIf="cV" name="detailsForm" (ngSubmit)="clear()">
+    <div class="modal-header">
+        <!--        <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>-->
+        <h4 class="modal-title text-center" jhiTranslate="blackcvApp.cV.detail.detail">Detail</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-7">
+                <div style="width: 26rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-info"
+                                  jhiTranslate="blackcvApp.cV.idCompany">Company</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col">
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'user'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Company's name">{{company.name}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'envelope'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Company's email">{{company.email}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'map-marker'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Company's address">{{company.address}}</div>
+                            </div>
+                        </div>
+                    </div>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
-
-            <button type="button"
-                    [routerLink]="['/cv', cV.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="" style="width: 18rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-danger"
+                                  jhiTranslate="blackcvApp.cV.reason">Reason</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col">
+                            <p [innerHTML]="cV.reason | tempConverter"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-md-7">
+                <div style="width: 26rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-info"
+                                  jhiTranslate="blackcvApp.cV.detail.title">Curriculum Vitae Detail</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col">
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'user'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Name">{{cV.name}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'phone'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Phone">{{cV.phone}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'envelope'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Email">{{cV.email}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'birthday-cake'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Birthday">{{cV.birthday}}</div>
+                            </div>
+                            <div class="row pb-2" *ngIf="cV.gender == 1">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'male'"></fa-icon></div>
+                                <div class="col">Male</div>
+                            </div>
+                            <div class="row pb-2" *ngIf="cV.gender == 0" >
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'female'"></fa-icon></div>
+                                <div class="col" >Female</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'briefcase'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Job">{{cV.job}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'map-marker'"></fa-icon></div>
+                                <div class="col" data-toggle="tooltip" data-placement="top" title="Address">{{cV.address}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="" style="width: 18rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-danger"
+                                  jhiTranslate="blackcvApp.cV.evidence">Evidence</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex p-3 text-black justify-content-end">
+                                <img data-toggle="modal" data-target="#exampleModalCenter"
+                                     src="{{cV.fileUploadCV}}" style="width:100%; height: 55% " alt="">
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+                                     role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg"
+                                         role="picture">
+                                        <div class="modal-content ">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"></h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{cV.fileUploadCV}}" alt="Evidence"
+                                                     style="width: 100%; max-width: 850px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thumb"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <!--            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Close</span>-->
+            <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span
+            jhiTranslate="blackcvApp.cV.close">Close</span>
+        </button>
+    </div>
+</form>
+
+<form *ngIf="cVx" name="detailsForm" (ngSubmit)="clear()">
+    <div class="modal-header">
+        <!--        <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>-->
+        <h4 class="modal-title text-center" jhiTranslate="blackcvApp.cV.detail.detail">Detail</h4>
+<!--        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"-->
+<!--                (click)="clear()">&times;-->
+<!--        </button>-->
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col">
+                <div class="" style="width: 18rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-danger"
+                                  jhiTranslate="blackcvApp.cV.reason">Reason</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col">
+                            <p [innerHTML]="cVx.reason | tempConverter"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-md-7">
+                <div style="width: 26rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-info"
+                                  jhiTranslate="blackcvApp.cV.detail.title">Curriculum Vitae Detail</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col">
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'user'"></fa-icon></div>
+                                <div class="col">{{cVx.name}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'phone'"></fa-icon></div>
+                                <div class="col">{{cVx.phone}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'envelope'"></fa-icon></div>
+                                <div class="col">{{cVx.email}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'birthday-cake'"></fa-icon></div>
+                                <div class="col">{{cVx.birthday}}</div>
+                            </div>
+                            <div class="row pb-2" *ngIf="cVx.gender == 1">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'male'"></fa-icon></div>
+                                <div class="col">Male</div>
+                            </div>
+                            <div class="row pb-2" *ngIf="cVx.gender == 0" >
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'female'"></fa-icon></div>
+                                <div class="col">Female</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'briefcase'"></fa-icon></div>
+                                <div class="col">{{cVx.job}}</div>
+                            </div>
+                            <div class="row pb-2">
+                                <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'map-marker'"></fa-icon></div>
+                                <div class="col">{{cVx.address}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="" style="width: 18rem;">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span class="d-none d-md-inline badge badge-pill badge-danger"
+                                  jhiTranslate="blackcvApp.cV.evidence">Evidence</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex p-3 text-black justify-content-end">
+                                <img data-toggle="modal" data-target="#exampleModalCenter1"
+                                     src="{{cVx.fileUploadCV}}" style="width:100%; height: 55% " alt="">
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModalCenter1" tabindex="-1"
+                                     role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg"
+                                         role="picture">
+                                        <div class="modal-content ">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"></h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{cVx.fileUploadCV}}" alt="Evidence"
+                                                     style="width: 100%; max-width: 850px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thumb"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="previousState()">
+            <!--            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Close</span>-->
+            <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span
+            jhiTranslate="blackcvApp.cV.close">Close</span>
+        </button>
+    </div>
+</form>
+

@@ -14,9 +14,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -92,10 +94,11 @@ public class ReasonListResource {
 
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of reasonLists in body.
      */
+
     @GetMapping("/reason-lists")
-    public ResponseEntity<List<ReasonListDTO>> getAllReasonLists(Pageable pageable) {
-        log.debug("REST request to get a page of ReasonLists");
-        Page<ReasonListDTO> page = reasonListService.findAll(pageable);
+    public ResponseEntity<List<ReasonListDTO>> getAllReasonLists(Pageable pageable, @RequestParam MultiValueMap<String, String> queryParams, UriComponentsBuilder uriBuilder) {
+        log.debug("REST request to get a page of Companies");
+        Page<ReasonListDTO> page = reasonListService.findAll(queryParams, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

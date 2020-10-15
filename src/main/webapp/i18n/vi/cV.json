@@ -2,30 +2,41 @@
   "blackcvApp": {
     "cV": {
       "home": {
-        "title": "CVS",
-        "createLabel": "Thêm mới một CV",
-        "createOrEditLabel": "Thêm mới hoặc cập nhật CV",
-        "notFound": "No CVS found"
+        "title": "Hồ sơ",
+        "createLabel": "Thêm mới hồ sơ",
+        "createOrEditLabel": "Thêm mới hoặc cập nhật hồ sơ",
+        "notFound": "Không tìm thấy hồ sơ hợp lệ"
       },
-      "created": "Một CV mới được tạo với định danh {{ param }}",
-      "updated": "Một CV cập nhật với định danh {{ param }}",
-      "deleted": "Một CV đã xóa với định danh {{ param }}",
+      "created": "Hồ sơ mới được tạo.",
+      "updated": "Hồ sơ được cập nhật.",
+      "deleted": "Hồ sơ đã xóa.",
       "delete": {
-        "question": "Bạn có chắc là muốn xóa CV {{ id }}?"
+        "question": "Bạn có chắc là muốn xóa hồ sơ của {{ name }}?"
       },
       "detail": {
-        "title": "CV"
+        "title": "Thông tin cá nhân",
+        "detail": "Thông tin hồ sơ"
       },
-      "idCompany": "Id Company",
-      "name": "Name",
-      "phone": "Phone",
+      "idCompany": "Công ty",
+      "name": "Tên",
+      "birthday": "Ngày sinh",
+      "phone": "Số điện thoại",
       "email": "Email",
-      "address": "Address",
-      "job": "Job",
-      "gender": "Gender",
-      "avatar": "Avatar",
-      "fileUploadCV": "File Upload CV",
-      "status": "Status"
+      "address": "Địa chỉ",
+      "job": "Chức vụ",
+      "gender": "Giới tính",
+      "avatar": "Ảnh",
+      "fileUploadCV": "Bằng chứng",
+      "status": "Trạng thái",
+      "titleList": "Danh sách hồ sơ ",
+      "search": "Tìm kiếm",
+      "reason": "Lý do",
+      "evidence": "Bằng chứng",
+      "close": "Đóng",
+      "noResult": "Không có kết quả tìm kiếm!",
+      "askCompany": "Bạn có thể hỏi công ty cũ về người này tại đây :",
+      "searchCompany": "Nhập tên công ty",
+      "listResult": "Người này nằm trong danh sách đen của nhiều công ty!"
     }
   }
 }

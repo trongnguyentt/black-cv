@@ -1,5 +1,6 @@
 package blackcv.service;
 
+import blackcv.domain.StaffOrigin;
 import blackcv.domain.User;
 
 import io.github.jhipster.config.JHipsterProperties;
@@ -32,7 +33,13 @@ public class MailService {
 
     private static final String USER = "user";
 
+    private static final String USERs = "users";
+
     private static final String BASE_URL = "baseUrl";
+
+    private static final String INFO = "info";
+
+    private static final String INFOs = "infos";
 
     private final JHipsterProperties jHipsterProperties;
 
@@ -87,6 +94,28 @@ public class MailService {
     }
 
     @Async
+    public void sendEmailCVFromTemplate(StaffOrigin info, String templateName, String titleKey) {
+        Locale locale = Locale.forLanguageTag("en");
+        Context context = new Context(locale);
+        context.setVariable(INFO, info);
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        String mailMine=info.getEmail();
+        sendEmail(mailMine, subject, content, false, true);
+    }
+
+    @Async
+    public void sendEmailRespondCVFromTemplate(StaffOrigin infos, String templateName, String titleKey) {
+        Locale locale = Locale.forLanguageTag("en");
+        Context context = new Context(locale);
+        context.setVariable(INFOs, infos);
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        String mailMine=infos.getEmail();
+        sendEmail(mailMine, subject, content, false, true);
+    }
+
+    @Async
     public void sendActivationEmail(User user) {
         log.debug("Sending activation email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/activationEmail", "email.activation.title");
@@ -102,5 +131,14 @@ public class MailService {
     public void sendPasswordResetMail(User user) {
         log.debug("Sending password reset email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "mail/passwordResetEmail", "email.reset.title");
+    }
+    @Async
+    public void sendCVMail(StaffOrigin info) {
+
+        sendEmailCVFromTemplate(info, "mail/CVEmail", "email.reset.title");
+    }
+    @Async
+    public void respondCVMail(StaffOrigin infos) {
+        sendEmailRespondCVFromTemplate(infos, "mail/RespondCVEmail", "email.reset.title");
     }
 }

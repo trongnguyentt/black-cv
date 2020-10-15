@@ -1,0 +1,48 @@
+<form *ngIf="staffOrigin" name="deleteForm" (ngSubmit)="confirmDelete(staffOrigin.id!)">
+    <div class="modal-header">
+        <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <p id="jhi-delete-staffOrigin-heading" jhiTranslate="blackcvApp.staffOrigin.delete.question" [translateValues]="{name: staffOrigin.name}">Are you sure you want to delete this Staff Origin?</p>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col">
+                <div class="row pb-2">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'user'"></fa-icon></div>
+                    <div class="col" data-toggle="tooltip" data-placement="top" title="Name">{{staffOrigin.name}}</div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'envelope'"></fa-icon></div>
+                    <div class="col" data-toggle="tooltip" data-placement="top" title="Email">{{staffOrigin.email}}</div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'briefcase'"></fa-icon></div>
+                    <div class="col" data-toggle="tooltip" data-placement="top" title="Job">{{staffOrigin.job}}</div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'thumbs-up'"></fa-icon></div>
+                    <div class="col" data-toggle="tooltip" data-placement="top" title="Advantages">{{staffOrigin.advantages}}</div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'thumbs-down'"></fa-icon></div>
+                    <div class="col" data-toggle="tooltip" data-placement="top" title="Defect">{{staffOrigin.defect}}</div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-md-1"><fa-icon style="color: #20a8d8;" [icon]="'info'"></fa-icon></div>
+                    <div class="col" data-toggle="tooltip" data-placement="top" title="More">{{staffOrigin.more}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button id="jhi-confirm-delete-staffOrigin" type="submit" class="btn btn-danger">
+            <fa-icon [icon]="'times'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
+        </button>
+    </div>
+</form>
